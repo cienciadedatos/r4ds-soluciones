@@ -1,0 +1,13 @@
+--- 
+title: "R para Ciencia de Datos: Soluciones de los ejercicios"
+author: "Riva Quiroga"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Propuestas de soluciones para los ejercicios del libro _R para Ciencia de Datos_"
+---
+
+# Bienvenida {-}
+

@@ -1,0 +1,64 @@
+# Muchos modelos
+
+
+## gapminder
+
+### Ejercicios
+
+1. Una tendencia lineal parece ser demasiado simple para la tendencia general.
+ ¿Puedes hacerlo mejor con un polinomio cuadrático? ¿Cómo puedes interpretar
+ el coeficiente del término cuadrático? (Pista: puedes querer transformar
+ `year` para que tenga media cero.)
+
+1. Explora otros métodos para visualizar la distribución del $R^2$ por
+ continente. Puedes querer probar el paquete __ggbeeswarm__, que provee
+ métodos similares para evitar superposiciones como jitter, pero usa métodos
+ determinísticos.
+
+1. Para crear el último gráfico (mostrando los datos para los países con los
+ peores ajustes del modelo), precisamos dos pasos: creamos un _data frame_ con
+ una fila por país y después hicimos un _semi-join_ (del inglés _semi juntar_) (TODO: deberíamos aclarar algo?) al conjunto de datos original.
+ Es posible evitar este _join_ si usamos `unnest()` en lugar de
+ `unnest(.drop = TRUE)`. ¿Cómo?
+
+
+## Creando columnas-lista
+
+
+### Ejercicios
+
+1. Lista todas las funciones en las que puedas pensar que tomen como _input_ un vector atómico y
+ retornen una lista.
+
+1. Piensa en funciones de resumen útiles que, como `quantile()`, retornen
+ múltiples valores.
+
+1. ¿Qué es lo que falta en el siguiente _data frame_? ¿Cómo `quantile()` retorna
+ eso que falta? ¿Por qué eso no es tan útil aquí?
+
+```{r}
+mtautos %>%
+  group_by(cilindros) %>%
+  summarise(q = list(quantile(millas))) %>%
+  unnest()
+```
+
+1. ¿Qué hace este código? ¿Por qué podría ser útil?
+
+```{r, eval = FALSE}
+mtautos %>%
+  group_by(cilindros) %>%
+  summarise_each(funs(list))
+```
+
+## Simplificando columnas-lista
+
+
+### Ejercicios
+
+1. ¿Por qué podría ser útil la función `lengths()` para crear columnas de
+ vectores atómicos a partir de columnas-lista?
+
+1. Lista los tipos de vectores más comúnes que se encuentran en un _data frame_. ¿Qué hace que las
+ listas sean diferentes?
+
