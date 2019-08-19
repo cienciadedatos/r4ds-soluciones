@@ -1,2 +1,7 @@
 # Introducción
 
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+

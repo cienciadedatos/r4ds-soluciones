@@ -1,48 +1,4 @@
-```{r include=FALSE, cache=FALSE}
-set.seed(1014)
-options(digits = 3)
-
-knitr::opts_chunk$set(
- comment = "#>",
- collapse = TRUE,
- cache = TRUE,
- out.width = "70%",
- fig.align = "center",
- fig.width = 6,
- fig.asp = 0.618, # 1 / phi
- fig.show = "hold"
-)
-
-options(dplyr.print_min = 6, dplyr.print_max = 6)
-```
 # Visualización de datos
-
-## Introducción
-
->"Un simple gráfico ha brindado más información a la mente del analista de datos
->que cualquier otro dispositivo". --- John Tukey
-
-En este capítulo aprenderás cómo visualizar tus datos usando el paquete **ggplot2**. De los muchos sistemas que posee R para hacer gráficos, **ggplot2** es uno de los más elegantes y versátiles. Esto se debe a que **ggplot2** implementa un sistema coherente para describir y construir gráficos, conocido como la **gramática de gráficos**. Con **ggplot2** puedes hacer más cosas en menor tiempo, aprendiendo un único sistema y aplicándolo en diferentes ámbitos.
-
-Si deseas obtener más información sobre los fundamentos teóricos de **ggplot2** antes de comenzar, te recomendamos leer "La gramática de gráficos en capas", <http://vita.had.co.nz/papers/layered-grammar.pdf>.
-
-### Prerrequisitos
-
-Este capítulo se centra en **ggplot2**, uno de los paquetes principales de tidyverse. Para acceder a los conjuntos de datos, las páginas de ayuda y las funciones que utilizaremos en este capítulo, debes cargar tidyverse ejecutando este código:
-
-```{r setup}
-library(tidyverse)
-```
-
-Esa única línea de código carga el núcleo del tidyverse; compuesto por los paquetes que usarás en casi todos tus análisis de datos. Al correr esta línea también verás cuáles funciones de tidyverse pueden tener conflicto con funciones de R base (o de otros paquetes que puedas haber cargado previamente).
-
-Si ejecutas este código y recibes el mensaje de error "no hay ningún paquete llamado 'tidyverse'", primero deberás instalarlo y luego ejecutar `library()` una vez más.
-
-```{r eval = FALSE}
-install.packages("tidyverse")
-library(tidyverse)
-```
-
 
 
 ## Primeros pasos
