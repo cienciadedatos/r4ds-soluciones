@@ -20,16 +20,15 @@ library(datos)
  los resultados. Corre el modelo varias veces para generar diferentes conjuntos
  de datos simulados. ¿Qué puedes observar respecto del modelo?
 
- 
- ```r
- sim1a <- tibble(
+
+```r
+sim1a <- tibble(
   x = rep(1:10, each = 3),
   y = x * 1.5 + 6 + rt(length(x), df = 2)
- )
- ```
+)
+```
 
 <div class="solucion">
-
 <h3>Solución</h3>
 
 Se puede correr una vez y graficar los resultados.
@@ -124,31 +123,131 @@ Podemos concluir que el modelo es sensible a valores extremos y en general a
 la distribución que siguen los datos.
 </div>
 
-1. Una forma de obtener un modelo lineal más robusto es usar una métrica distinta
- para la distancia. Por ejemplo, en lugar de la raíz de la distancia media cuadrática
- (del inglés *root-mean-squared distance*) se podría usar la media de la distancia absoluta:
+1. Una forma de obtener un modelo lineal más robusto es usar una métrica 
+ distinta para la distancia. Por ejemplo, en lugar de la raíz de la distancia
+ media cuadrática (del inglés *root-mean-squared distance*) se podría usar la
+ media de la distancia absoluta:
 
- 
- ```r
- measure_distance <- function(mod, data) {
-  diff <- data$y - model1(mod, data)
-  mean(abs(diff))
- }
- ```
 
- Usa `optim()` para ajustar este modelo a los datos simulados anteriormente y
- compara el resultado con el modelo lineal.
+```r
+medir_distancia <- function(modelo, datos) {
+  diferencia <- datos$y - modelo1(modelo, datos)
+  mean(abs(diferencia))
+}
+```
+
+Usa `optim()` para ajustar este modelo a los datos simulados anteriormente y
+compara el resultado con el modelo lineal.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Usando los datos `sim1a` y `optim()` podemos encontrar los parámetros que
+minimizan la desviación absoluta. Definiremos la función `modelo1()` tal como
+se hizo en el libro.
+
+
+```r
+modelo1 <- function(a, datos) {
+  a[1] + datos$x * a[2]
+}
+
+beta <- optim(c(0, 0), medir_distancia, datos = sim1a)
+beta$par
+```
+
+```
+## [1] 5.963011 1.483554
+```
+
+Los resultados del modelo lineal son los mismos que se obtienen si se minimiza
+la desviación al cuadrado.
+
+
+```r
+medir_distancia_ml <- function(modelo, datos) {
+  diferencia <- datos$y - (modelo[1] + modelo[2] * datos$x)
+  sqrt(mean(diferencia^2))
+}
+
+beta <- optim(c(0, 0), medir_distancia_ml, datos = sim1a)
+beta$par
+```
+
+```
+## [1] 10.76482916  0.06902913
+```
+
+En la práctica no es recomendable usar `optim()` para ajustar un modelo, es
+mejor utilizar implementaciones ya existentes como `rlm()` y `lqs()` que son
+parte del paquete [MASS](https://CRAN.R-project.org/package=MASS).
+
+La justificación es que estas implementaciones permiten ajustar modelos
+robustos sin los múltiples problemas de carácter numérico que pueden surgir de
+manera condicional a los datos al momento de usar `optim()`.
+</div>
 
 1. Un desafío al realizar optimización numérica es que únicamente garantiza
  encontrar un óptimo local. ¿Qué problema se presenta al optimizar un modelo de
  tres parámetros como el que se presenta a continuación?
 
- 
- ```r
- model1 <- function(a, data) {
-  a[1] + data$x * a[2] + a[3]
- }
- ```
+
+```r
+modelo3 <- function(a, datos) {
+  a[1] + datos$x * a[2] + a[3]
+}
+```
+
+<div class="solucion">
+<h3>Solución</h3>
+
+El problema es que dados los valores `a[1] = a1` y `a[3] = a3`, cualquier otra
+combinación de `a[1]` y `a[3]` tal que `a[1] + a[3] == (a1 + a3)` tendrá el
+mismo ajuste.
+
+
+```r
+medir_distancia_3_ml <- function(a, datos) {
+  diferencia <- datos$y - modelo3(a, datos)
+  sqrt(mean(diferencia^2))
+}
+```
+
+Dependiendo de los valores inciales se van a obtener distintos valores óptimos.
+
+
+```r
+beta_000 <- optim(c(0, 0, 0), medir_distancia_3_ml, datos = sim1a)
+beta_000$par
+```
+
+```
+## [1] 7.24575368 0.06819655 3.52688780
+```
+
+
+```r
+beta_001 <- optim(c(0, 0, 1), medir_distancia_3_ml, datos = sim1a)
+beta_001$par
+```
+
+```
+## [1] -5.56232253  0.07011962 16.32207754
+```
+
+
+```r
+beta_005 <- optim(c(0, 0, 5), medir_distancia_3_ml, datos = sim1a)
+beta_005$par
+```
+
+```
+## [1] -0.60685386  0.06882549 11.37401608
+```
+
+Si seguimos alterando los valores inciales no es muy difícil concluir que
+existen infinitos valores óptimos para este modelo.
+</div>
 
 ## Visualizando modelos
 
