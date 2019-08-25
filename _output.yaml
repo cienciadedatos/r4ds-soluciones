@@ -1,0 +1,14 @@
+bookdown::gitbook:
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><strong><a href="./">Soluciones R para Ciencia de Datos</a></strong></li>
+    edit:
+      link: https://github.com/cienciadedatos/r4ds-soluciones/edit/master/%s
+      text: "Edit"
+    sharing: no
+  css: r4ds.min.css
+
+bookdown::pdf_book:
+  latex_engine: "xelatex"

@@ -1,7 +1,28 @@
 # Datos relacionales
 
-```{r}
+
+```r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 library(datos)
 ```
 
@@ -54,8 +75,9 @@ library(datos)
    para que puedas mostrar la distribución espacial de los atrasos. Te presentamos 
    una forma fácil de dibujar un mapa de los Estados Unidos:
 
- ```{r, eval = FALSE}
-aeropuertos %>%
+ 
+ ```r
+ aeropuertos %>%
   semi_join(vuelos, c("codigo_aeropuerto" = "destino")) %>%
   ggplot(aes(longitud, latitud)) +
   borders("state") +
@@ -79,18 +101,7 @@ aeropuertos %>%
 1. ¿Qué sucedió el día 13 de junio de 2013? Muestra el patrón espacial de los atrasos, 
    luego usa un buscador para encontrar referencias cruzadas con el clima.
 
- ```{r, eval = FALSE, include = FALSE}
-peores <- filter(vuelos, !is.na(horario_salida), mes == 6, dia == 13)
-peores %>%
-  group_by(destino) %>%
-  summarise(atraso = mean(atraso_llegada), n = n()) %>%
-  filter(n > 5) %>%
-  inner_join(aeropuertos, by = c("destino" = "codigo_aeropuerto")) %>%
-  ggplot(aes(longitud, latitud)) +
-  borders("state") +
-  geom_point(aes(size = n, colour = atraso)) +
-  coord_quickmap()
- ```
+ 
 
 
 ## Uniones de filtro {#filtering-joins}
@@ -130,8 +141,14 @@ Los datos con los que has estado trabajando en este capítulo han sido limpiados
    Por ejemplo, la altura y la longitud identifican de manera única cada aeropuerto, ¡pero 
    no son buenos identificadores!
 
- ```{r}
-aeropuertos %>% count(altura, longitud) %>% filter(n > 1)
+ 
+ ```r
+ aeropuertos %>% count(altura, longitud) %>% filter(n > 1)
+ ```
+ 
+ ```
+ ## # A tibble: 0 x 3
+ ## # … with 3 variables: altura <int>, longitud <dbl>, n <int>
  ```
 
 1. Verifica que ninguna de las variables en la llave primaria esté perdida. 

@@ -1,6 +1,7 @@
 # Datos ordenados
 
-```{r}
+
+```r
 library(tibble)
 ```
 
@@ -29,7 +30,8 @@ library(tibble)
 1. ¿Por qué `gather()` y `spread()` no son perfectamente simétricas?
  Observa cuidadosamente el siguiente ejemplo:
 
-```{r, eval = FALSE}
+
+```r
 acciones <- tibble(
   anio = c(2015, 2015, 2016, 2016),
   semestre = c(1, 2, 1, 2),
@@ -46,14 +48,20 @@ acciones %>%
 
 1. ¿Por qué falla el siguiente código?
 
-```{r, error = TRUE}
+
+```r
 tabla4a %>%
   gather(`1999`, `2000`, key = "anio", value = "casos")
 ```
 
+```
+## Error in tabla4a %>% gather(`1999`, `2000`, key = "anio", value = "casos"): could not find function "%>%"
+```
+
 1. ¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarias una nueva columna para resolver el problema?
 
-```{r}
+
+```r
 personas <- tribble(
   ~nombre, ~clave, ~valor,
   #-----------------|--------|------
@@ -67,7 +75,8 @@ personas <- tribble(
 
 1. Ordena la siguiente tabla. ¿Necesitas extenderla o contraerla? ¿Cuáles son las variables?
 
-```{r}
+
+```r
 embarazo <- tribble(
   ~embarazo, ~hombre, ~mujer,
   "sí", NA, 10,
@@ -82,11 +91,12 @@ embarazo <- tribble(
 1. ¿Qué hacen los argumentos `extra` y `fill` en `separate()`?
  Experimenta con las diversas opciones a partir de los siguientes datasets de ejemplo.
 
- ```{r, eval = FALSE}
-tibble(x = c("a,b,c", "d,e,f,g", "h,i,j")) %>%
+ 
+ ```r
+ tibble(x = c("a,b,c", "d,e,f,g", "h,i,j")) %>%
   separate(x, c("one", "two", "three"))
-
-tibble(x = c("a,b,c", "d,e", "f,g,i")) %>%
+ 
+ tibble(x = c("a,b,c", "d,e", "f,g,i")) %>%
   separate(x, c("one", "two", "three"))
  ```
 

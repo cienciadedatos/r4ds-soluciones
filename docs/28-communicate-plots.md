@@ -2,7 +2,8 @@
 
 ## Paquetes necesarios
 
-```{r}
+
+```r
 library(ggplot2)
 library(datos)
 ```
@@ -38,8 +39,9 @@ library(datos)
 
 1. ¿Por qué el siguiente código no reemplaza la escala predeterminada?
 
- ```{r, eval = FALSE, fig.show = "hide"}
-ggplot(df, aes(x, y)) +
+ 
+ ```r
+ ggplot(df, aes(x, y)) +
   geom_hex() +
   scale_colour_gradient(low = "white", high = "red") +
   coord_fixed()
@@ -57,7 +59,10 @@ V.	Poniendo intervalos de 4 años (¡esto es más complicado de lo que parece!).
 
 4. Utiliza `override.aes` para que la leyenda en el siguiente gráfico sea más fácil de ver:
 
- ```{r, dev = "png", out.width = "50%"}
-ggplot(diamantes, aes(quilate, precio)) +
+ 
+ ```r
+ ggplot(diamantes, aes(quilate, precio)) +
   geom_point(aes(colour = corte, alpha = 1 / 20))
  ```
+ 
+ <img src="28-communicate-plots_files/figure-html/unnamed-chunk-3-1.png" width="50%" />

@@ -2,8 +2,29 @@
 
 ## Paquetes necesarios
 
-```{r}
+
+```r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 library(tidyr)
 library(datos)
 ```
@@ -43,16 +64,39 @@ library(datos)
 1. ¿Qué es lo que falta en el siguiente _data frame_? ¿Cómo `quantile()` retorna
  eso que falta? ¿Por qué eso no es tan útil aquí?
 
-```{r}
+
+```r
 mtautos %>%
   group_by(cilindros) %>%
   summarise(q = list(quantile(millas))) %>%
   unnest()
 ```
 
+```
+## # A tibble: 15 x 2
+##    cilindros     q
+##        <dbl> <dbl>
+##  1         4  21.4
+##  2         4  22.8
+##  3         4  26  
+##  4         4  30.4
+##  5         4  33.9
+##  6         6  17.8
+##  7         6  18.6
+##  8         6  19.7
+##  9         6  21  
+## 10         6  21.4
+## 11         8  10.4
+## 12         8  14.4
+## 13         8  15.2
+## 14         8  16.2
+## 15         8  19.2
+```
+
 1. ¿Qué hace este código? ¿Por qué podría ser útil?
 
-```{r, eval = FALSE}
+
+```r
 mtautos %>%
   group_by(cilindros) %>%
   summarise_each(funs(list))

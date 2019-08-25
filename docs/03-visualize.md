@@ -2,7 +2,8 @@
 
 ## Paquetes necesarios
 
-```{r}
+
+```r
 library(ggplot2)
 library(datos)
 ```
@@ -27,10 +28,13 @@ library(datos)
 
 1. ¿Qué no va bien en este código? ¿Por qué hay puntos que no son azules?
 
-   ```{r}
+   
+   ```r
    ggplot(data = millas) +
      geom_point(mapping = aes(x = motor, y = autopista, color = "blue"))
    ```
+   
+   <img src="03-visualize_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 2. ¿Qué variables en `millas` son categóricas? ¿Qué variables son continuas? (Sugerencia: escribe `?millas` para leer la documentación de ayuda para este conjunto de datos). ¿Cómo puedes ver esta información cuando ejecutas `millas`?
 
@@ -52,14 +56,16 @@ library(datos)
 2. ¿Qué significan las celdas vacías que aparecen en el gráfico generado usando `facet_grid(traccion ~ cilindros)`?
 ¿Cómo se relacionan con este gráfico?
 
-   ```{r, eval = FALSE}
+   
+   ```r
    ggplot(data = millas) +
      geom_point(mapping = aes(x = traccion, y = cilindros))
    ```
 
 3. ¿Qué gráfica el siguiente código? ¿Qué hace `.` ?
 
-   ```{r eval = FALSE}
+   
+   ```r
    ggplot(data = millas) +
      geom_point(mapping = aes(x = motor, y = autopista)) +
      facet_grid(traccion ~ .)
@@ -71,7 +77,8 @@ library(datos)
 
 4. Mira de nuevo el primer gráfico en facetas presentado en esta sección:
 
-   ```{r, eval = FALSE}
+   
+   ```r
    ggplot(data = millas) +
      geom_point(mapping = aes(x = motor, y = autopista)) +
      facet_wrap(~ clase, nrow = 2)
@@ -98,11 +105,12 @@ library(datos)
 2. Ejecuta este código en tu mente y predice cómo se verá el *output*.
 Luego, ejecuta el código en R y verifica tus predicciones.
 
-   ```{r, eval = FALSE}
+   
+   ```r
    ggplot(data = millas, mapping = aes(x = motor, y = autopista, color = traccion)) +
      geom_point() +
      geom_smooth(se = FALSE)
- ```
+   ```
 3. ¿Qué muestra `show.legend = FALSE`? ¿Qué pasa si lo quitas?
  ¿Por qué crees que lo usé antes en el capítulo?
 
@@ -110,7 +118,8 @@ Luego, ejecuta el código en R y verifica tus predicciones.
 
 5. ¿Se verán distintos estos gráficos? ¿Por qué sí o por qué no?
 
-   ```{r, eval = FALSE}
+   
+   ```r
    ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
      geom_point() +
      geom_smooth()
@@ -122,31 +131,7 @@ Luego, ejecuta el código en R y verifica tus predicciones.
 
 6. Recrea el código R necesario para generar los siguientes gráficos:
 
-   ```{r echo = FALSE, fig.width = 3, out.width = "50%", fig.align = "default", message = FALSE}
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
-     geom_point() +
-     geom_smooth(se = FALSE)
-   
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
-     geom_smooth(aes(group = traccion), se = FALSE) +
-     geom_point()
-   
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista, color = traccion)) +
-     geom_point() +
-     geom_smooth(se = FALSE)
-
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
-     geom_point(aes(color = traccion)) +
-     geom_smooth(se = FALSE)
-
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
-     geom_point(aes(color = traccion)) +
-     geom_smooth(aes(linetype = traccion), se = FALSE)
-   
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
-     geom_point(size = 4, colour = "white") +
-     geom_point(aes(colour = traccion))
-   ```
+   <img src="03-visualize_files/figure-html/unnamed-chunk-8-1.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-2.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-3.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-4.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-5.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-6.png" width="50%" />
 
 ## Transformaciones estadísticas
 
@@ -167,7 +152,8 @@ Lee la documentación y has una lista de todos los pares. ¿Qué tienen en comú
 En otras palabras, ¿cuál es el problema con estos dos gráficos?
 
 
-   ```{r, eval = FALSE}
+   
+   ```r
    ggplot(data = diamantes) +
      geom_bar(mapping = aes(x = corte, y = ..prop..))
    
@@ -181,10 +167,13 @@ En otras palabras, ¿cuál es el problema con estos dos gráficos?
 
 1. ¿Cuál es el problema con este gráfico? ¿Cómo podrías mejorarlo?
 
-   ```{r}
+   
+   ```r
    ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
      geom_point()
    ```
+   
+   <img src="03-visualize_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 2. ¿Qué parámetros de `geom_jitter()` controlan la cantidad de ruido?
 
@@ -205,9 +194,12 @@ En otras palabras, ¿cuál es el problema con estos dos gráficos?
 
 4. ¿Qué te dice la gráfica siguiente sobre la relación entre la ciudad y la `autopista`? ¿Por qué es `coord_fixed()` importante? ¿Qué hace `geom_abline()`?
 
-   ```{r, fig.asp = 1, out.width = "50%"}
+   
+   ```r
    ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
      geom_point() +
      geom_abline() +
      coord_fixed()
    ```
+   
+   <img src="03-visualize_files/figure-html/unnamed-chunk-11-1.png" width="50%" />

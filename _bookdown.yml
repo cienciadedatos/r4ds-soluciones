@@ -1,5 +1,2 @@
-book_filename: "r4ds-soluciones"
-delete_merged_file: true
-language:
-  ui:
-    chapter_name: "Chapter "
+new_session: yes
+output_dir: docs

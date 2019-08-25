@@ -1,6 +1,7 @@
 # Tibbles
 
-```{r}
+
+```r
 library(tibble)
 ```
 
@@ -10,11 +11,12 @@ library(tibble)
 
 1. Compara y contrasta las siguientes operaciones aplicadas a un `data.frame` y a un tibble equivalente. ¿Qué es diferente? ¿Por qué podría causarte problemas el comportamiento por defecto del data frame?
 
- ```{r, eval = FALSE}
-df <- data.frame(abc = 1, xyz = "a")
-df$x
-df[, "xyz"]
-df[, c("abc", "xyz")]
+ 
+ ```r
+ df <- data.frame(abc = 1, xyz = "a")
+ df$x
+ df[, "xyz"]
+ df[, c("abc", "xyz")]
  ```
 
 1. Si tienes el nombre de una variable guardada en un objeto, p.e., `var <- "mpg"`, ¿cómo puedes extraer esta variable de un tibble?
@@ -29,11 +31,12 @@ df[, c("abc", "xyz")]
 
  1. Renombrando las columnas como `uno`, `dos` y `tres`.
 
- ```{r}
-molesto <- tibble(
+ 
+ ```r
+ molesto <- tibble(
   `1` = 1:10,
   `2` = `1` * 2 + rnorm(length(`1`))
-)
+ )
  ```
 
 1. ¿Qué hace `tibble::enframe()`? ¿Cuándo lo usarías?

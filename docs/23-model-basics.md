@@ -2,7 +2,8 @@
 
 ## Paquetes necesarios
 
-```{r}
+
+```r
 library(tibble)
 library(ggplot2)
 library(purrr)
@@ -19,11 +20,12 @@ library(datos)
  los resultados. Corre el modelo varias veces para generar diferentes conjuntos
  de datos simulados. ¿Qué puedes observar respecto del modelo?
 
- ```{r}
-sim1a <- tibble(
+ 
+ ```r
+ sim1a <- tibble(
   x = rep(1:10, each = 3),
   y = x * 1.5 + 6 + rt(length(x), df = 2)
-)
+ )
  ```
 
 <div class="solucion">
@@ -32,16 +34,20 @@ sim1a <- tibble(
 
 Se puede correr una vez y graficar los resultados.
 
-```{r}
+
+```r
 ggplot(sim1a, aes(x = x, y = y)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
+<img src="23-model-basics_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
 Para sistematizarlo, se pueden generar varias simulaciones y luego graficar
 las líneas.
 
-```{r}
+
+```r
 simt <- function(i) {
   tibble(
     x = rep(1:10, each = 3),
@@ -58,6 +64,8 @@ ggplot(sims, aes(x = x, y = y)) +
   facet_wrap(~.id, ncol = 4)
 ```
 
+<img src="23-model-basics_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+
 El ejercicio usa la función `rt()` la cual entrega
 un muestreo a partir de una distribución t-Student, la cual tiene colas más
 largas que la distribución normal (`rnorm()`), por lo tanto asigna una mayor
@@ -65,7 +73,8 @@ probabilidad a los valores fuera del centro de la distribución.
 
 ¿Qué ocurre si usamos una distribución normal?
 
-```{r}
+
+```r
 sim_norm <- function(i) {
   tibble(
     x = rep(1:10, each = 3),
@@ -82,21 +91,33 @@ ggplot(simdf_norm, aes(x = x, y = y)) +
   facet_wrap(~.id, ncol = 4)
 ```
 
+<img src="23-model-basics_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+
 Al usar distribución normal no hay tantos valores extremos y las pendientes
 son más similares.
 
 Para el caso de la distribución normal con media cero y desviación estándar uno,
 la probabilidad de que un valor sea mayor a dos se obtiene con `pnorm()`.
 
-```{r}
+
+```r
 pnorm(2, lower.tail = FALSE)
+```
+
+```
+## [1] 0.02275013
 ```
 
 Para el caso de la distribución t-Student con dos grados de libertad, la
 probabilidad es más del triple del caso anterior y se obtiene con `pt()`.
 
-```{r}
+
+```r
 pt(2, df = 2, lower.tail = FALSE)
+```
+
+```
+## [1] 0.09175171
 ```
 
 Podemos concluir que el modelo es sensible a valores extremos y en general a
@@ -107,11 +128,12 @@ la distribución que siguen los datos.
  para la distancia. Por ejemplo, en lugar de la raíz de la distancia media cuadrática
  (del inglés *root-mean-squared distance*) se podría usar la media de la distancia absoluta:
 
- ```{r}
-measure_distance <- function(mod, data) {
+ 
+ ```r
+ measure_distance <- function(mod, data) {
   diff <- data$y - model1(mod, data)
   mean(abs(diff))
-}
+ }
  ```
 
  Usa `optim()` para ajustar este modelo a los datos simulados anteriormente y
@@ -121,10 +143,11 @@ measure_distance <- function(mod, data) {
  encontrar un óptimo local. ¿Qué problema se presenta al optimizar un modelo de
  tres parámetros como el que se presenta a continuación?
 
- ```{r}
-model1 <- function(a, data) {
+ 
+ ```r
+ model1 <- function(a, data) {
   a[1] + data$x * a[2] + a[3]
-}
+ }
  ```
 
 ## Visualizando modelos
@@ -158,9 +181,10 @@ model1 <- function(a, data) {
 1. Usando los principios básicos, convierte las fórmulas de los siguientes modelos en funciones.
  (Sugerencia: comienza por convertir las variables categóricas en ceros y unos.)
 
- ```{r, eval = FALSE}
-mod1 <- lm(y ~ x1 + x2, data = sim3)
-mod2 <- lm(y ~ x1 * x2, data = sim3)
+ 
+ ```r
+ mod1 <- lm(y ~ x1 + x2, data = sim3)
+ mod2 <- lm(y ~ x1 * x2, data = sim3)
  ```
 
 1. Para `sim4`, ¿Es mejor `mod1` o `mod2`? Yo creo que `mod2` es ligeramente mejor
