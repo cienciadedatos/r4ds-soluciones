@@ -8,6 +8,8 @@ library(ggplot2)
 library(purrr)
 library(modelr)
 library(tidyr)
+library(dplyr)
+library(stringr)
 library(datos)
 ```
 
@@ -372,17 +374,237 @@ no distingue si acaso el modelo sobre-estima o sub-estima de manera consistente.
 1. ¿Qué pasa si repites el análisis de `sim2` usando un modelo sin intercepto? ¿Qué ocurre con la
  ecuación del modelo? ¿Qué ocurre con las predicciones?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Para estimar el modelo sin intercepto agregamos `-1` o `+0` al lado derecho
+de la fórmula.
+
+```{r}
+mod2a <- lm(y ~ x - 1, data = sim2)
+
+mod2 <- lm(y ~ x, data = sim2)
+```
+
+Las predicciones son las mismas en el caso con o sin intercepto:
+
+```{r}
+grid <- sim2 %>%
+  data_grid(x) %>%
+  spread_predictions(mod2, mod2a)
+
+grid
+```
+</div>
+
 1. Usa `model_matrix()` para explorar las ecuaciones generadas por los modelos ajustados a `sim3` y
  `sim4`. ¿Por qué `*` es un atajo para la interacción?
+ 
+<div class="solucion">
+<h3>Solución</h3>
+
+El caso `x1 * x2` cuando `x2` es una variable categórica produce las variables
+binarias `x2b`, `x2c` y `x2d` y las variables continuas `x1:x2b`, `x1:x2c` y
+`x1:x2d` que son el producto de `x1` y `x2*`.
+
+```{r}
+x3 <- model_matrix(y ~ x1 * x2, data = sim3)
+x3
+```
+
+Podemos confirmar que las variables `x1:x2b` son el producto de `x1` y `x2b`.
+
+```{r}
+all(x3[["x1:x2b"]] == (x3[["x1"]] * x3[["x2b"]]))
+```
+
+Es similar para `x1:x2c` y `x2c` como para el caso de `x1:x2d` y `x2d`.
+
+```{r}
+all(x3[["x1:x2c"]] == (x3[["x1"]] * x3[["x2c"]]))
+all(x3[["x1:x2d"]] == (x3[["x1"]] * x3[["x2d"]]))
+```
+
+Para `x1 * x2` cuando `x1` y `x2` son continuas, `model_matrix()` creas las
+variables `x1`, `x2` y `x1:x2`.
+
+```{r}
+x4 <- model_matrix(y ~ x1 * x2, data = sim4)
+x4
+```
+
+Se puede confirmar que `x1:x2` es el producto de `x1` y `x2`.
+
+```{r}
+all(x4[["x1"]] * x4[["x2"]] == x4[["x1:x2"]])
+```
+</div>
 
 1. Usando los principios básicos, convierte las fórmulas de los siguientes modelos en funciones.
  (Sugerencia: comienza por convertir las variables categóricas en ceros y unos.)
 
- ```{r, eval = FALSE}
+```{r, eval = FALSE}
 mod1 <- lm(y ~ x1 + x2, data = sim3)
 mod2 <- lm(y ~ x1 * x2, data = sim3)
- ```
+```
+
+<div class="solucion">
+<h3>Solución</h3>
+
+El lado derecho de las fórmulas se encarga de generar una matriz de diseño a
+partir de las columnas `x1` y `x2`, lo que se ve reflejado en `model_matrix()`.
+
+Veamos los niveles de `x2`, que por ser una variable categórica es la más
+compleja de llevar a la matriz de diseño. `x1` permanece inalterada.
+
+```{r}
+levels(sim3$x2)
+```
+
+Para el caso `~ x1 + x2` lo que haremos es considerar "a" como el nivel de
+referencia, por lo que se omite, y luego generamos nuevas columnas para los
+niveles "b", "c" y "d".
+
+```{r}
+model_matrix_mod1 <- function(.data) {
+  mutate(.data,
+    x2b = as.numeric(x2 == "b"),
+    x2c = as.numeric(x2 == "c"),
+    x2d = as.numeric(x2 == "d"),
+    `(Intercept)` = 1
+  ) %>%
+    select(`(Intercept)`, x1, x2b, x2c, x2d)
+}
+
+model_matrix_mod1(sim3)
+```
+
+Es posible crear función para `~ x1 + x2` que no depende de los niveles
+específicos de `x2`.
+
+```{r}
+model_matrix_mod1b <- function(.data) {
+  # niveles de x2
+  lvls <- levels(.data$x2)
+  
+  # borramos el primer nivel (es de referencia)
+  # asumimos que hay al menos dos niveles
+  lvls <- lvls[2:length(lvls)]
+  
+  # creamos una variable binaria para cada nivel de x2
+  for (lvl in lvls) {
+    varname <- str_c("x2", lvl)
+    .data[[varname]] <- as.numeric(.data$x2 == lvl)
+  }
+  
+  # generamos una lista de las variables que se mantienen
+  x2_variables <- str_c("x2", lvls)
+  
+  # agregamos el intercepto
+  .data[["(Intercept)"]] <- 1
+  
+  # mantenemos las variables binarias x1 y x2
+  select(.data, `(Intercept)`, x1, one_of(x2_variables))
+}
+
+model_matrix_mod1b(sim3)
+```
+
+Para el caso `~ x1 * x2` hay que tener en cuenta que debemos generar una columna
+por cada nivel de `x2`, sin contar el nivel de referencia que interactúa con
+`x1`.
+
+```{r}
+model_matrix_mod2 <- function(.data) {
+  mutate(.data,
+    `(Intercept)` = 1,
+    x2b = as.numeric(x2 == "b"),
+    x2c = as.numeric(x2 == "c"),
+    x2d = as.numeric(x2 == "d"),
+    `x1:x2b` = x1 * x2b,
+    `x1:x2c` = x1 * x2c,
+    `x1:x2d` = x1 * x2d
+  ) %>%
+    select(`(Intercept)`, x1, x2b, x2c, x2d, `x1:x2b`, `x1:x2c`, `x1:x2d`)
+}
+
+model_matrix_mod2(sim3)
+```
+
+Es posible crear una función para `~ x1 * x2` que no depende de los niveles
+específicos de `x2`.
+
+```{r}
+model_matrix_mod2b <- function(.data) {
+  # partimos de la base del modelo x1 + x2
+  out <- model_matrix_mod1b(.data)
+  
+  # tomamos las columnas que contienen "x2"
+  x2cols <- str_subset(colnames(out), "^x2")
+  
+  # creamos las variables de interacción
+  for (varname in x2cols) {
+    newvar <- str_c("x1:", varname)
+    out[[newvar]] <- out$x1 * out[[varname]]
+  }
+  
+  out
+}
+
+model_matrix_mod2b(sim3)
+```
+
+Estas funciones se podrían generalizar para los casos en que `x1` y `x2` pueden
+ser de tipo numérico o categórico. Si seguimos generalizando acabaremos
+reescribiendo la función `matrix_model()`.
+</div>
 
 1. Para `sim4`, ¿Es mejor `mod1` o `mod2`? Yo creo que `mod2` es ligeramente mejor
  removiendo las tendencias, pero es bastante sutil. ¿Puedes generar un gráfico
  que de sustento a esta hipótesis?
+ 
+<div class="solucion">
+<h3>Solución</h3>
+
+Estimamos los modelos `mod1` y `mod2` a partir de `sim4`,
+
+```{r}
+mod1 <- lm(y ~ x1 + x2, data = sim4)
+mod2 <- lm(y ~ x1 * x2, data = sim4)
+```
+
+Luego agregamos los residuos a los datos de `sim4`.
+
+```{r}
+sim4_mods <- gather_residuals(sim4, mod1, mod2)
+```
+
+Ahora podemos generar un gráfico de frecuencias de los residuos y los valores
+absolutos de estos.
+
+```{r}
+
+ggplot(sim4_mods, aes(x = resid, colour = model)) +
+  geom_freqpoly(binwidth = 0.5) +
+  geom_rug()
+
+ggplot(sim4_mods, aes(x = abs(resid), colour = model)) +
+  geom_freqpoly(binwidth = 0.5) +
+  geom_rug()
+```
+
+Esto no muestra una gran diferencia. Sin embargo, `mod2` parece tener menos
+residuos en las colas de la distribución entre 2,5 y 5, aunque los residuos más
+extremos son los de este modelo.
+
+Podemos verificar lo anterior calculando la desviación estándar de los residuos
+para cada modelo.
+
+```{r}
+sim4_mods %>%
+  group_by(model) %>%
+  summarise(resid = sd(resid))
+```
+
+La desviación estándar de los residuos de `mod2` es menor que la de `mod1`.
+</div>
