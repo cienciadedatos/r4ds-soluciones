@@ -7,6 +7,8 @@
 library(tibble)
 library(ggplot2)
 library(purrr)
+library(modelr)
+library(tidyr)
 library(datos)
 ```
 
@@ -157,7 +159,7 @@ beta$par
 ```
 
 ```
-## [1] 5.963011 1.483554
+## [1] 5.759926 1.522131
 ```
 
 Los resultados del modelo lineal son los mismos que se obtienen si se minimiza
@@ -175,7 +177,7 @@ beta$par
 ```
 
 ```
-## [1] 10.76482916  0.06902913
+## [1] 6.675835 1.309799
 ```
 
 En la práctica no es recomendable usar `optim()` para ajustar un modelo, es
@@ -222,7 +224,7 @@ beta_000$par
 ```
 
 ```
-## [1] 7.24575368 0.06819655 3.52688780
+## [1] -7.073445  1.310212 13.747947
 ```
 
 
@@ -232,7 +234,7 @@ beta_001$par
 ```
 
 ```
-## [1] -5.56232253  0.07011962 16.32207754
+## [1] 11.233987  1.310001 -4.558419
 ```
 
 
@@ -242,7 +244,7 @@ beta_005$par
 ```
 
 ```
-## [1] -0.60685386  0.06882549 11.37401608
+## [1] 1.617275 1.310258 5.056499
 ```
 
 Si seguimos alterando los valores inciales no es muy difícil concluir que
@@ -257,15 +259,252 @@ existen infinitos valores óptimos para este modelo.
  para ajustar una curva suave. Repite el proceso de ajustar el modelo,
  generar la cuadrícula, predicciones y visualización con `sim1` usando `loess()`
  en vez de `lm()`. ¿Cómo se compara el resultado a `geom_smooth()`.
+ 
+<div class="solucion">
+<h3>Solución</h3>
+
+Usando `add_predictions()` y `add_residuals()` se pueden agregar las
+predicciones y los residuos de la regresión loess a los datos `sim1a`.
+
+
+```r
+sim1_loess <- loess(y ~ x, data = sim1a)
+sim1_lm <- lm(y ~ x, data = sim1a)
+
+grid_loess <- sim1a %>%
+  add_predictions(sim1_loess)
+
+sim1a <- sim1a %>%
+  add_residuals(sim1_lm) %>%
+  add_predictions(sim1_lm) %>%
+  add_residuals(sim1_loess, var = "resid_loess") %>%
+  add_predictions(sim1_loess, var = "pred_loess")
+```
+
+Ahora procedemos a graficar las predicciones. La regresión loess genera un
+ajuste no lineal a partir de los datos.
+
+
+```r
+plot_sim1_loess <- ggplot(sim1, aes(x = x, y = y)) +
+  geom_point() +
+  geom_line(aes(x = x, y = pred), data = grid_loess, colour = "red")
+
+plot_sim1_loess
+```
+
+<img src="23-model-basics_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+
+Las predicciones del modelo loess son las mismas que entrega el método por
+defecto de `geom_smooth()` ya que este usa `loess()` y entrega un mensaje al
+respecto.
+
+
+```r
+plot_sim1_loess +
+  geom_smooth(method = "loess", colour = "blue", se = FALSE, alpha = 0.20)
+```
+
+<img src="23-model-basics_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+
+Podemos graficar los residuos de loess (en rojo) y compararlos con los del
+modelo lineal (en negro). En general, el modelo loess tiene un menor residuo
+dada la muestra (fuera de la muestra no se asegura este comportamiento y no
+hemos considerado la incertidumbre de la estimación).
+
+
+```r
+ggplot(sim1a, aes(x = x)) +
+  geom_ref_line(h = 0) +
+  geom_point(aes(y = resid)) +
+  geom_point(aes(y = resid_loess), colour = "red")
+```
+
+<img src="23-model-basics_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+</div>
 
 1. `add_predictions()` está pareada con `gather_predictions()` y
  `spread_predictions()`. ¿Cómo difieren estas tres funciones?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Las funciones `gather_predictions()` y `spread_predictions()` permiten incluir
+simultáneamente las predicciones de múltiples modelos.
+
+Por ejemplo, se puede incluir `sim1_mod`.
+
+
+```r
+sim1_mod <- lm(y ~ x, data = sim1)
+
+grid <- sim1 %>%
+  data_grid(x)
+```
+
+La función `add_predictions()` permite incluir un modelo a la vez. Para agregar
+dos modelos se debe encadenar con el operador `%>%`.
+
+
+```r
+grid %>%
+  add_predictions(sim1_mod, var = "pred_lm") %>%
+  add_predictions(sim1_loess, var = "pred_loess")
+```
+
+```
+## # A tibble: 10 x 3
+##        x pred_lm pred_loess
+##    <int>   <dbl>      <dbl>
+##  1     1    6.27       8.05
+##  2     2    8.32       8.82
+##  3     3   10.4        9.95
+##  4     4   12.4       11.5 
+##  5     5   14.5       13.6 
+##  6     6   16.5       16.0 
+##  7     7   18.6       17.1 
+##  8     8   20.6       17.5 
+##  9     9   22.7       18.2 
+## 10    10   24.7       18.8
+```
+
+La función `gather_predictions()` incorpora predicciones de múltiples modelos
+por medio de agrupar los resultados e incluir una columna con el nombre del
+modelo.
+
+
+```r
+grid %>%
+  gather_predictions(sim1_mod, sim1_loess)
+```
+
+```
+## # A tibble: 20 x 3
+##    model          x  pred
+##    <chr>      <int> <dbl>
+##  1 sim1_mod       1  6.27
+##  2 sim1_mod       2  8.32
+##  3 sim1_mod       3 10.4 
+##  4 sim1_mod       4 12.4 
+##  5 sim1_mod       5 14.5 
+##  6 sim1_mod       6 16.5 
+##  7 sim1_mod       7 18.6 
+##  8 sim1_mod       8 20.6 
+##  9 sim1_mod       9 22.7 
+## 10 sim1_mod      10 24.7 
+## 11 sim1_loess     1  8.05
+## 12 sim1_loess     2  8.82
+## 13 sim1_loess     3  9.95
+## 14 sim1_loess     4 11.5 
+## 15 sim1_loess     5 13.6 
+## 16 sim1_loess     6 16.0 
+## 17 sim1_loess     7 17.1 
+## 18 sim1_loess     8 17.5 
+## 19 sim1_loess     9 18.2 
+## 20 sim1_loess    10 18.8
+```
+
+La función `spread_predictions()` incorpora predicciones de múltiples modelos
+agregando múltiples columnas (de acuerdo al nombre de cada modelo) que contienen
+las predicciones respectivas.
+
+
+```r
+grid %>%
+  spread_predictions(sim1_mod, sim1_loess)
+```
+
+```
+## # A tibble: 10 x 3
+##        x sim1_mod sim1_loess
+##    <int>    <dbl>      <dbl>
+##  1     1     6.27       8.05
+##  2     2     8.32       8.82
+##  3     3    10.4        9.95
+##  4     4    12.4       11.5 
+##  5     5    14.5       13.6 
+##  6     6    16.5       16.0 
+##  7     7    18.6       17.1 
+##  8     8    20.6       17.5 
+##  9     9    22.7       18.2 
+## 10    10    24.7       18.8
+```
+
+La función `spread_predictions()` es similar a correr `add_predictions()` para
+cada modelo que se quiere incorporar y es equivalente a correr `spread()` luego
+de `gather_predictions()`.
+
+
+```r
+grid %>%
+  gather_predictions(sim1_mod, sim1_loess) %>%
+  spread(model, pred)
+```
+
+```
+## # A tibble: 10 x 3
+##        x sim1_loess sim1_mod
+##    <int>      <dbl>    <dbl>
+##  1     1       8.05     6.27
+##  2     2       8.82     8.32
+##  3     3       9.95    10.4 
+##  4     4      11.5     12.4 
+##  5     5      13.6     14.5 
+##  6     6      16.0     16.5 
+##  7     7      17.1     18.6 
+##  8     8      17.5     20.6 
+##  9     9      18.2     22.7 
+## 10    10      18.8     24.7
+```
+</div>
+
 1. ¿Qué hace `geom_ref_line()`? ¿De qué paquete proviene? ¿Por qué es útil e importante
  incluir una línea de referencia en los gráficos que muestran residuos?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+La geometría `geom_ref_line()` agrega una línea de referencia al gráfico. Es el
+equivalente a usar `geom_hline()` o `geom_vline()` con las opciones por defecto
+y que nos sirven para visualizar modelos.
+
+Agregar una línea de referencia en torno a cero para los residuos es importante
+ya que un buen modelo, por lo general, tiene residuos centrados en torno a cero.
+Otras características relevantes son que los errores deben tener idéntica
+varianza y no estar correlacionados entre si.
+
+La línea de referencia en torno a cero permite evaluar visualmente estas
+características.
+</div>
+
 1. ¿Por qué quisieras mirar un polígono de frecuencias con los residuos absolutos? ¿Cuáles son las
  ventajas y desventajas de los residuos crudos?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Mostrar los valores absolutos de los residuos facilita ver la magnitud del
+error. El modelo lineal asume que los residuos tienen media cero y usar los
+valores absolutos de los residuos permite ver lo que ocurre cuando los errores
+de signos opuestos no se cancelan mutuamente.
+
+
+```r
+sim1_mod <- lm(y ~ x, data = sim1a)
+
+sim1 <- sim1 %>%
+  add_residuals(sim1_mod)
+
+ggplot(sim1a, aes(x = abs(resid))) +
+  geom_freqpoly(binwidth = 0.5)
+```
+
+<img src="23-model-basics_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+
+El inconveniente que aparece visualmente es que se pierde toda información
+respecto de los signos de los residuos. Por lo tanto, el polígono de frecuencias
+no distingue si acaso el modelo sobre-estima o sub-estima de manera consistente.
+</div>
 
 ## Fórmulas y familias de modelos
 

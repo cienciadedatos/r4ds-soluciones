@@ -387,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">20</span> Muchos modelos</h1>
 <div id="paquetes-necesarios-2" class="section level2">
 <h2><span class="header-section-number">20.1</span> Paquetes necesarios</h2>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
@@ -396,8 +396,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="kw">library</span>(datos)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="kw">library</span>(datos)</a></code></pre></div>
 </div>
 <div id="gapminder" class="section level2">
 <h2><span class="header-section-number">20.2</span> gapminder</h2>
@@ -432,10 +432,10 @@ múltiples valores.</p></li>
 <li><p>¿Qué es lo que falta en el siguiente <em>data frame</em>? ¿Cómo <code>quantile()</code> retorna
 eso que falta? ¿Por qué eso no es tan útil aquí?</p></li>
 </ol>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">mtautos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb74-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">q =</span> <span class="kw">list</span>(<span class="kw">quantile</span>(millas))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb74-4" data-line-number="4"><span class="st">  </span><span class="kw">unnest</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">mtautos <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">q =</span> <span class="kw">list</span>(<span class="kw">quantile</span>(millas))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="st">  </span><span class="kw">unnest</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 15 x 2
 ##    cilindros     q
 ##        &lt;dbl&gt; &lt;dbl&gt;
@@ -457,9 +457,9 @@ eso que falta? ¿Por qué eso no es tan útil aquí?</p></li>
 <ol style="list-style-type: decimal">
 <li>¿Qué hace este código? ¿Por qué podría ser útil?</li>
 </ol>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">mtautos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(list))</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">mtautos <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(list))</a></code></pre></div>
 </div>
 </div>
 <div id="simplificando-columnas-lista" class="section level2">
