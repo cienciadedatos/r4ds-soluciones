@@ -31,7 +31,6 @@ library(dplyr)
 
 ```r
 library(stringr)
-library(datos)
 ```
 
 ## Un modelo simple
@@ -181,7 +180,7 @@ beta$par
 ```
 
 ```
-## [1] 6.020399 1.467457
+## [1] 5.852932 1.552549
 ```
 
 Los resultados del modelo lineal son los mismos que se obtienen si se minimiza
@@ -199,7 +198,7 @@ beta$par
 ```
 
 ```
-## [1] 6.093167 1.476972
+## [1] 5.857127 1.545825
 ```
 
 En la práctica no es recomendable usar `optim()` para ajustar un modelo, es
@@ -246,7 +245,7 @@ beta_000$par
 ```
 
 ```
-## [1] -3.600968  1.476818  9.695246
+## [1] -3.960378  1.545861  9.816990
 ```
 
 
@@ -256,7 +255,7 @@ beta_001$par
 ```
 
 ```
-## [1] -11.78327   1.47677  17.87682
+## [1] -8.227465  1.546028 14.082671
 ```
 
 
@@ -266,7 +265,7 @@ beta_005$par
 ```
 
 ```
-## [1] 1.401055 1.476941 4.691592
+## [1] -0.2617469  1.5459069  6.1180897
 ```
 
 Si seguimos alterando los valores inciales no es muy difícil concluir que
@@ -378,16 +377,16 @@ grid %>%
 ## # A tibble: 10 x 3
 ##        x pred_lm pred_loess
 ##    <int>   <dbl>      <dbl>
-##  1     1    6.27       8.49
-##  2     2    8.32       8.89
-##  3     3   10.4        9.90
-##  4     4   12.4       11.5 
-##  5     5   14.5       13.6 
-##  6     6   16.5       15.2 
-##  7     7   18.6       16.7 
-##  8     8   20.6       18.2 
-##  9     9   22.7       19.5 
-## 10    10   24.7       20.4
+##  1     1    6.27       7.24
+##  2     2    8.32       9.07
+##  3     3   10.4       10.7 
+##  4     4   12.4       12.1 
+##  5     5   14.5       13.4 
+##  6     6   16.5       15.1 
+##  7     7   18.6       16.5 
+##  8     8   20.6       17.9 
+##  9     9   22.7       19.7 
+## 10    10   24.7       21.9
 ```
 
 La función `gather_predictions()` incorpora predicciones de múltiples modelos
@@ -414,16 +413,16 @@ grid %>%
 ##  8 sim1_mod       8 20.6 
 ##  9 sim1_mod       9 22.7 
 ## 10 sim1_mod      10 24.7 
-## 11 sim1_loess     1  8.49
-## 12 sim1_loess     2  8.89
-## 13 sim1_loess     3  9.90
-## 14 sim1_loess     4 11.5 
-## 15 sim1_loess     5 13.6 
-## 16 sim1_loess     6 15.2 
-## 17 sim1_loess     7 16.7 
-## 18 sim1_loess     8 18.2 
-## 19 sim1_loess     9 19.5 
-## 20 sim1_loess    10 20.4
+## 11 sim1_loess     1  7.24
+## 12 sim1_loess     2  9.07
+## 13 sim1_loess     3 10.7 
+## 14 sim1_loess     4 12.1 
+## 15 sim1_loess     5 13.4 
+## 16 sim1_loess     6 15.1 
+## 17 sim1_loess     7 16.5 
+## 18 sim1_loess     8 17.9 
+## 19 sim1_loess     9 19.7 
+## 20 sim1_loess    10 21.9
 ```
 
 La función `spread_predictions()` incorpora predicciones de múltiples modelos
@@ -440,16 +439,16 @@ grid %>%
 ## # A tibble: 10 x 3
 ##        x sim1_mod sim1_loess
 ##    <int>    <dbl>      <dbl>
-##  1     1     6.27       8.49
-##  2     2     8.32       8.89
-##  3     3    10.4        9.90
-##  4     4    12.4       11.5 
-##  5     5    14.5       13.6 
-##  6     6    16.5       15.2 
-##  7     7    18.6       16.7 
-##  8     8    20.6       18.2 
-##  9     9    22.7       19.5 
-## 10    10    24.7       20.4
+##  1     1     6.27       7.24
+##  2     2     8.32       9.07
+##  3     3    10.4       10.7 
+##  4     4    12.4       12.1 
+##  5     5    14.5       13.4 
+##  6     6    16.5       15.1 
+##  7     7    18.6       16.5 
+##  8     8    20.6       17.9 
+##  9     9    22.7       19.7 
+## 10    10    24.7       21.9
 ```
 
 La función `spread_predictions()` es similar a correr `add_predictions()` para
@@ -467,16 +466,16 @@ grid %>%
 ## # A tibble: 10 x 3
 ##        x sim1_loess sim1_mod
 ##    <int>      <dbl>    <dbl>
-##  1     1       8.49     6.27
-##  2     2       8.89     8.32
-##  3     3       9.90    10.4 
-##  4     4      11.5     12.4 
-##  5     5      13.6     14.5 
-##  6     6      15.2     16.5 
-##  7     7      16.7     18.6 
-##  8     8      18.2     20.6 
-##  9     9      19.5     22.7 
-## 10    10      20.4     24.7
+##  1     1       7.24     6.27
+##  2     2       9.07     8.32
+##  3     3      10.7     10.4 
+##  4     4      12.1     12.4 
+##  5     5      13.4     14.5 
+##  6     6      15.1     16.5 
+##  7     7      16.5     18.6 
+##  8     8      17.9     20.6 
+##  9     9      19.7     22.7 
+## 10    10      21.9     24.7
 ```
 </div>
 

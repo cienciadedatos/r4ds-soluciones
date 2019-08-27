@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Cadenas de caracteres | R para Ciencia de Datos: Soluciones de los ejercicios</title>
+  <title>18 Introducción | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Cadenas de caracteres | R para Ciencia de Datos: Soluciones de los ejercicios" />
+  <meta property="og:title" content="18 Introducción | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="http://es.r4ds.hadley.nz/" />
   <meta property="og:image" content="http://es.r4ds.hadley.nz/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="cienciadedatos/r4ds" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Cadenas de caracteres | R para Ciencia de Datos: Soluciones de los ejercicios" />
+  <meta name="twitter:title" content="18 Introducción | R para Ciencia de Datos: Soluciones de los ejercicios" />
   
   <meta name="twitter:description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
   <meta name="twitter:image" content="http://es.r4ds.hadley.nz/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="datos-relacionales.html">
-<link rel="next" href="factores.html">
+<link rel="prev" href="iteracion.html">
+<link rel="next" href="modelos-conceptos-basicos.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -385,234 +385,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cadenas-de-caracteres" class="section level1">
-<h1><span class="header-section-number">12</span> Cadenas de caracteres</h1>
-<div id="cadenas-elementos-basicos" class="section level2">
-<h2><span class="header-section-number">12.1</span> Cadenas: elementos básicos</h2>
-<div id="ejercicios-25" class="section level3">
-<h3><span class="header-section-number">12.1.1</span> Ejercicios</h3>
-<ol style="list-style-type: decimal">
-<li><p>En ejemplos de código en los que no se utiliza <strong>stringr</strong>, verás usualmente <code>paste()</code> y <code>paste0()</code> (<em>paste</em> = pegar).
-¿Cuál es la diferencia entre estas dos funciones? ¿A qué función de <strong>stringr</strong> son equivalentes? ¿Cómo difieren estas dos funciones respecto de su manejo de los
-<code>NA</code>?</p></li>
-<li><p>Describe con tus propias palabras la diferencia entre los argumentos <code>sep</code> y <code>collapse</code>
-de la función <code>str_c()</code>.</p></li>
-<li><p>Utiliza <code>str_length()</code> y <code>str_sub()</code> para extraer el caracter del medio de una cadena. ¿Qué harías si el número de caracteres es par?</p></li>
-<li><p>¿Qué hace <code>str_wrap()</code>? (<em>wrap</em> = envolver) ¿Cuándo podrías querer utilizarla?</p></li>
-<li><p>¿Qué hace <code>str_trim()</code>? (<em>trim</em> = recortar) ¿Cuál es el opuesto de <code>str_trim()</code>?</p></li>
-<li><p>Escribe una función que convierta, por ejemplo, el vector <code>c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</code> en
-la cadena <code>a, b, y c</code>. Piensa con detención qué debería hacer
-dado un vector de largo 0, 1, o 2.</p></li>
-</ol>
-</div>
-<div id="buscar-coincidencia-de-patrones-con-expresiones-regulares" class="section level3">
-<h3><span class="header-section-number">12.1.2</span> Buscar coincidencia de patrones con expresiones regulares</h3>
-<div id="ejercicios-26" class="section level4">
-<h4><span class="header-section-number">12.1.2.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>Explica por qué cada una de estas cadenas no coincide con <code>\</code>: <code>&quot;\&quot;</code>, <code>&quot;\\&quot;</code>, <code>&quot;\\\&quot;</code>.</p></li>
-<li><p>¿Cómo harías coincidir la secuencia <code>&quot;'\</code>?</p></li>
-<li><p>¿Con qué patrones coincidiría la expresión regular<code>\..\..\..</code>?
-¿Cómo la representarías en una cadena?</p></li>
-</ol>
-</div>
-</div>
-<div id="anclas" class="section level3">
-<h3><span class="header-section-number">12.1.3</span> Anclas</h3>
-<div id="ejercicios-27" class="section level4">
-<h4><span class="header-section-number">12.1.3.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>¿Cómo harías coincidir la cadena <code>&quot;$^$&quot;</code> de manera literal?</p></li>
-<li><p>Dado el corpus de palabras comunes en <code>datos::palabras</code>, crea una expresión
-regular que busque palabras que:</p>
-<ol style="list-style-type: decimal">
-<li>Empiecen con “y”.</li>
-<li>Terminen con “x”</li>
-<li>Tengan una extensión de exactamente tres letras. (¡No hagas trampa usando <code>str_length()</code>!)</li>
-<li>Tengan siete letras o más.</li>
-</ol>
-<p>Dado que esta será una lista larga, podrías quere usar el argumento <code>match</code> en
-<code>str_view()</code> para mostrar solo las palabras que coincidan o no coincidan.</p></li>
-</ol>
-</div>
-</div>
-<div id="clases-de-caracteres-y-alternativas" class="section level3">
-<h3><span class="header-section-number">12.1.4</span> Clases de caracteres y alternativas</h3>
-<div id="ejercicios-28" class="section level4">
-<h4><span class="header-section-number">12.1.4.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>Crea una expresión regular que encuentre todas las palabras que:</p>
-<ol style="list-style-type: decimal">
-<li><p>Empiecen con una vocal.</p></li>
-<li><p>Solo contengan consonantes. (Pista: piensa en cómo buscar coincidencias para
-“no”-vocales.)</p></li>
-<li><p>Terminen en <code>ón</code>, pero no en <code>ión</code>.</p></li>
-<li><p>Terminen con <code>ndo</code> or <code>ado</code>.</p></li>
-</ol></li>
-<li><p>¿Siempre a una “q” la sigue una “u”?</p></li>
-<li><p>Escribe una expresión regular que permita buscar un verbo que haya sido escrito usando voseo en segunda persona plural<br />
-(por ejemplo, <em>queréis</em> en vez de <em>quieren</em>).</p></li>
-<li><p>Crea una expresión regular que coincida con la forma en que habitualmente
-se escriben los números de teléfono en tu país.</p></li>
-<li><p>En inglés existe una regla que dice que la letra i va siempre antes de la e, excepto cuando está después de una c&quot;. Verifica empíricamente esta regla utilizando las palabras contenidas en <code>stringr::words</code>.</p></li>
-</ol>
-</div>
-</div>
-<div id="repeticion" class="section level3">
-<h3><span class="header-section-number">12.1.5</span> Repetición</h3>
-<div id="ejercicios-29" class="section level4">
-<h4><span class="header-section-number">12.1.5.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>Describe los equivalentes de <code>?</code>, <code>+</code>, <code>*</code> en el formato <code>{m,n}</code>.</p></li>
-<li><p>Describe en palabras con qué coincidiría cada una de estas expresiones regulares:
-(lee con atención para ver si estamos utilizando una expresión regular o una cadena
-que define una expresión regular.)</p>
-<ol style="list-style-type: decimal">
-<li><code>^.*$</code></li>
-<li><code>&quot;\\{.+\\}&quot;</code></li>
-<li><code>\d{4}-\d{2}-\d{2}</code></li>
-<li><code>&quot;\\\\{4}&quot;</code></li>
-</ol></li>
-<li><p>Crea expresiones regulares para buscar todas las palabras que:</p>
-<ol style="list-style-type: decimal">
-<li>Empiecen con dos consonantes.</li>
-<li>Tengan tres o más vocales seguidas.</li>
-<li>Tengan tres o más pares de vocal-consonante seguidos.</li>
-</ol></li>
-</ol>
-</div>
-</div>
-<div id="agrupamiento-y-referencias-previas" class="section level3">
-<h3><span class="header-section-number">12.1.6</span> Agrupamiento y referencias previas</h3>
-<div id="ejercicios-30" class="section level4">
-<h4><span class="header-section-number">12.1.6.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>Describe en palabras con qué coinciden estas expresiones:</p>
-<ol style="list-style-type: decimal">
-<li><code>(.)\1\1</code></li>
-<li><code>&quot;(.)(.)\\2\\1&quot;</code></li>
-<li><code>(..)\1</code></li>
-<li><code>&quot;(.).\\1.\\1&quot;</code></li>
-<li><code>&quot;(.)(.)(.).*\\3\\2\\1&quot;</code></li>
-</ol></li>
-<li><p>Construye una expresión regular que coincida con palabras que:</p>
-<ol style="list-style-type: decimal">
-<li><p>Empiecen y terminen con el mismo caracter.</p></li>
-<li><p>Contengan un par de letras repetido
-(p. ej. “nacional” tiene “na” repetidos dos veces.)</p></li>
-<li><p>Contengan una letra repetida en al menos tres lugares
-(p. ej. “característica” tiene tres “a”.)</p></li>
-</ol></li>
-</ol>
-</div>
-</div>
-</div>
-<div id="herramientas" class="section level2">
-<h2><span class="header-section-number">12.2</span> Herramientas</h2>
-<div id="ejercicios-31" class="section level3">
-<h3><span class="header-section-number">12.2.1</span> Ejercicios</h3>
-<ol style="list-style-type: decimal">
-<li><p>Para cada uno de los siguientes desafíos, intenta buscar una solución utilizando tanto una
-expresión regular simple como una combinación de múltiples llamadas a <code>str_detect()</code>.</p>
-<ol style="list-style-type: decimal">
-<li><p>Encuentra todas las palabras que empiezan o terminan con <code>y</code>.</p></li>
-<li><p>Encuentra todas las palabras que empiezan con una vocal y terminan con una consonante.</p></li>
-<li><p>¿Existen palabras que tengan todas las vocales?</p></li>
-</ol></li>
-<li><p>¿Qué palabra tiene el mayor número de vocales? ¿Qué palabra tiene la mayor
-proporción de vocales? (Pista: ¿cuál es el denominador?)</p></li>
-</ol>
-</div>
-<div id="extraer-coincidencias" class="section level3">
-<h3><span class="header-section-number">12.2.2</span> Extraer coincidencias</h3>
-<div id="ejercicios-32" class="section level4">
-<h4><span class="header-section-number">12.2.2.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>Te habrás dado cuenta que en el ejemplo anterior la expresión regular
-que utilizamos también devolvió como resultado “arrojo” y “azulejos”,
-que no son nombres de colores. Modifica la expresión regular para
-resolver ese problema.</p></li>
-<li><p>De <code>datos::oraciones</code> extrae:</p>
-<ol style="list-style-type: decimal">
-<li>La primera palabra de cada oración.</li>
-<li>Todas las palabras que terminen en <code>ción</code>.</li>
-<li>Todos los plurales.</li>
-</ol></li>
-</ol>
-</div>
-</div>
-<div id="coincidencias-agrupadas" class="section level3">
-<h3><span class="header-section-number">12.2.3</span> Coincidencias agrupadas</h3>
-<div id="ejercicios-33" class="section level4">
-<h4><span class="header-section-number">12.2.3.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>Busca en <code>datos::oraciones</code> todas las palabras que vengan después de un “número”, como “un(o|a)”, “dos”, “tres”, etc.
-Extrae tanto el número como la palabra.</p></li>
-<li><p>En español a veces se utiliza el guión para unir adjetivos, establecer relaciones entre conceptos o para unir gentilicios (p. ej., <em>teórico-práctico</em>, <em>precio-calidad</em>, <em>franco-porteño</em>). ¿Cómo podrías encontrar esas palabras y separar lo que viene antes y después del guión?</p></li>
-</ol>
-</div>
-</div>
-<div id="remplazar-coincidencias" class="section level3">
-<h3><span class="header-section-number">12.2.4</span> Remplazar coincidencias</h3>
-<div id="ejercicios-34" class="section level4">
-<h4><span class="header-section-number">12.2.4.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>Remplaza en una cadena todas las barras por barras invertidas.</p></li>
-<li><p>Implementa una versón simple de <code>str_to_lower()</code> (<em>a minúsculas</em>) usando <code>replace_all()</code>.</p></li>
-<li><p>Cambia la primera y la última letra en <code>palabras</code>. ¿Cuáles de esas cadenas
-siguen siendo palabras?</p></li>
-</ol>
-</div>
-</div>
-<div id="divisiones" class="section level3">
-<h3><span class="header-section-number">12.2.5</span> Divisiones</h3>
-<div id="ejercicios-35" class="section level4">
-<h4><span class="header-section-number">12.2.5.1</span> Ejercicios</h4>
-<ol style="list-style-type: decimal">
-<li><p>Divide una cadena como <code>&quot;manzanas, peras y bananas&quot;</code> en elementos
-individuales.</p></li>
-<li><p>¿Por qué es mejor dividir utilizando <code>boundary(&quot;word&quot;)</code> en vez de <code>&quot; &quot;</code>?</p></li>
-<li><p>¿Qué pasa si dividimos con una cadena vacía (<code>&quot;&quot;</code>)? Experimenta y
-luego lee la documentación</p></li>
-</ol>
-</div>
-</div>
-</div>
-<div id="otro-tipo-de-patrones" class="section level2">
-<h2><span class="header-section-number">12.3</span> Otro tipo de patrones</h2>
-<div id="ejercicios-36" class="section level3">
-<h3><span class="header-section-number">12.3.1</span> Ejercicios</h3>
-<ol style="list-style-type: decimal">
-<li><p>¿Cómo buscarías todas las cadenas que contienen <code>\</code> con <code>regex()</code>
-vs. con <code>fixed()</code>?</p></li>
-<li><p>¿Cuáles son las cinco palabras más comunes en <code>oraciones</code>?</p></li>
-</ol>
-</div>
-</div>
-<div id="stringi" class="section level2">
-<h2><span class="header-section-number">12.4</span> stringi</h2>
-<div id="ejercicios-37" class="section level3">
-<h3><span class="header-section-number">12.4.1</span> Ejercicios</h3>
-<ol style="list-style-type: decimal">
-<li><p>Busca la función de <strong>stringi</strong> que:</p>
-<ol style="list-style-type: decimal">
-<li>Cuenta el número de palabras.</li>
-<li>Busca cadenas duplicadas.</li>
-<li>Genera texto aleatorio.</li>
-</ol></li>
-<li><p>¿Cómo puedes controlar qué lengua usa <code>stri_sort()</code> para ordenar?</p></li>
-</ol>
+<div id="model-intro" class="section level1">
+<h1><span class="header-section-number">18</span> Introducción</h1>
+<p>Este capítulo no tiene ejercicios</p>
 
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="datos-relacionales.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="factores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="iteracion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos-conceptos-basicos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -632,7 +416,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/cienciadedatos/r4ds-soluciones/edit/master/14-strings.Rmd",
+"link": "https://github.com/cienciadedatos/r4ds-soluciones/edit/master/22-model.Rmd",
 "text": "Edit"
 },
 "history": {

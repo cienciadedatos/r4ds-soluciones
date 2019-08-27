@@ -5,6 +5,11 @@
 ```{r}
 library(dplyr)
 library(tidyr)
+library(purrr)
+library(modelr)
+library(ggplot2)
+library(ggbeeswarm)
+library(stringr)
 library(datos)
 ```
 
@@ -16,11 +21,70 @@ library(datos)
  ¿Puedes hacerlo mejor con un polinomio cuadrático? ¿Cómo puedes interpretar
  el coeficiente del término cuadrático? (Pista: puedes querer transformar
  `year` para que tenga media cero.)
+ 
+<div class="solucion">
+<h3>Solución</h3>
+
+El siguiente código replica el análisis que se hizo en el libro pero cambia l
+función `modelo_pais()` para incluir una regresión que incluye el año al
+cuadrado.
+
+```{r}
+modelo_pais_2 <- function(df) {
+  lm(esperanza_de_vida ~ poly(anio - median(anio), 2), data = df)
+}
+
+por_pais <- paises %>%
+  group_by(pais, continente) %>%
+  nest()
+
+por_pais <- por_pais %>%
+  mutate(modelo = map(data, modelo_pais_2))
+```
+
+```{r}
+por_pais <- por_pais %>%
+  mutate(
+    residuo = map2(data, modelo, add_residuals)
+  )
+
+por_pais
+```
+
+```{r}
+unnest(por_pais, residuo) %>%
+  ggplot(aes(anio, resid)) +
+  geom_line(aes(group = pais), alpha = 1 / 3) +
+  geom_smooth(se = FALSE)
+```
+
+```{r}
+por_pais %>%
+  mutate(estadistica = map(modelo, broom::glance)) %>%
+  unnest(estadistica, .drop = TRUE) %>%
+  ggplot(aes(continente, r.squared)) +
+  geom_jitter(width = 0.5)
+```
+</div>
 
 1. Explora otros métodos para visualizar la distribución del $R^2$ por
  continente. Puedes querer probar el paquete __ggbeeswarm__, que provee
  métodos similares para evitar superposiciones como jitter, pero usa métodos
  determinísticos.
+ 
+<div class="solucion">
+<h3>Solución</h3>
+
+El paquete `gbeeswarm` se usó en el capítulo de análisis exploratorio.
+
+```{r}
+por_pais %>%
+  mutate(estadistica = map(modelo, broom::glance)) %>%
+  unnest(estadistica, .drop = TRUE) %>%
+  ggplot(aes(continente, r.squared)) +
+  geom_beeswarm()
+```
+</div>
 
 1. Para crear el último gráfico (mostrando los datos para los países con los
  peores ajustes del modelo), precisamos dos pasos: creamos un _data frame_ con
@@ -28,17 +92,58 @@ library(datos)
  Es posible evitar este _join_ si usamos `unnest()` en lugar de
  `unnest(.drop = TRUE)`. ¿Cómo?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+paises %>%
+  group_by(pais, continente) %>%
+  nest() %>%
+  mutate(modelo = map(data, ~lm(esperanza_de_vida ~ anio, .))) %>%
+  mutate(estadistica = map(modelo, broom::glance)) %>%
+  unnest(estadistica) %>%
+  unnest(data) %>%
+  filter(r.squared < 0.25) %>%
+  ggplot(aes(anio, esperanza_de_vida)) +
+  geom_line(aes(color = pais))
+```
+</div>
 
 ## Creando columnas-lista
-
 
 ### Ejercicios
 
 1. Lista todas las funciones en las que puedas pensar que tomen como _input_ un vector atómico y
  retornen una lista.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Muchas funciones del paquete `stringr` cumplen con el criterio.
+```{r}
+str_split(sentences[1:3], " ")
+str_match_all(c("paul", "john", "george", "ringo"), "a+")
+```
+
+En el caso del paquete `purrr`, la función `map()` también cumple el criterio.
+```{r}
+map(1:3, runif)
+```
+</div>
+
 1. Piensa en funciones de resumen útiles que, como `quantile()`, retornen
  múltiples valores.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Algunos ejemplos de funciones básicas de R que cumplen con el criterio.
+```{r}
+range(mtcars$mpg)
+fivenum(mtcars$mpg)
+boxplot.stats(mtcars$mpg)
+```
+</div>
 
 1. ¿Qué es lo que falta en el siguiente _data frame_? ¿Cómo `quantile()` retorna
  eso que falta? ¿Por qué eso no es tan útil aquí?
@@ -50,6 +155,17 @@ mtautos %>%
   unnest()
 ```
 
+<div class="solucion">
+<h3>Solución</h3>
+
+No se muestran los cuartiles correspondientes. Esto se debe a que la función
+`quantile()` entrega los valores `0%`, `25%`, `50%`, `75%`, `100%` como nombres
+del vector resultante y `unnest()` descarta los nombres del vector.
+```{r}
+quantile(mtcars$mpg)
+```
+</div>
+
 1. ¿Qué hace este código? ¿Por qué podría ser útil?
 
 ```{r, eval = FALSE}
@@ -58,14 +174,50 @@ mtautos %>%
   summarise_each(funs(list))
 ```
 
-## Simplificando columnas-lista
+<div class="solucion">
+<h3>Solución</h3>
 
+Crea un cuadro de datos en el que cada fila corresponde a un valor unico de
+`cilindros` y cada observación fuera de la primera columna es un vector.
+
+La utilidad es que reune las observaciones para cada variable y las agrupa,
+lo que puede simplificar algunos análisis particulares en los que se quiera
+analizar todas las observaciones agrupando por número de cilindros.
+</div>
+
+## Simplificando columnas-lista
 
 ### Ejercicios
 
 1. ¿Por qué podría ser útil la función `lengths()` para crear columnas de
  vectores atómicos a partir de columnas-lista?
 
-1. Lista los tipos de vectores más comúnes que se encuentran en un _data frame_. ¿Qué hace que las
+<div class="solucion">
+<h3>Solución</h3>
+
+La función `lengths()` entreg el largo de cada elemento en una lista. 
+Proporciona un atajo a `map_int(x, length)` y `sapply(x, length)`.
+Es útil para verificar si acaso los elementos de una columna de tipo lista son
+todos del mismo largo. Otra posibilidad es calcular el máximo largo dentro de
+la columna y así sabremos cuántas columnas debo crear para transformar en varias
+columnas atómicas.
+</div>
+
+1. Lista los tipos de vectores más comúnes que se encuentran en un _data frame_.
+¿Qué hace que las
  listas sean diferentes?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Los tipos más comunes de vectores en un cuadro de datos son:
+
+-   `logical`
+-   `numeric`
+-   `integer`
+-   `character`
+-   `factor`
+
+Todos estos tipos son atómicos. Las listas no son atómicas ya que pueden
+contener otras listas o vectores.
+</div>
