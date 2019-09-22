@@ -390,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">21</span> Muchos modelos</h1>
 <div id="paquetes-necesarios-3" class="section level2">
 <h2><span class="header-section-number">21.1</span> Paquetes necesarios</h2>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
@@ -399,13 +399,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="kw">library</span>(purrr)</a>
-<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="kw">library</span>(modelr)</a>
-<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb141-5" data-line-number="5"><span class="kw">library</span>(ggbeeswarm)</a>
-<a class="sourceLine" id="cb141-6" data-line-number="6"><span class="kw">library</span>(stringr)</a>
-<a class="sourceLine" id="cb141-7" data-line-number="7"><span class="kw">library</span>(datos)</a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="kw">library</span>(purrr)</a>
+<a class="sourceLine" id="cb163-3" data-line-number="3"><span class="kw">library</span>(modelr)</a>
+<a class="sourceLine" id="cb163-4" data-line-number="4"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="kw">library</span>(ggbeeswarm)</a>
+<a class="sourceLine" id="cb163-6" data-line-number="6"><span class="kw">library</span>(stringr)</a>
+<a class="sourceLine" id="cb163-7" data-line-number="7"><span class="kw">library</span>(datos)</a></code></pre></div>
 </div>
 <div id="gapminder" class="section level2">
 <h2><span class="header-section-number">21.2</span> gapminder</h2>
@@ -424,22 +424,22 @@ Solución
 <p>El siguiente código replica el análisis que se hizo en el libro pero cambia l
 función <code>modelo_pais()</code> para incluir una regresión que incluye el año al
 cuadrado.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">modelo_pais_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(df) {</a>
-<a class="sourceLine" id="cb142-2" data-line-number="2">  <span class="kw">lm</span>(esperanza_de_vida <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(anio <span class="op">-</span><span class="st"> </span><span class="kw">median</span>(anio), <span class="dv">2</span>), <span class="dt">data =</span> df)</a>
-<a class="sourceLine" id="cb142-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb142-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb142-5" data-line-number="5">por_pais &lt;-<span class="st"> </span>paises <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(pais, continente) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="st">  </span><span class="kw">nest</span>()</a>
-<a class="sourceLine" id="cb142-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb142-9" data-line-number="9">por_pais &lt;-<span class="st"> </span>por_pais <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="kw">map</span>(data, modelo_pais_<span class="dv">2</span>))</a></code></pre></div>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">por_pais &lt;-<span class="st"> </span>por_pais <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb143-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb143-3" data-line-number="3">    <span class="dt">residuo =</span> <span class="kw">map2</span>(data, modelo, add_residuals)</a>
-<a class="sourceLine" id="cb143-4" data-line-number="4">  )</a>
-<a class="sourceLine" id="cb143-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb143-6" data-line-number="6">por_pais</a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1">modelo_pais_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(df) {</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2">  <span class="kw">lm</span>(esperanza_de_vida <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(anio <span class="op">-</span><span class="st"> </span><span class="kw">median</span>(anio), <span class="dv">2</span>), <span class="dt">data =</span> df)</a>
+<a class="sourceLine" id="cb164-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb164-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb164-5" data-line-number="5">por_pais &lt;-<span class="st"> </span>paises <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(pais, continente) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-7" data-line-number="7"><span class="st">  </span><span class="kw">nest</span>()</a>
+<a class="sourceLine" id="cb164-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb164-9" data-line-number="9">por_pais &lt;-<span class="st"> </span>por_pais <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="kw">map</span>(data, modelo_pais_<span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1">por_pais &lt;-<span class="st"> </span>por_pais <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb165-3" data-line-number="3">    <span class="dt">residuo =</span> <span class="kw">map2</span>(data, modelo, add_residuals)</a>
+<a class="sourceLine" id="cb165-4" data-line-number="4">  )</a>
+<a class="sourceLine" id="cb165-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb165-6" data-line-number="6">por_pais</a></code></pre></div>
 <pre><code>## # A tibble: 142 x 5
 ##    pais       continente data              modelo residuo          
 ##    &lt;fct&gt;      &lt;fct&gt;      &lt;list&gt;            &lt;list&gt; &lt;list&gt;           
@@ -454,17 +454,17 @@ cuadrado.</p>
 ##  9 Bangladesh Asia       &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;
 ## 10 Bélgica    Europa     &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;
 ## # … with 132 more rows</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="kw">unnest</span>(por_pais, residuo) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, resid)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb145-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> pais), <span class="dt">alpha =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb145-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">unnest</span>(por_pais, residuo) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> pais), <span class="dt">alpha =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb167-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
 <p><img src="25-model-many_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">por_pais <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="st">  </span><span class="kw">unnest</span>(estadistica, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continente, r.squared)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1">por_pais <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb169-3" data-line-number="3"><span class="st">  </span><span class="kw">unnest</span>(estadistica, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb169-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continente, r.squared)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb169-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)</a></code></pre></div>
 <p><img src="25-model-many_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <ol style="list-style-type: decimal">
@@ -478,11 +478,11 @@ determinísticos.</li>
 Solución
 </h3>
 <p>El paquete <code>gbeeswarm</code> se usó en el capítulo de análisis exploratorio.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">por_pais <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="st">  </span><span class="kw">unnest</span>(estadistica, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continente, r.squared)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_beeswarm</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1">por_pais <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb170-3" data-line-number="3"><span class="st">  </span><span class="kw">unnest</span>(estadistica, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb170-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continente, r.squared)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb170-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_beeswarm</span>()</a></code></pre></div>
 <p><img src="25-model-many_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <ol style="list-style-type: decimal">
@@ -496,16 +496,16 @@ Es posible evitar este <em>join</em> si usamos <code>unnest()</code> en lugar de
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">paises <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(pais, continente) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-3" data-line-number="3"><span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="kw">map</span>(data, <span class="op">~</span><span class="kw">lm</span>(esperanza_de_vida <span class="op">~</span><span class="st"> </span>anio, .))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="st">  </span><span class="kw">unnest</span>(estadistica) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-7" data-line-number="7"><span class="st">  </span><span class="kw">unnest</span>(data) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(r.squared <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-9" data-line-number="9"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, esperanza_de_vida)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb149-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> pais))</a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1">paises <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(pais, continente) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-3" data-line-number="3"><span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="kw">map</span>(data, <span class="op">~</span><span class="kw">lm</span>(esperanza_de_vida <span class="op">~</span><span class="st"> </span>anio, .))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-6" data-line-number="6"><span class="st">  </span><span class="kw">unnest</span>(estadistica) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-7" data-line-number="7"><span class="st">  </span><span class="kw">unnest</span>(data) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(r.squared <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-9" data-line-number="9"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, esperanza_de_vida)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb171-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> pais))</a></code></pre></div>
 <p><img src="25-model-many_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 </div>
@@ -523,7 +523,7 @@ retornen una lista.</li>
 Solución
 </h3>
 <p>Muchas funciones del paquete <code>stringr</code> cumplen con el criterio.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">str_split</span>(sentences[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="st">&quot; &quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">str_split</span>(sentences[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="st">&quot; &quot;</span>)</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;The&quot;     &quot;birch&quot;   &quot;canoe&quot;   &quot;slid&quot;    &quot;on&quot;      &quot;the&quot;     &quot;smooth&quot; 
 ## [8] &quot;planks.&quot;
@@ -534,7 +534,7 @@ Solución
 ## 
 ## [[3]]
 ## [1] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;  &quot;the&quot;   &quot;depth&quot; &quot;of&quot;    &quot;a&quot;     &quot;well.&quot;</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">str_match_all</span>(<span class="kw">c</span>(<span class="st">&quot;paul&quot;</span>, <span class="st">&quot;john&quot;</span>, <span class="st">&quot;george&quot;</span>, <span class="st">&quot;ringo&quot;</span>), <span class="st">&quot;a+&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="kw">str_match_all</span>(<span class="kw">c</span>(<span class="st">&quot;paul&quot;</span>, <span class="st">&quot;john&quot;</span>, <span class="st">&quot;george&quot;</span>, <span class="st">&quot;ringo&quot;</span>), <span class="st">&quot;a+&quot;</span>)</a></code></pre></div>
 <pre><code>## [[1]]
 ##      [,1]
 ## [1,] &quot;a&quot; 
@@ -548,15 +548,15 @@ Solución
 ## [[4]]
 ##      [,1]</code></pre>
 <p>En el caso del paquete <code>purrr</code>, la función <code>map()</code> también cumple el criterio.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, runif)</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, runif)</a></code></pre></div>
 <pre><code>## [[1]]
-## [1] 0.1656213
+## [1] 0.5790991
 ## 
 ## [[2]]
-## [1] 0.02090206 0.34827779
+## [1] 0.8556076 0.7929767
 ## 
 ## [[3]]
-## [1] 0.5023063 0.6427096 0.5075038</code></pre>
+## [1] 0.1954186 0.8156963 0.5177822</code></pre>
 </div>
 <ol style="list-style-type: decimal">
 <li>Piensa en funciones de resumen útiles que, como <code>quantile()</code>, retornen
@@ -567,11 +567,11 @@ múltiples valores.</li>
 Solución
 </h3>
 <p>Algunos ejemplos de funciones básicas de R que cumplen con el criterio.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">range</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">range</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <pre><code>## [1] 10.4 33.9</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">fivenum</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">fivenum</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <pre><code>## [1] 10.40 15.35 19.20 22.80 33.90</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">boxplot.stats</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">boxplot.stats</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <pre><code>## $stats
 ## [1] 10.40 15.35 19.20 22.80 33.90
 ## 
@@ -588,10 +588,10 @@ Solución
 <li>¿Qué es lo que falta en el siguiente <em>data frame</em>? ¿Cómo <code>quantile()</code> retorna
 eso que falta? ¿Por qué eso no es tan útil aquí?</li>
 </ol>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1">mtautos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">q =</span> <span class="kw">list</span>(<span class="kw">quantile</span>(millas))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb162-4" data-line-number="4"><span class="st">  </span><span class="kw">unnest</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">mtautos <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">q =</span> <span class="kw">list</span>(<span class="kw">quantile</span>(millas))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb184-4" data-line-number="4"><span class="st">  </span><span class="kw">unnest</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 15 x 2
 ##    cilindros     q
 ##        &lt;dbl&gt; &lt;dbl&gt;
@@ -617,16 +617,16 @@ Solución
 <p>No se muestran los cuartiles correspondientes. Esto se debe a que la función
 <code>quantile()</code> entrega los valores <code>0%</code>, <code>25%</code>, <code>50%</code>, <code>75%</code>, <code>100%</code> como nombres
 del vector resultante y <code>unnest()</code> descarta los nombres del vector.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">quantile</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="kw">quantile</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <pre><code>##     0%    25%    50%    75%   100% 
 ## 10.400 15.425 19.200 22.800 33.900</code></pre>
 </div>
 <ol style="list-style-type: decimal">
 <li>¿Qué hace este código? ¿Por qué podría ser útil?</li>
 </ol>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1">mtautos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb166-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(list))</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">mtautos <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(list))</a></code></pre></div>
 <div class="solucion">
 <h3>
 Solución

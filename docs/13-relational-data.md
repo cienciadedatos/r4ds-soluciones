@@ -500,18 +500,310 @@ vuelos %>%
 1. Filtra los vuelos para mostrar únicamente los aviones que han realizado al menos cien
    viajes.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Debemos calcular que aviones tienen 100 o más vuelos. Hay que filtrar los
+aviones sin código cola o estos se van a considerar como un único avión.
+
+
+```r
+cien_vuelos <- vuelos %>%
+  filter(!is.na(codigo_cola)) %>%
+  group_by(codigo_cola) %>%
+  count() %>%
+  filter(n >= 100)
+```
+
+Ahora se puede unir el resultado con la tabla `vuelos` y así conservar los que
+cumplen con el criterio.
+
+```r
+vuelos %>%
+  semi_join(cien_vuelos, by = "codigo_cola")
+```
+
+```
+## # A tibble: 228,390 x 19
+##     anio   mes   dia horario_salida salida_programa… atraso_salida
+##    <int> <int> <int>          <int>            <int>         <dbl>
+##  1  2013     1     1            517              515             2
+##  2  2013     1     1            533              529             4
+##  3  2013     1     1            544              545            -1
+##  4  2013     1     1            554              558            -4
+##  5  2013     1     1            555              600            -5
+##  6  2013     1     1            557              600            -3
+##  7  2013     1     1            557              600            -3
+##  8  2013     1     1            558              600            -2
+##  9  2013     1     1            558              600            -2
+## 10  2013     1     1            558              600            -2
+## # … with 228,380 more rows, and 13 more variables: horario_llegada <int>,
+## #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
+## #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
+## #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
+## #   fecha_hora <dttm>
+```
+
+Otra posibilidad es agrupar y luego usar `mutate()`.
+
+```r
+vuelos %>%
+  filter(!is.na(codigo_cola)) %>%
+  group_by(codigo_cola) %>%
+  mutate(n = n()) %>%
+  filter(n >= 100)
+```
+
+```
+## # A tibble: 228,390 x 20
+## # Groups:   codigo_cola [1,217]
+##     anio   mes   dia horario_salida salida_programa… atraso_salida
+##    <int> <int> <int>          <int>            <int>         <dbl>
+##  1  2013     1     1            517              515             2
+##  2  2013     1     1            533              529             4
+##  3  2013     1     1            544              545            -1
+##  4  2013     1     1            554              558            -4
+##  5  2013     1     1            555              600            -5
+##  6  2013     1     1            557              600            -3
+##  7  2013     1     1            557              600            -3
+##  8  2013     1     1            558              600            -2
+##  9  2013     1     1            558              600            -2
+## 10  2013     1     1            558              600            -2
+## # … with 228,380 more rows, and 14 more variables: horario_llegada <int>,
+## #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
+## #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
+## #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
+## #   fecha_hora <dttm>, n <int>
+```
+</div>
+
 1. Combina `vehiculos` y `comunes` para encontrar los registros de los 
    modelos más comunes.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Debemos unir por fabricante y modelo, a modo de evitar hacer un match
+incorrecto debido a que dos fabricantes tengan un vehículo con el mismo
+nombre.
+
+
+```r
+vehiculos %>%
+  semi_join(comunes, by = c("fabricante", "modelo"))
+```
+
+```
+## # A tibble: 14,531 x 12
+##       id fabricante modelo  anio clase transmision traccion cilindros motor
+##    <int> <chr>      <chr>  <int> <chr> <chr>       <chr>        <int> <dbl>
+##  1  1833 Acura      Integ…  1986 Auto… Automática… Delante…         4   1.6
+##  2  1834 Acura      Integ…  1986 Auto… Manual 5-v… Delante…         4   1.6
+##  3  3037 Acura      Integ…  1987 Auto… Automática… Delante…         4   1.6
+##  4  3038 Acura      Integ…  1987 Auto… Manual 5-v… Delante…         4   1.6
+##  5  4183 Acura      Integ…  1988 Auto… Automática… Delante…         4   1.6
+##  6  4184 Acura      Integ…  1988 Auto… Manual 5-v… Delante…         4   1.6
+##  7  5303 Acura      Integ…  1989 Auto… Automática… Delante…         4   1.6
+##  8  5304 Acura      Integ…  1989 Auto… Manual 5-v… Delante…         4   1.6
+##  9  6442 Acura      Integ…  1990 Auto… Automática… Delante…         4   1.8
+## 10  6443 Acura      Integ…  1990 Auto… Manual 5-v… Delante…         4   1.8
+## # … with 14,521 more rows, and 3 more variables: combustible <chr>,
+## #   autopista <int>, ciudad <int>
+```
+</div>
 
 1. Encuentra las 48 horas (en el transcurso del año) que tengan los peores atrasos. Haz 
    una referencia cruzada con la tabla `clima`. ¿Puedes observar patrones?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Haremos el desarrollo considerando las horas con mayor acumulación de atrasos en
+la salida. El otro caso queda como ejercicio.
+
+El ejercicio no pide que sean los dos peores días, sino las peores 48 horas,
+por lo que debemos tomar las peores horas en el transcurso de varios días.
+
+
+```r
+peores_horas <- vuelos %>%
+  mutate(hora = salida_programada %/% 100) %>%
+  group_by(origen, anio, mes, dia, hora) %>%
+  summarise(atraso_salida = mean(atraso_salida, na.rm = TRUE)) %>%
+  ungroup() %>%
+  arrange(desc(atraso_salida)) %>%
+  slice(1:48)
+```
+
+Este resultado se debe unir con la tabla `clima`.
+
+```r
+clima_peores_horas <- semi_join(clima, peores_horas, 
+                                  by = c("origen", "anio", "mes", "dia", "hora"))
+```
+
+Para el clima, nos enfocaremos en la precipitación, velocidad del viento y
+temperatura. Muchas de estas observaciones tienen una velocidad del viento
+por sobre el promedio (10 millas por hora) o lluvias.
+
+
+```r
+select(clima_peores_horas, temperatura, velocidad_viento, precipitacion) %>%
+  print(n = 48)
+```
+
+```
+## # A tibble: 48 x 3
+##    temperatura velocidad_viento precipitacion
+##          <dbl>            <dbl>         <dbl>
+##  1        27.0            13.8           0   
+##  2        28.0            19.6           0   
+##  3        28.9            28.8           0   
+##  4        33.8             9.21          0.06
+##  5        34.0             8.06          0.05
+##  6        80.1             8.06          0   
+##  7        86              13.8           0   
+##  8        73.4             6.90          0.08
+##  9        84.0             5.75          0   
+## 10        78.8            18.4           0.23
+## 11        53.6             0             0   
+## 12        60.8            31.1           0.11
+## 13        55.4            17.3           0.14
+## 14        53.1             9.21          0.01
+## 15        55.9            11.5           0.1 
+## 16        55.4             8.06          0.15
+## 17        57.0            29.9           0   
+## 18        33.8            20.7           0.02
+## 19        34.0            19.6           0.01
+## 20        36.0            21.9           0.01
+## 21        37.9            16.1           0   
+## 22        32              13.8           0.12
+## 23        60.1            33.4           0.14
+## 24        60.8            11.5           0.02
+## 25        62.1            17.3           0   
+## 26        66.9            10.4           0   
+## 27        66.9            13.8           0   
+## 28        79.0            10.4           0   
+## 29        77              16.1           0.07
+## 30        75.9            13.8           0   
+## 31        82.4             8.06          0   
+## 32        86               9.21          0   
+## 33        80.1             9.21          0   
+## 34        80.6            11.5           0   
+## 35        78.1             6.90          0   
+## 36        75.2            10.4           0.01
+## 37        73.9             5.75          0.03
+## 38        73.9             8.06          0   
+## 39        75.0             4.60          0   
+## 40        75.0             4.60          0.01
+## 41        80.1             0             0.01
+## 42        80.1             0             0   
+## 43        77              10.4           0   
+## 44        82.0            10.4           0   
+## 45        72.0            13.8           0.3 
+## 46        72.0             4.60          0.03
+## 47        51.1             4.60          0   
+## 48        54.0             6.90          0
+```
+
+
+```r
+ggplot(clima_peores_horas, aes(x = precipitacion, y = velocidad_viento, color = temperatura)) +
+  geom_point()
+```
+
+<img src="13-relational-data_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+
+Para extenderse con mayor detalle en ese ejercicio, es necesario usar las
+herramientas del capítulo Análisis Exploratorio de Datos.
+</div>
+
 1. ¿Qué te indica `anti_join(vuelos, aeropuertos, by = c("destino" = "codigo_aeropuerto"))`?
    ¿Qué te indica `anti_join(aeropuertos, vuelos, by = c("codigo_aeropuerto" = "destino"))`?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+La primera expresión entrega los vuelos cuyo destino es un aeropuerto fuera
+de los EEUU.
+
+La segunda expresión entrega lo aeropuertos de los EEUU que no son el destino
+de los vuelos contenidos en los datos.
+
+Los datos contienen todos los vuelos de los aeropuertos de Nueva York, por
+lo que también contiene los vuelos con escalas intermedias.
+</div>
 
 1. Puedes esperar que exista una relación implícita entre aviones y aerolíneas, dado que cada 
    avión es operado por una única aerolínea. Confirma o descarta esta hipótesis usando las 
    herramientas que aprendiste más arriba.
+   
+<div class="solucion">
+<h3>Solución</h3>
+
+At each point in time, each plane is flown by a single airline.
+However, a plane can be sold and fly for multiple airlines.
+Logically, it is possible that a plane can fly for multiple airlines over the course of its lifetime.
+But, it is not necessarily the case that a plane will fly for more than one airline in this  data, especially since it comprises only a year of data.
+So let's check to see if there are any planes in the data flew for multiple airlines.
+
+Veámos las combinaciones únicas de aerolíneay avión.
+
+
+```r
+aerolinea_avion <- vuelos %>%
+  filter(!is.na(codigo_cola)) %>%
+  distinct(aerolinea, codigo_cola)
+```
+
+Podría darse el caso en que una aerolínea vende algunos de sus aviones a otra.
+Estos aviones tendrán una cuenta mayor a uno en la tabla anterior.
+
+
+```r
+aerolinea_avion %>%
+  count(codigo_cola) %>%
+  filter(n > 1) %>%
+  nrow()
+```
+
+```
+## [1] 17
+```
+
+Veamos ahora las transferencias de aviones entre aerolíneas.
+
+
+```r
+aviones_transferidos <- aerolinea_avion %>%
+  # conservo los aviones que han volado para mas de una aerolinea
+  group_by(codigo_cola) %>%
+  filter(n() > 1) %>%
+  # uno los codigos con los nombres de aerolinea
+  left_join(aerolineas, by = "aerolinea") %>%
+  arrange(aerolinea, codigo_cola)
+
+aviones_transferidos
+```
+
+```
+## # A tibble: 34 x 3
+## # Groups:   codigo_cola [17]
+##    aerolinea codigo_cola nombre              
+##    <chr>     <chr>       <chr>               
+##  1 9E        N146PQ      Endeavor Air Inc.   
+##  2 9E        N153PQ      Endeavor Air Inc.   
+##  3 9E        N176PQ      Endeavor Air Inc.   
+##  4 9E        N181PQ      Endeavor Air Inc.   
+##  5 9E        N197PQ      Endeavor Air Inc.   
+##  6 9E        N200PQ      Endeavor Air Inc.   
+##  7 9E        N228PQ      Endeavor Air Inc.   
+##  8 9E        N232PQ      Endeavor Air Inc.   
+##  9 DL        N933AT      Delta Air Lines Inc.
+## 10 DL        N935AT      Delta Air Lines Inc.
+## # … with 24 more rows
+```
+</div>
 
 ## Problemas de las uniones
 
@@ -551,4 +843,3 @@ Los datos con los que has estado trabajando en este capítulo han sido limpiados
    Ten en cuenta que verificiar el número de filas antes y después de unir no es suficiente para asegurar 
    que la unión funcionó de forma exitosa. Si tienes una unión interior con llaves duplicadas en ambas tablas, 
    puedes tener la mala suerte de que el número de filas descartadas sea igual al número de filas duplicadas.
-

@@ -390,8 +390,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">23</span> Comunicar con gráficos</h1>
 <div id="paquetes-necesarios-4" class="section level2">
 <h2><span class="header-section-number">23.1</span> Paquetes necesarios</h2>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="kw">library</span>(datos)</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb189-2" data-line-number="2"><span class="kw">library</span>(datos)</a></code></pre></div>
 </div>
 <div id="etiquetas" class="section level2">
 <h2><span class="header-section-number">23.2</span> Etiquetas</h2>
@@ -425,10 +425,10 @@ de gráficos que demuestren las opciones más importantes.</p></li>
 <ol style="list-style-type: decimal">
 <li>¿Por qué el siguiente código no reemplaza la escala predeterminada?</li>
 </ol>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="st"> </span><span class="kw">geom_hex</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb168-3" data-line-number="3"><span class="st"> </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb168-4" data-line-number="4"><span class="st"> </span><span class="kw">coord_fixed</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="st"> </span><span class="kw">geom_hex</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb190-3" data-line-number="3"><span class="st"> </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb190-4" data-line-number="4"><span class="st"> </span><span class="kw">coord_fixed</span>()</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>¿Cuál es el primer argumento para cada escala? ¿Cómo se compara con <code>labs()</code>?</p></li>
 <li><p>Cambia la visualización de los términos presidenciales de las siguientes maneras:</p></li>
@@ -443,8 +443,8 @@ de gráficos que demuestren las opciones más importantes.</p></li>
 <ol start="4" style="list-style-type: decimal">
 <li>Utiliza <code>override.aes</code> para que la leyenda en el siguiente gráfico sea más fácil de ver:</li>
 </ol>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">ggplot</span>(diamantes, <span class="kw">aes</span>(quilate, precio)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> corte, <span class="dt">alpha =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">20</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">ggplot</span>(diamantes, <span class="kw">aes</span>(quilate, precio)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb191-2" data-line-number="2"><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> corte, <span class="dt">alpha =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">20</span>))</a></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-3-1.png" width="50%" /></p>
 
 </div>
