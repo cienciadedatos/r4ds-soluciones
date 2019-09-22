@@ -1,7 +1,10 @@
 # Datos relacionales
 
-```{r}
+## Paquetes necesarios
+
+```{r, warning=FALSE, message=FALSE}
 library(dplyr)
+library(ggplot2)
 library(datos)
 ```
 
@@ -142,7 +145,7 @@ aeropuertos %>%
 atraso_promedio_destino <- vuelos %>%
    group_by(destino) %>%
    # los vuelos con NA en atraso_llegada son vuelos cancelados
-   summarise(atrado = mean(atraso_llegada, na.rm = TRUE)) %>%
+   summarise(atraso = mean(atraso_llegada, na.rm = TRUE)) %>%
    inner_join(aeropuertos, by = c(destino = "codigo_aeropuerto"))
 ```
 
@@ -215,7 +218,7 @@ Dado que hay pocos aviones de más de 25 años, truncaremos los datos y luego
 vamos a calcular el promedio de llegada y salida dada la antiguedad.
 
 ```{r}
-plane_cohorts <- inner_join(vuelos,
+atrasos_por_antiguedad <- inner_join(vuelos,
    select(aviones, codigo_cola, anio_fabricacion = anio), by = "codigo_cola") %>%
    mutate(antiguedad = anio - anio_fabricacion) %>%
    filter(!is.na(antiguedad)) %>%
@@ -224,10 +227,7 @@ plane_cohorts <- inner_join(vuelos,
    summarise(
       prom_atraso_salida = mean(atraso_salida, na.rm = TRUE),
       desv_est_atraso_salida = sd(atraso_salida, na.rm = TRUE),
-      prom_atraso_llegada = mean(atraso_llegada, na.rm = TRUE),
-      desv_est_atraso_llegada = sd(atraso_llegada, na.rm = TRUE),
-      nro_vuelos_atrasados_salida = sum(!is.na(atraso_salida)),
-      nro_vuelos_atrasados_llegada = sum(!is.na(atraso_llegada))
+      nro_vuelos_atrasados_salida = sum(!is.na(atraso_salida))
    )
 ```
 
@@ -242,14 +242,39 @@ deberse a que en los aviones más antiguos se planfica la mantención para evita
 tales atrasos y desperfectos mecánicos.
 
 ```{r}
-ggplot(plane_cohorts, aes(x = age, y = dep_delay_mean)) +
+ggplot(atrasos_por_antiguedad, aes(x = antiguedad, y = prom_atraso_salida)) +
   geom_point() +
-  scale_x_continuous("Age of plane (years)", breaks = seq(0, 30, by = 10)) +
-  scale_y_continuous("Mean Departure Delay (minutes)")
+  scale_x_continuous("Antiguedad del avión (años)", breaks = seq(0, 30, by = 10)) +
+  scale_y_continuous("Atraso promedio en la salida (minutos)")
 ```
 </div>
 
 1. ¿Qué condiciones climáticas hacen más probables los atrasos?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Las lluvias están asociadas con los atrasos. Sin embargo, para un nivel 
+mayor a 0.02 pulgadas de lluvia no hay una tendencia fuerte.
+
+```{r}
+vuelo_clima <- vuelos %>%
+  inner_join(clima, by = c(
+    "origen",
+    "anio",
+    "mes",
+    "dia",
+    "hora"
+  ))
+
+vuelo_clima %>%
+  group_by(precipitacion) %>%
+  summarise(atraso = mean(atraso_salida, na.rm = TRUE)) %>%
+  ggplot(aes(x = precipitacion, y = atraso)) +
+  geom_line() +
+  geom_point()
+```
+</div>
 
 1. ¿Qué sucedió el día 13 de junio de 2013? Muestra el patrón espacial de los atrasos, 
    luego usa un buscador para encontrar referencias cruzadas con el clima.
@@ -267,17 +292,76 @@ peores %>%
   coord_quickmap()
  ```
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Hubo una serie de tormentas en el sureste de los EEUU (consulta la [Wikipedia](https://en.wikipedia.org/wiki/June_12%E2%80%9313,_2013_derecho_series)).
+
+El siguiente gráfico muestra que los mayores atrasos se presentaron en
+Tennessee (Nashville), el sureste y medio oeste es donde ocurrieron las
+tormentas.
+
+```{r}
+vuelos %>%
+  filter(anio == 2013, mes == 6, dia == 13) %>%
+  group_by(destino) %>%
+  summarise(atraso = mean(atraso_salida, na.rm = TRUE)) %>%
+  inner_join(aeropuertos, by = c("destino" = "codigo_aeropuerto")) %>%
+  ggplot(aes(y = latitud, x = longitud, size = atraso, colour = atraso)) +
+  borders("state") +
+  geom_point() +
+  coord_quickmap() +
+  scale_colour_viridis_c()
+```
+</div>
 
 ## Uniones de filtro {#filtering-joins}
 
 ### Ejercicios
 
-1. ¿Qué significa que in vuelo no tenga `codigo_cola`? ¿Qué tienen en común los códigos 
+1. ¿Qué significa que un vuelo no tenga `codigo_cola`? ¿Qué tienen en común los códigos 
    de cola que no tienen registros coincidentes en `aviones`? (Pista: Una variable explica 
    ~90% de los problemas.)
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Los vuelos que no registran código cola tampoco registran hora de llegada, por
+lo que son vuelos cancelados.
+
+```{r}
+vuelos %>%
+  filter(is.na(codigo_cola), !is.na(horario_llegada)) %>%
+  nrow()
+```
+
+Muchos de los vuelos sin código cola en `aviones` pertenecen a
+American Airlines (AA) o Envoy Airlines (EQ) como se detalla en la documentación.
+
+```{r}
+vuelos %>%
+  anti_join(aviones, by = "codigo_cola") %>%
+  count(aerolinea, sort = TRUE) %>%
+  mutate(p = n / sum(n))
+```
+
+Sin embargo, no todos los códigos que aparecen en `vuelos` están perdidos en
+`aviones`.
+
+```{r}
+vuelos %>%
+  distinct(aerolinea, codigo_cola) %>%
+  left_join(aviones, by = "codigo_cola") %>%
+  group_by(aerolinea) %>%
+  summarise(total_aviones = n(),
+            faltan_en_aviones = sum(is.na(modelo))) %>%
+  mutate(porcentaje_perdidos = faltan_en_aviones / total_aviones) %>%
+  arrange(desc(porcentaje_perdidos))
+```
+</div>
+
 1. Filtra los vuelos para mostrar únicamente los aviones que han realizado al menos cien
-   viajes
+   viajes.
 
 1. Combina `vehiculos` y `comunes` para encontrar los registros de los 
    modelos más comunes.
