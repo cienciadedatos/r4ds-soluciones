@@ -106,8 +106,14 @@ vuelos %>%
 
   ¿Cómo caracterizarías las relación entre `bateadores`, `lanzadores` y `fildeo`?
 
-## Uniones de transformación {#mutating-joins}
+<div class="solucion">
+<h3>Solución</h3>
 
+Es directo. Las tres tablas contienen los campos `id_jugador` y `anio` y cada
+tabla contiene información que complementa las demás. La relación es uno a uno.
+</div>
+
+## Uniones de transformación {#mutating-joins}
 
 ### Ejercicios
 
@@ -129,11 +135,119 @@ aeropuertos %>%
   
   Quizás quieras usar `size` o `colour` para editar los puntos y mostrar 
   el atraso promedio de cada aeropuerto.
+  
+<div class="solucion">
+<h3>Solución</h3>
+```{r}
+atraso_promedio_destino <- vuelos %>%
+   group_by(destino) %>%
+   # los vuelos con NA en atraso_llegada son vuelos cancelados
+   summarise(atrado = mean(atraso_llegada, na.rm = TRUE)) %>%
+   inner_join(aeropuertos, by = c(destino = "codigo_aeropuerto"))
+```
+
+```{r}
+atraso_promedio_destino %>%
+  ggplot(aes(longitud, latitud, colour = atraso)) +
+  borders("state") +
+  geom_point() +
+  coord_quickmap()
+```
+</div>
  
 1. Agrega la ubicación de origen _y_ destino (e.g. `latitud` y `longitud`) 
    a `vuelos`.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Es posible realizar varias uniones. Si hay variables duplicadas, dplyr va a
+distinguirlas agregando `.x` y `.y` al nombre de la variable para resolver
+los nombres duplicados.
+
+```{r}
+ubicacion_aeropuertos <- aeropuertos %>%
+  select(codigo_aeropuerto, latitud, longitud)
+
+vuelos %>%
+  select(anio:dia, hora, origen, destino) %>%
+  left_join(
+    ubicacion_aeropuertos,
+    by = c("origen" = "codigo_aeropuerto")
+  ) %>%
+  left_join(
+    ubicacion_aeropuertos,
+    by = c("destino" = "codigo_aeropuerto")
+  )
+```
+
+Es una buena práctica tener nombres indicativos para las variables. Usaremos
+el sufijo `_destino` y `_origen` para especificar a qué aeropuerto nos referimos.
+
+```{r}
+vuelos %>%
+  select(anio:dia, hora, origen, destino) %>%
+  left_join(
+    ubicacion_aeropuertos,
+    by = c("origen" = "codigo_aeropuerto")
+  ) %>%
+  left_join(
+    ubicacion_aeropuertos,
+    by = c("destino" = "codigo_aeropuerto"),
+    suffix = c("_origen", "_destino")
+  )
+```
+</div>
+
 1. ¿Existe una relación entre la antiguedad de un avión y sus atrasos?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Ya que no se indica si se refiere a atrasos de salida o llegada, se explorará
+el atraso en la salida, quedando el otro caso como ejercicio.
+
+Para comparar la antiguedad de un avión con sus atrasos, hay que unir
+`vuelos` con `aviones`, esta última tabla contiene la variable `anio` que se
+refiere al año de fabricación del avión.
+
+Dado que hay pocos aviones de más de 25 años, truncaremos los datos y luego
+vamos a calcular el promedio de llegada y salida dada la antiguedad.
+
+```{r}
+plane_cohorts <- inner_join(vuelos,
+   select(aviones, codigo_cola, anio_fabricacion = anio), by = "codigo_cola") %>%
+   mutate(antiguedad = anio - anio_fabricacion) %>%
+   filter(!is.na(antiguedad)) %>%
+   mutate(antiguedad = if_else(antiguedad > 25, 25L, antiguedad)) %>%
+   group_by(antiguedad) %>%
+   summarise(
+      prom_atraso_salida = mean(atraso_salida, na.rm = TRUE),
+      desv_est_atraso_salida = sd(atraso_salida, na.rm = TRUE),
+      prom_atraso_llegada = mean(atraso_llegada, na.rm = TRUE),
+      desv_est_atraso_llegada = sd(atraso_llegada, na.rm = TRUE),
+      nro_vuelos_atrasados_salida = sum(!is.na(atraso_salida)),
+      nro_vuelos_atrasados_llegada = sum(!is.na(atraso_llegada))
+   )
+```
+
+Ahora podemos explorar la reglación entre los atrasos en la salida y la
+antiguedad.
+
+El atraso en la salida es creciente en relación a la antiguedad para los
+aviones de hasta de 10 años. Luego este atraso decae.
+
+La reducción de los atrasos en la salida en relación a la antiguedad puede
+deberse a que en los aviones más antiguos se planfica la mantención para evitar
+tales atrasos y desperfectos mecánicos.
+
+```{r}
+ggplot(plane_cohorts, aes(x = age, y = dep_delay_mean)) +
+  geom_point() +
+  scale_x_continuous("Age of plane (years)", breaks = seq(0, 30, by = 10)) +
+  scale_y_continuous("Mean Departure Delay (minutes)")
+```
+</div>
 
 1. ¿Qué condiciones climáticas hacen más probables los atrasos?
 
