@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Visualización de datos | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Visualización de datos | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduccion.html">
-<link rel="next" href="flujo-de-trabajo-conocimientos-basicos.html">
+<link rel="prev" href="introduccion.html"/>
+<link rel="next" href="flujo-de-trabajo-conocimientos-basicos.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,9 +50,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -61,14 +61,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +79,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -308,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2" data-path="iteracion.html"><a href="iteracion.html#variaciones-de-bucles-for"><i class="fa fa-check"></i><b>17.2</b> Variaciones de bucles <em>for</em></a><ul>
 <li class="chapter" data-level="17.2.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-50"><i class="fa fa-check"></i><b>17.2.1</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
+<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.-funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
 <li class="chapter" data-level="17.3.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-51"><i class="fa fa-check"></i><b>17.3.1</b> Ejercicios</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="iteracion.html"><a href="iteracion.html#las-funciones-map-mapa-en-ingles"><i class="fa fa-check"></i><b>17.4</b> Las funciones <em>map</em> (mapa en inglés)</a><ul>
@@ -390,8 +392,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">2</span> Visualización de datos</h1>
 <div id="paquetes-necesarios" class="section level2">
 <h2><span class="header-section-number">2.1</span> Paquetes necesarios</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(datos)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="visualizacion-de-datos.html#cb1-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="visualizacion-de-datos.html#cb1-2"></a><span class="kw">library</span>(datos)</span></code></pre></div>
 </div>
 <div id="primeros-pasos" class="section level2">
 <h2><span class="header-section-number">2.2</span> Primeros pasos</h2>
@@ -412,8 +414,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.3.1</span> Ejercicios</h3>
 <ol style="list-style-type: decimal">
 <li><p>¿Qué no va bien en este código? ¿Por qué hay puntos que no son azules?</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="visualizacion-de-datos.html#cb2-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></span>
+<span id="cb2-2"><a href="visualizacion-de-datos.html#cb2-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p><img src="03-visualize_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p></li>
 <li><p>¿Qué variables en <code>millas</code> son categóricas? ¿Qué variables son continuas? (Sugerencia: escribe <code>?millas</code> para leer la documentación de ayuda para este conjunto de datos). ¿Cómo puedes ver esta información cuando ejecutas <code>millas</code>?</p></li>
 <li><p>Asigna una variable continua a <code>color</code>, <code>size</code>, y <code>shape</code>. ¿Cómo se comportan estas estéticas de manera diferente para variables categóricas y variables continuas?</p></li>
@@ -431,20 +433,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Qué ocurre si intentas separar en facetas a una variable continua?</p></li>
 <li><p>¿Qué significan las celdas vacías que aparecen en el gráfico generado usando <code>facet_grid(traccion ~ cilindros)</code>?
 ¿Cómo se relacionan con este gráfico?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> traccion, <span class="dt">y =</span> cilindros))</a></code></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="visualizacion-de-datos.html#cb3-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></span>
+<span id="cb3-2"><a href="visualizacion-de-datos.html#cb3-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> traccion, <span class="dt">y =</span> cilindros))</span></code></pre></div></li>
 <li><p>¿Qué gráfica el siguiente código? ¿Qué hace <code>.</code> ?</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_grid</span>(traccion <span class="op">~</span><span class="st"> </span>.)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="st">  </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>cilindros)</a></code></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="visualizacion-de-datos.html#cb4-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></span>
+<span id="cb4-2"><a href="visualizacion-de-datos.html#cb4-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></span>
+<span id="cb4-3"><a href="visualizacion-de-datos.html#cb4-3"></a><span class="st">  </span><span class="kw">facet_grid</span>(traccion <span class="op">~</span><span class="st"> </span>.)</span>
+<span id="cb4-4"><a href="visualizacion-de-datos.html#cb4-4"></a></span>
+<span id="cb4-5"><a href="visualizacion-de-datos.html#cb4-5"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></span>
+<span id="cb4-6"><a href="visualizacion-de-datos.html#cb4-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></span>
+<span id="cb4-7"><a href="visualizacion-de-datos.html#cb4-7"></a><span class="st">  </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>cilindros)</span></code></pre></div></li>
 <li><p>Mira de nuevo el primer gráfico en facetas presentado en esta sección:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>clase, <span class="dt">nrow =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizacion-de-datos.html#cb5-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas) <span class="op">+</span></span>
+<span id="cb5-2"><a href="visualizacion-de-datos.html#cb5-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></span>
+<span id="cb5-3"><a href="visualizacion-de-datos.html#cb5-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>clase, <span class="dt">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>¿Cuáles son las ventajas de separar en facetas en lugar de aplicar una estética de color?
 ¿Cuáles son las desventajas?
 ¿Cómo cambiaría este balance si tuvieras un conjunto de datos más grande?</p></li>
@@ -464,20 +466,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ¿Un diagrama de caja? ¿Un histograma? ¿Un gráfico de área?</p></li>
 <li><p>Ejecuta este código en tu mente y predice cómo se verá el <em>output</em>.
 Luego, ejecuta el código en R y verifica tus predicciones.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista, <span class="dt">color =</span> traccion)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="visualizacion-de-datos.html#cb6-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista, <span class="dt">color =</span> traccion)) <span class="op">+</span></span>
+<span id="cb6-2"><a href="visualizacion-de-datos.html#cb6-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb6-3"><a href="visualizacion-de-datos.html#cb6-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div></li>
 <li><p>¿Qué muestra <code>show.legend = FALSE</code>? ¿Qué pasa si lo quitas?
 ¿Por qué crees que lo usé antes en el capítulo?</p></li>
 <li><p>¿Qué hace el argumento <code>se</code> en <code>geom_smooth()</code>?</p></li>
 <li><p>¿Se verán distintos estos gráficos? ¿Por qué sí o por qué no?</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>()</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista))</a></code></pre></div></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizacion-de-datos.html#cb7-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></span>
+<span id="cb7-2"><a href="visualizacion-de-datos.html#cb7-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb7-3"><a href="visualizacion-de-datos.html#cb7-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span>
+<span id="cb7-4"><a href="visualizacion-de-datos.html#cb7-4"></a></span>
+<span id="cb7-5"><a href="visualizacion-de-datos.html#cb7-5"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb7-6"><a href="visualizacion-de-datos.html#cb7-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista)) <span class="op">+</span></span>
+<span id="cb7-7"><a href="visualizacion-de-datos.html#cb7-7"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> motor, <span class="dt">y =</span> autopista))</span></code></pre></div></li>
 <li><p>Recrea el código R necesario para generar los siguientes gráficos:</p>
 <p><img src="03-visualize_files/figure-html/unnamed-chunk-8-1.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-2.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-3.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-4.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-5.png" width="50%" /><img src="03-visualize_files/figure-html/unnamed-chunk-8-6.png" width="50%" /></p></li>
 </ol>
@@ -496,11 +498,11 @@ Lee la documentación y has una lista de todos los pares. ¿Qué tienen en comú
 <li><p>¿Qué variables calcula <code>stat_smooth()</code>? ¿Qué parámetros controlan su comportamiento?</p></li>
 <li><p>En nuestro gráfico de barras de proporción , necesitamos establecer <code>group = 1</code>. ¿Por qué?
 En otras palabras, ¿cuál es el problema con estos dos gráficos?</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamantes) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> corte, <span class="dt">y =</span> ..prop..))</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamantes) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> corte, <span class="dt">fill =</span> color, <span class="dt">y =</span> ..prop..))</a></code></pre></div></li>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="visualizacion-de-datos.html#cb8-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamantes) <span class="op">+</span></span>
+<span id="cb8-2"><a href="visualizacion-de-datos.html#cb8-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> corte, <span class="dt">y =</span> ..prop..))</span>
+<span id="cb8-3"><a href="visualizacion-de-datos.html#cb8-3"></a></span>
+<span id="cb8-4"><a href="visualizacion-de-datos.html#cb8-4"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamantes) <span class="op">+</span></span>
+<span id="cb8-5"><a href="visualizacion-de-datos.html#cb8-5"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> corte, <span class="dt">fill =</span> color, <span class="dt">y =</span> ..prop..))</span></code></pre></div></li>
 </ol>
 </div>
 </div>
@@ -510,8 +512,8 @@ En otras palabras, ¿cuál es el problema con estos dos gráficos?</p>
 <h3><span class="header-section-number">2.7.1</span> Ejercicios</h3>
 <ol style="list-style-type: decimal">
 <li><p>¿Cuál es el problema con este gráfico? ¿Cómo podrías mejorarlo?</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ciudad, <span class="dt">y =</span> autopista)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="visualizacion-de-datos.html#cb9-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ciudad, <span class="dt">y =</span> autopista)) <span class="op">+</span></span>
+<span id="cb9-2"><a href="visualizacion-de-datos.html#cb9-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="03-visualize_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p></li>
 <li><p>¿Qué parámetros de <code>geom_jitter()</code> controlan la cantidad de ruido?</p></li>
 <li><p>Compara y contrasta <code>geom_jitter()</code> con <code>geom_count()</code></p></li>
@@ -528,10 +530,10 @@ En otras palabras, ¿cuál es el problema con estos dos gráficos?</p>
 <li><p>¿Qué hace <code>labs()</code>? Lee la documentación.</p></li>
 <li><p>¿Cuál es la diferencia entre <code>coord_quickmap()</code> y <code>coord_map()</code>?</p></li>
 <li><p>¿Qué te dice la gráfica siguiente sobre la relación entre la ciudad y la <code>autopista</code>? ¿Por qué es <code>coord_fixed()</code> importante? ¿Qué hace <code>geom_abline()</code>?</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ciudad, <span class="dt">y =</span> autopista)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_abline</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_fixed</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="visualizacion-de-datos.html#cb10-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> millas, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ciudad, <span class="dt">y =</span> autopista)) <span class="op">+</span></span>
+<span id="cb10-2"><a href="visualizacion-de-datos.html#cb10-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb10-3"><a href="visualizacion-de-datos.html#cb10-3"></a><span class="st">  </span><span class="kw">geom_abline</span>() <span class="op">+</span></span>
+<span id="cb10-4"><a href="visualizacion-de-datos.html#cb10-4"></a><span class="st">  </span><span class="kw">coord_fixed</span>()</span></code></pre></div>
 <p><img src="03-visualize_files/figure-html/unnamed-chunk-11-1.png" width="50%" /></p></li>
 </ol>
 
@@ -586,8 +588,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

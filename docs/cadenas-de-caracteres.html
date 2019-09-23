@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12 Cadenas de caracteres | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12 Cadenas de caracteres | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="datos-relacionales.html">
-<link rel="next" href="factores.html">
+<link rel="prev" href="datos-relacionales.html"/>
+<link rel="next" href="factores.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,9 +50,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -61,14 +61,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +79,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -308,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2" data-path="iteracion.html"><a href="iteracion.html#variaciones-de-bucles-for"><i class="fa fa-check"></i><b>17.2</b> Variaciones de bucles <em>for</em></a><ul>
 <li class="chapter" data-level="17.2.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-50"><i class="fa fa-check"></i><b>17.2.1</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
+<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.-funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
 <li class="chapter" data-level="17.3.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-51"><i class="fa fa-check"></i><b>17.3.1</b> Ejercicios</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="iteracion.html"><a href="iteracion.html#las-funciones-map-mapa-en-ingles"><i class="fa fa-check"></i><b>17.4</b> Las funciones <em>map</em> (mapa en inglés)</a><ul>
@@ -401,7 +403,7 @@ de la función <code>str_c()</code>.</p></li>
 <li><p>Utiliza <code>str_length()</code> y <code>str_sub()</code> para extraer el caracter del medio de una cadena. ¿Qué harías si el número de caracteres es par?</p></li>
 <li><p>¿Qué hace <code>str_wrap()</code>? (<em>wrap</em> = envolver) ¿Cuándo podrías querer utilizarla?</p></li>
 <li><p>¿Qué hace <code>str_trim()</code>? (<em>trim</em> = recortar) ¿Cuál es el opuesto de <code>str_trim()</code>?</p></li>
-<li><p>Escribe una función que convierta, por ejemplo, el vector <code>c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</code> en
+<li><p>Escribe una función que convierta, por ejemplo, el vector <code>c("a", "b", "c")</code> en
 la cadena <code>a, b, y c</code>. Piensa con detención qué debería hacer
 dado un vector de largo 0, 1, o 2.</p></li>
 </ol>
@@ -411,8 +413,8 @@ dado un vector de largo 0, 1, o 2.</p></li>
 <div id="ejercicios-26" class="section level4">
 <h4><span class="header-section-number">12.1.2.1</span> Ejercicios</h4>
 <ol style="list-style-type: decimal">
-<li><p>Explica por qué cada una de estas cadenas no coincide con <code>\</code>: <code>&quot;\&quot;</code>, <code>&quot;\\&quot;</code>, <code>&quot;\\\&quot;</code>.</p></li>
-<li><p>¿Cómo harías coincidir la secuencia <code>&quot;'\</code>?</p></li>
+<li><p>Explica por qué cada una de estas cadenas no coincide con <code>\</code>: <code>"\"</code>, <code>"\\"</code>, <code>"\\\"</code>.</p></li>
+<li><p>¿Cómo harías coincidir la secuencia <code>"'\</code>?</p></li>
 <li><p>¿Con qué patrones coincidiría la expresión regular<code>\..\..\..</code>?
 ¿Cómo la representarías en una cadena?</p></li>
 </ol>
@@ -423,7 +425,7 @@ dado un vector de largo 0, 1, o 2.</p></li>
 <div id="ejercicios-27" class="section level4">
 <h4><span class="header-section-number">12.1.3.1</span> Ejercicios</h4>
 <ol style="list-style-type: decimal">
-<li><p>¿Cómo harías coincidir la cadena <code>&quot;$^$&quot;</code> de manera literal?</p></li>
+<li><p>¿Cómo harías coincidir la cadena <code>"$^$"</code> de manera literal?</p></li>
 <li><p>Dado el corpus de palabras comunes en <code>datos::palabras</code>, crea una expresión
 regular que busque palabras que:</p>
 <ol style="list-style-type: decimal">
@@ -455,7 +457,7 @@ regular que busque palabras que:</p>
 (por ejemplo, <em>queréis</em> en vez de <em>quieren</em>).</p></li>
 <li><p>Crea una expresión regular que coincida con la forma en que habitualmente
 se escriben los números de teléfono en tu país.</p></li>
-<li><p>En inglés existe una regla que dice que la letra i va siempre antes de la e, excepto cuando está después de una c&quot;. Verifica empíricamente esta regla utilizando las palabras contenidas en <code>stringr::words</code>.</p></li>
+<li><p>En inglés existe una regla que dice que la letra i va siempre antes de la e, excepto cuando está después de una c". Verifica empíricamente esta regla utilizando las palabras contenidas en <code>stringr::words</code>.</p></li>
 </ol>
 </div>
 </div>
@@ -470,9 +472,9 @@ se escriben los números de teléfono en tu país.</p></li>
 que define una expresión regular.)</p>
 <ol style="list-style-type: decimal">
 <li><code>^.*$</code></li>
-<li><code>&quot;\\{.+\\}&quot;</code></li>
+<li><code>"\\{.+\\}"</code></li>
 <li><code>\d{4}-\d{2}-\d{2}</code></li>
-<li><code>&quot;\\\\{4}&quot;</code></li>
+<li><code>"\\\\{4}"</code></li>
 </ol></li>
 <li><p>Crea expresiones regulares para buscar todas las palabras que:</p>
 <ol style="list-style-type: decimal">
@@ -491,10 +493,10 @@ que define una expresión regular.)</p>
 <li><p>Describe en palabras con qué coinciden estas expresiones:</p>
 <ol style="list-style-type: decimal">
 <li><code>(.)\1\1</code></li>
-<li><code>&quot;(.)(.)\\2\\1&quot;</code></li>
+<li><code>"(.)(.)\\2\\1"</code></li>
 <li><code>(..)\1</code></li>
-<li><code>&quot;(.).\\1.\\1&quot;</code></li>
-<li><code>&quot;(.)(.)(.).*\\3\\2\\1&quot;</code></li>
+<li><code>"(.).\\1.\\1"</code></li>
+<li><code>"(.)(.)(.).*\\3\\2\\1"</code></li>
 </ol></li>
 <li><p>Construye una expresión regular que coincida con palabras que:</p>
 <ol style="list-style-type: decimal">
@@ -570,10 +572,10 @@ siguen siendo palabras?</p></li>
 <div id="ejercicios-35" class="section level4">
 <h4><span class="header-section-number">12.2.5.1</span> Ejercicios</h4>
 <ol style="list-style-type: decimal">
-<li><p>Divide una cadena como <code>&quot;manzanas, peras y bananas&quot;</code> en elementos
+<li><p>Divide una cadena como <code>"manzanas, peras y bananas"</code> en elementos
 individuales.</p></li>
-<li><p>¿Por qué es mejor dividir utilizando <code>boundary(&quot;word&quot;)</code> en vez de <code>&quot; &quot;</code>?</p></li>
-<li><p>¿Qué pasa si dividimos con una cadena vacía (<code>&quot;&quot;</code>)? Experimenta y
+<li><p>¿Por qué es mejor dividir utilizando <code>boundary("word")</code> en vez de <code>" "</code>?</p></li>
+<li><p>¿Qué pasa si dividimos con una cadena vacía (<code>""</code>)? Experimenta y
 luego lee la documentación</p></li>
 </ol>
 </div>
@@ -584,8 +586,8 @@ luego lee la documentación</p></li>
 <div id="ejercicios-36" class="section level3">
 <h3><span class="header-section-number">12.3.1</span> Ejercicios</h3>
 <ol style="list-style-type: decimal">
-<li><p>¿Cómo buscarías todas las cadenas que contienen <code>\</code> con <code>regex()</code>
-vs. con <code>fixed()</code>?</p></li>
+<li><p>¿Cómo buscarías todas las cadenas que contienen <code>\</code> con <code>regex()</code> vs.
+con <code>fixed()</code>?</p></li>
 <li><p>¿Cuáles son las cinco palabras más comunes en <code>oraciones</code>?</p></li>
 </ol>
 </div>
@@ -655,8 +657,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -34,7 +34,7 @@ vuelos %>%
 
 ```
 ## # A tibble: 336,776 x 26
-##     anio   mes   dia horario_salida salida_programa… atraso_salida
+##     anio   mes   dia horario_salida salida_programa~ atraso_salida
 ##    <int> <int> <int>          <int>            <int>         <dbl>
 ##  1  2013     1     1            517              515             2
 ##  2  2013     1     1            533              529             4
@@ -46,13 +46,13 @@ vuelos %>%
 ##  8  2013     1     1            557              600            -3
 ##  9  2013     1     1            557              600            -3
 ## 10  2013     1     1            558              600            -2
-## # … with 336,766 more rows, and 20 more variables: horario_llegada <int>,
-## #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
-## #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
-## #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
-## #   fecha_hora <dttm>, nombre <chr>, latitud <dbl>, longitud <dbl>,
-## #   altura <int>, zona_horaria <dbl>, horario_verano <chr>,
-## #   zona_horaria_iana <chr>
+## # ... with 336,766 more rows, and 20 more variables:
+## #   horario_llegada <int>, llegada_programada <int>, atraso_llegada <dbl>,
+## #   aerolinea <chr>, vuelo <int>, codigo_cola <chr>, origen <chr>,
+## #   destino <chr>, tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>,
+## #   minuto <dbl>, fecha_hora <dttm>, nombre <chr>, latitud <dbl>,
+## #   longitud <dbl>, altura <dbl>, zona_horaria <dbl>,
+## #   horario_verano <chr>, zona_horaria_iana <chr>
 ```
 </div>
 
@@ -107,7 +107,7 @@ vuelos %>%
 
 ```
 ## # A tibble: 336,776 x 20
-##       id  anio   mes   dia horario_salida salida_programa… atraso_salida
+##       id  anio   mes   dia horario_salida salida_programa~ atraso_salida
 ##    <int> <int> <int> <int>          <int>            <int>         <dbl>
 ##  1     1  2013     1     1            517              515             2
 ##  2     2  2013     1     1            533              529             4
@@ -119,11 +119,11 @@ vuelos %>%
 ##  8     8  2013     1     1            557              600            -3
 ##  9     9  2013     1     1            557              600            -3
 ## 10    10  2013     1     1            558              600            -2
-## # … with 336,766 more rows, and 13 more variables: horario_llegada <int>,
-## #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
-## #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
-## #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
-## #   fecha_hora <dttm>
+## # ... with 336,766 more rows, and 13 more variables:
+## #   horario_llegada <int>, llegada_programada <int>, atraso_llegada <dbl>,
+## #   aerolinea <chr>, vuelo <int>, codigo_cola <chr>, origen <chr>,
+## #   destino <chr>, tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>,
+## #   minuto <dbl>, fecha_hora <dttm>
 ```
 </div>
 
@@ -251,7 +251,7 @@ vuelos %>%
 ##  8  2013     1     1     6 LGA    IAD          40.8      -73.9      38.9
 ##  9  2013     1     1     6 JFK    MCO          40.6      -73.8      28.4
 ## 10  2013     1     1     6 LGA    ORD          40.8      -73.9      42.0
-## # … with 336,766 more rows, and 1 more variable: longitud.y <dbl>
+## # ... with 336,766 more rows, and 1 more variable: longitud.y <dbl>
 ```
 
 Es una buena práctica tener nombres indicativos para las variables. Usaremos
@@ -286,7 +286,7 @@ vuelos %>%
 ##  8  2013     1     1     6 LGA    IAD               40.8           -73.9
 ##  9  2013     1     1     6 JFK    MCO               40.6           -73.8
 ## 10  2013     1     1     6 LGA    ORD               40.8           -73.9
-## # … with 336,766 more rows, and 2 more variables: latitud_destino <dbl>,
+## # ... with 336,766 more rows, and 2 more variables: latitud_destino <dbl>,
 ## #   longitud_destino <dbl>
 ```
 </div>
@@ -525,7 +525,7 @@ vuelos %>%
 
 ```
 ## # A tibble: 228,390 x 19
-##     anio   mes   dia horario_salida salida_programa… atraso_salida
+##     anio   mes   dia horario_salida salida_programa~ atraso_salida
 ##    <int> <int> <int>          <int>            <int>         <dbl>
 ##  1  2013     1     1            517              515             2
 ##  2  2013     1     1            533              529             4
@@ -537,11 +537,11 @@ vuelos %>%
 ##  8  2013     1     1            558              600            -2
 ##  9  2013     1     1            558              600            -2
 ## 10  2013     1     1            558              600            -2
-## # … with 228,380 more rows, and 13 more variables: horario_llegada <int>,
-## #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
-## #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
-## #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
-## #   fecha_hora <dttm>
+## # ... with 228,380 more rows, and 13 more variables:
+## #   horario_llegada <int>, llegada_programada <int>, atraso_llegada <dbl>,
+## #   aerolinea <chr>, vuelo <int>, codigo_cola <chr>, origen <chr>,
+## #   destino <chr>, tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>,
+## #   minuto <dbl>, fecha_hora <dttm>
 ```
 
 Otra posibilidad es agrupar y luego usar `mutate()`.
@@ -557,7 +557,7 @@ vuelos %>%
 ```
 ## # A tibble: 228,390 x 20
 ## # Groups:   codigo_cola [1,217]
-##     anio   mes   dia horario_salida salida_programa… atraso_salida
+##     anio   mes   dia horario_salida salida_programa~ atraso_salida
 ##    <int> <int> <int>          <int>            <int>         <dbl>
 ##  1  2013     1     1            517              515             2
 ##  2  2013     1     1            533              529             4
@@ -569,11 +569,11 @@ vuelos %>%
 ##  8  2013     1     1            558              600            -2
 ##  9  2013     1     1            558              600            -2
 ## 10  2013     1     1            558              600            -2
-## # … with 228,380 more rows, and 14 more variables: horario_llegada <int>,
-## #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
-## #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
-## #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
-## #   fecha_hora <dttm>, n <int>
+## # ... with 228,380 more rows, and 14 more variables:
+## #   horario_llegada <int>, llegada_programada <int>, atraso_llegada <dbl>,
+## #   aerolinea <chr>, vuelo <int>, codigo_cola <chr>, origen <chr>,
+## #   destino <chr>, tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>,
+## #   minuto <dbl>, fecha_hora <dttm>, n <int>
 ```
 </div>
 
@@ -597,17 +597,17 @@ vehiculos %>%
 ## # A tibble: 14,531 x 12
 ##       id fabricante modelo  anio clase transmision traccion cilindros motor
 ##    <int> <chr>      <chr>  <int> <chr> <chr>       <chr>        <int> <dbl>
-##  1  1833 Acura      Integ…  1986 Auto… Automática… Delante…         4   1.6
-##  2  1834 Acura      Integ…  1986 Auto… Manual 5-v… Delante…         4   1.6
-##  3  3037 Acura      Integ…  1987 Auto… Automática… Delante…         4   1.6
-##  4  3038 Acura      Integ…  1987 Auto… Manual 5-v… Delante…         4   1.6
-##  5  4183 Acura      Integ…  1988 Auto… Automática… Delante…         4   1.6
-##  6  4184 Acura      Integ…  1988 Auto… Manual 5-v… Delante…         4   1.6
-##  7  5303 Acura      Integ…  1989 Auto… Automática… Delante…         4   1.6
-##  8  5304 Acura      Integ…  1989 Auto… Manual 5-v… Delante…         4   1.6
-##  9  6442 Acura      Integ…  1990 Auto… Automática… Delante…         4   1.8
-## 10  6443 Acura      Integ…  1990 Auto… Manual 5-v… Delante…         4   1.8
-## # … with 14,521 more rows, and 3 more variables: combustible <chr>,
+##  1  1833 Acura      Integ~  1986 Auto~ Automática~ Delante~         4   1.6
+##  2  1834 Acura      Integ~  1986 Auto~ Manual 5-v~ Delante~         4   1.6
+##  3  3037 Acura      Integ~  1987 Auto~ Automática~ Delante~         4   1.6
+##  4  3038 Acura      Integ~  1987 Auto~ Manual 5-v~ Delante~         4   1.6
+##  5  4183 Acura      Integ~  1988 Auto~ Automática~ Delante~         4   1.6
+##  6  4184 Acura      Integ~  1988 Auto~ Manual 5-v~ Delante~         4   1.6
+##  7  5303 Acura      Integ~  1989 Auto~ Automática~ Delante~         4   1.6
+##  8  5304 Acura      Integ~  1989 Auto~ Manual 5-v~ Delante~         4   1.6
+##  9  6442 Acura      Integ~  1990 Auto~ Automática~ Delante~         4   1.8
+## 10  6443 Acura      Integ~  1990 Auto~ Manual 5-v~ Delante~         4   1.8
+## # ... with 14,521 more rows, and 3 more variables: combustible <chr>,
 ## #   autopista <int>, ciudad <int>
 ```
 </div>
@@ -801,7 +801,7 @@ aviones_transferidos
 ##  8 9E        N232PQ      Endeavor Air Inc.   
 ##  9 DL        N933AT      Delta Air Lines Inc.
 ## 10 DL        N935AT      Delta Air Lines Inc.
-## # … with 24 more rows
+## # ... with 24 more rows
 ```
 </div>
 
@@ -825,7 +825,7 @@ Los datos con los que has estado trabajando en este capítulo han sido limpiados
  
  ```
  ## # A tibble: 0 x 3
- ## # … with 3 variables: altura <int>, longitud <dbl>, n <int>
+ ## # ... with 3 variables: altura <dbl>, longitud <dbl>, n <int>
  ```
 
 1. Verifica que ninguna de las variables en la llave primaria esté perdida. 

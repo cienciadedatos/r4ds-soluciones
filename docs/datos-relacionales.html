@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11 Datos relacionales | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11 Datos relacionales | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="datos-ordenados.html">
-<link rel="next" href="cadenas-de-caracteres.html">
+<link rel="prev" href="datos-ordenados.html"/>
+<link rel="next" href="cadenas-de-caracteres.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,9 +50,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -61,14 +61,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +79,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -308,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2" data-path="iteracion.html"><a href="iteracion.html#variaciones-de-bucles-for"><i class="fa fa-check"></i><b>17.2</b> Variaciones de bucles <em>for</em></a><ul>
 <li class="chapter" data-level="17.2.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-50"><i class="fa fa-check"></i><b>17.2.1</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
+<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.-funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
 <li class="chapter" data-level="17.3.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-51"><i class="fa fa-check"></i><b>17.3.1</b> Ejercicios</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="iteracion.html"><a href="iteracion.html#las-funciones-map-mapa-en-ingles"><i class="fa fa-check"></i><b>17.4</b> Las funciones <em>map</em> (mapa en inglés)</a><ul>
@@ -390,9 +392,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">11</span> Datos relacionales</h1>
 <div id="paquetes-necesarios-1" class="section level2">
 <h2><span class="header-section-number">11.1</span> Paquetes necesarios</h2>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">library</span>(datos)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="datos-relacionales.html#cb31-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb31-2"><a href="datos-relacionales.html#cb31-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb31-3"><a href="datos-relacionales.html#cb31-3"></a><span class="kw">library</span>(datos)</span></code></pre></div>
 </div>
 <div id="nycflights13-relational" class="section level2">
 <h2><span class="header-section-number">11.2</span> datos</h2>
@@ -411,11 +413,11 @@ Solución
 con tiene las coordenadas de los aeropuertos. Puedes unir las tablas por medio
 de la variable <code>codigo_aeropuerto</code> en <code>aeropuertos</code> y <code>origen</code> y <code>destino</code> en
 <code>vuelos</code>.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(aeropuertos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origen&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>,</a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">                                <span class="st">&quot;destino&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="datos-relacionales.html#cb32-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb32-2"><a href="datos-relacionales.html#cb32-2"></a><span class="st">  </span><span class="kw">left_join</span>(aeropuertos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origen&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>,</span>
+<span id="cb32-3"><a href="datos-relacionales.html#cb32-3"></a>                                <span class="st">&quot;destino&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 x 26
-##     anio   mes   dia horario_salida salida_programa… atraso_salida
+##     anio   mes   dia horario_salida salida_programa~ atraso_salida
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;
 ##  1  2013     1     1            517              515             2
 ##  2  2013     1     1            533              529             4
@@ -427,13 +429,13 @@ de la variable <code>codigo_aeropuerto</code> en <code>aeropuertos</code> y <cod
 ##  8  2013     1     1            557              600            -3
 ##  9  2013     1     1            557              600            -3
 ## 10  2013     1     1            558              600            -2
-## # … with 336,766 more rows, and 20 more variables: horario_llegada &lt;int&gt;,
-## #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,
-## #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,
-## #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,
-## #   fecha_hora &lt;dttm&gt;, nombre &lt;chr&gt;, latitud &lt;dbl&gt;, longitud &lt;dbl&gt;,
-## #   altura &lt;int&gt;, zona_horaria &lt;dbl&gt;, horario_verano &lt;chr&gt;,
-## #   zona_horaria_iana &lt;chr&gt;</code></pre>
+## # ... with 336,766 more rows, and 20 more variables:
+## #   horario_llegada &lt;int&gt;, llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;,
+## #   aerolinea &lt;chr&gt;, vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;,
+## #   destino &lt;chr&gt;, tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;,
+## #   minuto &lt;dbl&gt;, fecha_hora &lt;dttm&gt;, nombre &lt;chr&gt;, latitud &lt;dbl&gt;,
+## #   longitud &lt;dbl&gt;, altura &lt;dbl&gt;, zona_horaria &lt;dbl&gt;,
+## #   horario_verano &lt;chr&gt;, zona_horaria_iana &lt;chr&gt;</code></pre>
 </div>
 <ol style="list-style-type: decimal">
 <li>Olvidamos incluir la relación entre <code>clima</code> y <code>aeropuertos</code>. ¿Cuál es la
@@ -484,11 +486,11 @@ y a la vez con el dataset <code>clima</code>.</p>
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">row_number</span>(anio)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(id, <span class="kw">everything</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="datos-relacionales.html#cb34-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb34-2"><a href="datos-relacionales.html#cb34-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">row_number</span>(anio)) <span class="op">%&gt;%</span></span>
+<span id="cb34-3"><a href="datos-relacionales.html#cb34-3"></a><span class="st">  </span><span class="kw">select</span>(id, <span class="kw">everything</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 x 20
-##       id  anio   mes   dia horario_salida salida_programa… atraso_salida
+##       id  anio   mes   dia horario_salida salida_programa~ atraso_salida
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;
 ##  1     1  2013     1     1            517              515             2
 ##  2     2  2013     1     1            533              529             4
@@ -500,18 +502,18 @@ Solución
 ##  8     8  2013     1     1            557              600            -3
 ##  9     9  2013     1     1            557              600            -3
 ## 10    10  2013     1     1            558              600            -2
-## # … with 336,766 more rows, and 13 more variables: horario_llegada &lt;int&gt;,
-## #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,
-## #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,
-## #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,
-## #   fecha_hora &lt;dttm&gt;</code></pre>
+## # ... with 336,766 more rows, and 13 more variables:
+## #   horario_llegada &lt;int&gt;, llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;,
+## #   aerolinea &lt;chr&gt;, vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;,
+## #   destino &lt;chr&gt;, tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;,
+## #   minuto &lt;dbl&gt;, fecha_hora &lt;dttm&gt;</code></pre>
 </div>
 <ol style="list-style-type: decimal">
 <li><p>Identifica las llaves en los siguientes conjuntos de datos</p></li>
-<li><code>datos::bateadores</code></li>
-<li><code>datos::nombres</code></li>
-<li><code>datos::atmosfera</code></li>
-<li><code>datos::vehiculos</code></li>
+<li><p><code>datos::bateadores</code></p></li>
+<li><p><code>datos::nombres</code></p></li>
+<li><p><code>datos::atmosfera</code></p></li>
+<li><p><code>datos::vehiculos</code></p></li>
 <li><p><code>datos::diamantes</code></p></li>
 </ol>
 <p>(Puede que necesites leer un poco de documentación.)</p>
@@ -554,12 +556,12 @@ tabla contiene información que complementa las demás. La relación es uno a un
 para que puedas mostrar la distribución espacial de los atrasos. Te presentamos
 una forma fácil de dibujar un mapa de los Estados Unidos:</li>
 </ol>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">aeropuertos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st"> </span><span class="kw">semi_join</span>(vuelos, <span class="kw">c</span>(<span class="st">&quot;codigo_aeropuerto&quot;</span> =<span class="st"> &quot;destino&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(longitud, latitud)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="st"> </span><span class="kw">borders</span>(<span class="st">&quot;state&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="st"> </span><span class="kw">coord_quickmap</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="datos-relacionales.html#cb36-1"></a>aeropuertos <span class="op">%&gt;%</span></span>
+<span id="cb36-2"><a href="datos-relacionales.html#cb36-2"></a><span class="st"> </span><span class="kw">semi_join</span>(vuelos, <span class="kw">c</span>(<span class="st">&quot;codigo_aeropuerto&quot;</span> =<span class="st"> &quot;destino&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb36-3"><a href="datos-relacionales.html#cb36-3"></a><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(longitud, latitud)) <span class="op">+</span></span>
+<span id="cb36-4"><a href="datos-relacionales.html#cb36-4"></a><span class="st"> </span><span class="kw">borders</span>(<span class="st">&quot;state&quot;</span>) <span class="op">+</span></span>
+<span id="cb36-5"><a href="datos-relacionales.html#cb36-5"></a><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb36-6"><a href="datos-relacionales.html#cb36-6"></a><span class="st"> </span><span class="kw">coord_quickmap</span>()</span></code></pre></div>
 <p>(No te preocupes si no entiendes que hace <code>semi_join()</code>.
 Lo aprenderás a continuación.)</p>
 <p>Quizás quieras usar <code>size</code> o <code>colour</code> para editar los puntos y mostrar
@@ -568,20 +570,20 @@ el atraso promedio de cada aeropuerto.</p>
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">atraso_promedio_destino &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="st">   </span><span class="kw">group_by</span>(destino) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="st">   </span><span class="co"># los vuelos con NA en atraso_llegada son vuelos cancelados</span></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="st">   </span><span class="kw">summarise</span>(<span class="dt">atraso =</span> <span class="kw">mean</span>(atraso_llegada, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="st">   </span><span class="kw">inner_join</span>(aeropuertos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">destino =</span> <span class="st">&quot;codigo_aeropuerto&quot;</span>))</a></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">atraso_promedio_destino <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(longitud, latitud, <span class="dt">colour =</span> atraso)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">borders</span>(<span class="st">&quot;state&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">  </span><span class="kw">coord_quickmap</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="datos-relacionales.html#cb37-1"></a>atraso_promedio_destino &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb37-2"><a href="datos-relacionales.html#cb37-2"></a><span class="st">   </span><span class="kw">group_by</span>(destino) <span class="op">%&gt;%</span></span>
+<span id="cb37-3"><a href="datos-relacionales.html#cb37-3"></a><span class="st">   </span><span class="co"># los vuelos con NA en atraso_llegada son vuelos cancelados</span></span>
+<span id="cb37-4"><a href="datos-relacionales.html#cb37-4"></a><span class="st">   </span><span class="kw">summarise</span>(<span class="dt">atraso =</span> <span class="kw">mean</span>(atraso_llegada, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb37-5"><a href="datos-relacionales.html#cb37-5"></a><span class="st">   </span><span class="kw">inner_join</span>(aeropuertos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">destino =</span> <span class="st">&quot;codigo_aeropuerto&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="datos-relacionales.html#cb38-1"></a>atraso_promedio_destino <span class="op">%&gt;%</span></span>
+<span id="cb38-2"><a href="datos-relacionales.html#cb38-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(longitud, latitud, <span class="dt">colour =</span> atraso)) <span class="op">+</span></span>
+<span id="cb38-3"><a href="datos-relacionales.html#cb38-3"></a><span class="st">  </span><span class="kw">borders</span>(<span class="st">&quot;state&quot;</span>) <span class="op">+</span></span>
+<span id="cb38-4"><a href="datos-relacionales.html#cb38-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb38-5"><a href="datos-relacionales.html#cb38-5"></a><span class="st">  </span><span class="kw">coord_quickmap</span>()</span></code></pre></div>
 <p><img src="13-relational-data_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <ol style="list-style-type: decimal">
-<li>Agrega la ubicación de origen <em>y</em> destino (e.g. <code>latitud</code> y <code>longitud</code>)
+<li>Agrega la ubicación de origen <em>y</em> destino (e.g. <code>latitud</code> y <code>longitud</code>)
 a <code>vuelos</code>.</li>
 </ol>
 <div class="solucion">
@@ -591,19 +593,19 @@ Solución
 <p>Es posible realizar varias uniones. Si hay variables duplicadas, dplyr va a
 distinguirlas agregando <code>.x</code> y <code>.y</code> al nombre de la variable para resolver
 los nombres duplicados.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">ubicacion_aeropuertos &lt;-<span class="st"> </span>aeropuertos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(codigo_aeropuerto, latitud, longitud)</a>
-<a class="sourceLine" id="cb39-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb39-4" data-line-number="4">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(anio<span class="op">:</span>dia, hora, origen, destino) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="st">  </span><span class="kw">left_join</span>(</a>
-<a class="sourceLine" id="cb39-7" data-line-number="7">    ubicacion_aeropuertos,</a>
-<a class="sourceLine" id="cb39-8" data-line-number="8">    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origen&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>)</a>
-<a class="sourceLine" id="cb39-9" data-line-number="9">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="st">  </span><span class="kw">left_join</span>(</a>
-<a class="sourceLine" id="cb39-11" data-line-number="11">    ubicacion_aeropuertos,</a>
-<a class="sourceLine" id="cb39-12" data-line-number="12">    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;destino&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>)</a>
-<a class="sourceLine" id="cb39-13" data-line-number="13">  )</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="datos-relacionales.html#cb39-1"></a>ubicacion_aeropuertos &lt;-<span class="st"> </span>aeropuertos <span class="op">%&gt;%</span></span>
+<span id="cb39-2"><a href="datos-relacionales.html#cb39-2"></a><span class="st">  </span><span class="kw">select</span>(codigo_aeropuerto, latitud, longitud)</span>
+<span id="cb39-3"><a href="datos-relacionales.html#cb39-3"></a></span>
+<span id="cb39-4"><a href="datos-relacionales.html#cb39-4"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb39-5"><a href="datos-relacionales.html#cb39-5"></a><span class="st">  </span><span class="kw">select</span>(anio<span class="op">:</span>dia, hora, origen, destino) <span class="op">%&gt;%</span></span>
+<span id="cb39-6"><a href="datos-relacionales.html#cb39-6"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb39-7"><a href="datos-relacionales.html#cb39-7"></a>    ubicacion_aeropuertos,</span>
+<span id="cb39-8"><a href="datos-relacionales.html#cb39-8"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origen&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>)</span>
+<span id="cb39-9"><a href="datos-relacionales.html#cb39-9"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb39-10"><a href="datos-relacionales.html#cb39-10"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb39-11"><a href="datos-relacionales.html#cb39-11"></a>    ubicacion_aeropuertos,</span>
+<span id="cb39-12"><a href="datos-relacionales.html#cb39-12"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;destino&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>)</span>
+<span id="cb39-13"><a href="datos-relacionales.html#cb39-13"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 x 10
 ##     anio   mes   dia  hora origen destino latitud.x longitud.x latitud.y
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
@@ -617,20 +619,20 @@ los nombres duplicados.</p>
 ##  8  2013     1     1     6 LGA    IAD          40.8      -73.9      38.9
 ##  9  2013     1     1     6 JFK    MCO          40.6      -73.8      28.4
 ## 10  2013     1     1     6 LGA    ORD          40.8      -73.9      42.0
-## # … with 336,766 more rows, and 1 more variable: longitud.y &lt;dbl&gt;</code></pre>
+## # ... with 336,766 more rows, and 1 more variable: longitud.y &lt;dbl&gt;</code></pre>
 <p>Es una buena práctica tener nombres indicativos para las variables. Usaremos
 el sufijo <code>_destino</code> y <code>_origen</code> para especificar a qué aeropuerto nos referimos.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(anio<span class="op">:</span>dia, hora, origen, destino) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="st">  </span><span class="kw">left_join</span>(</a>
-<a class="sourceLine" id="cb41-4" data-line-number="4">    ubicacion_aeropuertos,</a>
-<a class="sourceLine" id="cb41-5" data-line-number="5">    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origen&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>)</a>
-<a class="sourceLine" id="cb41-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-7" data-line-number="7"><span class="st">  </span><span class="kw">left_join</span>(</a>
-<a class="sourceLine" id="cb41-8" data-line-number="8">    ubicacion_aeropuertos,</a>
-<a class="sourceLine" id="cb41-9" data-line-number="9">    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;destino&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>),</a>
-<a class="sourceLine" id="cb41-10" data-line-number="10">    <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_origen&quot;</span>, <span class="st">&quot;_destino&quot;</span>)</a>
-<a class="sourceLine" id="cb41-11" data-line-number="11">  )</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="datos-relacionales.html#cb41-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb41-2"><a href="datos-relacionales.html#cb41-2"></a><span class="st">  </span><span class="kw">select</span>(anio<span class="op">:</span>dia, hora, origen, destino) <span class="op">%&gt;%</span></span>
+<span id="cb41-3"><a href="datos-relacionales.html#cb41-3"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb41-4"><a href="datos-relacionales.html#cb41-4"></a>    ubicacion_aeropuertos,</span>
+<span id="cb41-5"><a href="datos-relacionales.html#cb41-5"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origen&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>)</span>
+<span id="cb41-6"><a href="datos-relacionales.html#cb41-6"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb41-7"><a href="datos-relacionales.html#cb41-7"></a><span class="st">  </span><span class="kw">left_join</span>(</span>
+<span id="cb41-8"><a href="datos-relacionales.html#cb41-8"></a>    ubicacion_aeropuertos,</span>
+<span id="cb41-9"><a href="datos-relacionales.html#cb41-9"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;destino&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>),</span>
+<span id="cb41-10"><a href="datos-relacionales.html#cb41-10"></a>    <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_origen&quot;</span>, <span class="st">&quot;_destino&quot;</span>)</span>
+<span id="cb41-11"><a href="datos-relacionales.html#cb41-11"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 x 10
 ##     anio   mes   dia  hora origen destino latitud_origen longitud_origen
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;            &lt;dbl&gt;           &lt;dbl&gt;
@@ -644,7 +646,7 @@ el sufijo <code>_destino</code> y <code>_origen</code> para especificar a qué a
 ##  8  2013     1     1     6 LGA    IAD               40.8           -73.9
 ##  9  2013     1     1     6 JFK    MCO               40.6           -73.8
 ## 10  2013     1     1     6 LGA    ORD               40.8           -73.9
-## # … with 336,766 more rows, and 2 more variables: latitud_destino &lt;dbl&gt;,
+## # ... with 336,766 more rows, and 2 more variables: latitud_destino &lt;dbl&gt;,
 ## #   longitud_destino &lt;dbl&gt;</code></pre>
 </div>
 <ol style="list-style-type: decimal">
@@ -661,17 +663,17 @@ el atraso en la salida, quedando el otro caso como ejercicio.</p>
 refiere al año de fabricación del avión.</p>
 <p>Dado que hay pocos aviones de más de 25 años, truncaremos los datos y luego
 vamos a calcular el promedio de llegada y salida dada la antiguedad.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">atrasos_por_antiguedad &lt;-<span class="st"> </span><span class="kw">inner_join</span>(vuelos,</a>
-<a class="sourceLine" id="cb43-2" data-line-number="2">   <span class="kw">select</span>(aviones, codigo_cola, <span class="dt">anio_fabricacion =</span> anio), <span class="dt">by =</span> <span class="st">&quot;codigo_cola&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">antiguedad =</span> anio <span class="op">-</span><span class="st"> </span>anio_fabricacion) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="st">   </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(antiguedad)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">antiguedad =</span> <span class="kw">if_else</span>(antiguedad <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>, 25L, antiguedad)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-6" data-line-number="6"><span class="st">   </span><span class="kw">group_by</span>(antiguedad) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-7" data-line-number="7"><span class="st">   </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb43-8" data-line-number="8">      <span class="dt">prom_atraso_salida =</span> <span class="kw">mean</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb43-9" data-line-number="9">      <span class="dt">desv_est_atraso_salida =</span> <span class="kw">sd</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb43-10" data-line-number="10">      <span class="dt">nro_vuelos_atrasados_salida =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(atraso_salida))</a>
-<a class="sourceLine" id="cb43-11" data-line-number="11">   )</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="datos-relacionales.html#cb43-1"></a>atrasos_por_antiguedad &lt;-<span class="st"> </span><span class="kw">inner_join</span>(vuelos,</span>
+<span id="cb43-2"><a href="datos-relacionales.html#cb43-2"></a>   <span class="kw">select</span>(aviones, codigo_cola, <span class="dt">anio_fabricacion =</span> anio), <span class="dt">by =</span> <span class="st">&quot;codigo_cola&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb43-3"><a href="datos-relacionales.html#cb43-3"></a><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">antiguedad =</span> anio <span class="op">-</span><span class="st"> </span>anio_fabricacion) <span class="op">%&gt;%</span></span>
+<span id="cb43-4"><a href="datos-relacionales.html#cb43-4"></a><span class="st">   </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(antiguedad)) <span class="op">%&gt;%</span></span>
+<span id="cb43-5"><a href="datos-relacionales.html#cb43-5"></a><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">antiguedad =</span> <span class="kw">if_else</span>(antiguedad <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>, 25L, antiguedad)) <span class="op">%&gt;%</span></span>
+<span id="cb43-6"><a href="datos-relacionales.html#cb43-6"></a><span class="st">   </span><span class="kw">group_by</span>(antiguedad) <span class="op">%&gt;%</span></span>
+<span id="cb43-7"><a href="datos-relacionales.html#cb43-7"></a><span class="st">   </span><span class="kw">summarise</span>(</span>
+<span id="cb43-8"><a href="datos-relacionales.html#cb43-8"></a>      <span class="dt">prom_atraso_salida =</span> <span class="kw">mean</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb43-9"><a href="datos-relacionales.html#cb43-9"></a>      <span class="dt">desv_est_atraso_salida =</span> <span class="kw">sd</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb43-10"><a href="datos-relacionales.html#cb43-10"></a>      <span class="dt">nro_vuelos_atrasados_salida =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(atraso_salida))</span>
+<span id="cb43-11"><a href="datos-relacionales.html#cb43-11"></a>   )</span></code></pre></div>
 <p>Ahora podemos explorar la reglación entre los atrasos en la salida y la
 antiguedad.</p>
 <p>El atraso en la salida es creciente en relación a la antiguedad para los
@@ -679,10 +681,10 @@ aviones de hasta de 10 años. Luego este atraso decae.</p>
 <p>La reducción de los atrasos en la salida en relación a la antiguedad puede
 deberse a que en los aviones más antiguos se planfica la mantención para evitar
 tales atrasos y desperfectos mecánicos.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">ggplot</span>(atrasos_por_antiguedad, <span class="kw">aes</span>(<span class="dt">x =</span> antiguedad, <span class="dt">y =</span> prom_atraso_salida)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;Antiguedad del avión (años)&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">30</span>, <span class="dt">by =</span> <span class="dv">10</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Atraso promedio en la salida (minutos)&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="datos-relacionales.html#cb44-1"></a><span class="kw">ggplot</span>(atrasos_por_antiguedad, <span class="kw">aes</span>(<span class="dt">x =</span> antiguedad, <span class="dt">y =</span> prom_atraso_salida)) <span class="op">+</span></span>
+<span id="cb44-2"><a href="datos-relacionales.html#cb44-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb44-3"><a href="datos-relacionales.html#cb44-3"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;Antiguedad del avión (años)&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">30</span>, <span class="dt">by =</span> <span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb44-4"><a href="datos-relacionales.html#cb44-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Atraso promedio en la salida (minutos)&quot;</span>)</span></code></pre></div>
 <p><img src="13-relational-data_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <ol style="list-style-type: decimal">
@@ -694,21 +696,21 @@ Solución
 </h3>
 <p>Las lluvias están asociadas con los atrasos. Sin embargo, para un nivel
 mayor a 0.02 pulgadas de lluvia no hay una tendencia fuerte.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">vuelo_clima &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(clima, <span class="dt">by =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3">    <span class="st">&quot;origen&quot;</span>,</a>
-<a class="sourceLine" id="cb45-4" data-line-number="4">    <span class="st">&quot;anio&quot;</span>,</a>
-<a class="sourceLine" id="cb45-5" data-line-number="5">    <span class="st">&quot;mes&quot;</span>,</a>
-<a class="sourceLine" id="cb45-6" data-line-number="6">    <span class="st">&quot;dia&quot;</span>,</a>
-<a class="sourceLine" id="cb45-7" data-line-number="7">    <span class="st">&quot;hora&quot;</span></a>
-<a class="sourceLine" id="cb45-8" data-line-number="8">  ))</a>
-<a class="sourceLine" id="cb45-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb45-10" data-line-number="10">vuelo_clima <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-11" data-line-number="11"><span class="st">  </span><span class="kw">group_by</span>(precipitacion) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-12" data-line-number="12"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">atraso =</span> <span class="kw">mean</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-13" data-line-number="13"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> precipitacion, <span class="dt">y =</span> atraso)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-14" data-line-number="14"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-15" data-line-number="15"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="datos-relacionales.html#cb45-1"></a>vuelo_clima &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb45-2"><a href="datos-relacionales.html#cb45-2"></a><span class="st">  </span><span class="kw">inner_join</span>(clima, <span class="dt">by =</span> <span class="kw">c</span>(</span>
+<span id="cb45-3"><a href="datos-relacionales.html#cb45-3"></a>    <span class="st">&quot;origen&quot;</span>,</span>
+<span id="cb45-4"><a href="datos-relacionales.html#cb45-4"></a>    <span class="st">&quot;anio&quot;</span>,</span>
+<span id="cb45-5"><a href="datos-relacionales.html#cb45-5"></a>    <span class="st">&quot;mes&quot;</span>,</span>
+<span id="cb45-6"><a href="datos-relacionales.html#cb45-6"></a>    <span class="st">&quot;dia&quot;</span>,</span>
+<span id="cb45-7"><a href="datos-relacionales.html#cb45-7"></a>    <span class="st">&quot;hora&quot;</span></span>
+<span id="cb45-8"><a href="datos-relacionales.html#cb45-8"></a>  ))</span>
+<span id="cb45-9"><a href="datos-relacionales.html#cb45-9"></a></span>
+<span id="cb45-10"><a href="datos-relacionales.html#cb45-10"></a>vuelo_clima <span class="op">%&gt;%</span></span>
+<span id="cb45-11"><a href="datos-relacionales.html#cb45-11"></a><span class="st">  </span><span class="kw">group_by</span>(precipitacion) <span class="op">%&gt;%</span></span>
+<span id="cb45-12"><a href="datos-relacionales.html#cb45-12"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">atraso =</span> <span class="kw">mean</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb45-13"><a href="datos-relacionales.html#cb45-13"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> precipitacion, <span class="dt">y =</span> atraso)) <span class="op">+</span></span>
+<span id="cb45-14"><a href="datos-relacionales.html#cb45-14"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb45-15"><a href="datos-relacionales.html#cb45-15"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="13-relational-data_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 <ol style="list-style-type: decimal">
@@ -723,16 +725,16 @@ Solución
 <p>El siguiente gráfico muestra que los mayores atrasos se presentaron en
 Tennessee (Nashville), el sureste y medio oeste es donde ocurrieron las
 tormentas.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(anio <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>, mes <span class="op">==</span><span class="st"> </span><span class="dv">6</span>, dia <span class="op">==</span><span class="st"> </span><span class="dv">13</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(destino) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">atraso =</span> <span class="kw">mean</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="st">  </span><span class="kw">inner_join</span>(aeropuertos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;destino&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-6" data-line-number="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> latitud, <span class="dt">x =</span> longitud, <span class="dt">size =</span> atraso, <span class="dt">colour =</span> atraso)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="st">  </span><span class="kw">borders</span>(<span class="st">&quot;state&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-9" data-line-number="9"><span class="st">  </span><span class="kw">coord_quickmap</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_colour_viridis_c</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="datos-relacionales.html#cb46-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb46-2"><a href="datos-relacionales.html#cb46-2"></a><span class="st">  </span><span class="kw">filter</span>(anio <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>, mes <span class="op">==</span><span class="st"> </span><span class="dv">6</span>, dia <span class="op">==</span><span class="st"> </span><span class="dv">13</span>) <span class="op">%&gt;%</span></span>
+<span id="cb46-3"><a href="datos-relacionales.html#cb46-3"></a><span class="st">  </span><span class="kw">group_by</span>(destino) <span class="op">%&gt;%</span></span>
+<span id="cb46-4"><a href="datos-relacionales.html#cb46-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">atraso =</span> <span class="kw">mean</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb46-5"><a href="datos-relacionales.html#cb46-5"></a><span class="st">  </span><span class="kw">inner_join</span>(aeropuertos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;destino&quot;</span> =<span class="st"> &quot;codigo_aeropuerto&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb46-6"><a href="datos-relacionales.html#cb46-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> latitud, <span class="dt">x =</span> longitud, <span class="dt">size =</span> atraso, <span class="dt">colour =</span> atraso)) <span class="op">+</span></span>
+<span id="cb46-7"><a href="datos-relacionales.html#cb46-7"></a><span class="st">  </span><span class="kw">borders</span>(<span class="st">&quot;state&quot;</span>) <span class="op">+</span></span>
+<span id="cb46-8"><a href="datos-relacionales.html#cb46-8"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb46-9"><a href="datos-relacionales.html#cb46-9"></a><span class="st">  </span><span class="kw">coord_quickmap</span>() <span class="op">+</span></span>
+<span id="cb46-10"><a href="datos-relacionales.html#cb46-10"></a><span class="st">  </span><span class="kw">scale_colour_viridis_c</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
 <p><img src="13-relational-data_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
@@ -753,16 +755,16 @@ Solución
 </h3>
 <p>Los vuelos que no registran código cola tampoco registran hora de llegada, por
 lo que son vuelos cancelados.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(codigo_cola), <span class="op">!</span><span class="kw">is.na</span>(horario_llegada)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="st">  </span><span class="kw">nrow</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="datos-relacionales.html#cb48-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb48-2"><a href="datos-relacionales.html#cb48-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(codigo_cola), <span class="op">!</span><span class="kw">is.na</span>(horario_llegada)) <span class="op">%&gt;%</span></span>
+<span id="cb48-3"><a href="datos-relacionales.html#cb48-3"></a><span class="st">  </span><span class="kw">nrow</span>()</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>Muchos de los vuelos sin código cola en <code>aviones</code> pertenecen a
 American Airlines (AA) o Envoy Airlines (EQ) como se detalla en la documentación.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">anti_join</span>(aviones, <span class="dt">by =</span> <span class="st">&quot;codigo_cola&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>(aerolinea, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">p =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n))</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="datos-relacionales.html#cb50-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb50-2"><a href="datos-relacionales.html#cb50-2"></a><span class="st">  </span><span class="kw">anti_join</span>(aviones, <span class="dt">by =</span> <span class="st">&quot;codigo_cola&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb50-3"><a href="datos-relacionales.html#cb50-3"></a><span class="st">  </span><span class="kw">count</span>(aerolinea, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb50-4"><a href="datos-relacionales.html#cb50-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">p =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ##    aerolinea     n        p
 ##    &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;
@@ -778,14 +780,14 @@ American Airlines (AA) o Envoy Airlines (EQ) como se detalla en la documentació
 ## 10 WN           38 0.000722</code></pre>
 <p>Sin embargo, no todos los códigos que aparecen en <code>vuelos</code> están perdidos en
 <code>aviones</code>.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">  </span><span class="kw">distinct</span>(aerolinea, codigo_cola) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="st">  </span><span class="kw">left_join</span>(aviones, <span class="dt">by =</span> <span class="st">&quot;codigo_cola&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(aerolinea) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total_aviones =</span> <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb52-6" data-line-number="6">            <span class="dt">faltan_en_aviones =</span> <span class="kw">sum</span>(<span class="kw">is.na</span>(modelo))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">porcentaje_perdidos =</span> faltan_en_aviones <span class="op">/</span><span class="st"> </span>total_aviones) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(porcentaje_perdidos))</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="datos-relacionales.html#cb52-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb52-2"><a href="datos-relacionales.html#cb52-2"></a><span class="st">  </span><span class="kw">distinct</span>(aerolinea, codigo_cola) <span class="op">%&gt;%</span></span>
+<span id="cb52-3"><a href="datos-relacionales.html#cb52-3"></a><span class="st">  </span><span class="kw">left_join</span>(aviones, <span class="dt">by =</span> <span class="st">&quot;codigo_cola&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb52-4"><a href="datos-relacionales.html#cb52-4"></a><span class="st">  </span><span class="kw">group_by</span>(aerolinea) <span class="op">%&gt;%</span></span>
+<span id="cb52-5"><a href="datos-relacionales.html#cb52-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total_aviones =</span> <span class="kw">n</span>(),</span>
+<span id="cb52-6"><a href="datos-relacionales.html#cb52-6"></a>            <span class="dt">faltan_en_aviones =</span> <span class="kw">sum</span>(<span class="kw">is.na</span>(modelo))) <span class="op">%&gt;%</span></span>
+<span id="cb52-7"><a href="datos-relacionales.html#cb52-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">porcentaje_perdidos =</span> faltan_en_aviones <span class="op">/</span><span class="st"> </span>total_aviones) <span class="op">%&gt;%</span></span>
+<span id="cb52-8"><a href="datos-relacionales.html#cb52-8"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(porcentaje_perdidos))</span></code></pre></div>
 <pre><code>## # A tibble: 16 x 4
 ##    aerolinea total_aviones faltan_en_aviones porcentaje_perdidos
 ##    &lt;chr&gt;             &lt;int&gt;             &lt;int&gt;               &lt;dbl&gt;
@@ -816,17 +818,17 @@ Solución
 </h3>
 <p>Debemos calcular que aviones tienen 100 o más vuelos. Hay que filtrar los
 aviones sin código cola o estos se van a considerar como un único avión.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">cien_vuelos &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(codigo_cola)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(codigo_cola) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="datos-relacionales.html#cb54-1"></a>cien_vuelos &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb54-2"><a href="datos-relacionales.html#cb54-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(codigo_cola)) <span class="op">%&gt;%</span></span>
+<span id="cb54-3"><a href="datos-relacionales.html#cb54-3"></a><span class="st">  </span><span class="kw">group_by</span>(codigo_cola) <span class="op">%&gt;%</span></span>
+<span id="cb54-4"><a href="datos-relacionales.html#cb54-4"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb54-5"><a href="datos-relacionales.html#cb54-5"></a><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>)</span></code></pre></div>
 <p>Ahora se puede unir el resultado con la tabla <code>vuelos</code> y así conservar los que
 cumplen con el criterio.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="st">  </span><span class="kw">semi_join</span>(cien_vuelos, <span class="dt">by =</span> <span class="st">&quot;codigo_cola&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="datos-relacionales.html#cb55-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb55-2"><a href="datos-relacionales.html#cb55-2"></a><span class="st">  </span><span class="kw">semi_join</span>(cien_vuelos, <span class="dt">by =</span> <span class="st">&quot;codigo_cola&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 228,390 x 19
-##     anio   mes   dia horario_salida salida_programa… atraso_salida
+##     anio   mes   dia horario_salida salida_programa~ atraso_salida
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;
 ##  1  2013     1     1            517              515             2
 ##  2  2013     1     1            533              529             4
@@ -838,20 +840,20 @@ cumplen con el criterio.</p>
 ##  8  2013     1     1            558              600            -2
 ##  9  2013     1     1            558              600            -2
 ## 10  2013     1     1            558              600            -2
-## # … with 228,380 more rows, and 13 more variables: horario_llegada &lt;int&gt;,
-## #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,
-## #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,
-## #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,
-## #   fecha_hora &lt;dttm&gt;</code></pre>
+## # ... with 228,380 more rows, and 13 more variables:
+## #   horario_llegada &lt;int&gt;, llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;,
+## #   aerolinea &lt;chr&gt;, vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;,
+## #   destino &lt;chr&gt;, tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;,
+## #   minuto &lt;dbl&gt;, fecha_hora &lt;dttm&gt;</code></pre>
 <p>Otra posibilidad es agrupar y luego usar <code>mutate()</code>.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(codigo_cola)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(codigo_cola) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb57-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="datos-relacionales.html#cb57-1"></a>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb57-2"><a href="datos-relacionales.html#cb57-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(codigo_cola)) <span class="op">%&gt;%</span></span>
+<span id="cb57-3"><a href="datos-relacionales.html#cb57-3"></a><span class="st">  </span><span class="kw">group_by</span>(codigo_cola) <span class="op">%&gt;%</span></span>
+<span id="cb57-4"><a href="datos-relacionales.html#cb57-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb57-5"><a href="datos-relacionales.html#cb57-5"></a><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 228,390 x 20
 ## # Groups:   codigo_cola [1,217]
-##     anio   mes   dia horario_salida salida_programa… atraso_salida
+##     anio   mes   dia horario_salida salida_programa~ atraso_salida
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;
 ##  1  2013     1     1            517              515             2
 ##  2  2013     1     1            533              529             4
@@ -863,11 +865,11 @@ cumplen con el criterio.</p>
 ##  8  2013     1     1            558              600            -2
 ##  9  2013     1     1            558              600            -2
 ## 10  2013     1     1            558              600            -2
-## # … with 228,380 more rows, and 14 more variables: horario_llegada &lt;int&gt;,
-## #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,
-## #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,
-## #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,
-## #   fecha_hora &lt;dttm&gt;, n &lt;int&gt;</code></pre>
+## # ... with 228,380 more rows, and 14 more variables:
+## #   horario_llegada &lt;int&gt;, llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;,
+## #   aerolinea &lt;chr&gt;, vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;,
+## #   destino &lt;chr&gt;, tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;,
+## #   minuto &lt;dbl&gt;, fecha_hora &lt;dttm&gt;, n &lt;int&gt;</code></pre>
 </div>
 <ol style="list-style-type: decimal">
 <li>Combina <code>vehiculos</code> y <code>comunes</code> para encontrar los registros de los
@@ -880,22 +882,22 @@ Solución
 <p>Debemos unir por fabricante y modelo, a modo de evitar hacer un match
 incorrecto debido a que dos fabricantes tengan un vehículo con el mismo
 nombre.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">vehiculos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">semi_join</span>(comunes, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;fabricante&quot;</span>, <span class="st">&quot;modelo&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="datos-relacionales.html#cb59-1"></a>vehiculos <span class="op">%&gt;%</span></span>
+<span id="cb59-2"><a href="datos-relacionales.html#cb59-2"></a><span class="st">  </span><span class="kw">semi_join</span>(comunes, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;fabricante&quot;</span>, <span class="st">&quot;modelo&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 14,531 x 12
 ##       id fabricante modelo  anio clase transmision traccion cilindros motor
 ##    &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt;
-##  1  1833 Acura      Integ…  1986 Auto… Automática… Delante…         4   1.6
-##  2  1834 Acura      Integ…  1986 Auto… Manual 5-v… Delante…         4   1.6
-##  3  3037 Acura      Integ…  1987 Auto… Automática… Delante…         4   1.6
-##  4  3038 Acura      Integ…  1987 Auto… Manual 5-v… Delante…         4   1.6
-##  5  4183 Acura      Integ…  1988 Auto… Automática… Delante…         4   1.6
-##  6  4184 Acura      Integ…  1988 Auto… Manual 5-v… Delante…         4   1.6
-##  7  5303 Acura      Integ…  1989 Auto… Automática… Delante…         4   1.6
-##  8  5304 Acura      Integ…  1989 Auto… Manual 5-v… Delante…         4   1.6
-##  9  6442 Acura      Integ…  1990 Auto… Automática… Delante…         4   1.8
-## 10  6443 Acura      Integ…  1990 Auto… Manual 5-v… Delante…         4   1.8
-## # … with 14,521 more rows, and 3 more variables: combustible &lt;chr&gt;,
+##  1  1833 Acura      Integ~  1986 Auto~ Automática~ Delante~         4   1.6
+##  2  1834 Acura      Integ~  1986 Auto~ Manual 5-v~ Delante~         4   1.6
+##  3  3037 Acura      Integ~  1987 Auto~ Automática~ Delante~         4   1.6
+##  4  3038 Acura      Integ~  1987 Auto~ Manual 5-v~ Delante~         4   1.6
+##  5  4183 Acura      Integ~  1988 Auto~ Automática~ Delante~         4   1.6
+##  6  4184 Acura      Integ~  1988 Auto~ Manual 5-v~ Delante~         4   1.6
+##  7  5303 Acura      Integ~  1989 Auto~ Automática~ Delante~         4   1.6
+##  8  5304 Acura      Integ~  1989 Auto~ Manual 5-v~ Delante~         4   1.6
+##  9  6442 Acura      Integ~  1990 Auto~ Automática~ Delante~         4   1.8
+## 10  6443 Acura      Integ~  1990 Auto~ Manual 5-v~ Delante~         4   1.8
+## # ... with 14,521 more rows, and 3 more variables: combustible &lt;chr&gt;,
 ## #   autopista &lt;int&gt;, ciudad &lt;int&gt;</code></pre>
 </div>
 <ol style="list-style-type: decimal">
@@ -910,21 +912,21 @@ Solución
 la salida. El otro caso queda como ejercicio.</p>
 <p>El ejercicio no pide que sean los dos peores días, sino las peores 48 horas,
 por lo que debemos tomar las peores horas en el transcurso de varios días.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">peores_horas &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hora =</span> salida_programada <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(origen, anio, mes, dia, hora) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">atraso_salida =</span> <span class="kw">mean</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(atraso_salida)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-7" data-line-number="7"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">48</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="datos-relacionales.html#cb61-1"></a>peores_horas &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb61-2"><a href="datos-relacionales.html#cb61-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hora =</span> salida_programada <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span></span>
+<span id="cb61-3"><a href="datos-relacionales.html#cb61-3"></a><span class="st">  </span><span class="kw">group_by</span>(origen, anio, mes, dia, hora) <span class="op">%&gt;%</span></span>
+<span id="cb61-4"><a href="datos-relacionales.html#cb61-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">atraso_salida =</span> <span class="kw">mean</span>(atraso_salida, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb61-5"><a href="datos-relacionales.html#cb61-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb61-6"><a href="datos-relacionales.html#cb61-6"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(atraso_salida)) <span class="op">%&gt;%</span></span>
+<span id="cb61-7"><a href="datos-relacionales.html#cb61-7"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">48</span>)</span></code></pre></div>
 <p>Este resultado se debe unir con la tabla <code>clima</code>.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">clima_peores_horas &lt;-<span class="st"> </span><span class="kw">semi_join</span>(clima, peores_horas, </a>
-<a class="sourceLine" id="cb62-2" data-line-number="2">                                  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origen&quot;</span>, <span class="st">&quot;anio&quot;</span>, <span class="st">&quot;mes&quot;</span>, <span class="st">&quot;dia&quot;</span>, <span class="st">&quot;hora&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="datos-relacionales.html#cb62-1"></a>clima_peores_horas &lt;-<span class="st"> </span><span class="kw">semi_join</span>(clima, peores_horas, </span>
+<span id="cb62-2"><a href="datos-relacionales.html#cb62-2"></a>                                  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;origen&quot;</span>, <span class="st">&quot;anio&quot;</span>, <span class="st">&quot;mes&quot;</span>, <span class="st">&quot;dia&quot;</span>, <span class="st">&quot;hora&quot;</span>))</span></code></pre></div>
 <p>Para el clima, nos enfocaremos en la precipitación, velocidad del viento y
 temperatura. Muchas de estas observaciones tienen una velocidad del viento
 por sobre el promedio (10 millas por hora) o lluvias.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">select</span>(clima_peores_horas, temperatura, velocidad_viento, precipitacion) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="dv">48</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="datos-relacionales.html#cb63-1"></a><span class="kw">select</span>(clima_peores_horas, temperatura, velocidad_viento, precipitacion) <span class="op">%&gt;%</span></span>
+<span id="cb63-2"><a href="datos-relacionales.html#cb63-2"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="dv">48</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 48 x 3
 ##    temperatura velocidad_viento precipitacion
 ##          &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
@@ -976,15 +978,15 @@ por sobre el promedio (10 millas por hora) o lluvias.</p>
 ## 46        72.0             4.60          0.03
 ## 47        51.1             4.60          0   
 ## 48        54.0             6.90          0</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">ggplot</span>(clima_peores_horas, <span class="kw">aes</span>(<span class="dt">x =</span> precipitacion, <span class="dt">y =</span> velocidad_viento, <span class="dt">color =</span> temperatura)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="datos-relacionales.html#cb65-1"></a><span class="kw">ggplot</span>(clima_peores_horas, <span class="kw">aes</span>(<span class="dt">x =</span> precipitacion, <span class="dt">y =</span> velocidad_viento, <span class="dt">color =</span> temperatura)) <span class="op">+</span></span>
+<span id="cb65-2"><a href="datos-relacionales.html#cb65-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="13-relational-data_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Para extenderse con mayor detalle en ese ejercicio, es necesario usar las
 herramientas del capítulo Análisis Exploratorio de Datos.</p>
 </div>
 <ol style="list-style-type: decimal">
-<li>¿Qué te indica <code>anti_join(vuelos, aeropuertos, by = c(&quot;destino&quot; = &quot;codigo_aeropuerto&quot;))</code>?
-¿Qué te indica <code>anti_join(aeropuertos, vuelos, by = c(&quot;codigo_aeropuerto&quot; = &quot;destino&quot;))</code>?</li>
+<li>¿Qué te indica <code>anti_join(vuelos, aeropuertos, by = c("destino" = "codigo_aeropuerto"))</code>?
+¿Qué te indica <code>anti_join(aeropuertos, vuelos, by = c("codigo_aeropuerto" = "destino"))</code>?</li>
 </ol>
 <div class="solucion">
 <h3>
@@ -1012,26 +1014,26 @@ Logically, it is possible that a plane can fly for multiple airlines over the co
 But, it is not necessarily the case that a plane will fly for more than one airline in this data, especially since it comprises only a year of data.
 So let’s check to see if there are any planes in the data flew for multiple airlines.</p>
 <p>Veámos las combinaciones únicas de aerolíneay avión.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">aerolinea_avion &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(codigo_cola)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">distinct</span>(aerolinea, codigo_cola)</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="datos-relacionales.html#cb66-1"></a>aerolinea_avion &lt;-<span class="st"> </span>vuelos <span class="op">%&gt;%</span></span>
+<span id="cb66-2"><a href="datos-relacionales.html#cb66-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(codigo_cola)) <span class="op">%&gt;%</span></span>
+<span id="cb66-3"><a href="datos-relacionales.html#cb66-3"></a><span class="st">  </span><span class="kw">distinct</span>(aerolinea, codigo_cola)</span></code></pre></div>
 <p>Podría darse el caso en que una aerolínea vende algunos de sus aviones a otra.
 Estos aviones tendrán una cuenta mayor a uno en la tabla anterior.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">aerolinea_avion <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(codigo_cola) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="st">  </span><span class="kw">nrow</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="datos-relacionales.html#cb67-1"></a>aerolinea_avion <span class="op">%&gt;%</span></span>
+<span id="cb67-2"><a href="datos-relacionales.html#cb67-2"></a><span class="st">  </span><span class="kw">count</span>(codigo_cola) <span class="op">%&gt;%</span></span>
+<span id="cb67-3"><a href="datos-relacionales.html#cb67-3"></a><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb67-4"><a href="datos-relacionales.html#cb67-4"></a><span class="st">  </span><span class="kw">nrow</span>()</span></code></pre></div>
 <pre><code>## [1] 17</code></pre>
 <p>Veamos ahora las transferencias de aviones entre aerolíneas.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">aviones_transferidos &lt;-<span class="st"> </span>aerolinea_avion <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="co"># conservo los aviones que han volado para mas de una aerolinea</span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(codigo_cola) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">n</span>() <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">  </span><span class="co"># uno los codigos con los nombres de aerolinea</span></a>
-<a class="sourceLine" id="cb69-6" data-line-number="6"><span class="st">  </span><span class="kw">left_join</span>(aerolineas, <span class="dt">by =</span> <span class="st">&quot;aerolinea&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-7" data-line-number="7"><span class="st">  </span><span class="kw">arrange</span>(aerolinea, codigo_cola)</a>
-<a class="sourceLine" id="cb69-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb69-9" data-line-number="9">aviones_transferidos</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="datos-relacionales.html#cb69-1"></a>aviones_transferidos &lt;-<span class="st"> </span>aerolinea_avion <span class="op">%&gt;%</span></span>
+<span id="cb69-2"><a href="datos-relacionales.html#cb69-2"></a><span class="st">  </span><span class="co"># conservo los aviones que han volado para mas de una aerolinea</span></span>
+<span id="cb69-3"><a href="datos-relacionales.html#cb69-3"></a><span class="st">  </span><span class="kw">group_by</span>(codigo_cola) <span class="op">%&gt;%</span></span>
+<span id="cb69-4"><a href="datos-relacionales.html#cb69-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">n</span>() <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb69-5"><a href="datos-relacionales.html#cb69-5"></a><span class="st">  </span><span class="co"># uno los codigos con los nombres de aerolinea</span></span>
+<span id="cb69-6"><a href="datos-relacionales.html#cb69-6"></a><span class="st">  </span><span class="kw">left_join</span>(aerolineas, <span class="dt">by =</span> <span class="st">&quot;aerolinea&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb69-7"><a href="datos-relacionales.html#cb69-7"></a><span class="st">  </span><span class="kw">arrange</span>(aerolinea, codigo_cola)</span>
+<span id="cb69-8"><a href="datos-relacionales.html#cb69-8"></a></span>
+<span id="cb69-9"><a href="datos-relacionales.html#cb69-9"></a>aviones_transferidos</span></code></pre></div>
 <pre><code>## # A tibble: 34 x 3
 ## # Groups:   codigo_cola [17]
 ##    aerolinea codigo_cola nombre              
@@ -1046,7 +1048,7 @@ Estos aviones tendrán una cuenta mayor a uno en la tabla anterior.</p>
 ##  8 9E        N232PQ      Endeavor Air Inc.   
 ##  9 DL        N933AT      Delta Air Lines Inc.
 ## 10 DL        N935AT      Delta Air Lines Inc.
-## # … with 24 more rows</code></pre>
+## # ... with 24 more rows</code></pre>
 </div>
 </div>
 </div>
@@ -1062,9 +1064,9 @@ suerte de encontrar una combinación única en tus datos pero dicha relación pu
 <p>Por ejemplo, la altura y la longitud identifican de manera única cada aeropuerto, ¡pero
 no son buenos identificadores!</p></li>
 </ol>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">aeropuertos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(altura, longitud) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="datos-relacionales.html#cb71-1"></a>aeropuertos <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(altura, longitud) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 0 x 3
-## # … with 3 variables: altura &lt;int&gt;, longitud &lt;dbl&gt;, n &lt;int&gt;</code></pre>
+## # ... with 3 variables: altura &lt;dbl&gt;, longitud &lt;dbl&gt;, n &lt;int&gt;</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Verifica que ninguna de las variables en la llave primaria esté perdida.
 ¡Si un valor está perdido no puede identificar una observación!</p></li>
@@ -1130,8 +1132,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

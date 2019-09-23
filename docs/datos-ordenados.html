@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10 Datos ordenados | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10 Datos ordenados | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="importacion-de-datos.html">
-<link rel="next" href="datos-relacionales.html">
+<link rel="prev" href="importacion-de-datos.html"/>
+<link rel="next" href="datos-relacionales.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,9 +50,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -61,14 +61,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +79,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -308,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2" data-path="iteracion.html"><a href="iteracion.html#variaciones-de-bucles-for"><i class="fa fa-check"></i><b>17.2</b> Variaciones de bucles <em>for</em></a><ul>
 <li class="chapter" data-level="17.2.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-50"><i class="fa fa-check"></i><b>17.2.1</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
+<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.-funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
 <li class="chapter" data-level="17.3.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-51"><i class="fa fa-check"></i><b>17.3.1</b> Ejercicios</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="iteracion.html"><a href="iteracion.html#las-funciones-map-mapa-en-ingles"><i class="fa fa-check"></i><b>17.4</b> Las funciones <em>map</em> (mapa en inglés)</a><ul>
@@ -388,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="datos-ordenados" class="section level1">
 <h1><span class="header-section-number">10</span> Datos ordenados</h1>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(tibble)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="datos-ordenados.html#cb24-1"></a><span class="kw">library</span>(tibble)</span></code></pre></div>
 <div id="datos-ordenados-1" class="section level2">
 <h2><span class="header-section-number">10.1</span> Datos ordenados</h2>
 <div id="ejercicios-16" class="section level3">
@@ -397,9 +399,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Usando prosa, describe como las variables y observaciones se organizan en las tablas de ejemplo.</p></li>
 <li><p>Calcula la <code>tasa</code> para las tablas <code>tabla2</code> y <code>tabla4a</code> + <code>tabla4b</code>.
 Necesitarás las siguientes operaciones:</p></li>
-<li>Extrae el número de casos de tuberculosis por país y año.</li>
-<li>Extrae la población por país y año.</li>
-<li>Divide los casos por la población y multiplica por 10000.</li>
+<li><p>Extrae el número de casos de tuberculosis por país y año.</p></li>
+<li><p>Extrae la población por país y año.</p></li>
+<li><p>Divide los casos por la población y multiplica por 10000.</p></li>
 <li><p>Inserta los datos en el lugar adecuado.</p></li>
 </ol>
 <p>¿Cuál representación es más fácil de trabajar? ¿Cuál es la más difícil? ¿Por qué?</p>
@@ -416,42 +418,42 @@ Necesitarás las siguientes operaciones:</p></li>
 <li>¿Por qué <code>gather()</code> y <code>spread()</code> no son perfectamente simétricas?
 Observa cuidadosamente el siguiente ejemplo:</li>
 </ol>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">acciones &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">  <span class="dt">anio =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">  <span class="dt">semestre =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">  <span class="dt">retorno =</span> <span class="kw">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>)</a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">acciones <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="st">  </span><span class="kw">spread</span>(anio, retorno) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;anio&quot;</span>, <span class="st">&quot;retorno&quot;</span>, <span class="st">`</span><span class="dt">2015</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2016</span><span class="st">`</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="datos-ordenados.html#cb25-1"></a>acciones &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb25-2"><a href="datos-ordenados.html#cb25-2"></a>  <span class="dt">anio =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),</span>
+<span id="cb25-3"><a href="datos-ordenados.html#cb25-3"></a>  <span class="dt">semestre =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb25-4"><a href="datos-ordenados.html#cb25-4"></a>  <span class="dt">retorno =</span> <span class="kw">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>)</span>
+<span id="cb25-5"><a href="datos-ordenados.html#cb25-5"></a>)</span>
+<span id="cb25-6"><a href="datos-ordenados.html#cb25-6"></a>acciones <span class="op">%&gt;%</span></span>
+<span id="cb25-7"><a href="datos-ordenados.html#cb25-7"></a><span class="st">  </span><span class="kw">spread</span>(anio, retorno) <span class="op">%&gt;%</span></span>
+<span id="cb25-8"><a href="datos-ordenados.html#cb25-8"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;anio&quot;</span>, <span class="st">&quot;retorno&quot;</span>, <span class="st">`</span><span class="dt">2015</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2016</span><span class="st">`</span>)</span></code></pre></div>
 <p>(Pista: observa los tipos de variables y piensa en los nombres de las columnas)</p>
 <p>Tanto <code>spread()</code> como <code>gather()</code> tienen el argumento <code>convert</code> (convertir). ¿Qué hace dicho argumento?</p>
 <ol style="list-style-type: decimal">
 <li>¿Por qué falla el siguiente código?</li>
 </ol>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">tabla4a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>, <span class="dt">key =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;casos&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="datos-ordenados.html#cb26-1"></a>tabla4a <span class="op">%&gt;%</span></span>
+<span id="cb26-2"><a href="datos-ordenados.html#cb26-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>, <span class="dt">key =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;casos&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in tabla4a %&gt;% gather(`1999`, `2000`, key = &quot;anio&quot;, value = &quot;casos&quot;): could not find function &quot;%&gt;%&quot;</code></pre>
 <ol style="list-style-type: decimal">
 <li>¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarias una nueva columna para resolver el problema?</li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">personas &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">  <span class="op">~</span>nombre, <span class="op">~</span>clave, <span class="op">~</span>valor,</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">  <span class="co">#-----------------|--------|------</span></a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">45</span>,</a>
-<a class="sourceLine" id="cb28-5" data-line-number="5">  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;estatura&quot;</span>, <span class="dv">186</span>,</a>
-<a class="sourceLine" id="cb28-6" data-line-number="6">  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb28-7" data-line-number="7">  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">37</span>,</a>
-<a class="sourceLine" id="cb28-8" data-line-number="8">  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;estatura&quot;</span>, <span class="dv">156</span></a>
-<a class="sourceLine" id="cb28-9" data-line-number="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="datos-ordenados.html#cb28-1"></a>personas &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
+<span id="cb28-2"><a href="datos-ordenados.html#cb28-2"></a>  <span class="op">~</span>nombre, <span class="op">~</span>clave, <span class="op">~</span>valor,</span>
+<span id="cb28-3"><a href="datos-ordenados.html#cb28-3"></a>  <span class="co">#-----------------|--------|------</span></span>
+<span id="cb28-4"><a href="datos-ordenados.html#cb28-4"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">45</span>,</span>
+<span id="cb28-5"><a href="datos-ordenados.html#cb28-5"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;estatura&quot;</span>, <span class="dv">186</span>,</span>
+<span id="cb28-6"><a href="datos-ordenados.html#cb28-6"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">50</span>,</span>
+<span id="cb28-7"><a href="datos-ordenados.html#cb28-7"></a>  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">37</span>,</span>
+<span id="cb28-8"><a href="datos-ordenados.html#cb28-8"></a>  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;estatura&quot;</span>, <span class="dv">156</span></span>
+<span id="cb28-9"><a href="datos-ordenados.html#cb28-9"></a>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Ordena la siguiente tabla. ¿Necesitas extenderla o contraerla? ¿Cuáles son las variables?</li>
 </ol>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">embarazo &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">  <span class="op">~</span>embarazo, <span class="op">~</span>hombre, <span class="op">~</span>mujer,</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">  <span class="st">&quot;sí&quot;</span>, <span class="ot">NA</span>, <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb29-4" data-line-number="4">  <span class="st">&quot;no&quot;</span>, <span class="dv">20</span>, <span class="dv">12</span></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="datos-ordenados.html#cb29-1"></a>embarazo &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
+<span id="cb29-2"><a href="datos-ordenados.html#cb29-2"></a>  <span class="op">~</span>embarazo, <span class="op">~</span>hombre, <span class="op">~</span>mujer,</span>
+<span id="cb29-3"><a href="datos-ordenados.html#cb29-3"></a>  <span class="st">&quot;sí&quot;</span>, <span class="ot">NA</span>, <span class="dv">10</span>,</span>
+<span id="cb29-4"><a href="datos-ordenados.html#cb29-4"></a>  <span class="st">&quot;no&quot;</span>, <span class="dv">20</span>, <span class="dv">12</span></span>
+<span id="cb29-5"><a href="datos-ordenados.html#cb29-5"></a>)</span></code></pre></div>
 </div>
 </div>
 <div id="separar-y-unir" class="section level2">
@@ -462,11 +464,11 @@ Observa cuidadosamente el siguiente ejemplo:</li>
 <li>¿Qué hacen los argumentos <code>extra</code> y <code>fill</code> en <code>separate()</code>?
 Experimenta con las diversas opciones a partir de los siguientes datasets de ejemplo.</li>
 </ol>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e,f,g&quot;</span>, <span class="st">&quot;h,i,j&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st"> </span><span class="kw">separate</span>(x, <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e&quot;</span>, <span class="st">&quot;f,g,i&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="st"> </span><span class="kw">separate</span>(x, <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="datos-ordenados.html#cb30-1"></a><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e,f,g&quot;</span>, <span class="st">&quot;h,i,j&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb30-2"><a href="datos-ordenados.html#cb30-2"></a><span class="st"> </span><span class="kw">separate</span>(x, <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</span>
+<span id="cb30-3"><a href="datos-ordenados.html#cb30-3"></a></span>
+<span id="cb30-4"><a href="datos-ordenados.html#cb30-4"></a><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e&quot;</span>, <span class="st">&quot;f,g,i&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb30-5"><a href="datos-ordenados.html#cb30-5"></a><span class="st"> </span><span class="kw">separate</span>(x, <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>Tanto <code>unite()</code> como <code>separate()</code> tienen un argumento <code>remove</code>. ¿Qué es lo que hace?
 ¿Por qué lo dejarías en <code>FALSE</code>?</p></li>
@@ -492,7 +494,7 @@ separación (por posición, separador y grupos), pero solo una forma de unir?</p
 <ol style="list-style-type: decimal">
 <li><p>En este caso de estudio fijamos <code>na.rm = TRUE</code> para simplificar la verificación de que tenemos los valores correctos. ¿Es esto razonable? Piensa en como los valores faltantes están representados en este dataset. ¿Existen valores faltantes implícitos? ¿Cuál es la diferencia entre <code>NA</code> y cero?</p></li>
 <li><p>¿Qué ocurre si omites la aplicación de <code>mutate()</code>?
-(<code>mutate(llave = stringr::str_replace(llave, &quot;nuevosrecaida&quot;, &quot;nuevos_recaida&quot;))</code>)</p></li>
+(<code>mutate(llave = stringr::str_replace(llave, "nuevosrecaida", "nuevos_recaida"))</code>)</p></li>
 <li><p>Afirmamos que <code>iso2</code> e <code>iso3</code> son redundantes respecto a <code>pais</code>. Confirma esta premisa.</p></li>
 <li><p>Para cada país, año y sexo calcula el total del número de casos de tuberculosis. Crea una visualización informativa de los datos.</p></li>
 </ol>
@@ -559,8 +561,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

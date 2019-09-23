@@ -78,17 +78,17 @@ por_pais
 ## # A tibble: 142 x 5
 ##    pais       continente data              modelo residuo          
 ##    <fct>      <fct>      <list>            <list> <list>           
-##  1 Afganistán Asia       <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-##  2 Albania    Europa     <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-##  3 Argelia    África     <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-##  4 Angola     África     <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-##  5 Argentina  Américas   <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-##  6 Australia  Oceanía    <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-##  7 Austria    Europa     <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-##  8 Baréin     Asia       <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-##  9 Bangladesh Asia       <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-## 10 Bélgica    Europa     <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
-## # … with 132 more rows
+##  1 Afganistán Asia       <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+##  2 Albania    Europa     <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+##  3 Argelia    África     <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+##  4 Angola     África     <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+##  5 Argentina  Américas   <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+##  6 Australia  Oceanía    <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+##  7 Austria    Europa     <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+##  8 Baréin     Asia       <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+##  9 Bangladesh Asia       <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+## 10 Bélgica    Europa     <tibble [12 x 4]> <lm>   <tibble [12 x 5]>
+## # ... with 132 more rows
 ```
 
 
@@ -221,13 +221,13 @@ map(1:3, runif)
 
 ```
 ## [[1]]
-## [1] 0.5790991
+## [1] 0.03793975
 ## 
 ## [[2]]
-## [1] 0.8556076 0.7929767
+## [1] 0.4284848 0.7328851
 ## 
 ## [[3]]
-## [1] 0.1954186 0.8156963 0.5177822
+## [1] 0.8370804 0.4975074 0.7335000
 ```
 </div>
 

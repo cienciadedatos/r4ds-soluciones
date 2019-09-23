@@ -180,7 +180,7 @@ beta$par
 ```
 
 ```
-## [1] 6.735896 1.338399
+## [1] 5.259088 1.594855
 ```
 
 Los resultados del modelo lineal son los mismos que se obtienen si se minimiza
@@ -198,7 +198,7 @@ beta$par
 ```
 
 ```
-## [1] 7.167235 1.320816
+## [1] 5.554834 1.567988
 ```
 
 En la práctica no es recomendable usar `optim()` para ajustar un modelo, es
@@ -245,7 +245,7 @@ beta_000$par
 ```
 
 ```
-## [1] -7.762092  1.321104 14.927988
+## [1] -3.243645  1.568133  8.797924
 ```
 
 
@@ -255,7 +255,7 @@ beta_001$par
 ```
 
 ```
-## [1] -12.053431   1.321067  19.219143
+## [1] -9.799802  1.567960 15.354870
 ```
 
 
@@ -265,7 +265,7 @@ beta_005$par
 ```
 
 ```
-## [1] 2.522685 1.320835 4.643837
+## [1] 0.6869413 1.5679715 4.8679314
 ```
 
 Si seguimos alterando los valores inciales no es muy difícil concluir que
@@ -377,16 +377,16 @@ grid %>%
 ## # A tibble: 10 x 3
 ##        x pred_lm pred_loess
 ##    <int>   <dbl>      <dbl>
-##  1     1    6.27       9.05
-##  2     2    8.32       9.78
-##  3     3   10.4       10.7 
-##  4     4   12.4       11.8 
-##  5     5   14.5       13.3 
-##  6     6   16.5       15.1 
-##  7     7   18.6       16.9 
-##  8     8   20.6       18.3 
-##  9     9   22.7       19.2 
-## 10    10   24.7       19.7
+##  1     1    6.27       8.25
+##  2     2    8.32       8.78
+##  3     3   10.4        9.82
+##  4     4   12.4       11.4 
+##  5     5   14.5       13.1 
+##  6     6   16.5       14.7 
+##  7     7   18.6       16.4 
+##  8     8   20.6       18.1 
+##  9     9   22.7       19.9 
+## 10    10   24.7       21.7
 ```
 
 La función `gather_predictions()` incorpora predicciones de múltiples modelos
@@ -413,16 +413,16 @@ grid %>%
 ##  8 sim1_mod       8 20.6 
 ##  9 sim1_mod       9 22.7 
 ## 10 sim1_mod      10 24.7 
-## 11 sim1_loess     1  9.05
-## 12 sim1_loess     2  9.78
-## 13 sim1_loess     3 10.7 
-## 14 sim1_loess     4 11.8 
-## 15 sim1_loess     5 13.3 
-## 16 sim1_loess     6 15.1 
-## 17 sim1_loess     7 16.9 
-## 18 sim1_loess     8 18.3 
-## 19 sim1_loess     9 19.2 
-## 20 sim1_loess    10 19.7
+## 11 sim1_loess     1  8.25
+## 12 sim1_loess     2  8.78
+## 13 sim1_loess     3  9.82
+## 14 sim1_loess     4 11.4 
+## 15 sim1_loess     5 13.1 
+## 16 sim1_loess     6 14.7 
+## 17 sim1_loess     7 16.4 
+## 18 sim1_loess     8 18.1 
+## 19 sim1_loess     9 19.9 
+## 20 sim1_loess    10 21.7
 ```
 
 La función `spread_predictions()` incorpora predicciones de múltiples modelos
@@ -439,16 +439,16 @@ grid %>%
 ## # A tibble: 10 x 3
 ##        x sim1_mod sim1_loess
 ##    <int>    <dbl>      <dbl>
-##  1     1     6.27       9.05
-##  2     2     8.32       9.78
-##  3     3    10.4       10.7 
-##  4     4    12.4       11.8 
-##  5     5    14.5       13.3 
-##  6     6    16.5       15.1 
-##  7     7    18.6       16.9 
-##  8     8    20.6       18.3 
-##  9     9    22.7       19.2 
-## 10    10    24.7       19.7
+##  1     1     6.27       8.25
+##  2     2     8.32       8.78
+##  3     3    10.4        9.82
+##  4     4    12.4       11.4 
+##  5     5    14.5       13.1 
+##  6     6    16.5       14.7 
+##  7     7    18.6       16.4 
+##  8     8    20.6       18.1 
+##  9     9    22.7       19.9 
+## 10    10    24.7       21.7
 ```
 
 La función `spread_predictions()` es similar a correr `add_predictions()` para
@@ -466,16 +466,16 @@ grid %>%
 ## # A tibble: 10 x 3
 ##        x sim1_loess sim1_mod
 ##    <int>      <dbl>    <dbl>
-##  1     1       9.05     6.27
-##  2     2       9.78     8.32
-##  3     3      10.7     10.4 
-##  4     4      11.8     12.4 
-##  5     5      13.3     14.5 
-##  6     6      15.1     16.5 
-##  7     7      16.9     18.6 
-##  8     8      18.3     20.6 
-##  9     9      19.2     22.7 
-## 10    10      19.7     24.7
+##  1     1       8.25     6.27
+##  2     2       8.78     8.32
+##  3     3       9.82    10.4 
+##  4     4      11.4     12.4 
+##  5     5      13.1     14.5 
+##  6     6      14.7     16.5 
+##  7     7      16.4     18.6 
+##  8     8      18.1     20.6 
+##  9     9      19.9     22.7 
+## 10    10      21.7     24.7
 ```
 </div>
 
@@ -599,7 +599,7 @@ x3
 ##  8             1     1     0     1     0        0        1        0
 ##  9             1     1     0     1     0        0        1        0
 ## 10             1     1     0     0     1        0        0        1
-## # … with 110 more rows
+## # ... with 110 more rows
 ```
 
 Podemos confirmar que las variables `x1:x2b` son el producto de `x1` y `x2b`.
@@ -655,7 +655,7 @@ x4
 ##  8             1    -1 -0.556   0.556
 ##  9             1    -1 -0.556   0.556
 ## 10             1    -1 -0.333   0.333
-## # … with 290 more rows
+## # ... with 290 more rows
 ```
 
 Se puede confirmar que `x1:x2` es el producto de `x1` y `x2`.
@@ -730,7 +730,7 @@ model_matrix_mod1(sim3)
 ##  8             1     1     0     1     0
 ##  9             1     1     0     1     0
 ## 10             1     1     0     0     1
-## # … with 110 more rows
+## # ... with 110 more rows
 ```
 
 Es posible crear función para `~ x1 + x2` que no depende de los niveles
@@ -779,7 +779,7 @@ model_matrix_mod1b(sim3)
 ##  8             1     1     0     1     0
 ##  9             1     1     0     1     0
 ## 10             1     1     0     0     1
-## # … with 110 more rows
+## # ... with 110 more rows
 ```
 
 Para el caso `~ x1 * x2` hay que tener en cuenta que debemos generar una columna
@@ -818,7 +818,7 @@ model_matrix_mod2(sim3)
 ##  8             1     1     0     1     0        0        1        0
 ##  9             1     1     0     1     0        0        1        0
 ## 10             1     1     0     0     1        0        0        1
-## # … with 110 more rows
+## # ... with 110 more rows
 ```
 
 Es posible crear una función para `~ x1 * x2` que no depende de los niveles
@@ -859,7 +859,7 @@ model_matrix_mod2b(sim3)
 ##  8             1     1     0     1     0        0        1        0
 ##  9             1     1     0     1     0        0        1        0
 ## 10             1     1     0     0     1        0        0        1
-## # … with 110 more rows
+## # ... with 110 more rows
 ```
 
 Estas funciones se podrían generalizar para los casos en que `x1` y `x2` pueden

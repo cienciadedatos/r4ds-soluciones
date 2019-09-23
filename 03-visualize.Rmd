@@ -13,13 +13,70 @@ library(datos)
 
 1. Corre `ggplot(data = millas)`. ¿Qué observas?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+ggplot(data = millas)
+```
+
+Este código crea un gráfico vacío. Como no se han especificado las capas mediante `geom_*()`, no se dibuja sobre el fondo. 
+</div>
+
 2. ¿Cuántas filas hay en `millas`? ¿Cuántas columnas?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Hay `r nrow(millas)` filas y `r ncol(millas)` columnas en `millas`.
+
+```{r}
+nrow(millas)
+ncol(millas)
+```
+</div>
 
 3. ¿Qué describe la variable `traccion`? Lee la ayuda de `?millas` para encontrar la respuesta.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+`traccion` esa una variable categórica que clasifica los vehículos en tracción delantera, trasera o de cuatro ruedas.
+
+```{r}
+unique(millas$traccion)
+```
+</div>
+
 4. Realiza un gráfico de dispersión de `autopista` versus `cilindros`.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+ggplot(millas, aes(x = autopista, y = cilindros)) +
+  geom_point()
+```
+</div>
+
 5. ¿Qué sucede cuando haces un gráfico de dispersión de `clase` versus `traccion`? ¿Por qué no es útil este gráfico?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+El gráfico resultante tiene pocos puntos. Ambas variables son categóricas y por lo tanto existe una cantidad limitada de combinaciones posibles.
+```{r}
+ggplot(millas, aes(x = clase, y = traccion)) +
+  geom_point()
+```
+
+Otro problema es la frecuencia de combinaciones posibles no es la misma en todos los casos.
+```{r}
+count(millas, traccion, clase)
+```
+
+Los gráficos de dispersión debieran usarse con variables continuas y cuando los valores son únicos.
+</div>
 
 ## Mapeos estéticos
 
@@ -32,16 +89,83 @@ library(datos)
      geom_point(mapping = aes(x = motor, y = autopista, color = "blue"))
    ```
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Se incluyó el color dentro de `aes()`, por lo cual se trata como una variable, lo cual sería útil si tuvieramos una columna con información de los colores.
+
+Para dejar todos los puntos en color azul, se debe cambiar el orden de los parámetros.
+```{r}
+ggplot(data = millas) +
+     geom_point(mapping = aes(x = motor, y = autopista), color = "blue")
+```
+</div>
+
 2. ¿Qué variables en `millas` son categóricas? ¿Qué variables son continuas? (Sugerencia: escribe `?millas` para leer la documentación de ayuda para este conjunto de datos). ¿Cómo puedes ver esta información cuando ejecutas `millas`?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Variables categóricas: modelo, transmisión, tracción, combustible y clase.
+
+Variables continuas: motor, año, cilindros, ciudad, autopista.
+</div>
 
 3. Asigna una variable continua a `color`, ` size`, y `shape`. ¿Cómo se comportan estas estéticas de manera diferente para variables categóricas y variables continuas?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Una posibilidad es graficar rendimiento de combustible en autopista dado el tipo de motor. Como información adicional usamos el rendimiento en ciudad como color, de modo de contar con una paleta de colores informativa.
+
+```{r}
+ggplot(millas, aes(x = motor, y = autopista, colour = ciudad)) +
+  geom_point()
+```
+
+Los otros casos quedan como ejercicio.
+</div>
+
 4. ¿Qué ocurre si asignas o mapeas la misma variable a múltiples estéticas?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+R va a generar un gráfico con información redundante, lo cual se debiera evitar.
+
+```{r}
+ggplot(millas, aes(x = motor, y = autopista, colour = autopista, size = autopista)) +
+  geom_point()
+```
+</div>
 
 5. ¿Qué hace la estética `stroke`? ¿Con qué formas trabaja? (Sugerencia: consultar `?geom_point`)
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Cambia el tamaño de los bordes de las formas 21 a 25. Para estas formas es posible cambiar el color de relleno y borde y también el tamaño de los bordes.
+
+Ejemplo:
+```{r}
+ggplot(mtautos, aes(peso, millas)) +
+  geom_point(shape = 21, colour = "black", fill = "white", size = 5, stroke = 5)
+```
+</div>
+
 6. ¿Qué ocurre si se asigna o mapea una estética a algo diferente del nombre de una variable, como ser `aes(color = motor < 5)`?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+R crea una variable temporal que da cuenta de la evaluación de la variable. En el caso de `motor < 5` el resultado es verdadero o falso y según esto se incluyen los colores en el gráfico.
+
+Ejemplo:
+```{r ex.3.3.1.6}
+ggplot(millas, aes(x = motor, y = autopista, colour = motor < 5)) +
+  geom_point()
+```
+</div>
 
 ## Separar en facetas
 

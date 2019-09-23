@@ -12,7 +12,7 @@
     ```
     
     ```
-    ## Error in eval(expr, envir, enclos): object 'mi_varıable' not found
+    ## [1] 10
     ```
     
     ¡Mira detenidamente! (Esto puede parecer un ejercicio inútil, pero entrenar tu cerebro para detectar incluso las diferencias más pequeñas será muy útil cuando comiences a programar.)

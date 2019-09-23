@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 Importación de datos | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 Importación de datos | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tibbles.html">
-<link rel="next" href="datos-ordenados.html">
+<link rel="prev" href="tibbles.html"/>
+<link rel="next" href="datos-ordenados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,9 +50,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -61,14 +61,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +79,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -308,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2" data-path="iteracion.html"><a href="iteracion.html#variaciones-de-bucles-for"><i class="fa fa-check"></i><b>17.2</b> Variaciones de bucles <em>for</em></a><ul>
 <li class="chapter" data-level="17.2.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-50"><i class="fa fa-check"></i><b>17.2.1</b> Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
+<li class="chapter" data-level="17.3" data-path="iteracion.html"><a href="iteracion.html#bucles-for-vs.-funcionales"><i class="fa fa-check"></i><b>17.3</b> Bucles <em>for</em> vs. funcionales</a><ul>
 <li class="chapter" data-level="17.3.1" data-path="iteracion.html"><a href="iteracion.html#ejercicios-51"><i class="fa fa-check"></i><b>17.3.1</b> Ejercicios</a></li>
 </ul></li>
 <li class="chapter" data-level="17.4" data-path="iteracion.html"><a href="iteracion.html#las-funciones-map-mapa-en-ingles"><i class="fa fa-check"></i><b>17.4</b> Las funciones <em>map</em> (mapa en inglés)</a><ul>
@@ -394,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prerrequisitos" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Prerrequisitos</h3>
 <p>En este capítulo aprenderás cómo cargar archivos planos en R con el paquete <strong>readr</strong>, uno de los paquetes principales de <strong>tidyverse</strong>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="importacion-de-datos.html#cb20-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
 </div>
 <div id="comenzando" class="section level2">
@@ -405,14 +407,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>¿Qué función utilizarías para leer un archivo donde los campos están separados con “|”?</p></li>
 <li><p>Además de <code>file</code>, <code>skip</code> y <code>comment</code> ¿Qué otros argumentos tienen en común <code>read_csv()</code> y <code>read_tsv()</code>?</p></li>
 <li><p>¿Cuáles son los argumentos más importantes de <code>read_fwf()</code>?</p></li>
-<li><p>Algunas veces, las cadenas de caracteres en un archivo csv contienen comas. Para evitar que causen problemas deben estar rodeadas por comillas, como <code>&quot;</code> o <code>'</code>. Por convención, <code>read_csv()</code> asume que el caracter de separación será <code>&quot;</code>, y si quieres cambiarlo necesitarás usar <code>read_delim()</code> en su lugar.¿Qué argumentos debes especificar para leer el siguiente texto en un marco de datos?</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="st">&quot;x,y</span><span class="ch">\n</span><span class="st">1,&#39;a,b&#39;&quot;</span></a></code></pre></div></li>
+<li><p>Algunas veces, las cadenas de caracteres en un archivo csv contienen comas. Para evitar que causen problemas deben estar rodeadas por comillas, como <code>"</code> o <code>'</code>. Por convención, <code>read_csv()</code> asume que el caracter de separación será <code>"</code>, y si quieres cambiarlo necesitarás usar <code>read_delim()</code> en su lugar.¿Qué argumentos debes especificar para leer el siguiente texto en un marco de datos?</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="importacion-de-datos.html#cb21-1"></a><span class="st">&quot;x,y</span><span class="ch">\n</span><span class="st">1,&#39;a,b&#39;&quot;</span></span></code></pre></div></li>
 <li><p>Identifica qué está mal en cada una de los siguientes archivos csv alineados. ¿Qué pasa cuando corres el código?</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n</span><span class="st">1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>)</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span><span class="ch">\n</span><span class="st">1,2</span><span class="ch">\n</span><span class="st">1,2,3,4&quot;</span>)</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n\&quot;</span><span class="st">1&quot;</span>)</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n</span><span class="st">1,2</span><span class="ch">\n</span><span class="st">a,b&quot;</span>)</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="kw">read_csv</span>(<span class="st">&quot;a;b</span><span class="ch">\n</span><span class="st">1;3&quot;</span>)</a></code></pre></div></li>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="importacion-de-datos.html#cb22-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n</span><span class="st">1,2,3</span><span class="ch">\n</span><span class="st">4,5,6&quot;</span>)</span>
+<span id="cb22-2"><a href="importacion-de-datos.html#cb22-2"></a><span class="kw">read_csv</span>(<span class="st">&quot;a,b,c</span><span class="ch">\n</span><span class="st">1,2</span><span class="ch">\n</span><span class="st">1,2,3,4&quot;</span>)</span>
+<span id="cb22-3"><a href="importacion-de-datos.html#cb22-3"></a><span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n\&quot;</span><span class="st">1&quot;</span>)</span>
+<span id="cb22-4"><a href="importacion-de-datos.html#cb22-4"></a><span class="kw">read_csv</span>(<span class="st">&quot;a,b</span><span class="ch">\n</span><span class="st">1,2</span><span class="ch">\n</span><span class="st">a,b&quot;</span>)</span>
+<span id="cb22-5"><a href="importacion-de-datos.html#cb22-5"></a><span class="kw">read_csv</span>(<span class="st">&quot;a;b</span><span class="ch">\n</span><span class="st">1;3&quot;</span>)</span></code></pre></div></li>
 </ol>
 </div>
 </div>
@@ -421,20 +423,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ejercicios-15" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> Ejercicios</h3>
 <ol style="list-style-type: decimal">
-<li>¿Cuáles son los argumentos más importantes para <code>locale()</code>?</li>
-<li>¿Qué pasa si pruebas y estableces <code>decimal_mark</code> y <code>grouping_mark</code> al mismo caracter? ¿Qué pasa con el valor por defecto de <code>grouping_mark</code> cuando seleccionas <code>decimal_mark</code> a <code>,</code>? ¿Qué pasa con el valor por defecto de <code>decimal_mark</code> cuando estableces <code>grouping_mark</code> a <code>.</code>?</li>
-<li>No discutí las opciones <code>date_format</code> y <code>time_format</code> para <code>locale()</code>. ¿Qué hacen? Construye un ejemplo que muestre cuándo pueden ser útiles.</li>
-<li>Si vives fuera de EEUU, crea un nuevo objeto locale que encapsule las opciones para los tipos de archivo que lees más comúnmente.</li>
-<li>¿Cuál es la diferencia entre <code>read_csv()</code> y <code>read_csv2()</code>?</li>
-<li>¿Cuáles son las codificaciones más comunes empleadas en Europa? ¿Cuáles son las codificaciones más comunes utilizadas en Asia? Googlea un poco para descubrirlo.</li>
+<li><p>¿Cuáles son los argumentos más importantes para <code>locale()</code>?</p></li>
+<li><p>¿Qué pasa si pruebas y estableces <code>decimal_mark</code> y <code>grouping_mark</code> al mismo caracter? ¿Qué pasa con el valor por defecto de <code>grouping_mark</code> cuando seleccionas <code>decimal_mark</code> a <code>,</code>? ¿Qué pasa con el valor por defecto de <code>decimal_mark</code> cuando estableces <code>grouping_mark</code> a <code>.</code>?</p></li>
+<li><p>No discutí las opciones <code>date_format</code> y <code>time_format</code> para <code>locale()</code>. ¿Qué hacen? Construye un ejemplo que muestre cuándo pueden ser útiles.</p></li>
+<li><p>Si vives fuera de EEUU, crea un nuevo objeto locale que encapsule las opciones para los tipos de archivo que lees más comúnmente.</p></li>
+<li><p>¿Cuál es la diferencia entre <code>read_csv()</code> y <code>read_csv2()</code>?</p></li>
+<li><p>¿Cuáles son las codificaciones más comunes empleadas en Europa? ¿Cuáles son las codificaciones más comunes utilizadas en Asia? Googlea un poco para descubrirlo.</p></li>
 <li><p>Genera el formato correcto de texto para analizar cada una de las siguientes fechas y horas:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">d1 &lt;-<span class="st"> &quot;January 1, 2010&quot;</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">d2 &lt;-<span class="st"> &quot;2015-Mar-07&quot;</span></a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">d3 &lt;-<span class="st"> &quot;06-Jun-2017&quot;</span></a>
-<a class="sourceLine" id="cb23-4" data-line-number="4">d4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;August 19 (2015)&quot;</span>, <span class="st">&quot;July 1 (2015)&quot;</span>)</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">d5 &lt;-<span class="st"> &quot;12/30/14&quot;</span> <span class="co"># Dec 30, 2014</span></a>
-<a class="sourceLine" id="cb23-6" data-line-number="6">t1 &lt;-<span class="st"> &quot;1705&quot;</span></a>
-<a class="sourceLine" id="cb23-7" data-line-number="7">t2 &lt;-<span class="st"> &quot;11:15:10.12 PM&quot;</span></a></code></pre></div></li>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="importacion-de-datos.html#cb23-1"></a>d1 &lt;-<span class="st"> &quot;January 1, 2010&quot;</span></span>
+<span id="cb23-2"><a href="importacion-de-datos.html#cb23-2"></a>d2 &lt;-<span class="st"> &quot;2015-Mar-07&quot;</span></span>
+<span id="cb23-3"><a href="importacion-de-datos.html#cb23-3"></a>d3 &lt;-<span class="st"> &quot;06-Jun-2017&quot;</span></span>
+<span id="cb23-4"><a href="importacion-de-datos.html#cb23-4"></a>d4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;August 19 (2015)&quot;</span>, <span class="st">&quot;July 1 (2015)&quot;</span>)</span>
+<span id="cb23-5"><a href="importacion-de-datos.html#cb23-5"></a>d5 &lt;-<span class="st"> &quot;12/30/14&quot;</span> <span class="co"># Dec 30, 2014</span></span>
+<span id="cb23-6"><a href="importacion-de-datos.html#cb23-6"></a>t1 &lt;-<span class="st"> &quot;1705&quot;</span></span>
+<span id="cb23-7"><a href="importacion-de-datos.html#cb23-7"></a>t2 &lt;-<span class="st"> &quot;11:15:10.12 PM&quot;</span></span></code></pre></div></li>
 </ol>
 
 </div>
@@ -488,8 +490,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
