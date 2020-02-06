@@ -247,7 +247,6 @@ ggplot(data = millas) +
   geom_point(mapping = aes(x = motor, y = autopista)) +
   facet_grid(. ~ cilindros)
 ```
-
 </div>
 
 4. Mira de nuevo el primer gráfico en facetas presentado en esta sección:
@@ -262,11 +261,65 @@ ggplot(data = millas) +
    ¿Cuáles son las desventajas?
    ¿Cómo cambiaría este balance si tuvieras un conjunto de datos más grande?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+En el siguiente gráfico muestra la variable `clase` como color.
+
+```{r}
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = motor, y = autopista, color = clase))
+```
+
+La ventaja de usar `clase` como parte de las facetas en lugar de un argumento de color
+es la posibilidad de incluir distintas categorías.
+Es difícil distinguir entre los colores de las categorías "mediano" y "minivan".
+
+De acuerdo a las reglas de percepción, no se debería usar más de nueve colores para mostrar
+información cualitativa.
+
+Mostrar observaciones de distintas categorías en diferentes escalaes hace que sea difícil
+comparar directamente entre los valores de distintas categorías.
+Sin embargo, haría más fácil comparar la forma de la relación entre x e y en distintas
+categorías.
+
+La desventaja de usar `clase` para las facetas en lugar del argumento de color es la dificultad
+de comparar valores entre categorías dado que las observaciones para cada categoría se ubican en
+distintos gráficos.
+
+Usando las mismas escalas para los ejes x e y en todas las facetas facilita comparar observaciones
+entre categorías, pero sigue siendo una comparación más compleja respecto del caso en que todas
+las observaciones se ubican en el mismo gráfico.
+Dado que usar `clase` para el argumento de color sitúa todos los puntos en un mismo gráfico, muestra
+la relación incondicional entre las variables x e y, lo que no ocurre al separar en distintos gráficos.
+
+Los beneficios de codificar una variable mediante el color son crecientes si aumenta la cantidad de observaciones o el número de categorías. Si aumenta el número de categorías puede haber superposición y resulta complejo manejar esto con argumentos de color a menos que el número de observaciones sea pequeño y se pueda usar un argumento de distorsión (*jitter*).
+
+El argumento de transparencia (*alpha*) no funciona bien con colores ya que la combinación de colores producto de la superposición no representa adecuadamente las categorías.
+
+Si aumenta mucho el número de categorías va a ser cada vez más difícil contar con colores distintivos y será difícil distinguirlos.
+</div>
+
 5. Lee `?facet_wrap`. ¿Qué hace `nrow`? ¿Qué hace `ncol`?
 ¿Qué otras opciones controlan el diseño de los paneles individuales?
 ¿Por qué `facet_grid()` no tiene argumentos `nrow` y `ncol`?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Los argumentos `nrow` y `ncol` determinan el número de filas y columnas al momento de generar
+las facetas. `facet_wrap()` opera sobre una única variable. 
+
+`nrow` y `ncol` no son necesarios con `facet_grid` ya que el número de valores únicos en la función determina el número de filas y columnas.
+</div>
+
 6. Cuando usas `facet_grid()`, generalmente deberías poner la variable con un mayor número de niveles únicos en las columnas. ¿Por qué?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Hacerlo genera más espacio para las columnas si el gráfico se ubica de forma horizontal.
+</div>
 
 ## Objetos geométricos
 
