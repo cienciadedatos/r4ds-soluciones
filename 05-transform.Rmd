@@ -7,17 +7,17 @@
 
 1.  Encuentra todos los vuelos que:
 
-   1.   Tuvieron un retraso de llegada de dos o más horas
+   1. Tuvieron un retraso de llegada de dos o más horas
   
-   2.  Volaron a Houston (`IAH` o` HOU`)
+   2. Volaron a Houston (`IAH` o` HOU`)
    
    3. Fueron operados por United, American o Delta
    
-   4.  Partieron en verano (julio, agosto y septiembre)
+   4. Partieron en verano (julio, agosto y septiembre)
    
-   5.   Llegaron más de dos horas tarde, pero no salieron tarde
+   5. Llegaron más de dos horas tarde, pero no salieron tarde
    
-   6.  Se retrasaron por lo menos una hora, pero repusieron más de 30 minutos en vuelo
+   6. Se retrasaron por lo menos una hora, pero repusieron más de 30 minutos en vuelo
    
    7. Partieron entre la medianoche y las 6 a.m. (incluyente)
 

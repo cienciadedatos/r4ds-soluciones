@@ -173,6 +173,20 @@ ggplot(millas, aes(x = motor, y = autopista, colour = motor < 5)) +
 
 1. Qué ocurre si intentas separar en facetas a una variable continua?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Veamos un ejemplo:
+
+```{r ex.3.5.1}
+ggplot(millas, aes(x = cilindros, y = autopista)) +
+  geom_point() +
+  facet_grid(. ~ ciudad)
+```
+
+La variable continua es convertida a una variable categórica y el gráfico contiene una faceta para cada valor,
+</div>
+
 2. ¿Qué significan las celdas vacías que aparecen en el gráfico generado usando `facet_grid(traccion ~ cilindros)`?
 ¿Cómo se relacionan con este gráfico?
 
@@ -180,6 +194,27 @@ ggplot(millas, aes(x = motor, y = autopista, colour = motor < 5)) +
    ggplot(data = millas) +
      geom_point(mapping = aes(x = traccion, y = cilindros))
    ```
+
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = autopista, y = ciudad)) +
+  facet_grid(traccion ~ cilindros)
+```
+
+Las celdas vacías (facetas) en este gráfico corresponden a combinaciones de `traccion`
+y `cilindros` que no tienen observaciones.
+
+Son las mismas ubicaciones en el gráfico de dispersión de `autopista` y `ciudad` que no
+tienen gráfica.
+
+```{r}
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = autopista, y = ciudad))
+```
+</div>
 
 3. ¿Qué gráfica el siguiente código? ¿Qué hace `.` ?
 
@@ -192,6 +227,28 @@ ggplot(millas, aes(x = motor, y = autopista, colour = motor < 5)) +
      geom_point(mapping = aes(x = motor, y = autopista)) +
      facet_grid(. ~ cilindros)
    ```
+   
+<div class="solucion">
+<h3>Solución</h3>
+
+El símbolo `.` ignora la dimensión al momento de dibujar las facetas.
+Por ejemplo, `autopista ~ .` divide por los valores de `autopista` en el eje y.
+
+```{r ex.3.5.1.4.a}
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = motor, y = autopista)) +
+  facet_grid(traccion ~ .)
+```
+
+A la vez, `. ~ cilindrada` va a dividir por los valores de `cyl` en el eje x.
+
+```{r ex.3.5.1.4.b}
+ggplot(data = millas) +
+  geom_point(mapping = aes(x = motor, y = autopista)) +
+  facet_grid(. ~ cilindros)
+```
+
+</div>
 
 4. Mira de nuevo el primer gráfico en facetas presentado en esta sección:
 
