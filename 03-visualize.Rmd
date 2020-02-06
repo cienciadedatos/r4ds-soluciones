@@ -329,16 +329,70 @@ Hacerlo genera más espacio para las columnas si el gráfico se ubica de forma h
 1. ¿Qué geom usarías para generar un gráfico de líneas?
 ¿Un diagrama de caja? ¿Un histograma? ¿Un gráfico de área?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+-   gráfico de líneas: `geom_line()`
+-   diagrama de caja: `geom_boxplot()`
+-   histograma: `geom_histogram()`
+-   gráfico de área: `geom_area()`
+</div>
+
 2. Ejecuta este código en tu mente y predice cómo se verá el *output*.
 Luego, ejecuta el código en R y verifica tus predicciones.
 
-   ```{r, eval = FALSE}
+ ```{r, eval = FALSE}
    ggplot(data = millas, mapping = aes(x = motor, y = autopista, color = traccion)) +
      geom_point() +
      geom_smooth(se = FALSE)
  ```
+ 
+<div class="solucion">
+<h3>Solución</h3>
+
+El resultado es un diagrama de dispersión con `motor` en el eje x, `autopista` en el eje y
+y los puntos pintados de acuerdo a `traccion`.
+También se incluirá una línea de tendencia, sin el error estándar, para cada grupo de `traccion`. 
+
+```{r echo=TRUE}
+ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+</div>
+ 
 3. ¿Qué muestra `show.legend = FALSE`? ¿Qué pasa si lo quitas?
  ¿Por qué crees que lo usé antes en el capítulo?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+
+`show.legend = FALSE` oculta la leyenda.
+
+Considera el siguiente ejemplo ya visto:
+```{r}
+ggplot(data = millas) +
+  geom_smooth(
+    mapping = aes(x = cilindros, y = autopista, colour = traccion),
+    show.legend = FALSE
+  )
+```
+
+
+Quitar el argumento `show.legend` o definir `show.legend = TRUE` mostrará la relación entre `traccion` y la paleta de colores.
+
+```{r}
+ggplot(data = millas) +
+  geom_smooth(mapping = aes(x = cilindros, y = autopista, colour = traccion))
+```
+
+In the chapter, the legend is suppressed because with three plots,
+adding a legend to only the last plot would make the sizes of plots different.
+Different sized plots would make it more difficult to see how arguments change the appearance of the plots.
+The purpose of those plots is to show the difference between no groups, using a `group` aesthetic, and using a `color` aesthetic, which creates implicit groups.
+In that example, the legend isn't necessary since looking up the values associated with each color isn't necessary to make that point.
+</div>
 
 4. ¿Qué hace el argumento `se` en `geom_smooth()`?
 
