@@ -427,6 +427,24 @@ ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)
      geom_point(data = millas, mapping = aes(x = motor, y = autopista)) +
      geom_smooth(data = millas, mapping = aes(x = motor, y = autopista))
    ```
+   
+<div class="solucion">
+<h3>Solución</h3>
+
+No. `geom_point()` y `geom_smooth()` toman los datos y estéticas de `ggplot()`, por lo que no hace falta especificar lo mismo dos veces.
+
+```{r}
+ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+ggplot() +
+  geom_point(data = millas, mapping = aes(x = motor, y = autopista)) +
+  geom_smooth(data = millas, mapping = aes(x = motor, y = autopista))
+```
+</div>
 
 6. Recrea el código R necesario para generar los siguientes gráficos:
 
@@ -455,6 +473,46 @@ ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)
      geom_point(size = 4, colour = "white") +
      geom_point(aes(colour = traccion))
    ```
+
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r message=FALSE}
+ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   geom_point() +
+   geom_smooth(se = FALSE)
+```
+
+```{r message=FALSE}
+ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   geom_smooth(aes(group = traccion), se = FALSE) +
+   geom_point()
+```
+
+```{r message=FALSE}
+ggplot(data = millas, mapping = aes(x = motor, y = autopista, color = traccion)) +
+   geom_point() +
+   geom_smooth(se = FALSE)
+```
+
+```{r message=FALSE}
+ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   geom_point(aes(color = traccion)) +
+   geom_smooth(se = FALSE)
+```
+
+```{r}
+ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   geom_point(aes(color = traccion)) +
+   geom_smooth(aes(linetype = traccion), se = FALSE)
+```
+
+```{r}
+ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   geom_point(size = 4, colour = "white") +
+   geom_point(aes(colour = traccion))
+```
+</div>
 
 ## Transformaciones estadísticas
 
