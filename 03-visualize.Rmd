@@ -522,14 +522,199 @@ ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
 1. ¿Cuál es el geom predeterminado asociado con `stat_summary()`?
 ¿Cómo podrías reescribir el gráfico anterior para usar esa función geom en lugar de la función stat?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+El gráfico anterior es el siguiente:
+```{r}
+ggplot(data = diamantes) +
+  stat_summary(
+    mapping = aes(x = corte, y = profundidad),
+    fun.ymin = min,
+    fun.ymax = max,
+    fun.y = median
+  )
+```
+
+La geometría por defecto para [`stat_summary()`](https://ggplot2.tidyverse.org/reference/stat_summary.html) es `geom_pointrange()`.
+
+El estadístico por defecto para [`geom_pointrange()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html) es `identity()` pero se puede incluir el argumento `stat = "summary"` para usar `stat_summary()` en lugar de `stat_identity()`.
+
+```{r}
+ggplot(data = diamantes) +
+  geom_pointrange(
+    mapping = aes(x = corte, y = profundidad),
+    stat = "summary"
+  )
+```
+
+El mensaje resultante en `stat_summary()` indica que se usó `mean` y `sd` para calcular el centro y los extremos de la línea. Sin embargo, en el gráfico original se usaron el máximo y mínimo para los extremos.
+
+Para recrear el gráfico original hay que especificar los valores de `fun.ymin`, `fun.ymax`, y `fun.y`.
+```{r}
+ggplot(data = diamantes) +
+  geom_pointrange(
+    mapping = aes(x = corte, y = profundidad),
+    stat = "summary",
+    fun.ymin = min,
+    fun.ymax = max,
+    fun.y = median
+  )
+```
+</div>
+
 2. ¿Qué hace `geom_col()`? ¿Cómo es diferente a `geom_bar()`?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+El estadístico por defecto en `geom_col()` es distinto de `geom_bar()`.
+
+`geom_col()` usa `stat_identity()`, que deja los datos sin transformar.
+
+`geom_col()` espera que los datos contengan los valores de `x` y los valores de `y` que representan la altura de las columnas.
+
+`geom_bar()` usa `stat_bin()` y espera únicamente los valores de `x`.
+
+`stat_bin()`, procesa los datos de entrada y realiza un conteo del número de observaciones para cada valor de `x`, lo cual genera la variable `y` internamente.
+</div>
 
 3. La mayoría de los geoms y las estadísticas vienen en pares que casi siempre se usan en conjunto.
 Lee la documentación y has una lista de todos los pares. ¿Qué tienen en común?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Las siguiente tabla contienen los pares entre geometrías y estadísticos que se usan en conjunto.
+
+| geometría           | estadístico         |
+|---------------------|---------------------|
+| `geom_bar()`        | `stat_count()`      |
+| `geom_bin2d()`      | `stat_bin_2d()`     |
+| `geom_boxplot()`    | `stat_boxplot()`    |
+| `geom_contour()`    | `stat_contour()`    |
+| `geom_count()`      | `stat_sum()`        |
+| `geom_density()`    | `stat_density()`    |
+| `geom_density_2d()` | `stat_density_2d()` |
+| `geom_hex()`        | `stat_hex()`        |
+| `geom_freqpoly()`   | `stat_bin()`        |
+| `geom_histogram()`  | `stat_bin()`        |
+| `geom_qq_line()`    | `stat_qq_line()`    |
+| `geom_qq()`         | `stat_qq()`         |
+| `geom_quantile()`   | `stat_quantile()`   |
+| `geom_smooth()`     | `stat_smooth()`     |
+| `geom_violin()`     | `stat_violin()`     |
+| `geom_sf()`         | `stat_sf()`         |
+
+Tabla: Geometrías y estadísticos complementarios
+
+Los nombres tienen a ser similares, por ejemplo `geom_smooth()` y `stat_smooth()`, aunque hay casos como `geom_bar()` y `stat_count()`.
+
+La mayoría de las geometrías usa por defecto el estadístico que le corresponde en la tabla anterior. Recíprocamente, la mayoría de los estadísticos usan por defecto la geometría que le corresponde en la tabla anterior.
+
+Las siguientes tablas contienen las geometrías y estadísticos en [ggplot2](https://ggplot2.tidyverse.org/reference/).
+
+| geometría           | estadístico por defecto | documentación conjunta |
+|:--------------------|:--------------------|-------------|
+| `geom_abline()`     |                     |             |
+| `geom_hline()`      |                     |             |
+| `geom_vline()`      |                     |             |
+| `geom_bar()`        | `stat_count()`      | x           |
+| `geom_col()`        |                     |             |
+| `geom_bin2d()`      | `stat_bin_2d()`     | x           |
+| `geom_blank()`      |                     |             |
+| `geom_boxplot()`    | `stat_boxplot()`    | x           |
+| `geom_countour()`   | `stat_countour()`   | x           |
+| `geom_count()`      | `stat_sum()`        | x           |
+| `geom_density()`    | `stat_density()`    | x           |
+| `geom_density_2d()` | `stat_density_2d()` | x           |
+| `geom_dotplot()`    |                     |             |
+| `geom_errorbarh()`  |                     |             |
+| `geom_hex()`        | `stat_hex()`        | x           |
+| `geom_freqpoly()`   | `stat_bin()`        | x           |
+| `geom_histogram()`  | `stat_bin()`        | x           |
+| `geom_crossbar()`   |                     |             |
+| `geom_errorbar()`   |                     |             |
+| `geom_linerange()`  |                     |             |
+| `geom_pointrange()` |                     |             |
+| `geom_map()`        |                     |             |
+| `geom_point()`      |                     |             |
+| `geom_map()`        |                     |             |
+| `geom_path()`       |                     |             |
+| `geom_line()`       |                     |             |
+| `geom_step()`       |                     |             |
+| `geom_point()`      |                     |             |
+| `geom_polygon()`    |                     |             |
+| `geom_qq_line()`    | `stat_qq_line()`    | x           |
+| `geom_qq()`         | `stat_qq()`         | x           |
+| `geom_quantile()`   | `stat_quantile()`   | x           |
+| `geom_ribbon()`     |                     |             |
+| `geom_area()`       |                     |             |
+| `geom_rug()`        |                     |             |
+| `geom_smooth()`     | `stat_smooth()`     | x           |
+| `geom_spoke()`      |                     |             |
+| `geom_label()`      |                     |             |
+| `geom_text()`       |                     |             |
+| `geom_raster()`     |                     |             |
+| `geom_rect()`       |                     |             |
+| `geom_tile()`       |                     |             |
+| `geom_violin()`     | `stat_ydensity()`   | x           |
+| `geom_sf()`         | `stat_sf()`         | x           |
+
+Tabla: ggplot2 capas de geometrías y sus estadísticos por defecto.
+
+| estadístico          | geometría por defecto | documentación conjunta |
+|:---------------------|:--------------------|-------------|
+| `stat_ecdf()`        | `geom_step()`       |             |
+| `stat_ellipse()`     | `geom_path()`       |             |
+| `stat_function()`    | `geom_path()`       |             |
+| `stat_identity()`    | `geom_point()`      |             |
+| `stat_summary_2d()`  | `geom_tile()`       |             |
+| `stat_summary_hex()` | `geom_hex()`        |             |
+| `stat_summary_bin()` | `geom_pointrange()` |             |
+| `stat_summary()`     | `geom_pointrange()` |             |
+| `stat_unique()`      | `geom_point()`      |             |
+| `stat_count()`       | `geom_bar()`        | x           |
+| `stat_bin_2d()`      | `geom_tile()`       | x           |
+| `stat_boxplot()`     | `geom_boxplot()`    | x           |
+| `stat_countour()`    | `geom_contour()`    | x           |
+| `stat_sum()`         | `geom_point()`      | x           |
+| `stat_density()`     | `geom_area()`       | x           |
+| `stat_density_2d()`  | `geom_density_2d()` | x           |
+| `stat_bin_hex()`     | `geom_hex()`        | x           |
+| `stat_bin()`         | `geom_bar()`        | x           |
+| `stat_qq_line()`     | `geom_path()`       | x           |
+| `stat_qq()`          | `geom_point()`      | x           |
+| `stat_quantile()`    | `geom_quantile()`   | x           |
+| `stat_smooth()`      | `geom_smooth()`     | x           |
+| `stat_ydensity()`    | `geom_violin()`     | x           |
+| `stat_sf()`          | `geom_rect()`       | x           |
+
+Tabla: ggplot2 capas de estadísticos y sus geometrías por defecto.
+</div>
+
 4. ¿Qué variables calcula `stat_smooth()`? ¿Qué parámetros controlan su comportamiento?
 
-1. En nuestro gráfico de barras de proporción , necesitamos establecer `group = 1`. ¿Por qué?
+<div class="solucion">
+<h3>Solución</h3>
+
+La función `stat_smooth()` calcula las siguientes variables:
+
+-   `y`: valor predicho
+-   `ymin`: menor valor del intervalo de confianza
+-   `ymax`: mayor valor del intervalo de confianza
+-   `se`: error estándar
+
+La sección "Computed Variables" en la documentación de `stat_smooth()` contiene estas variables.
+
+Los parámetros que controlan `stat_smooth()` incluyen
+
+-   `method`: cuál método utilizar
+-   `formula`: las fórmulas, al igual que `method`, determinan cómo se hará el cálculo del intervalo de confianza y los argumentos adicionales que se requieran.
+-   `na.rm`: si acaso se eliminarán los casos perdidos
+</div>
+
+5. En nuestro gráfico de barras de proporción , necesitamos establecer `group = 1`. ¿Por qué?
 En otras palabras, ¿cuál es el problema con estos dos gráficos?
 
 
@@ -540,6 +725,40 @@ En otras palabras, ¿cuál es el problema con estos dos gráficos?
    ggplot(data = diamantes) +
      geom_bar(mapping = aes(x = corte, fill = color, y = ..prop..))
    ```
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Si no se incluye `group = 1`, todas las baras en el gráfico tendrán altura 1.
+
+La función `geom_bar()` asume que los grupos son iguales a los valores de `x` dado que el estadístico realiza un conteo dentro de los grupos.
+
+```{r}
+ggplot(data = diamantes) +
+  geom_bar(mapping = aes(x = corte, y = ..prop..))
+```
+
+El problema con estos gráficos es que las proporciones se calculan dentro de los grupos.
+```{r}
+ggplot(data = diamantes) +
+  geom_bar(mapping = aes(x = corte, y = ..prop..))
+
+ggplot(data = diamantes) +
+  geom_bar(mapping = aes(x = corte, fill = color, y = ..prop..))
+```
+
+El siguiente código generará el gráfico buscado sin relleno.
+```{r}
+ggplot(data = diamantes) +
+  geom_bar(mapping = aes(x = corte, y = ..prop.., group = 1))
+```
+
+Con el argumento `fill`, es necesario normalizar las barras.
+```{r}
+ggplot(data = diamantes) + 
+  geom_bar(aes(x = corte, y = ..count.. / sum(..count..), fill = color))
+```
+</div>
 
 ## Ajustes de posición
 
