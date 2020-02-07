@@ -770,12 +770,112 @@ ggplot(data = diamantes) +
    ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
      geom_point()
    ```
+   
+<div class="solucion">
+<h3>Solución</h3>
+
+Existe superposición ya que hay múltiples observaciones para cada combinación de `ciudad` y `autopista`.
+
+Se puede mejorar el gráfico usando el argumento de distorsión y así reducir la superposición.
+
+```{r}
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
+  geom_point(position = "jitter")
+```
+
+La relación entre `ciudad` y `autopista` es clara, incluso sin el argumento de distorsión, que en este caso deja en claro donde se concentran las observaciones.
+</div>
 
 2. ¿Qué parámetros de `geom_jitter()` controlan la cantidad de ruido?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+A partir de la documentación de [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html), existen dos argumentos:
+
+-   `width` controla el desplazamiento vertical
+-   `height` controla el desplazamiento horizontal
+
+Los valores por defecto de `width` y `height` introducen ruido en ambas direcciones.
+
+Así se ve el gráfico con las opciones por defecto.
+```{r}
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
+  geom_point(position = position_jitter())
+```
+
+Con `width = 0` se elimina la distorsión horizontal.
+```{r}
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
+  geom_jitter(width = 0)
+```
+
+Con `width = 20` se agrega mucha distorsión.
+```{r}
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
+  geom_jitter(width = 20)
+```
+
+Es análogo para `height`.
+
+Hay que notar que `width` y `height` se expresan en las mismas unidades que los datos, por lo que `height = 1` o `width = 1` corresponden a diferentes valores relativos de distorsión dependiendo de las escalas de `x` e `y`.
+
+Los valores por defecto son 80% de la resolución (`resolution()`) de los datos. Cuando `x` e `y` son discretas, su resolución es igual a uno, y los valores por defecto son `height = 0.4` y `width = 0.4` ya que la distorsión mueve los puntos en dirección positiva y negativa.
+</div>
+
 3. Compara y contrasta `geom_jitter()` con `geom_count()`
 
+<div class="solucion">
+<h3>Solución</h3>
+
+`geom_jitter()` agrega una variación al azar a los puntos del gráfico, es decir que distorsiona la ubicación de los puntos en el gráfico. Este método reduce la superposición ya que es poco probable que al mover los puntos al azar estos queden en la misma ubicación. Sin embargo, el problema de reducir la superposición es que se distorsionan los valores mostrados de `x` e `y`.
+```{r}
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
+  geom_jitter()
+```
+
+`geom_count()` cambia el tamaño de los puntos relativo a la cantidad de observaciones. Las combinaciones de `x` e `y` con más observaciones tendrán un mayor tamaño. Esto no distorsiona los valores, pero tiene el problema de que el tamaño de los puntos puede generar superposición si los puntos son cercanos.
+```{r}
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
+  geom_count()
+```
+
+Por ejemplo, `geom_count()` puede ser menos legible que `geom_jitter()` si se agrega un argumento de color.
+```{r}
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista, color = clase)) +
+  geom_jitter()
+
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista, color = clase)) +
+  geom_count()
+```
+
+Este ejemplo muestra que no existe una solución universal. El coste y beneficio de cada enfoque depende de la estructura de los datos y del objetivo.
+</div>
+
 4. ¿Cuál es el ajuste de posición predeterminado de `geom_boxplot()`? Crea una visualización del conjunto de datos de `millas` que lo demuestre.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+
+La posición por defecto para `geom_boxplot()` es `"dodge2"`, que es un atajo de `position_dodge2`.
+
+Este ajuste no cambia la posición vertical pero mueve las geometrías horizontalmente para evitar la superposición.
+
+Consulta la documentación de [`position_dodge2()`](https://ggplot2.tidyverse.org/reference/position_dodge.html) para los detalles específicos.
+
+Si agregamos `colour = clase` a un diagrama de cajas, los niveles de `transmision` se ubican lado a lado.
+```{r}
+ggplot(data = millas, aes(x = transmision, y = autopista, colour = clase)) +
+  geom_boxplot()
+```
+
+Si se usa `position_identity()` habrá superposición.
+```{r}
+ggplot(data = millas, aes(x = transmision, y = autopista, colour = clase)) +
+  geom_boxplot(position = "identity")
+```
+</div>
 
 ## Sistemas de coordenadas
 
