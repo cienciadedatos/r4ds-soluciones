@@ -857,7 +857,6 @@ Este ejemplo muestra que no existe una solución universal. El coste y beneficio
 <div class="solucion">
 <h3>Solución</h3>
 
-
 La posición por defecto para `geom_boxplot()` es `"dodge2"`, que es un atajo de `position_dodge2`.
 
 Este ajuste no cambia la posición vertical pero mueve las geometrías horizontalmente para evitar la superposición.
@@ -884,9 +883,67 @@ ggplot(data = millas, aes(x = transmision, y = autopista, colour = clase)) +
 
 1. Convierte un gráfico de barras apiladas en un gráfico circular usando `coord_polar()`.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Un gráfico de torta es un gráfico de barras aplicadas con la adición de coordenadas polares.
+
+Partamos del siguiente ejemplo:
+```{r}
+ggplot(millas, aes(x = factor(1), fill = traccion)) +
+  geom_bar()
+```
+
+Ahora agregamos `coord_polar(theta="y")` para crear el gráfico de torta:
+
+```{r}
+ggplot(millas, aes(x = factor(1), fill = traccion)) +
+  geom_bar(width = 1) +
+  coord_polar(theta = "y")
+```
+
+El argumento `theta = "y"` transforma `y` en el ángulo de cada sección.
+Si `coord_polar()` se especifica sin `theta = "y"`, el resultado se llama "ojo de buey".
+
+```{r}
+ggplot(millas, aes(x = factor(1), fill = traccion)) +
+  geom_bar(width = 1) +
+  coord_polar()
+```
+</div>
+
 2. ¿Qué hace `labs()`? Lee la documentación.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+`labs` agrega los títulos de los ejes, título del gráfico y la leyenda.
+
+```{r}
+ggplot(data = millas, mapping = aes(x = clase, y = autopista)) +
+  geom_boxplot() +
+  coord_flip() +
+  labs(y = "Millas por Galón en Autopista",
+       x = "Clase",
+       title = "Millas por Galón en Autopista por Tipo de Vehículo",
+       subtitle = "1999-2008",
+       caption = "Fuente: http://fueleconomy.gov")
+```
+
+`labs()` no es la única función para agregar títulos. `xlab()`, `ylab()` y `ggtitle()` realizan la misma función.
+</div>
+
 3. ¿Cuál es la diferencia entre `coord_quickmap()` y `coord_map()`?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+`coord_map()` usa una proyección cartográfica para proyectar la Tierra sobre una superficie bidimensional. Por defecto usa la [Proyección de Mercator](https://es.wikipedia.org/wiki/Proyecci%C3%B3n_de_Mercator), la cual se aplica a todas las geometrías del gráfico.
+
+`coord_quickmap()` usa una aproximación más rápida que ignora la curvatura de la tierra y ajusta de acuerdo a la razón de latitud y longitud. Esta es una alternativa computacionalmente más rápida que no genera la necesidad de transformar las geometrías individuales.
+
+Consulta [coord_map()](https://ggplot2.tidyverse.org/reference/coord_map.html) para la documentación y ejemplos.
+</div>
 
 4. ¿Qué te dice la gráfica siguiente sobre la relación entre la ciudad y la `autopista`? ¿Por qué es `coord_fixed()` importante? ¿Qué hace `geom_abline()`?
 
@@ -896,3 +953,17 @@ ggplot(data = millas, aes(x = transmision, y = autopista, colour = clase)) +
      geom_abline() +
      coord_fixed()
    ```
+
+<div class="solucion">
+<h3>Solución</h3>
+
+La función `coord_fixed()` asegura que la línea que genera `geom_abline()` tenga un ángulo de 45 grados. De este modo es más fácil comparar a partir de los casos en que los rendimientos en autopista y ciudad son iguales.
+```{r}
+ggplot(data = millas, mapping = aes(x = ciudad, y = autopista)) +
+  geom_point() +
+  geom_abline() +
+  coord_fixed()
+```
+
+Lo que podemos ver es que en todos los modelos el rendimiento en autopista es superior al rendmiento en ciudad.
+</div>
