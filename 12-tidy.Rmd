@@ -111,21 +111,8 @@ separación (por posición, separador y grupos), pero solo una forma de unir?
 1. En este caso de estudio fijamos `na.rm = TRUE` para simplificar la verificación de que tenemos los valores correctos. ¿Es esto razonable? Piensa en como los valores faltantes están representados en este dataset. ¿Existen valores faltantes implícitos? ¿Cuál es la diferencia entre `NA` y cero?
 
 1. ¿Qué ocurre si omites la aplicación de `mutate()`?
- (`mutate(llave = stringr::str_replace(llave, "nuevosrecaida", "nuevos_recaida"))`)
+ (`mutate(clave = stringr::str_replace(clave, "nuevosrecaida", "nuevos_recaida"))`)
 
 1. Afirmamos que `iso2` e `iso3` son redundantes respecto a `pais`. Confirma esta premisa.
 
 1. Para cada país, año y sexo calcula el total del número de casos de tuberculosis. Crea una visualización informativa de los datos.
-
-## Datos no ordenados
-
-Antes de pasar a otros tópicos, es conveniente referirse brevemente a datos no ordenados. Anteriormente en el capítulo, usamos el término peyorativo "desordenados" para referirnos a datos no ordenados. Esto es una sobresimplificación: existen múltiples estructuras de datos debidamente fundamentadas que no corresponden a datos ordenados. Existen dos principales razones para usar otras estructuras de datos:
-
-* Las representaciones alternativas pueden traer ventajas importantes en términos de desempeño o tamaño.
-
-* Algunos áreas especializadas han evolucionado y tienen sus propias convenciones para almacenar datos, las que pueden diferir respecto de las convenciones de datos ordenados.
-
-Cada uno de estas razones significa que necesitarás algo distinto a un tibble (o data frame). Si tus datos naturalmente se ajustan a una estructura rectangular compuesta de observaciones y variables, pensamos que datos ordenados debería ser tu elección por defecto. Sin embargo, existen buenas razones para usar otras estructuras; datos ordenados no es la única forma.
-
-Si quieres aprender más acerca de datos no ordenados, recomendamos fuertemente este artículo del blog de Jeff Leek:
- <http://simplystatistics.org/2016/02/17/non-tidy-data/>

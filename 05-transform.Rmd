@@ -1,6 +1,6 @@
 # Transformación de datos {#transform}
 
-## Introducción
+## Filtrar flas con `filter()`
 
 
 ### Ejercicios
@@ -8,37 +8,189 @@
 1.  Encuentra todos los vuelos que:
 
    1. Tuvieron un retraso de llegada de dos o más horas
-  
+ 
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+filter(vuelos, atraso_llegada >= 120)
+```
+
+
+</div>
+
    2. Volaron a Houston (`IAH` o` HOU`)
+ 
+ <div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+filter(vuelos, destino %in% c("IAH", "HOU"))
+```
+
+
+</div>
    
    3. Fueron operados por United, American o Delta
-   
-   4. Partieron en verano (julio, agosto y septiembre)
-   
+  
+<div class="solucion">
+<h3>Solución</h3>
+
+Los códigos de estas aerolíneas son `UA`, `AA` y `DL`.
+
+```{r}
+filter(vuelos, aerolinea %in% c("UA", "AA", "DL"))
+```
+
+</div>
+ 
+   4. Partieron en el invierno del hemisferio sur (julio, agosto y septiembre)
+
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+filter(vuelos, mes %in% c(7, 8, 9))
+```
+
+</div>
+
+  
    5. Llegaron más de dos horas tarde, pero no salieron tarde
-   
+
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+filter(vuelos, atraso_salida <= 0 & atraso_llegada > 90)
+```
+
+
+</div>
+  
    6. Se retrasaron por lo menos una hora, pero repusieron más de 30 minutos en vuelo
+
+<div class="solucion">
+<h3>Solución</h3>
+```{r}
+filter(vuelos, atraso_salida >= 60 & atraso_salida - atraso_llegada > 30)
+```
+
+</div>
    
    7. Partieron entre la medianoche y las 6 a.m. (incluyente)
 
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+filter(vuelos, horario_salida %in% 000:600)
+```
+
+
+</div>
+
 2.  Otra función de **dplyr** útil para usar filtros es `between()`. ¿Qué hace? ¿Puedes usarlo para simplificar el código necesario para responder a los desafíos anteriores?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Esta función del paquete __dplyr__ permite abreviar la escritura de código que tiene esta estructura `x >= derecha & x <= izquierda` por `between(x, derecha, izquierda)`.
+
+Podemos reescribir el código para encontrar los vuelos que partieron en el invierno del hemisferio sur así:
+
+```{r}
+filter(vuelos, between(mes, 7, 9))
+
+```
+
+</div>
+
 
 3. ¿Cuántos vuelos tienen datos faltantes de `horario_salida`? ¿Qué otras variables tienen valores faltantes? ¿Qué representan estas filas?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Podemos buscar datos faltantes con la función `is.na`. 
+
+```{r}
+filter(vuelos, is.na(horario_salida))
+```
+
+Los vuelos que tienen `NA` en su horario de salida, también lo tienen en el horario de llegada, por lo que se puede inferir que son vuelos que fueron cancelados. 
+</div>
+
 4. ¿Por qué `NA ^ 0` no es faltante? ¿Por qué `NA | TRUE` no es faltante? ¿Por qué `FALSE & NA` no es faltante? ¿Puedes descubrir la regla general? (¡`NA * 0` es un contraejemplo complicado!)
 
-## Reordenar las filas con `arrange()`
+<div class="solucion">
+<h3>Solución</h3>
 
+$x ^ 0 = 1$, por lo que `NA ^ 0 == 1`
+
+</div>
+
+## Reordenar las filas con `arrange()`
 
 ### Ejercicios
 
 1. ¿Cómo podrías usar `arrange()` para ordenar todos los valores faltantes al comienzo? (Sugerencia: usa `is.na()`).
-    
+
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+arrange(vuelos, desc(is.na(horario_salida)))
+```
+
+</div>
+
 2. Ordena `vuelos` para encontrar los vuelos más retrasados. Encuentra los vuelos que salieron más temprano.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Vuelos que salieron con más retraso
+```{r}
+arrange(vuelos, desc(atraso_salida))
+```
+
+Vuelos que salieron más temprano
+```{r}
+arrange(vuelos, atraso_salida)
+```
+
+</div>
 
 3. Ordena `vuelos` para encontrar los vuelos más rápidos.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+```{r}
+
+```
+
+</div>
+
 4. ¿Cuáles vuelos viajaron más tiempo? ¿Cuál viajó menos tiempo?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Podemos identificar estos vuelos a través de la variable `tiempo_vuelo`. Aquellos que estuvieron viajando más tiempo fueron:
+```{r}
+arrange(vuelos, desc(tiempo_vuelo))
+```
+
+Los que viajaron menos tiempo:
+
+```{r}
+arrange(vuelos, tiempo_vuelo)
+```
+
+
+</div>
 
 ## Seleccionar columnas con `select()` {#select}
 
@@ -47,19 +199,64 @@
 
 1. Haz una lluvia de ideas de tantas maneras como sea posible para seleccionar `horario_salida`,` atraso_salida`,`horario_llegada`, y` atraso_llegada` de `vuelos`.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+Una primera opción sería seleccionaras por su nombre:
+```{r}
+select(vuelos, horario_salida, atraso_salida, horario_llegada, atraso_llegada)
+```
+
+Otra forma es seleccionando las variables que empiezan con "horario" y "atraso" con la función `starts_with()` ("empieza con") del paquete __dplyr__:
+
+```{r}
+select(vuelos, starts_with("horario"), starts_with("atraso"))
+```
+
+</div>
+
 2. ¿Qué sucede si incluyes el nombre de una variable varias veces en una llamada `select()`?
 
-3. ¿Qué hace la función `one_of()`? Por qué podría ser útil en conjunto con este vector?
+<div class="solucion">
+<h3>Solución</h3>
+A diferencia de lo que podría pensarse inicialmente, aunque se incluya más de una vez una variable al utilizar `select()` esta solo se considerará una vez:
+```{r}
+select(vuelos, horario_salida, horario_salida, horario_salida)
+```
+
+</div>
+
+3. ¿Qué hace la función `one_of()`? ¿Por qué podría ser útil en conjunto con este vector?
 
 ```{r}
 vars <- c ("anio", "mes", "dia", "atraso_salida", "atraso_llegada")
 ```
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Con la función `one_of()` podemos indicar las variables que queremos seleccionar con el nombre del vector que las contiene:
+```{r}
+select(vuelos, one_of(vars))
+```
+
+</div>
 
 4. ¿Te sorprende el resultado de ejecutar el siguiente código? ¿Cómo tratan por defecto las funciones auxiliares de `select()` a las palabras en mayúsculas o en minúsculas? ¿Cómo puedes cambiar ese comportamiento predeterminado?
 
 ```{r, eval = FALSE}
 select(vuelos, contains("SALIDA"))
 ```
+
+<div class="solucion">
+<h3>Solución</h3>
+La función `contains()` ("contiene") no distingue entre mayúsculas y minúsculas, por eso puede identificar sin problema todas las variables que contienen "salida". Si queremos cambiar este comportamiento y que sí las diferencie, entonces debemos agregar el argumento `ignore.case = FALSE` (por defecto, es TRUE):
+
+```{r}
+select(vuelos, contains("SALIDA", ignore.case = FALSE))
+```
+
+</div>
 
 ## Añadir nuevas variables con `mutate()`
 
@@ -79,17 +276,49 @@ ggplot(vuelos, aes(salida_programada %% 60)) + geom_histogram(binwidth = 1)
 ggplot(vuelos, aes(tiempo_vuelo - tiempo_vuelo2)) + geom_histogram()
 ```
 
-1. Las variables `horario_salida` y `salida_programada` tienen un formato conveniente para leer, pero es difícil realizar cualquier cálculo con ellas porque no son realmente números continuos. Transfórmalas hacia un formato más conveniente como número de minutos desde la medianoche.
+1. Las variables `horario_salida` y `salida_programada` tienen un formato conveniente para leer, pero es difícil realizar cualquier cálculo con ellas porque no son realmente números continuos. Transfórmalas a un formato más conveniente, como número de minutos desde la medianoche.
+
+<div class="solucion">
+<h3>Solución</h3>
+```{r}
+```
+
+</div>
 
 2. Compara `tiempo_vuelo` con `horario_llegada - horario_salida`. ¿Qué esperas ver? ¿Qué ves? ¿Qué necesitas hacer para arreglarlo?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 3. Compara `horario_salida`, `salida_programada`, y `atraso_salida`. ¿Cómo esperarías que esos tres números estén relacionados?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 4. Encuentra los 10 vuelos más retrasados utilizando una función de ordenamiento. ¿Cómo quieres manejar los empates? Lee atentamente la documentación de `min_rank()`.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 5. ¿Qué devuelve `1:3 + 1:10`? ¿Por qué?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 6. ¿Qué funciones trigonométricas proporciona R?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 ## Resúmenes agrupados con `summarise()`
 
@@ -108,34 +337,98 @@ ggplot(vuelos, aes(tiempo_vuelo - tiempo_vuelo2)) + geom_histogram()
     
     ¿Qué es más importante: retraso de la llegada o demora de salida?
 
-2.  Sugiere un nuevo enfoque que te de el mismo *output* que `no_cancelados %>% count(destino)` y
+2.  Sugiere un nuevo enfoque que te dé el mismo *output* que `no_cancelados %>% count(destino)` y
 `no_cancelado %>% count(codigo_cola, wt = distancia)` (sin usar `count()`).
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 3.  Nuestra definición de vuelos cancelados (`is.na(atraso_salida) | is.na (atraso_llegada)`) es un poco subóptima. ¿Por qué? ¿Cuál es la columna más importante?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 4. Mira la cantidad de vuelos cancelados por día. ¿Hay un patrón? ¿La proporción de vuelos cancelados está relacionada con el retraso promedio?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 5. ¿Qué compañía tiene los peores retrasos? Desafío: ¿puedes desenredar el efecto de malos aeropuertos vs. el efecto de malas aerolíneas? ¿Por qué o por qué no? (Sugerencia: piensa en `vuelos %>% group_by(aerolinea, destino) %>% summarise(n())`)
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 6. ¿Qué hace el argumento `sort` a `count()`. ¿Cuándo podrías usarlo?
 
-## Transformaciones agrupadas (y filtros)
+<div class="solucion">
+<h3>Solución</h3>
 
+</div>
+
+## Transformaciones agrupadas (y filtros)
 
 ### Ejercicios
 
 1. Remítete a las listas de funciones útiles de mutación y filtrado. Describe cómo cambia cada operación cuando las combinas con la agrupación.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 2. ¿Qué avión (`codigo_cola`) tiene el peor registro de tiempo?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 3. ¿A qué hora del día deberías volar si quieres evitar los retrasos lo más posible?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 4. Para cada destino, calcula los minutos totales de demora. Para cada vuelo, calcula la proporción de la demora total para su destino.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 5. Los retrasos suelen estar temporalmente correlacionados: incluso una vez que el problema que causó el retraso inicial se ha resuelto, los vuelos posteriores se retrasan para permitir que salgan los vuelos anteriores. Usando `lag()`, explora cómo el retraso de un vuelo está relacionado con el retraso del vuelo inmediatamente anterior.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 6. Mira cada destino. ¿Puedes encontrar vuelos sospechosamente rápidos? (es decir, vuelos que representan un posible error de entrada de datos). Calcula el tiempo en el aire de un vuelo relativo al vuelo más corto a ese destino. ¿Cuáles vuelos se retrasaron más en el aire?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 7. Encuentra todos los destinos que son volados por al menos dos operadores. Usa esta información para clasificar a las aerolíneas.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 8. Para cada avión, cuenta el número de vuelos antes del primer retraso de más de 1 hora.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>

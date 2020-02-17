@@ -8,6 +8,28 @@ library(tibble)
 
 1. ¿Cómo puedes saber si un objeto es un tibble? (Sugerencia: imprime `mtautos` en consola, que es un data frame clásico).
 
+<div class="solucion">
+<h3>Solución</h3>
+Los objetos que son tibbles lo indican cuando se imprimen en la consola. Por ejemplo, `vuelos` es un tibble:
+```{r}
+vuelos
+```
+
+`mtautos`, en cambio, es un data frame clásico:
+
+```{r}
+mtautos
+```
+
+También se puede utilizar la función `is_tibble()` para comprobar si un objeto lo es:
+
+```{r}
+is_tibble(vuelos)
+is_tibble(mtautos)
+```
+
+</div>
+
 1. Compara y contrasta las siguientes operaciones aplicadas a un `data.frame` y a un tibble equivalente. ¿Qué es diferente? ¿Por qué podría causarte problemas el comportamiento por defecto del data frame?
 
  ```{r, eval = FALSE}
@@ -17,17 +39,50 @@ df[, "xyz"]
 df[, c("abc", "xyz")]
  ```
 
-1. Si tienes el nombre de una variable guardada en un objeto, p.e., `var <- "mpg"`, ¿cómo puedes extraer esta variable de un tibble?
+<div class="solucion">
+<h3>Solución</h3>
+
+
+```{r}
+df <- data.frame(abc = 1, xyz = "a")
+df$x
+df[, "xyz"]
+df[, c("abc", "xyz")]
+```
+
+Ahora, convirtamos `df` en un tibble: 
+```{r}
+tbl <- as_tibble(df)
+```
+
+Y apliquemos las mismas operaciones:
+```{r}
+df$x
+df[, "xyz"]
+df[, c("abc", "xyz")]
+```
+
+
+</div>
+
+1. Si tienes el nombre de una variable guardada en un objeto, p.e., `var <- "horario_salida"`, ¿cómo puedes extraer esta variable de un tibble?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+Para exatraerla como tibble:
+```{r}
+vuelos[,var]
+```
+
+Para extraer los valores
+```{r}
+vuelos[[var]]
+```
+
+</div>
 
 1. Practica referenciar nombres no sintácticos en el siguiente data frame:
-
- 1. Extrayendo la variable llamada `1`.
-
- 1. Generando un gráfico de dispersión de `1` vs `2`.
-
- 1. Creando una nueva columna llamada `3` que sea el resultado de la división de `2` por `1`.
-
- 1. Renombrando las columnas como `uno`, `dos` y `tres`.
 
  ```{r}
 molesto <- tibble(
@@ -36,6 +91,59 @@ molesto <- tibble(
 )
  ```
 
+ 1. Extrayendo la variable llamada `1`.
+
+```{r}
+molesto$`1`
+```
+o
+```{r}
+molesto[["1"]]
+```
+
+
+ 1. Generando un gráfico de dispersión de `1` vs `2`.
+
+```{r}
+ggplot(molesto, aes(x = `1`, y = `2`)) + geom_point()
+```
+
+
+ 1. Creando una nueva columna llamada `3` que sea el resultado de la división de `2` por `1`.
+
+```{r}
+molesto <- mutate(molesto, `3` = `2` / `1`)
+```
+
+ 1. Renombrando las columnas como `uno`, `dos` y `tres`.
+
+```{r}
+rename(molesto, uno = `1`, dos = `2`, tres = `3`)
+```
+
+
 1. ¿Qué hace `tibble::enframe()`? ¿Cuándo lo usarías?
 
+<div class="solucion">
+<h3>Solución</h3>
+La función `enframe()` del paquete __tibble__ permite convertir vectores nombrados o listas en _data frames_ de una o dos columnas. Las columnas creadas tienen por nombre `name` (nombres) y `value` (valor).
+
+```{r}
+enframe(c(a = 5, b = 7, c = 9, d = 11))
+```
+
+</div>
+
 1. ¿Qué opción controla cuántos nombres de columnas adicionales se muestran al pie de un tibble?
+
+<div class="solucion">
+<h3>Solución</h3>
+A través del argumento `n_extra` se puede controlar cuántas columnas adicionales mostrar.
+
+```{r}
+print(vuelos, n_extra = 3)
+```
+
+En este [enlace](https://tibble.tidyverse.org/reference/formatting.html) puedes ver más información sobre las opciones para imprimir tibbles.
+
+</div>
