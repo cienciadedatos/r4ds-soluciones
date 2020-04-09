@@ -1,6 +1,12 @@
 # Funciones
 
 
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+
 ## ¿Cuándo deberías escribir una función?
 
 

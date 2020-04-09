@@ -1,7 +1,9 @@
 # Datos ordenados
 
-```{r}
-library(tibble)
+
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
 ```
 
 ## Datos ordenados

@@ -1,9 +1,8 @@
 # Visualización de datos
 
-## Paquetes necesarios
 
-```{r}
-library(ggplot2)
+```{r, include = FALSE}
+library(tidyverse)
 library(datos)
 ```
 

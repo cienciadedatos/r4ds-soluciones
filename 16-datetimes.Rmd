@@ -1,6 +1,12 @@
 # Horas y fechas
 
 
+```{r, include = FALSE}
+library(tidyverse)
+library(lubridate)
+library(datos)
+```
+
 ## Creando horas/fechas
 
 

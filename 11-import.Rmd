@@ -1,7 +1,9 @@
 # Importación de datos
 
-```{r setup, message = FALSE}
+
+```{r, include = FALSE}
 library(tidyverse)
+library(datos)
 ```
 
 ## Comenzando

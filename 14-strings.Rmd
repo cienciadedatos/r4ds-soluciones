@@ -1,6 +1,11 @@
 # Cadenas de caracteres
 
 
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
 ## Cadenas: elementos básicos
 
 

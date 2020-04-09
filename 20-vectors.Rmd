@@ -1,5 +1,12 @@
 # Vectores
 
+
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+
 ## Tipos importantes de vectores atómicos
 
 ###Ejercicios

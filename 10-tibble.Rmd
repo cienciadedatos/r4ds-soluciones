@@ -1,12 +1,13 @@
 # Tibbles
 
-```{r}
-library(tibble)
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
 ```
 
 ## Ejercicios
 
-1. ¿Cómo puedes saber si un objeto es un tibble? (Sugerencia: imprime `mtautos` en consola, que es un data frame clásico).
+1. ¿Cómo puedes saber si un objeto es un tibble? (Sugerencia: imprime `mtautos` en la consola, que es un data frame clásico).
 
 <div class="solucion">
 <h3>Solución</h3>

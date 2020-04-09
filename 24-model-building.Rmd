@@ -1,5 +1,12 @@
 # Construcción de modelos
 
+
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+
 ## Introducción
 
 ### Ejercicios

@@ -1,5 +1,12 @@
 # Análisis exploratorio de datos (_EDA_)
 
+
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+
 ## Introducción
 
 ### Ejercicios

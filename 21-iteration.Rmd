@@ -1,5 +1,12 @@
 # Iteración
 
+
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+
 ## Bucles _for_
 
 ### Ejercicios

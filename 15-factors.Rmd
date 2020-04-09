@@ -1,6 +1,12 @@
 # Factores
 
 
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+
 ## Encuesta social general
 
 ### Ejercicios
