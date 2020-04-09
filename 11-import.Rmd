@@ -143,8 +143,10 @@ En este caso, puede utilizarse `read_csv2()`, que espera un punto y coma como de
 <div class="solucion">
 <h3>Solución</h3>
 Si se define el mismo caracter para ambos, se genera un error que indica que deben ser diferentes:
-```{r}
+  
+```{r, eval = FALSE}
 locale(decimal_mark = ",", grouping_mark = ",")
+# Error: `decimal_mark` and `grouping_mark` must be different
 ```
 
 Si se `decimal_mark` se define como `,` el valor por defecto de `grouping_mark` cambia a `.`. Al revés pasa lo mismo: si `grouping_mark` se define como `.` entonces `decimal_mark` cambia a `,`.
