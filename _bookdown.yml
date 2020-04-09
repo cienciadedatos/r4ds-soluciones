@@ -1,2 +1,43 @@
 new_session: yes
 output_dir: docs
+
+rmd_files: [
+  "index.rmd",
+  "01-intro.Rmd",
+
+  "02-explore.Rmd",
+  "03-visualize.Rmd",
+  "04-workflow-basics.Rmd",
+  "05-transform.Rmd",
+  "06-workflow-scripts.Rmd",
+  "07-eda.Rmd",
+  "08-workflow-projects.Rmd",
+
+  "09-wrangle.Rmd",
+  "10-tibble.Rmd",
+  "11-import.Rmd",
+  "12-tidy.Rmd",
+  "13-relational-data.Rmd",
+  "14-strings.Rmd",
+  "15-factors.Rmd",
+  "16-datetimes.Rmd",
+
+  "17-program.Rmd",
+  "18-pipes.Rmd",
+  "19-functions.Rmd",
+  "20-vectors.Rmd",
+  "21-iteration.Rmd",
+
+  "22-model.Rmd",
+  "23-model-basics.Rmd",
+  "24-model-building.Rmd",
+  "25-model-many.Rmd",
+
+  "26-communicate.Rmd",
+  "27-rmarkdown.Rmd",
+  "28-communicate-plots.Rmd",
+  "29-rmarkdown-formats.Rmd",
+  "30-rmarkdown-workflow.Rmd"
+]
+
+before_chapter_script: "_common.R"

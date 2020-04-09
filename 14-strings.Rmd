@@ -12,6 +12,7 @@
     
 <div class="solucion">
 <h3>Solución</h3>
+
 `paste()` y `paste0()` se diferencian en la opción por defecto para separar los elementos que se concatenan. `paste()` deja un espacio; `paste0()` no.
 
 ```{r}

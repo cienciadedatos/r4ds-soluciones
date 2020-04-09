@@ -86,7 +86,7 @@ Los gráficos de dispersión debieran usarse con variables continuas y cuando lo
 
    ```{r}
    ggplot(data = millas) +
-     geom_point(mapping = aes(x = motor, y = autopista, color = "blue"))
+     geom_point(mapping = aes(x = cilindrada, y = autopista, color = "blue"))
    ```
 
 <div class="solucion">
@@ -97,7 +97,7 @@ Se incluyó el color dentro de `aes()`, por lo cual se trata como una variable, 
 Para dejar todos los puntos en color azul, se debe cambiar el orden de los parámetros.
 ```{r}
 ggplot(data = millas) +
-     geom_point(mapping = aes(x = motor, y = autopista), color = "blue")
+     geom_point(mapping = aes(x = cilindrada, y = autopista), color = "blue")
 ```
 </div>
 
@@ -108,7 +108,7 @@ ggplot(data = millas) +
 
 Variables categóricas: modelo, transmisión, tracción, combustible y clase.
 
-Variables continuas: motor, año, cilindros, ciudad, autopista.
+Variables continuas: cilindrada, año, cilindros, ciudad, autopista.
 </div>
 
 3. Asigna una variable continua a `color`, ` size`, y `shape`. ¿Cómo se comportan estas estéticas de manera diferente para variables categóricas y variables continuas?
@@ -119,7 +119,7 @@ Variables continuas: motor, año, cilindros, ciudad, autopista.
 Una posibilidad es graficar rendimiento de combustible en autopista dado el tipo de motor. Como información adicional usamos el rendimiento en ciudad como color, de modo de contar con una paleta de colores informativa.
 
 ```{r}
-ggplot(millas, aes(x = motor, y = autopista, colour = ciudad)) +
+ggplot(millas, aes(x = cilindrada, y = autopista, colour = ciudad)) +
   geom_point()
 ```
 
@@ -134,7 +134,7 @@ Los otros casos quedan como ejercicio.
 R va a generar un gráfico con información redundante, lo cual se debiera evitar.
 
 ```{r}
-ggplot(millas, aes(x = motor, y = autopista, colour = autopista, size = autopista)) +
+ggplot(millas, aes(x = cilindrada, y = autopista, colour = autopista, size = autopista)) +
   geom_point()
 ```
 </div>
@@ -153,16 +153,16 @@ ggplot(mtautos, aes(peso, millas)) +
 ```
 </div>
 
-6. ¿Qué ocurre si se asigna o mapea una estética a algo diferente del nombre de una variable, como ser `aes(color = motor < 5)`?
+6. ¿Qué ocurre si se asigna o mapea una estética a algo diferente del nombre de una variable, como ser `aes(color = cilindrada < 5)`?
 
 <div class="solucion">
 <h3>Solución</h3>
 
-R crea una variable temporal que da cuenta de la evaluación de la variable. En el caso de `motor < 5` el resultado es verdadero o falso y según esto se incluyen los colores en el gráfico.
+R crea una variable temporal que da cuenta de la evaluación de la variable. En el caso de `cilindrada < 5` el resultado es verdadero o falso y según esto se incluyen los colores en el gráfico.
 
 Ejemplo:
 ```{r ex.3.3.1.6}
-ggplot(millas, aes(x = motor, y = autopista, colour = motor < 5)) +
+ggplot(millas, aes(x = cilindrada, y = autopista, colour = cilindrada < 5)) +
   geom_point()
 ```
 </div>
@@ -220,11 +220,11 @@ ggplot(data = millas) +
 
    ```{r eval = FALSE}
    ggplot(data = millas) +
-     geom_point(mapping = aes(x = motor, y = autopista)) +
+     geom_point(mapping = aes(x = cilindrada, y = autopista)) +
      facet_grid(traccion ~ .)
    
    ggplot(data = millas) +
-     geom_point(mapping = aes(x = motor, y = autopista)) +
+     geom_point(mapping = aes(x = cilindrada, y = autopista)) +
      facet_grid(. ~ cilindros)
    ```
    
@@ -236,7 +236,7 @@ Por ejemplo, `autopista ~ .` divide por los valores de `autopista` en el eje y.
 
 ```{r ex.3.5.1.4.a}
 ggplot(data = millas) +
-  geom_point(mapping = aes(x = motor, y = autopista)) +
+  geom_point(mapping = aes(x = cilindrada, y = autopista)) +
   facet_grid(traccion ~ .)
 ```
 
@@ -244,7 +244,7 @@ A la vez, `. ~ cilindrada` va a dividir por los valores de `cyl` en el eje x.
 
 ```{r ex.3.5.1.4.b}
 ggplot(data = millas) +
-  geom_point(mapping = aes(x = motor, y = autopista)) +
+  geom_point(mapping = aes(x = cilindrada, y = autopista)) +
   facet_grid(. ~ cilindros)
 ```
 </div>
@@ -253,7 +253,7 @@ ggplot(data = millas) +
 
    ```{r, eval = FALSE}
    ggplot(data = millas) +
-     geom_point(mapping = aes(x = motor, y = autopista)) +
+     geom_point(mapping = aes(x = cilindrada, y = autopista)) +
      facet_wrap(~ clase, nrow = 2)
    ```
 
@@ -268,7 +268,7 @@ En el siguiente gráfico muestra la variable `clase` como color.
 
 ```{r}
 ggplot(data = millas) +
-  geom_point(mapping = aes(x = motor, y = autopista, color = clase))
+  geom_point(mapping = aes(x = cilindrada, y = autopista, color = clase))
 ```
 
 La ventaja de usar `clase` como parte de las facetas en lugar de un argumento de color
@@ -342,7 +342,7 @@ Hacerlo genera más espacio para las columnas si el gráfico se ubica de forma h
 Luego, ejecuta el código en R y verifica tus predicciones.
 
  ```{r, eval = FALSE}
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista, color = traccion)) +
+   ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista, color = traccion)) +
      geom_point() +
      geom_smooth(se = FALSE)
  ```
@@ -350,12 +350,12 @@ Luego, ejecuta el código en R y verifica tus predicciones.
 <div class="solucion">
 <h3>Solución</h3>
 
-El resultado es un diagrama de dispersión con `motor` en el eje x, `autopista` en el eje y
+El resultado es un diagrama de dispersión con `cilindrada` en el eje x, `autopista` en el eje y
 y los puntos pintados de acuerdo a `traccion`.
 También se incluirá una línea de tendencia, sin el error estándar, para cada grupo de `traccion`. 
 
 ```{r echo=TRUE}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista, colour = traccion)) +
   geom_point() +
   geom_smooth(se = FALSE)
 ```
@@ -373,7 +373,7 @@ Considera el siguiente ejemplo ya visto:
 ```{r}
 ggplot(data = millas) +
   geom_smooth(
-    mapping = aes(x = motor, y = autopista, colour = traccion),
+    mapping = aes(x = cilindrada, y = autopista, colour = traccion),
     show.legend = FALSE
   )
 ```
@@ -382,7 +382,7 @@ Quitar el argumento `show.legend` o definir `show.legend = TRUE` mostrará la re
 
 ```{r}
 ggplot(data = millas) +
-  geom_smooth(mapping = aes(x = motor, y = autopista, colour = traccion))
+  geom_smooth(mapping = aes(x = cilindrada, y = autopista, colour = traccion))
 ```
 
 En el capítulo, la leyenda se suprime ya que con tres gráficos, agregar una leyenda al tercero hará que se vea de distinto tamaño.
@@ -402,7 +402,7 @@ En el ejemplo, la leyenda no es necesaria ya que buscar los valores asociados a 
 Agrega las bandas de error estándar a las líneas.
 
 ```{r}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista, colour = traccion)) +
   geom_point() +
   geom_smooth(se = TRUE)
 ```
@@ -410,7 +410,7 @@ ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)
 Por defecto la opción es `se = TRUE`:
 
 ```{r}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista, colour = traccion)) +
   geom_point() +
   geom_smooth()
 ```
@@ -419,13 +419,13 @@ ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)
 5. ¿Se verán distintos estos gráficos? ¿Por qué sí o por qué no?
 
    ```{r, eval = FALSE}
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
      geom_point() +
      geom_smooth()
    
    ggplot() +
-     geom_point(data = millas, mapping = aes(x = motor, y = autopista)) +
-     geom_smooth(data = millas, mapping = aes(x = motor, y = autopista))
+     geom_point(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
+     geom_smooth(data = millas, mapping = aes(x = cilindrada, y = autopista))
    ```
    
 <div class="solucion">
@@ -434,42 +434,42 @@ ggplot(data = millas, mapping = aes(x = motor, y = autopista, colour = traccion)
 No. `geom_point()` y `geom_smooth()` toman los datos y estéticas de `ggplot()`, por lo que no hace falta especificar lo mismo dos veces.
 
 ```{r}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
   geom_point() +
   geom_smooth()
 ```
 
 ```{r}
 ggplot() +
-  geom_point(data = millas, mapping = aes(x = motor, y = autopista)) +
-  geom_smooth(data = millas, mapping = aes(x = motor, y = autopista))
+  geom_point(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
+  geom_smooth(data = millas, mapping = aes(x = cilindrada, y = autopista))
 ```
 </div>
 
 6. Recrea el código R necesario para generar los siguientes gráficos:
 
    ```{r echo = FALSE, fig.width = 3, out.width = "50%", fig.align = "default", message = FALSE}
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
      geom_point() +
      geom_smooth(se = FALSE)
    
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
      geom_smooth(aes(group = traccion), se = FALSE) +
      geom_point()
    
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista, color = traccion)) +
+   ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista, color = traccion)) +
      geom_point() +
      geom_smooth(se = FALSE)
 
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
      geom_point(aes(color = traccion)) +
      geom_smooth(se = FALSE)
 
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
      geom_point(aes(color = traccion)) +
      geom_smooth(aes(linetype = traccion), se = FALSE)
    
-   ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+   ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
      geom_point(size = 4, colour = "white") +
      geom_point(aes(colour = traccion))
    ```
@@ -478,37 +478,37 @@ ggplot() +
 <h3>Solución</h3>
 
 ```{r message=FALSE}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
    geom_point() +
    geom_smooth(se = FALSE)
 ```
 
 ```{r message=FALSE}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
    geom_smooth(aes(group = traccion), se = FALSE) +
    geom_point()
 ```
 
 ```{r message=FALSE}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista, color = traccion)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista, color = traccion)) +
    geom_point() +
    geom_smooth(se = FALSE)
 ```
 
 ```{r message=FALSE}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
    geom_point(aes(color = traccion)) +
    geom_smooth(se = FALSE)
 ```
 
 ```{r}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
    geom_point(aes(color = traccion)) +
    geom_smooth(aes(linetype = traccion), se = FALSE)
 ```
 
 ```{r}
-ggplot(data = millas, mapping = aes(x = motor, y = autopista)) +
+ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
    geom_point(size = 4, colour = "white") +
    geom_point(aes(colour = traccion))
 ```

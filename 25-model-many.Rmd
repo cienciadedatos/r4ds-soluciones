@@ -2,7 +2,7 @@
 
 ## Paquetes necesarios
 
-```{r}
+```{r, message=FALSE}
 library(dplyr)
 library(tidyr)
 library(purrr)

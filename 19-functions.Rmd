@@ -4,11 +4,22 @@
 ## ¿Cuándo deberías escribir una función?
 
 
-### Práctica
+### Ejercicios
 
 1. ¿Por qué `TRUE` no es un parámetro para `rescale01()`? ¿Qué pasaría si `x` está contenido en un valor único perdido y `na.rm` fuese `FALSE`?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. En la segunda variante de `rescale01()`, los valores infinitos se dejan sin cambio. Reescribe `rescale01()` así `-Inf` is convertido a 0, y `Inf` es convertido a 1.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 1. Practica convertir los siguientes fragmentos de código en funciones. Piensa en lo que hace cada función. ¿Cómo lo llamarías? ¿Cuántos argumentos necesita? ¿Puedes reescribirlo para ser más expresivo o menos duplicado?
 
@@ -19,11 +30,28 @@
 
  sd(x, na.rm = TRUE) / mean(x, na.rm = TRUE)
  ```
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 
 1. Sigue <http://nicercode.github.io/intro/writing-functions.html>
 para escribir tus propias funciones para computar la variancia y el sesgo de un vector numérico.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. Escribe `both_na()`, una función que toma dos vectores de la misma longitud y retorna el número de posiciones que tiene `NA` en ambos vectores.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 
 1. ¿Qué hacen las siguientes funciones? ¿Por qué son tan útiles aún cuando son tan cortas?
 
@@ -32,9 +60,20 @@ para escribir tus propias funciones para computar la variancia y el sesgo de un 
  is_readable <- function(x) file.access(x, 4) == 0
  ```
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. Lee el [complete lyrics](https://en.wikipedia.org/wiki/Little_Bunny_Foo_Foo)
  de "Pequeño conejito Foo Foo". There's a lot of duplication in this song.
  Extiende el ejemplo inicial de pipes para recrear la canción completa, usar las funciones para reducir la duplicación.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 
 ## Las funciones son para los humanos y las computadoras
@@ -56,12 +95,32 @@ para escribir tus propias funciones para computar la variancia y el sesgo de un 
  rep(y, length.out = length(x))
  }
  ```
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 
 1. Toma una función que hayas escrito recientemente y tómate 5 minutos para pensar un mejor nombre para la función y para sus argumentos.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1. Compara y contrasta `rnorm()` y `MASS::mvrnorm()`. ¿Cómo podrías hacerlas más consistentes?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1. Argumenta porqué `norm_r()`,`norm_d()` etc sería una mejor opción que `rnorm()`, `dnorm()`. Argumenta lo contrario.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 ## Ejecución condicional
 
@@ -70,10 +129,25 @@ para escribir tus propias funciones para computar la variancia y el sesgo de un 
 
 1. ¿Cuál es la diferencia entre `if` and `ifelse()`? Lea cuidadosamente la ayuda y construya tres ejemplos que ilustren las diferencias claves.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 
 1. Escriba una función de saludo que diga "buenos días", "buenas tardes" o "buenas noches", según la hora del día. (Sugerencia: use un argumento de tiempo que por defecto es `lubridate::now()`, eso hará que sea más fácil probar su función).
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1. Implemente una función `fizzbuzz`. Toma un solo número como entrada. Si el número es divisible por tres, devuelve "fizz". Si es divisible por cinco, devuelve "buzz". Si es divisible por tres y cinco, devuelve "fizzbuzz". De lo contrario, devuelve el número. Asegúrese de escribir primero el código de trabajo antes de crear la función.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 1. ¿Cómo podría usar `cut()` para simplificar una sentencia if-else anidada?
 
@@ -93,7 +167,19 @@ para escribir tus propias funciones para computar la variancia y el sesgo de un 
 
  ¿Cómo cambiarías la sentencia a `cut()` si hubieras usado `<`en lugar de `<=`? ¿Cuál es la otra ventaja principal de `cut()` para este problema? (Sugerencia: ¿qué sucede si tienes muchos valores en `temp`?)
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. ¿Qué sucedería si usaras `switch()` con un valor numérico?
+
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 1. ¿Qué haría la sentencia `switch()`? ¿Qúe sucedería si `x` fuera “e”?
 
@@ -106,8 +192,13 @@ para escribir tus propias funciones para computar la variancia y el sesgo de un 
  )
  ```
 
+
  Experimente, luego lea cuidadosamente la documentación.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 ## Function arguments
 
@@ -116,11 +207,30 @@ para escribir tus propias funciones para computar la variancia y el sesgo de un 
 
 1. ¿Qué realizan las `commas(letters, collapse = "-")`? ¿Por qué?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1. Sería bueno si se pudiera suplantar múltiples caracteres al argumento `pad`,
  ej., `rule("Title", pad = "-+")`. ¿Por qué esto actualmente no funciona? ¿Cómo podrías solucionarlo?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1. ¿Qué realiza el argumento `trim` a la función `mean()`? ¿Cuándo podrías utilizarla?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 1. El valor de defecto para el argumento `method` a `cor()` es
  `c("pearson", "kendall", "spearman")`. ¿Qué significa esto? ¿Qué valor se utiliza por defecto?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>

@@ -10,6 +10,12 @@ library(tibble)
 
 1. Usando prosa, describe como las variables y observaciones se organizan en las tablas de ejemplo.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. Calcula la `tasa` para las tablas `tabla2` y `tabla4a` + `tabla4b`.
  Necesitarás las siguientes operaciones:
 
@@ -20,9 +26,21 @@ library(tibble)
 
  ¿Cuál representación es más fácil de trabajar? ¿Cuál es la más difícil? ¿Por qué?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. Recrea el gráfico que muestra el cambio en el número de casos usando la `tabla2` en lugar de la `tabla1`. ¿Qué debes hacer en primer lugar?
 
-## Reunir y Esparcir
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+## Reunir y Esparcir [HAY QUE ACTUALIZAR ESTOS EJERCICIOS A LAS FUNCIONES PIVOT]
 
 ### Ejercicios
 
@@ -90,11 +108,29 @@ tibble(x = c("a,b,c", "d,e", "f,g,i")) %>%
   separate(x, c("one", "two", "three"))
  ```
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. Tanto `unite()` como `separate()` tienen un argumento `remove`. ¿Qué es lo que hace?
 ¿Por qué lo dejarías en `FALSE`?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. Compara y contrasta `separate()` y `extract()`. ¿Por qué existen tres variaciones de
 separación (por posición, separador y grupos), pero solo una forma de unir?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 
 ## Valores faltantes
 
@@ -102,7 +138,19 @@ separación (por posición, separador y grupos), pero solo una forma de unir?
 
 1. Compara y contrasta el argumento `fill` que se usa en `spread()` con `complete()`.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. ¿Qué hace el argumento de dirección en `fill()`?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 
 ## Estudio de caso
 
@@ -110,9 +158,31 @@ separación (por posición, separador y grupos), pero solo una forma de unir?
 
 1. En este caso de estudio fijamos `na.rm = TRUE` para simplificar la verificación de que tenemos los valores correctos. ¿Es esto razonable? Piensa en como los valores faltantes están representados en este dataset. ¿Existen valores faltantes implícitos? ¿Cuál es la diferencia entre `NA` y cero?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. ¿Qué ocurre si omites la aplicación de `mutate()`?
  (`mutate(clave = stringr::str_replace(clave, "nuevosrecaida", "nuevos_recaida"))`)
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
 1. Afirmamos que `iso2` e `iso3` son redundantes respecto a `pais`. Confirma esta premisa.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1. Para cada país, año y sexo calcula el total del número de casos de tuberculosis. Crea una visualización informativa de los datos.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
