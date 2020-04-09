@@ -72,12 +72,12 @@ df[, c("abc", "xyz")]
 <h3>Solución</h3>
 
 Para exatraerla como tibble:
-```{r}
+```{r, eval = FALSE}
 vuelos[,var]
 ```
 
 Para extraer los valores
-```{r}
+```{r, eval = FALSE}
 vuelos[[var]]
 ```
 
@@ -85,12 +85,12 @@ vuelos[[var]]
 
 1. Practica referenciar nombres no sintácticos en el siguiente data frame:
 
- ```{r}
+```{r}
 molesto <- tibble(
   `1` = 1:10,
   `2` = `1` * 2 + rnorm(length(`1`))
 )
- ```
+```
 
  1. Extrayendo la variable llamada `1`.
 
