@@ -1,7 +1,12 @@
 # Flujo de trabajo: conocimientos básicos
 
 
-## Práctica
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+## Ejercicios
 
 1.  ¿Por qué no funciona este código?
 

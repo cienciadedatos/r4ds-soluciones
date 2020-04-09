@@ -1,5 +1,12 @@
 # Transformación de datos {#transform}
 
+
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+
 ## Filtrar flas con `filter()`
 
 

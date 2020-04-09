@@ -1,5 +1,12 @@
 # Análisis exploratorio de datos (_EDA_)
 
+
+```{r, include = FALSE}
+library(tidyverse)
+library(datos)
+```
+
+
 ## Introducción
 
 ### Ejercicios
@@ -8,26 +15,57 @@
     en el set de datos `diamantes`. ¿Qué aprendiste? Piensa en un diamante y cómo decidirías
     qué dimensiones corresponden a la longitud, ancho y profundidad.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  Explora la distribución de `precio`. ¿Ves algo inusual 
     o sorprendente? (Sugerencia: Piensa detenidamente en `binwidth` y asegúrate
     de usar un rango largo de valores.)
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  ¿Cuántos diamantes tienen 0.99 quilates? ¿Cuántos son de 1 quilate? ¿Qué piensas 
     que puede ser la causa de dicha diferencia?
-    
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  Compara y contrasta `coord_cartesian()` contra `xlim()` o `ylim()` en cuanto 
     a acercar la imagen en un histograma. ¿Qué pasa si no modificas el valor de `binwidth`?
     ¿Qué pasa si intentas acercar la imagen de manera que solo aparezca la mitad de una barra?
-    
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+ 
 ## Valores faltantes
 
+[Esta sección no incluye ejercicios]
 
 ### Ejercicios
 
 1.  ¿Qué sucede con los valores faltantes en un histograma? ¿Qué pasa con los valores
     faltantes en una gráfica de barras? ¿Cuál es la razón detrás de esta diferencia?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  ¿Qué efecto tiene usar `na.rm = TRUE` en `mean()` (_media_) y `sum()`(_suma_)?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 ## Covariación
 
@@ -36,13 +74,28 @@
 1.  Usa lo que has aprendido para mejorar la visualización de los tiempos de salida 
     de los vuelos cancelados versus los no cancelados.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  ¿Qué variable del conjunto de datos de diamantes es más importante para predecir
     el precio de un diamante? ¿Cómo está correlacionada esta variable con el corte?
     ¿Por qué la combinación de estas dos relaciones conlleva que los diamantes de 
     menor calidad sean más costosos?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  Instala el paquete **ggstance**, y crea un diagrama de caja horizontal. 
     ¿Cómo se compara esto a usar `coord_flip()`?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 1.  Un problema con los diagramas de caja es que fueron desarrollados en un tiempo en que 
     los sets de datos eran más pequeños y por ende tienden a mostrar un número muy grande de 
@@ -51,14 +104,29 @@
     `geom_lv()` para mostrar la distribución de precio vs corte. ¿Qué observas?
     ¿Cómo intepretas los gráficos?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  Compara y contrasta `geom_violin()` con un `geom_histogram()` dividido en facetas,
     o un `geom_freqpoly()` codificado por colores. ¿Cuáles son las ventajas y desventajas de
     cada método?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 1.  Si tu set de datos es pequeño, a veces resulta útil usar `geom_jitter()`
     para ver la relación entre una variable continua y una discreta.
     El paquete **ggbeeswarm** provee de un número de métodos similares a 
     `geom_jitter()`. Enlístalos y describe brevemente qué hace cada uno.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 ## Dos variables discretas
 
@@ -67,12 +135,29 @@
 1.  ¿Cómo podrías cambiar la escala del conjunto de datos anterior para mostrar de manera más clara
     la distribución del corte dentro del color, o del color dentro de la variable corte?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  Usa `geom_tile()` junto con *dplyr* para explorar la variación del retraso promedio 
     de los vuelos en relación al destino y mes del año. ¿Qué hace que este gráfico
     sea difícil de leer? ¿Cómo podrías mejorarlo?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  ¿Por qué es un poco mejor usar `aes(x = color, y = corte)` en lugar de
     `aes(x = corte, y = color)` en el ejemplo anterior?
+
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 
 ## Dos variables continuas
 
@@ -83,13 +168,33 @@
     en comparación con `cut_number()`? ¿Qué impacto tiene este parámetro en la visualización 
     bidimensional de `quilate` y `precio`?
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  Visualiza la distribución de `quilate`, segmentada según la variable `precio`.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 1.  ¿Cómo es la distribución del precio de diamantes muy grandes en comparación con
     aquella de diamantes más pequeños? ¿Es como esperabas, o te resulta sorprendente?
-    
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1.  Combina dos de las técnicas que has aprendido para visualizar
     la distribución combinada de las variables `corte`, `quilate` y `precio`.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
 
 1. Los gráficos bidimensionales revelan observaciones atípicas que podrían no ser visibles en 
    gráficos unidimensionales. Por ejemplo, algunos puntos en la gráfica a continuación tienen
@@ -105,3 +210,7 @@
     ¿Por qué es mejor usar un diagrama de dispersión que un diagrama basado en rangos en este caso?
 
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>

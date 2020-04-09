@@ -53,7 +53,7 @@ clima de los aeropuertos de EEUU que están presentes en la tabla `vuelos`.
 </div>
 
 1. Sabemos que hay días "especiales" en el año y pocas personas vuelan esos
- días. ¿Cómo se representarían en un data frame? ¿Cuáles serían las llaves
+ días. ¿Cómo se representarían en un data frame? ¿Cuáles serían las claves
  primarias de esa tabla? ¿Cómo se conectaría con las tablas existentes?
    
 <div class="solucion">
@@ -64,11 +64,11 @@ mes y día. Esta información se puede unir con cada vuelo en la tabla `vuelos` 
 y a la vez con el dataset `clima`.
 </div>
 
-## Llaves
+## Claves
 
 ### Ejercicios
 
-1. Agrega una llave sustituta a `vuelos`.
+1. Agrega una clave sustituta a `vuelos`.
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -80,7 +80,7 @@ vuelos %>%
 ```
 </div>
 
-1. Identifica las llaves en los siguientes conjuntos de datos
+1. Identifica las claves en los siguientes conjuntos de datos
 
  1. `datos::bateadores`
  1. `datos::nombres`
@@ -99,7 +99,7 @@ vuelos %>%
  1. En `datos::atmosfera` corresponde a  latitud`, `longitud`, `anio` y `mes`,
   lo cual identifica de manera única un lugar en el tiempo.
  1. En `datos::vehiculos` corresponde a `id`.
- 1. En `datos::diamantes` no hay llaves ya que estas tienen sentido en datos
+ 1. En `datos::diamantes` no hay claves ya que estas tienen sentido en datos
  relacionales, es decir cuando existen otras tablas para combinar información.
 </div>
 
@@ -520,33 +520,4 @@ aviones_transferidos
 
 ## Problemas de las uniones
 
-Los datos con los que has estado trabajando en este capítulo han sido limpiados de modo que tengas el mínimo de problemas posibles. Tus propios datos difícilmente estarán tan ordenados, por lo que hay algunas consideraciones y pasos a tener en cuenta para que las uniones sobre tus propios datos funcionen adecuadamente.
-
-1. Comienza identificando las variables que forman las llaves primarias en cada tabla.
-   Usualmente debieras hacerlo basado en tus conocimientos de los datos, no observando 
-   empíricamente las combinaciones de variables que resultan en un identificador único. 
-   Si te centras en las variables sin pensar en sus significados, puedes tener la mala 
-   suerte de encontrar una combinación única en tus datos pero dicha relación puede no ser válida en general.
-
-   Por ejemplo, la altura y la longitud identifican de manera única cada aeropuerto, ¡pero 
-   no son buenos identificadores!
-
- ```{r}
-aeropuertos %>% count(altura, longitud) %>% filter(n > 1)
- ```
-
-1. Verifica que ninguna de las variables en la llave primaria esté perdida. 
-   ¡Si un valor está perdido no puede identificar una observación!
-
-1. Verifica que las llaves foráneas coinciden con las llaves primarias en 
-   otra tabla. La mejor forma de hacerlo es mediante `anti_join()`. Es común 
-   que las llaves no coincidan debido a errores en la entrada de datos. Arreglar 
-   este problema requiere mucho trabajo.
-
-   Si tienes llaves perdidas, debes ser cuidadoso respecto del uso de unión interior 
-   versus unión exterior y considerar cuidadosamente si quieres descartar las observaciones 
-   que no tienen coincidencias.
-   
-   Ten en cuenta que verificiar el número de filas antes y después de unir no es suficiente para asegurar 
-   que la unión funcionó de forma exitosa. Si tienes una unión interior con llaves duplicadas en ambas tablas, 
-   puedes tener la mala suerte de que el número de filas descartadas sea igual al número de filas duplicadas.
+[sección sin ejercicios]

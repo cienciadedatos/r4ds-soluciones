@@ -2,7 +2,7 @@
 
 ## Paquetes necesarios
 
-```{r}
+```{r, message=FALSE}
 library(tibble)
 library(ggplot2)
 library(purrr)

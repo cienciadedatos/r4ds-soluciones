@@ -31,6 +31,11 @@
  1. Agregar una linea horizontal.
  1. Agregar una cita en bloque.
 
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 1. Copia y pega los contenidos de `diamond-sizes.Rmd` desde
  <https://github.com/hadley/r4ds/tree/master/rmarkdown> a un documento local de R Markdown. Revisa que puedes ejecutarlo, agrega texto despues del poligono de frecuencias que describa sus características más llamativas.
 

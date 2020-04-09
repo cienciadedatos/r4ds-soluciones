@@ -1,5 +1,3 @@
 # (PART) Modelar {-}
 
-# Introducción {#model-intro}
-
-Este capítulo no tiene ejercicios
+[Esta sección no tiene ejercicios]
