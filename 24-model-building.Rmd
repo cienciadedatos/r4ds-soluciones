@@ -60,7 +60,7 @@ library(datos)
 1.  ¿Qué representan esos tres días con altos residuos positivos?
    ¿Cómo se generalizarían esos días a otros años?
 
-    ```{r}
+    ```{r, eval = FALSE}
     vuelos_por_dia %>% 
       top_n(3, resid)
     ```
