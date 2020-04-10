@@ -1,7 +1,8 @@
 # Transformación de datos {#transform}
 
+## Introducción
 
-```{r, include = FALSE}
+```{r, message = FALSE}
 library(tidyverse)
 library(datos)
 ```

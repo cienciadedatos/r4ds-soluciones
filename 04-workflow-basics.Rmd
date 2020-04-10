@@ -1,11 +1,5 @@
 # Flujo de trabajo: conocimientos básicos
 
-
-```{r, include = FALSE}
-library(tidyverse)
-library(datos)
-```
-
 ## 4.4 Ejercicios{-#ejercicios-41} 
 
 1.  ¿Por qué no funciona este código?

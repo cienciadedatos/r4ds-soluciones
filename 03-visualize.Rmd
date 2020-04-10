@@ -1,7 +1,8 @@
 # Visualización de datos
 
+## Introducción
 
-```{r, include = FALSE}
+```{r, message = FALSE}
 library(tidyverse)
 library(datos)
 ```
@@ -19,7 +20,7 @@ library(datos)
 ggplot(data = millas)
 ```
 
-Este código crea un gráfico vacío. Como no se han especificado las capas mediante `geom_*()`, no se dibuja sobre el fondo. 
+Este código crea un gráfico "vacío". Solo se ve el fondo, pero no se dibuja nada sobre él porque no se han especificado las otras dos capas mínimas: `aes()` para mapear las variables y `geom_*()` para indicar la representación gráfica a utilizar.
 </div>
 
 2. ¿Cuántas filas hay en `millas`? ¿Cuántas columnas?
@@ -27,12 +28,24 @@ Este código crea un gráfico vacío. Como no se han especificado las capas medi
 <div class="solucion">
 <h3>Solución</h3>
 
-Hay `r nrow(millas)` filas y `r ncol(millas)` columnas en `millas`.
+Para contar el número de filas y columas podemos utilizar las funciones `nrow()` y `ncol()` del paquet dplyr: 
 
 ```{r}
 nrow(millas)
 ncol(millas)
 ```
+
+Hay `r nrow(millas)` filas y `r ncol(millas)` columnas en el dataset `millas`.
+
+Otra manera de ver el número de filas y de columnas es imprimiendo el objeto en la consola. Al inicio nos indicará el tipo de objeto que es y sus dimensiones en términos de `filas x columnas`. Algo parecido ocurrirá su utilizamos `str()`. Si usamos `glimpse()` nos indicará esta información como número de obervaciones y número de variables
+
+```{r}
+millas
+str(millas)
+glimpse(millas)
+```
+
+
 </div>
 
 3. ¿Qué describe la variable `traccion`? Lee la ayuda de `?millas` para encontrar la respuesta.

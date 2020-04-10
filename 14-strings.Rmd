@@ -177,7 +177,6 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 <h3>Solución</h3>
 
 ```{r}
-str_view("$^$", "\\$\\^\\$")
 ```
 
 
@@ -440,6 +439,12 @@ str_view("$^$", "\\$\\^\\$")
 <div class="solucion">
 <h3>Solución</h3>
 
+```{r}
+x <- c("manzanas, peras y bananas")
+str_split(x, "(, )|( y )")
+```
+
+
 </div> 
 
 2.  ¿Por qué es mejor dividir utilizando `boundary("palabra")` en vez de `" "`?
@@ -489,6 +494,15 @@ str_view("$^$", "\\$\\^\\$")
 <div class="solucion">
 <h3>Solución</h3>
 
+Las funciones que nos sirven en cada uno de estos casos son:
+
+```{r, eval = FALSE}
+stringi::stri_count_words()
+stringi::stri_duplicated(palabras)
+stringi::stri_rand_lipsum()
+```
+
+
 </div> 
 
 
@@ -496,6 +510,13 @@ str_view("$^$", "\\$\\^\\$")
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Podemos controlar la lengua que se utiliza en `stri_sort()` con el argumento `locale`. El archivo de ayuda de esta función propone el siguiente ejemplo para ilustrar este comportamiento:
+
+```{r}
+stringi::stri_sort(c("hladny", "chladny"), locale="pl_PL")
+stringi::stri_sort(c("hladny", "chladny"), locale="sk_SK")
+```
 
 </div> 
 
