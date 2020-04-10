@@ -1,3 +1,4 @@
 # (PART) Modelar {-}
 
-[Esta sección no tiene ejercicios]
+# Introducción
+Sección sin ejercicios.

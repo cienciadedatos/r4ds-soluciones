@@ -7,10 +7,10 @@ library(datos)
 ```
 
 
-## Filtrar flas con `filter()`
+## 5.2 Filtrar filas con `filter()` {-#filter} 
 
+### 5.2.4 Ejercicios{-#ejercicios-524} 
 
-### Ejercicios
 
 1.  Encuentra todos los vuelos que:
 
@@ -137,9 +137,11 @@ $x ^ 0 = 1$, por lo que `NA ^ 0 == 1`
 
 </div>
 
-## Reordenar las filas con `arrange()`
 
-### Ejercicios
+## 5.3 Reordenar las filas con `arrange()` {-#arrange} 
+
+### 5.3.1 Ejercicios{-#ejercicios-531} 
+
 
 1. ¿Cómo podrías usar `arrange()` para ordenar todos los valores faltantes al comienzo? (Sugerencia: usa `is.na()`).
 
@@ -180,29 +182,19 @@ arrange(vuelos, atraso_salida)
 
 </div>
 
-4. ¿Cuáles vuelos viajaron más tiempo? ¿Cuál viajó menos tiempo?
+4. ¿Cuáles vuelos viajaron más lejos? ¿Cuál viajó menos cerca?
 
 <div class="solucion">
 <h3>Solución</h3>
 
-Podemos identificar estos vuelos a través de la variable `tiempo_vuelo`. Aquellos que estuvieron viajando más tiempo fueron:
-```{r}
-arrange(vuelos, desc(tiempo_vuelo))
-```
-
-Los que viajaron menos tiempo:
-
-```{r}
-arrange(vuelos, tiempo_vuelo)
-```
-
 
 </div>
 
-## Seleccionar columnas con `select()` {#select}
+
+## 5.4 Seleccionar columnas con `select()` {-#select}
 
 
-### Ejercicios
+### 5.4.1 Ejercicios{-#ejercicios-541} 
 
 1. Haz una lluvia de ideas de tantas maneras como sea posible para seleccionar `horario_salida`,` atraso_salida`,`horario_llegada`, y` atraso_llegada` de `vuelos`.
 
@@ -265,10 +257,11 @@ select(vuelos, contains("SALIDA", ignore.case = FALSE))
 
 </div>
 
-## Añadir nuevas variables con `mutate()`
+
+## 5.5 Añadir nuevas variables con `mutate()` {-#mutate} 
 
 
-### Ejercicios
+### 5.5.2 Ejercicios{-#ejercicios-552} 
 
 ```{r, eval = FALSE, echo = FALSE}
 vuelos <- vuelos %>% mutate(
@@ -327,22 +320,28 @@ ggplot(vuelos, aes(tiempo_vuelo - tiempo_vuelo2)) + geom_histogram()
 
 </div>
 
-## Resúmenes agrupados con `summarise()`
+## 5.6 Resúmenes agrupados con `summarise()` {-#sumamarise} 
 
+### 5.6.7 Ejercicios{-#ejercicios-567} 
 
-### Ejercicios
 
 1.   Haz una lluvia de ideas de al menos 5 formas diferentes de evaluar las características de un retraso típico de un grupo de vuelos. Considera los siguientes escenarios:
  
-    * Un vuelo llega 15 minutos antes 50% del tiempo, y 15 minutos tarde 50% del tiempo.
+    *Un vuelo llega 15 minutos antes 50% del tiempo, y 15 minutos tarde 50% del tiempo.
 
-    * Un vuelo llega siempre 10 minutos tarde.
+    *Un vuelo llega siempre 10 minutos tarde.
 
-    * Un vuelo llega 30 minutos antes 50% del tiempo, y 30 minutos tarde 50% del tiempo.
+    *Un vuelo llega 30 minutos antes 50% del tiempo, y 30 minutos tarde 50% del tiempo.
 
-    * Un vuelo llega a tiempo en el 99% de los casos. 1% de las veces llega 2 horas tarde.
+    *Un vuelo llega a tiempo en el 99% de los casos. 1% de las veces llega 2 horas tarde.
     
     ¿Qué es más importante: retraso de la llegada o demora de salida?
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
 
 2.  Sugiere un nuevo enfoque que te dé el mismo *output* que `no_cancelados %>% count(destino)` y
 `no_cancelado %>% count(codigo_cola, wt = distancia)` (sin usar `count()`).
@@ -380,9 +379,9 @@ ggplot(vuelos, aes(tiempo_vuelo - tiempo_vuelo2)) + geom_histogram()
 
 </div>
 
-## Transformaciones agrupadas (y filtros)
+## 5.7 Transformaciones agrupadas (y filtros) {-#mutate-filter}
 
-### Ejercicios
+### 5.7.1 Ejercicios {-#ejercicios-571}
 
 1. Remítete a las listas de funciones útiles de mutación y filtrado. Describe cómo cambia cada operación cuando las combinas con la agrupación.
 

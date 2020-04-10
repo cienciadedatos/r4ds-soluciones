@@ -6,9 +6,9 @@ library(tidyverse)
 library(datos)
 ```
 
-## Comenzando
+## 11.2 Comenzando{-#comenzando}
 
-### Ejercicios
+### 11.2.2 Ejercicios{-#ejercicios-1122}
 
 1. ¿Qué función utilizarías para leer un archivo donde los campos están separados con "|"?
 
@@ -23,7 +23,7 @@ read_delim("nombre_archivo", delim = "|")
 
 </div>
 
-1. Además de `file`, `skip` y `comment` ¿Qué otros argumentos tienen en común `read_csv()` y `read_tsv()`?
+2. Además de `file`, `skip` y `comment` ¿Qué otros argumentos tienen en común `read_csv()` y `read_tsv()`?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -45,14 +45,14 @@ Los argumentos que tienen en común, además de los ya mencionados, son los sigu
 
 </div>
 
-1. ¿Cuáles son los argumentos más importantes de `read_fwf()`?
+3. ¿Cuáles son los argumentos más importantes de `read_fwf()`?
 
 <div class="solucion">
 <h3>Solución</h3>
 `read_fwf()` es una función para leer archivos en que las columnas tienen un ancho fijo (`fwf`: fixed-width format). Es por eso que sus argumentos más importantes son las que permiten indicar la posición de las columnas: `col_positions`. A través de ella podemos elegir que adivine la posición según las columnas vacías, o definirlas indicando el ancho de cada columna o el inicio y fin de cada una.
 </div>
 
-1. Algunas veces, las cadenas de caracteres en un archivo csv contienen comas. Para evitar que causen problemas deben estar rodeadas por comillas, como `"` o `'`. Por convención, `read_csv()` asume que el caracter de separación será `"`, y si quieres cambiarlo necesitarás usar `read_delim()` en su lugar.¿Qué argumentos debes especificar para leer el siguiente texto en un data frame? 
+4. Algunas veces, las cadenas de caracteres en un archivo csv contienen comas. Para evitar que causen problemas deben estar rodeadas por comillas, como `"` o `'`. Por convención, `read_csv()` asume que el caracter de separación será `"`, y si quieres cambiarlo necesitarás usar `read_delim()` en su lugar.¿Qué argumentos debes especificar para leer el siguiente texto en un data frame? 
   
     
     ```{r, eval = FALSE}
@@ -123,9 +123,10 @@ En este caso, puede utilizarse `read_csv2()`, que espera un punto y coma como de
 
 </div>
 
-## Analizando un vector
+## 11.3 Segmentar un vector{-#segmentar-vector}
 
-### Ejercicios
+### 11.3.5 Ejercicios{-#ejercicios-1135}
+
 1.  ¿Cuáles son los argumentos más importantes para `locale()`?
 
 <div class="solucion">
@@ -138,11 +139,12 @@ En este caso, puede utilizarse `read_csv2()`, que espera un punto y coma como de
 </div>
 
 
-1.  ¿Qué pasa si pruebas y estableces `decimal_mark` y `grouping_mark` al mismo caracter? ¿Qué pasa con el valor por defecto de `grouping_mark` cuando seleccionas `decimal_mark` a `,`? ¿Qué pasa con el valor por defecto de `decimal_mark` cuando estableces `grouping_mark` a `.`?
+2.  ¿Qué pasa si pruebas y estableces `decimal_mark` y `grouping_mark` al mismo caracter? ¿Qué pasa con el valor por defecto de `grouping_mark` cuando seleccionas `decimal_mark` a `,`? ¿Qué pasa con el valor por defecto de `decimal_mark` cuando estableces `grouping_mark` a `.`?
 
 <div class="solucion">
 <h3>Solución</h3>
 Si se define el mismo caracter para ambos, se genera un error que indica que deben ser diferentes:
+
 ```{r, eval = FALSE}
 locale(decimal_mark = ",", grouping_mark = ",")
 # Error: `decimal_mark` and `grouping_mark` must be different
@@ -159,7 +161,7 @@ locale(grouping_mark = ".")
 
 </div>
 
-1.  No discutimos las opciones `date_format` y `time_format` para `locale()`. ¿Qué hacen? Construye un ejemplo que muestre cuándo pueden ser útiles.
+3.  No discutimos las opciones `date_format` y `time_format` para `locale()`. ¿Qué hacen? Construye un ejemplo que muestre cuándo pueden ser útiles.
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -179,7 +181,7 @@ read_csv("fecha\n01/01/2020\n01/02/2020", locale = locale(date_format = "%d/%m/%
 
 </div>
 
-1.  Si vives fuera de EEUU, crea un nuevo objeto locale que encapsule las opciones para los tipos de archivo que lees más comúnmente.
+4.  Si vives fuera de EE. UU., crea un nuevo objeto locale que encapsule las opciones para los tipos de archivo que lees más comúnmente.
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -197,20 +199,20 @@ read_csv("fecha,valor\n01/01/2020,110.251\n01/02/2020,120.285", locale = locale_
 
 </div>
 
-1.  ¿Cuál es la diferencia entre `read_csv()` y `read_csv2()`?
+5.  ¿Cuál es la diferencia entre `read_csv()` y `read_csv2()`?
 <div class="solucion">
 <h3>Solución</h3>
 Lo mencionamos al pasar más arriba: `read_csv()` utiliza `,` como delimitador y `read_csv2()` utiliza `;`. `read_csv2()` es muy útil en el contexto hispanoparlante, ya que utilizamos la coma como separador de decimales, no el punto. Cuando tenemos datos con ese formato, podemos usar `;` para separar los valores. 
 </div>
 
-1.  ¿Cuáles son las codificaciones más comunes empleadas en Europa? ¿Cuáles son las codificaciones más comunes utilizadas en Asia? Googlea un poco para descubrirlo. 
+6.  ¿Cuáles son las codificaciones más comunes empleadas en Europa? ¿Cuáles son las codificaciones más comunes utilizadas en Asia? Googlea un poco para descubrirlo. 
 
 <div class="solucion">
 <h3>Solución</h3>
 
 </div>
 
-1.  Genera el formato correcto para leer cada una de las siguientes fechas y horas:
+7.  Genera el formato correcto para leer cada una de las siguientes fechas y horas:
     ```{r}
     d1 <- "January 1, 2010"
     d2 <- "2015-Mar-07"

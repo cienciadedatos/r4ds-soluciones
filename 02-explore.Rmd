@@ -1,3 +1,5 @@
 # (PART) Explorar {-}
 
-[sección sin ejercicios]
+# Introducción
+
+Esta sección no tiene ejercicios.

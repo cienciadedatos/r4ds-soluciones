@@ -30,6 +30,7 @@ Imports:
   pryr,
   rmarkdown,
   tidyverse,
-  viridis
+  viridis,
+  ggbeeswarm
 Remotes:
   cienciadedatos/datos

@@ -1,8 +1,6 @@
 # Modelos: conceptos básicos
 
-## Paquetes necesarios
-
-```{r, message=FALSE}
+```{r, include=FALSE}
 library(tibble)
 library(ggplot2)
 library(purrr)
@@ -12,9 +10,9 @@ library(dplyr)
 library(stringr)
 ```
 
-## Un modelo simple
+## 23.2 Un modelo simple{-#modelo-simple}
 
-### Ejercicios
+### 23.2.1 Ejercicios{-#ejercicios-2321}
 
 1. Una desventaja del modelo lineal es ser sensible a valores inusuales
  debido a que la distancia incorpora un término al cuadrado. Ajusta un
@@ -105,7 +103,7 @@ Podemos concluir que el modelo es sensible a valores extremos y en general a
 la distribución que siguen los datos.
 </div>
 
-1. Una forma de obtener un modelo lineal más robusto es usar una métrica 
+2. Una forma de obtener un modelo lineal más robusto es usar una métrica 
  distinta para la distancia. Por ejemplo, en lugar de la raíz de la distancia
  media cuadrática (del inglés *root-mean-squared distance*) se podría usar la
  media de la distancia absoluta:
@@ -158,7 +156,7 @@ robustos sin los múltiples problemas de carácter numérico que pueden surgir d
 manera condicional a los datos al momento de usar `optim()`.
 </div>
 
-1. Un desafío al realizar optimización numérica es que únicamente garantiza
+3. Un desafío al realizar optimización numérica es que únicamente garantiza
  encontrar un óptimo local. ¿Qué problema se presenta al optimizar un modelo de
  tres parámetros como el que se presenta a continuación?
 
@@ -203,9 +201,9 @@ Si seguimos alterando los valores inciales no es muy difícil concluir que
 existen infinitos valores óptimos para este modelo.
 </div>
 
-## Visualizando modelos
+## 23.3 Visualizando modelos{-#visualizando-modelos}
 
-### Ejercicios
+### 23.3.3 Ejercicios{-#ejercicios-2333}
 
 1. En lugar de usar `lm()` para ajustar una línea recta, puedes usar `loess()`
  para ajustar una curva suave. Repite el proceso de ajustar el modelo,
@@ -265,7 +263,7 @@ ggplot(sim1a, aes(x = x)) +
 ```
 </div>
 
-1. `add_predictions()` está pareada con `gather_predictions()` y
+2. `add_predictions()` está pareada con `gather_predictions()` y
  `spread_predictions()`. ¿Cómo difieren estas tres funciones?
 
 <div class="solucion">
@@ -321,7 +319,7 @@ grid %>%
 ```
 </div>
 
-1. ¿Qué hace `geom_ref_line()`? ¿De qué paquete proviene? ¿Por qué es útil e importante
+3. ¿Qué hace `geom_ref_line()`? ¿De qué paquete proviene? ¿Por qué es útil e importante
  incluir una línea de referencia en los gráficos que muestran residuos?
 
 <div class="solucion">
@@ -340,7 +338,7 @@ La línea de referencia en torno a cero permite evaluar visualmente estas
 características.
 </div>
 
-1. ¿Por qué quisieras mirar un polígono de frecuencias con los residuos absolutos? ¿Cuáles son las
+4. ¿Por qué quisieras mirar un polígono de frecuencias con los residuos absolutos? ¿Cuáles son las
  ventajas y desventajas de los residuos crudos?
 
 <div class="solucion">
@@ -366,9 +364,9 @@ respecto de los signos de los residuos. Por lo tanto, el polígono de frecuencia
 no distingue si acaso el modelo sobre-estima o sub-estima de manera consistente.
 </div>
 
-## Fórmulas y familias de modelos
+## 23.4 Fórmulas y familias de modelos{-#familias-modelos}
 
-### Ejercicios
+### 23.4.5 Ejercicios{-#ejercicios-2345}
 
 1. ¿Qué pasa si repites el análisis de `sim2` usando un modelo sin intercepto? ¿Qué ocurre con la
  ecuación del modelo? ¿Qué ocurre con las predicciones?
@@ -396,7 +394,7 @@ grid
 ```
 </div>
 
-1. Usa `model_matrix()` para explorar las ecuaciones generadas por los modelos ajustados a `sim3` y
+2. Usa `model_matrix()` para explorar las ecuaciones generadas por los modelos ajustados a `sim3` y
  `sim4`. ¿Por qué `*` es un atajo para la interacción?
  
 <div class="solucion">
@@ -439,7 +437,7 @@ all(x4[["x1"]] * x4[["x2"]] == x4[["x1:x2"]])
 ```
 </div>
 
-1. Usando los principios básicos, convierte las fórmulas de los siguientes modelos en funciones.
+3. Usando los principios básicos, convierte las fórmulas de los siguientes modelos en funciones.
  (Sugerencia: comienza por convertir las variables categóricas en ceros y unos.)
 
 ```{r, eval = FALSE}
@@ -558,7 +556,7 @@ ser de tipo numérico o categórico. Si seguimos generalizando acabaremos
 reescribiendo la función `matrix_model()`.
 </div>
 
-1. Para `sim4`, ¿Es mejor `mod1` o `mod2`? Yo creo que `mod2` es ligeramente mejor
+4. Para `sim4`, ¿Es mejor `mod1` o `mod2`? Yo creo que `mod2` es ligeramente mejor
  removiendo las tendencias, pero es bastante sutil. ¿Puedes generar un gráfico
  que de sustento a esta hipótesis?
  

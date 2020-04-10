@@ -1,8 +1,6 @@
 # Muchos modelos
 
-## Paquetes necesarios
-
-```{r, message=FALSE}
+```{r, include=FALSE}
 library(dplyr)
 library(tidyr)
 library(purrr)
@@ -13,9 +11,9 @@ library(stringr)
 library(datos)
 ```
 
-## gapminder
+## 25.2 gapminder{-#gapminder}
 
-### Ejercicios
+### 25.2.5 Ejercicios{-#ejercicios-2525}
 
 1. Una tendencia lineal parece ser demasiado simple para la tendencia general.
  ¿Puedes hacerlo mejor con un polinomio cuadrático? ¿Cómo puedes interpretar
@@ -67,7 +65,7 @@ por_pais %>%
 ```
 </div>
 
-1. Explora otros métodos para visualizar la distribución del $R^2$ por
+2. Explora otros métodos para visualizar la distribución del $R^2$ por
  continente. Puedes querer probar el paquete __ggbeeswarm__, que provee
  métodos similares para evitar superposiciones como jitter, pero usa métodos
  determinísticos.
@@ -86,7 +84,7 @@ por_pais %>%
 ```
 </div>
 
-1. Para crear el último gráfico (mostrando los datos para los países con los
+3. Para crear el último gráfico (mostrando los datos para los países con los
  peores ajustes del modelo), precisamos dos pasos: creamos un _data frame_ con
  una fila por país y después hicimos un _semi-join_ (del inglés _semi juntar_) (TODO: deberíamos aclarar algo?) al conjunto de datos original.
  Es posible evitar este _join_ si usamos `unnest()` en lugar de
@@ -109,9 +107,9 @@ paises %>%
 ```
 </div>
 
-## Creando columnas-lista
+## 25.4 Creando columnas-lista{-#columnas-lista}
 
-### Ejercicios
+### 25.4.5 Ejercicios{-#ejercicios-2545}
 
 1. Lista todas las funciones en las que puedas pensar que tomen como _input_ un vector atómico y
  retornen una lista.
@@ -131,7 +129,7 @@ map(1:3, runif)
 ```
 </div>
 
-1. Piensa en funciones de resumen útiles que, como `quantile()`, retornen
+2. Piensa en funciones de resumen útiles que, como `quantile()`, retornen
  múltiples valores.
 
 <div class="solucion">
@@ -145,7 +143,7 @@ boxplot.stats(mtcars$mpg)
 ```
 </div>
 
-1. ¿Qué es lo que falta en el siguiente _data frame_? ¿Cómo `quantile()` retorna
+3. ¿Qué es lo que falta en el siguiente _data frame_? ¿Cómo `quantile()` retorna
  eso que falta? ¿Por qué eso no es tan útil aquí?
 
 ```{r}
@@ -166,7 +164,7 @@ quantile(mtcars$mpg)
 ```
 </div>
 
-1. ¿Qué hace este código? ¿Por qué podría ser útil?
+4. ¿Qué hace este código? ¿Por qué podría ser útil?
 
 ```{r, eval = FALSE}
 mtautos %>%
@@ -185,9 +183,9 @@ lo que puede simplificar algunos análisis particulares en los que se quiera
 analizar todas las observaciones agrupando por número de cilindros.
 </div>
 
-## Simplificando columnas-lista
+## 25.5 Simplificando columnas-lista{-#simplificando}
 
-### Ejercicios
+### 25.5.3 Ejercicios{-#ejercicios-2553}
 
 1. ¿Por qué podría ser útil la función `lengths()` para crear columnas de
  vectores atómicos a partir de columnas-lista?
@@ -203,7 +201,7 @@ la columna y así sabremos cuántas columnas debo crear para transformar en vari
 columnas atómicas.
 </div>
 
-1. Lista los tipos de vectores más comúnes que se encuentran en un _data frame_.
+2. Lista los tipos de vectores más comúnes que se encuentran en un _data frame_.
 ¿Qué hace que las
  listas sean diferentes?
 

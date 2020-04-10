@@ -7,9 +7,9 @@ library(datos)
 ```
 
 
-## Bucles _for_
+## 21.2 Bucles _for_{-#bucles-for}
 
-### Ejercicios
+### 21.2.1 Ejercicios{-#ejercicios2121}
 
 1.  Escribir bucles _for_ para:
 
@@ -100,9 +100,9 @@ library(datos)
 
 </div>
 
-## Variaciones de bucles _for_
+## 21.3 Variaciones de bucles _for_{-#variaciones-bucles}
 
-### Ejercicios
+### 21.3.5 Ejercicios{-#ejercicios-2135}
 
 1.  Imaginemos que tenemos un directorio lleno de archivos CSV que queremos leer.
     Tenemos sus ubicaciones en un vector, 
@@ -115,7 +115,7 @@ library(datos)
 
 </div>
 
-1.  ¿Qué pasa si utilizamos `for (nm in names(x))` y `x` no tiene _names_?
+2.  ¿Qué pasa si utilizamos `for (nm in names(x))` y `x` no tiene _names_?
     ¿Qué pasa si solo algunos elementos están nombrados (_named_ en inglés) 
     ¿Qué pasa si los nombres (_names_ en inglés) no son únicos?
 
@@ -124,7 +124,7 @@ library(datos)
 
 </div>
 
-1.  Escribe una función que imprima el promedio de cada columna numérica en un
+3.  Escribe una función que imprima el promedio de cada columna numérica en un
 	  _data frame_, junto con su nombre. Por ejemplo, `mostrar_promedio(iris)` debe imprimir:
     
     ```{r, eval = FALSE}
@@ -143,7 +143,7 @@ library(datos)
 
 </div>
     
-1.  ¿Qué hace este código? ¿cómo funciona? 
+4.  ¿Qué hace este código? ¿Cómo funciona? 
 
     ```{r, eval = FALSE}
     trans <- list( 
@@ -162,9 +162,9 @@ library(datos)
 
 </div>
 
-## Bucles _for_ vs. funcionales
+## 21.4 Bucles _for_ vs. funcionales{-for-funcionales#
 
-### Ejercicios
+### 21.4.1 Ejercicios{-#ejercicios-2141}
 
 1.  Lee la documentación para `apply ()`. En el caso 2d, ¿qué dos bucles _for_ generaliza?
 
@@ -181,9 +181,9 @@ library(datos)
 
 </div>
 
-## Las funciones _map_
+## 21.5 Las funciones _map_{-#funciones-map}
 
-### Ejercicios
+### 21.5.3 Ejercicios{-#ejercicios-2153}
 
 1. Escribe un código que use una de las funciones de map para:
 
@@ -197,7 +197,7 @@ library(datos)
 
 </div>
 
-1.  ¿Cómo puedes crear un vector tal que para cada columna en un cuadro de datos indique si
+2.  ¿Cómo puedes crear un vector tal que para cada columna en un cuadro de datos indique si
     corresponde o no a un factor?
 
 <div class="solucion">
@@ -205,7 +205,7 @@ library(datos)
 
 </div>
 
-1.  ¿Qué ocurre si usas las funciones map en vectores que no son listas?
+3.  ¿Qué ocurre si usas las funciones map en vectores que no son listas?
     ¿Qué hace `map(1:5, runif)`? ¿Por qué?
 
 <div class="solucion">
@@ -213,7 +213,7 @@ library(datos)
 
 </div>
 
-1.  ¿Qué hace `map(-2:2, rnorm, n = 5)`? ¿Por qué?
+4.  ¿Qué hace `map(-2:2, rnorm, n = 5)`? ¿Por qué?
     ¿Qué hace `map_dbl(-2:2, rnorm, n = 5)`? ¿Por qué?
 
 <div class="solucion">
@@ -221,7 +221,7 @@ library(datos)
 
 </div>
 
-1.  Reescribe `map(x, function(df) lm(mpg ~ wt, data = df))` para eliminar
+5.  Reescribe `map(x, function(df) lm(mpg ~ wt, data = df))` para eliminar
     todas las funciones anónimas.
 
 <div class="solucion">
@@ -229,9 +229,9 @@ library(datos)
 
 </div>
 
-## Otros patrones para los loops for
+## 21.9.1 Otros patrones para los bucles _for_ {-#otros-patrones}
 
-### Ejercicios
+### 21.9.3 Ejercicios{-#ejercicios-2193}
 
 1.  Implementa tu propia versión de `every()` usando un loop for. Comparala con
     `purrr::every()`. ¿Qué hace la versión de purrr que la tuya no hace?
@@ -241,7 +241,7 @@ library(datos)
 
 </div>
 
-1.  Crea una mejora de `col_sum()` que aplique una función de resumen a cada
+2.  Crea una mejora de `col_sum()` que aplique una función de resumen a cada
     columna numérica en un data frame.
 
 <div class="solucion">
@@ -249,7 +249,7 @@ library(datos)
 
 </div>
 
-1.  Un posible equivalente de `col_sum()` es:
+3.  Un posible equivalente de `col_sum()` es:
 
     ```{r}
     col_sum3 <- function(df, f) {
@@ -270,13 +270,13 @@ library(datos)
     )
     # OK
     col_sum3(df, mean)
-    # Has problems: don't always return numeric vector
+    # Tiene problemas: no siempre devuelve un vector numérico
     col_sum3(df[1:2], mean)
     col_sum3(df[1], mean)
     col_sum3(df[0], mean)
     ```
     
-    ¿Cuál es la causa de esos bugs?
+    ¿Qué causa los bugs?
 
 <div class="solucion">
 <h3>Solución</h3>

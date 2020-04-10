@@ -1,16 +1,14 @@
 # Datos relacionales
 
-## Paquetes necesarios
 
-```{r, warning=FALSE, message=FALSE}
-library(dplyr)
-library(ggplot2)
+```{r, warning=FALSE, message=FALSE, include=FALSE}
+library(tidyverse)
 library(datos)
 ```
 
-## datos {#nycflights13-relational}
+## 13.2 Datos sobre vuelos {-#vuelos-relacionales}
 
-### Ejercicios
+### 13.2.1 Ejercicios{-#ejercicios-1321}
 
 1. Imagina que necesitas dibujar (aproximadamente) la ruta que cada avión vuela 
  desde su origen hasta el destino. ¿Qué variables necesitas? ¿Qué tablas
@@ -31,7 +29,7 @@ vuelos %>%
 ```
 </div>
 
-1. Olvidamos incluir la relación entre `clima` y `aeropuertos`. ¿Cuál es la
+2. Olvidamos incluir la relación entre `clima` y `aeropuertos`. ¿Cuál es la
  relación y cómo debe aparecer en el diagrama?
 
 <div class="solucion">
@@ -41,7 +39,7 @@ De manera similar al ejercicio anterior, se pueden unir mediante
 `codigo_aeropuerto` en `aeropuertos` y `origen` en `clima`.
 </div>
 
-1. `clima` únicamente contiene información de los aeropuertos de origen 
+3. `clima` únicamente contiene información de los aeropuertos de origen 
  (Nueva York). Si contuviera registros para todos los aeropuertos de EEUU, ¿Qué
  relación tendría con `vuelos`?
 
@@ -52,7 +50,7 @@ Puedes conectar `clima` con `vuelos` usando la columna `destino` e incluir el
 clima de los aeropuertos de EEUU que están presentes en la tabla `vuelos`.
 </div>
 
-1. Sabemos que hay días "especiales" en el año y pocas personas vuelan esos
+4. Sabemos que hay días "especiales" en el año y pocas personas vuelan esos
  días. ¿Cómo se representarían en un data frame? ¿Cuáles serían las claves
  primarias de esa tabla? ¿Cómo se conectaría con las tablas existentes?
    
@@ -64,11 +62,11 @@ mes y día. Esta información se puede unir con cada vuelo en la tabla `vuelos` 
 y a la vez con el dataset `clima`.
 </div>
 
-## Claves
+## 13.3 Claves{-#claves}
 
-### Ejercicios
+### 13.3.1 Ejercicios{-#ejercicios-1331}
 
-1. Agrega una clave sustituta a `vuelos`.
+1. Agrega una clave subrogada a `vuelos`.
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -80,7 +78,7 @@ vuelos %>%
 ```
 </div>
 
-1. Identifica las claves en los siguientes conjuntos de datos
+2. Identifica las claves en los siguientes conjuntos de datos
 
  1. `datos::bateadores`
  1. `datos::nombres`
@@ -103,11 +101,11 @@ vuelos %>%
  relacionales, es decir cuando existen otras tablas para combinar información.
 </div>
 
-1. Dibuja un diagrama que ilustre las conexiones entre las tablas `bateadores`,
+2. Dibuja un diagrama que ilustre las conexiones entre las tablas `bateadores`,
   `personas` y `salarios` en el paquete datos. Dibuja otro diagrama que muestre la
   relación entre `personas`, `dirigentes` y `premios_dirigentes`.
 
-  ¿Cómo caracterizarías las relación entre `bateadores`, `lanzadores` y `fildeo`?
+  ¿Cómo caracterizarías las relación entre `bateadores`, `lanzadores` y `jardineros`?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -116,9 +114,9 @@ Es directo. Las tres tablas contienen los campos `id_jugador` y `anio` y cada
 tabla contiene información que complementa las demás. La relación es uno a uno.
 </div>
 
-## Uniones de transformación {#mutating-joins}
+## 13.4 Uniones de transformación {#mutating-joins}
 
-### Ejercicios
+### 13.4.6 Ejercicios{-#ejercicios-1346}
 
 1. Calcula el atraso promedio por destino, luego une los datos en `aeropuertos` 
    para que puedas mostrar la distribución espacial de los atrasos. Te presentamos 
@@ -158,7 +156,7 @@ atraso_promedio_destino %>%
 ```
 </div>
  
-1. Agrega la ubicación de origen _y_ destino (e.g. `latitud` y `longitud`) 
+2. Agrega la ubicación de origen _y_ destino (e.g. `latitud` y `longitud`) 
    a `vuelos`.
 
 <div class="solucion">
@@ -202,7 +200,7 @@ vuelos %>%
 ```
 </div>
 
-1. ¿Existe una relación entre la antiguedad de un avión y sus atrasos?
+3. ¿Existe una relación entre la antiguedad de un avión y sus atrasos?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -249,7 +247,7 @@ ggplot(atrasos_por_antiguedad, aes(x = antiguedad, y = prom_atraso_salida)) +
 ```
 </div>
 
-1. ¿Qué condiciones climáticas hacen más probables los atrasos?
+4. ¿Qué condiciones climáticas hacen más probables los atrasos?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -276,7 +274,7 @@ vuelo_clima %>%
 ```
 </div>
 
-1. ¿Qué sucedió el día 13 de junio de 2013? Muestra el patrón espacial de los atrasos, 
+5. ¿Qué sucedió el día 13 de junio de 2013? Muestra el patrón espacial de los atrasos, 
    luego usa un buscador para encontrar referencias cruzadas con el clima.
 
  ```{r, eval = FALSE, include = FALSE}
@@ -315,9 +313,9 @@ vuelos %>%
 ```
 </div>
 
-## Uniones de filtro {#filtering-joins}
+## 13.5 Uniones de filtro {#filtering-joins}
 
-### Ejercicios
+### 13.5.1 Ejercicios{-#ejercicios-1351}
 
 1. ¿Qué significa que un vuelo no tenga `codigo_cola`? ¿Qué tienen en común los códigos 
    de cola que no tienen registros coincidentes en `aviones`? (Pista: Una variable explica 
@@ -360,7 +358,7 @@ vuelos %>%
 ```
 </div>
 
-1. Filtra los vuelos para mostrar únicamente los aviones que han realizado al menos cien
+2. Filtra los vuelos para mostrar únicamente los aviones que han realizado al menos cien
    viajes.
 
 <div class="solucion">
@@ -394,7 +392,7 @@ vuelos %>%
 ```
 </div>
 
-1. Combina `vehiculos` y `comunes` para encontrar los registros de los 
+3. Combina `vehiculos` y `comunes` para encontrar los registros de los 
    modelos más comunes.
 
 <div class="solucion">
@@ -410,7 +408,7 @@ vehiculos %>%
 ```
 </div>
 
-1. Encuentra las 48 horas (en el transcurso del año) que tengan los peores atrasos. Haz 
+4. Encuentra las 48 horas (en el transcurso del año) que tengan los peores atrasos. Haz 
    una referencia cruzada con la tabla `clima`. ¿Puedes observar patrones?
 
 <div class="solucion">
@@ -456,7 +454,7 @@ Para extenderse con mayor detalle en ese ejercicio, es necesario usar las
 herramientas del capítulo Análisis Exploratorio de Datos.
 </div>
 
-1. ¿Qué te indica `anti_join(vuelos, aeropuertos, by = c("destino" = "codigo_aeropuerto"))`?
+5. ¿Qué te indica `anti_join(vuelos, aeropuertos, by = c("destino" = "codigo_aeropuerto"))`?
    ¿Qué te indica `anti_join(aeropuertos, vuelos, by = c("codigo_aeropuerto" = "destino"))`?
 
 <div class="solucion">
@@ -472,20 +470,14 @@ Los datos contienen todos los vuelos de los aeropuertos de Nueva York, por
 lo que también contiene los vuelos con escalas intermedias.
 </div>
 
-1. Puedes esperar que exista una relación implícita entre aviones y aerolíneas, dado que cada 
+6. Puedes esperar que exista una relación implícita entre aviones y aerolíneas, dado que cada 
    avión es operado por una única aerolínea. Confirma o descarta esta hipótesis usando las 
    herramientas que aprendiste más arriba.
    
 <div class="solucion">
 <h3>Solución</h3>
 
-At each point in time, each plane is flown by a single airline.
-However, a plane can be sold and fly for multiple airlines.
-Logically, it is possible that a plane can fly for multiple airlines over the course of its lifetime.
-But, it is not necessarily the case that a plane will fly for more than one airline in this  data, especially since it comprises only a year of data.
-So let's check to see if there are any planes in the data flew for multiple airlines.
-
-Veámos las combinaciones únicas de aerolíneay avión.
+Veamos las combinaciones únicas de aerolínea y avión.
 
 ```{r}
 aerolinea_avion <- vuelos %>%
@@ -507,17 +499,13 @@ Veamos ahora las transferencias de aviones entre aerolíneas.
 
 ```{r carrier_transfer_tbl}
 aviones_transferidos <- aerolinea_avion %>%
-  # conservo los aviones que han volado para mas de una aerolinea
+  # conservo los aviones que han volado para más de una aerolínea
   group_by(codigo_cola) %>%
   filter(n() > 1) %>%
-  # uno los codigos con los nombres de aerolinea
+  # uno los códigos con los nombres de aerolínea
   left_join(aerolineas, by = "aerolinea") %>%
   arrange(aerolinea, codigo_cola)
 
 aviones_transferidos
 ```
 </div>
-
-## Problemas de las uniones
-
-[sección sin ejercicios]
