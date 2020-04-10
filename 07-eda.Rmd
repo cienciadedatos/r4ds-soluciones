@@ -1,7 +1,8 @@
 # Análisis exploratorio de datos (_EDA_)
 
+## Introducción
 
-```{r, include = FALSE}
+```{r, message = FALSE}
 library(tidyverse)
 library(datos)
 ```

@@ -73,15 +73,23 @@ acciones %>%
 
 ```{r, error = TRUE}
 tabla4a %>%
-  pivot_longer(c(`1999`, `2000`), names_to = "anio", values_to = "casos")
+  pivot_longer(c(1999, 2000), names_to = "anio", values_to = "casos")
 ```
 
 <div class="solucion">
 <h3>Solución</h3>
 
+El código falla porque los nombres de las columnas `1999` y `2000` deben escribirse rodeados de tildes graves, ya que son nombres "no sintácticos":
+
+```{r}
+tabla4a %>%
+  pivot_longer(c(`1999`, `2000`), names_to = "anio", values_to = "casos")
+```
+
+
 </div>
 
-3. ¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarias una nueva columna para resolver el problema?
+3. ¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarías una nueva columna para resolver el problema?
 
 ```{r}
 personas <- tribble(
@@ -112,6 +120,14 @@ embarazo <- tribble(
 
 <div class="solucion">
 <h3>Solución</h3>
+
+La tabla muestra la cantidad de embarazon por género. Las variables serían `embarazo`, `genero` y una tercera a la que podemos llamar `n`. Para que la tabla quede ordenada tenemos que "alargarla":
+
+```{r}
+embarazo %>% 
+  pivot_longer(c(hombre, mujer), names_to = "genero", values_to = "n")
+```
+
 
 </div>
 
