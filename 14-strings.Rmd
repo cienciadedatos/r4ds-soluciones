@@ -6,10 +6,10 @@ library(tidyverse)
 library(datos)
 ```
 
-## Cadenas: elementos básicos
+## 14.2 Cadenas: elementos básicos{-#cadena-basics}
 
 
-### Ejercicios
+### 14.2.5 Ejercicios{-#ejercicios-1425}
 
 1.  En ejemplos de código en los que no se utiliza __stringr__, verás usualmente `paste()` y `paste0()` (_paste_ = pegar).
     ¿Cuál es la diferencia entre estas dos funciones? ¿A qué función de __stringr__ son equivalentes? ¿Cómo difieren estas dos funciones respecto de su manejo de los
@@ -43,7 +43,7 @@ paste("uno", "dos", NA)
 
 </div> 
 
-1.  Describe con tus propias palabras la diferencia entre los argumentos `sep` y `collapse`
+2.  Describe con tus propias palabras la diferencia entre los argumentos `sep` y `collapse`
     de la función `str_c()`.
 
 <div class="solucion">
@@ -63,7 +63,7 @@ str_c(x, y, collapse = "-")
 </div> 
 
 
-1.  Utiliza `str_length()` y `str_sub()` para extraer el caracter del medio de una cadena. ¿Qué harías si el número de caracteres es par?
+3.  Utiliza `str_length()` y `str_sub()` para extraer el caracter del medio de una cadena. ¿Qué harías si el número de caracteres es par?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -79,7 +79,7 @@ str_sub(x, start = mitad, end = mitad)
 </div> 
 
 
-1.  ¿Qué hace `str_wrap()`? (_wrap_ = envolver) ¿Cuándo podrías querer utilizarla?
+4.  ¿Qué hace `str_wrap()`? (_wrap_ = envolver) ¿Cuándo podrías querer utilizarla?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -97,7 +97,7 @@ str_wrap(texto, width = 40, indent = 3)
 </div> 
 
 
-1.  ¿Qué hace `str_trim()`? (_trim_ = recortar) ¿Cuál es el opuesto de `str_trim()`?
+5.  ¿Qué hace `str_trim()`? (_trim_ = recortar) ¿Cuál es el opuesto de `str_trim()`?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -122,7 +122,7 @@ str_pad("palabra", width = 15, side = "both")
 </div> 
 
 
-1.  Escribe una función que convierta, por ejemplo, el vector `c("a", "b", "c")` en
+6.  Escribe una función que convierta, por ejemplo, el vector `c("a", "b", "c")` en
     la cadena `a, b, y c`. Piensa con detención qué debería hacer 
     dado un vector de largo 0, 1, o 2.
 
@@ -132,10 +132,10 @@ str_pad("palabra", width = 15, side = "both")
 </div> 
 
 
-### Buscar coincidencia de patrones con expresiones regulares
+### 14.2.6 Buscar coincidencia de patrones con expresiones regulares{-#coincidencia}
 
 
-#### Ejercicios
+#### 14.2.7.1 Ejercicios{-#ejercicios-14271}
 
 1.  Explica por qué cada una de estas cadenas no coincide con `\`: `"\"`, `"\\"`, `"\\\"`.
 
@@ -145,7 +145,7 @@ str_pad("palabra", width = 15, side = "both")
 </div> 
 
 
-1.  ¿Cómo harías coincidir la secuencia `"'\`?
+2.  ¿Cómo harías coincidir la secuencia `"'\`?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -157,7 +157,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.  ¿Con qué patrones coincidiría la expresión regular`\..\..\..`? 
+3.  ¿Con qué patrones coincidiría la expresión regular`\..\..\..`? 
     ¿Cómo la representarías en una cadena?
 
 <div class="solucion">
@@ -166,20 +166,25 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-### Anclas
+### 14.2.8 Anclas{-#anclas}
 
 
-#### Ejercicios
+#### 14.2.8.1 Ejercicios{-#ejercicios-14281}
 
 1.  ¿Cómo harías coincidir la cadena `"$^$"` de manera literal?
 
 <div class="solucion">
 <h3>Solución</h3>
 
+```{r}
+str_view("$^$", "\\$\\^\\$")
+```
+
+
 </div> 
 
 
-1.  Dado el corpus de palabras comunes en `datos::palabras`, crea una expresión
+2.  Dado el corpus de palabras comunes en `datos::palabras`, crea una expresión
     regular que busque palabras que:
     
     1. Empiecen con "y".
@@ -196,9 +201,9 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-### Clases de caracteres y alternativas
+### 14.2.9 Clases de caracteres y alternativas{-#clases-caracteres}
 
-#### Ejercicios
+#### 14.2.9.1 Ejercicios{-#ejercicios-14291}
 
 1.  Crea una expresión regular que encuentre todas las palabras que:
 
@@ -214,7 +219,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
     
 
-1.  ¿Siempre a una "q" la sigue una "u"?
+2.  ¿Siempre a una "q" la sigue una "u"?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -222,7 +227,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.  Escribe una expresión regular que permita buscar un verbo que haya sido escrito usando voseo en segunda persona plural  
+3.  Escribe una expresión regular que permita buscar un verbo que haya sido escrito usando voseo en segunda persona plural  
     (por ejemplo, _queréis_ en vez de _quieren_).
 
 <div class="solucion">
@@ -231,7 +236,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.  Crea una expresión regular que coincida con la forma en que habitualmente 
+4.  Crea una expresión regular que coincida con la forma en que habitualmente 
     se escriben los números de teléfono en tu país.
 
 <div class="solucion">
@@ -240,16 +245,16 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
     
-1. En inglés existe una regla que dice que la letra i va siempre antes de la e, excepto cuando está después de una c". Verifica empíricamente esta regla utilizando las palabras contenidas en `stringr::words`. 
+5. En inglés existe una regla que dice que la letra i va siempre antes de la e, excepto cuando está después de una c". Verifica empíricamente esta regla utilizando las palabras contenidas en `stringr::words`. 
 
 <div class="solucion">
 <h3>Solución</h3>
 
 </div> 
 
-### Repetición
+### 14.2.10 Repetición{-#repeticion}
 
-#### Ejercicios
+#### 14.1.10.1 Ejercicios{-#ejercicios-141101}
 
 1.  Describe los equivalentes de `?`, `+`, `*` en el formato `{m,n}`.
 
@@ -259,7 +264,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.  Describe en palabras con qué coincidiría cada una de estas expresiones regulares:
+2.  Describe en palabras con qué coincidiría cada una de estas expresiones regulares:
     (lee con atención para ver si estamos utilizando una expresión regular o una cadena
     que define una expresión regular.)
 
@@ -274,7 +279,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.  Crea expresiones regulares para buscar todas las palabras que:
+3.  Crea expresiones regulares para buscar todas las palabras que:
 
     1. Empiecen con dos consonantes.
     1. Tengan tres o más vocales seguidas.
@@ -286,9 +291,9 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 </div> 
 
-### Agrupamiento y referencias previas
+### 14.2.11 Agrupamiento y referencias previas{-#agrupamiento}
 
-#### Ejercicios
+#### 14.2.11.1 Ejercicios{-#ejercicios-142111}
 
 1.  Describe en palabras con qué coinciden estas expresiones: 
 
@@ -304,7 +309,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.  Construye una expresión regular que coincida con palabras que: 
+2.  Construye una expresión regular que coincida con palabras que: 
 
     1. Empiecen y terminen con el mismo caracter. 
     
@@ -320,11 +325,9 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-## Herramientas
+## 14.3 Herramientas{-#herramientas}
 
-
-
-### Ejercicios
+### 14.3.2 Ejercicios{-#ejercicios-1432}
 
 1.  Para cada uno de los siguientes desafíos, intenta buscar una solución utilizando tanto una 
     expresión regular simple como una combinación de múltiples llamadas a `str_detect()`.
@@ -341,7 +344,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.  ¿Qué palabra tiene el mayor número de vocales? ¿Qué palabra tiene la mayor
+2.  ¿Qué palabra tiene el mayor número de vocales? ¿Qué palabra tiene la mayor
     proporción de vocales? (Pista: ¿cuál es el denominador?)
 
 <div class="solucion">
@@ -350,10 +353,10 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-### Extraer coincidencias
+### 14.3.3 Extraer coincidencias{-#extraer-coincidencias}
 
 
-#### Ejercicios
+#### 14.3.3.1 Ejercicios{-#ejercicios-14331}
 
 1.  Te habrás dado cuenta que en el ejemplo anterior la expresión regular
     que utilizamos también devolvió como resultado "arrojo" y "azulejos", 
@@ -365,7 +368,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 </div> 
 
-1.  De `datos::oraciones` extrae:
+2.  De `datos::oraciones` extrae:
 
     1. La primera palabra de cada oración.
     1. Todas las palabras que terminen en `ción`.
@@ -377,10 +380,9 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-### Coincidencias agrupadas
+### 14.3.4 Coincidencias agrupadas{-#coincidencias-agrupadas}
 
-
-#### Ejercicios
+#### 14.3.4.1 Ejercicios{-#ejercicios-14341}
 
 1. Busca en `datos::oraciones` todas las palabras que vengan después de un "número", como "un(o|a)", "dos", "tres", etc.
    Extrae tanto el número como la palabra.
@@ -391,7 +393,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1. En español a veces se utiliza el guión para unir adjetivos, establecer relaciones entre conceptos o para unir gentilicios (p. ej., _teórico-práctico_, _precio-calidad_, _franco-porteño_). ¿Cómo podrías encontrar esas palabras y separar lo que viene antes y después del guión?
+2. En español a veces se utiliza el guión para unir adjetivos, establecer relaciones entre conceptos o para unir gentilicios (p. ej., _teórico-práctico_, _precio-calidad_, _franco-porteño_). ¿Cómo podrías encontrar esas palabras y separar lo que viene antes y después del guión?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -399,10 +401,9 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-### Remplazar coincidencias
+### 14.3.5 Remplazar coincidencias{-#remplazar-coincidencias}
 
-
-#### Ejercicios
+#### 14.3.5.1 Ejercicios{-#ejercicios-14351}
 
 1.   Remplaza en una cadena todas las barras por barras invertidas.
 
@@ -412,7 +413,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.   Implementa una versón simple de `str_to_lower()` (_a minúsculas_) usando `replace_all()`.
+2.   Implementa una versón simple de `str_to_lower()` (_a minúsculas_) usando `replace_all()`.
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -420,7 +421,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.   Cambia la primera y la última letra en `palabras`. ¿Cuáles de esas cadenas
+3.   Cambia la primera y la última letra en `palabras`. ¿Cuáles de esas cadenas
      siguen siendo palabras?
 
 <div class="solucion">
@@ -429,10 +430,9 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-### Divisiones
+### 14.3.6  Divisiones{-#divisiones}
 
-
-#### Ejercicios
+#### 14.3.6.1 Ejercicios{-#ejercicios-14361}
 
 1.  Divide una cadena como `"manzanas, peras y bananas"` en elementos
     individuales.
@@ -442,14 +442,14 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 </div> 
 
-1.  ¿Por qué es mejor dividir utilizando `boundary("word")` en vez de `" "`?
+2.  ¿Por qué es mejor dividir utilizando `boundary("palabra")` en vez de `" "`?
 
 <div class="solucion">
 <h3>Solución</h3>
 
 </div> 
 
-1.  ¿Qué pasa si dividimos con una cadena vacía (`""`)? Experimenta y
+3.  ¿Qué pasa si dividimos con una cadena vacía (`""`)? Experimenta y
     luego lee la documentación
 
 <div class="solucion">
@@ -457,9 +457,9 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 </div> 
 
-## Otro tipo de patrones
+## 14.4 Otro tipo de patrones {-#otros-patrones144}
 
-### Ejercicios
+### 14.4.1 Ejercicios{-#ejercicios-1441}
 
 1.  ¿Cómo buscarías todas las cadenas que contienen `\` con `regex()` vs.
     con `fixed()`?
@@ -469,17 +469,16 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 </div> 
 
-1.  ¿Cuáles son las cinco palabras más comunes en `oraciones`?
+2.  ¿Cuáles son las cinco palabras más comunes en `oraciones`?
 
 <div class="solucion">
 <h3>Solución</h3>
 
 </div> 
 
-## stringi
+## 14.6 stringi{-#stringi}
 
-
-### Ejercicios
+### 14.6.1 Ejercicios{-#ejercicios-1461}
 
 1.  Busca la función de __stringi__ que:
 
@@ -493,7 +492,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 </div> 
 
 
-1.  ¿Cómo puedes controlar qué lengua usa `stri_sort()` para ordenar?
+2.  ¿Cómo puedes controlar qué lengua usa `stri_sort()` para ordenar?
 
 <div class="solucion">
 <h3>Solución</h3>

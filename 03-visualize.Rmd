@@ -6,9 +6,9 @@ library(tidyverse)
 library(datos)
 ```
 
-## Primeros pasos
+## 3.2 Primeros pasos {-#primeros-pasos} 
 
-### Ejercicios
+### 3.2.4 Ejercicios{-#ejercicios-324} 
 
 1. Corre `ggplot(data = millas)`. ¿Qué observas?
 
@@ -77,9 +77,10 @@ count(millas, traccion, clase)
 Los gráficos de dispersión debieran usarse con variables continuas y cuando los valores son únicos.
 </div>
 
-## Mapeos estéticos
 
-### Ejercicios
+## 3.3 Mapeos estéticos {-#mapeos-esteticos} 
+
+### 3.3.1 Ejercicios{-#ejercicios-331} 
 
 1. ¿Qué no va bien en este código? ¿Por qué hay puntos que no son azules?
 
@@ -166,9 +167,10 @@ ggplot(millas, aes(x = cilindrada, y = autopista, colour = cilindrada < 5)) +
 ```
 </div>
 
-## Separar en facetas
 
-### Ejercicios
+## 3.5 Separar en facetas {-#separar-facetas} 
+
+### 3.5.1 Ejercicios{-#ejercicios-351} 
 
 1. Qué ocurre si intentas separar en facetas a una variable continua?
 
@@ -320,10 +322,9 @@ las facetas. `facet_wrap()` opera sobre una única variable.
 Hacerlo genera más espacio para las columnas si el gráfico se ubica de forma horizontal.
 </div>
 
-## Objetos geométricos
+## 3.6 Objetos geométricos {-#objetos-geometricos} 
 
-
-### Ejercicios
+### 3.6.1 Ejercicios{-#ejercicios-361} 
 
 1. ¿Qué geom usarías para generar un gráfico de líneas?
 ¿Un diagrama de caja? ¿Un histograma? ¿Un gráfico de área?
@@ -513,10 +514,9 @@ ggplot(data = millas, mapping = aes(x = cilindrada, y = autopista)) +
 ```
 </div>
 
-## Transformaciones estadísticas
+## 3.7 Transformaciones estadísticas {-#transformaciones-estadisticas} 
 
-
-### Ejercicios
+### 3.7.1 Ejercicios{-#ejercicios-371} 
 
 1. ¿Cuál es el geom predeterminado asociado con `stat_summary()`?
 ¿Cómo podrías reescribir el gráfico anterior para usar esa función geom en lugar de la función stat?
@@ -759,9 +759,9 @@ ggplot(data = diamantes) +
 ```
 </div>
 
-## Ajustes de posición
+## 3.8 Ajustes de posición {-#ajustes-posicion} 
 
-### Ejercicios
+### 3.8.1 Ejercicios{-#ejercicios-381} 
 
 1. ¿Cuál es el problema con este gráfico? ¿Cómo podrías mejorarlo?
 
@@ -875,10 +875,9 @@ ggplot(data = millas, aes(x = transmision, y = autopista, colour = clase)) +
 ```
 </div>
 
-## Sistemas de coordenadas
+## 3.9 Sistemas de coordenadas {-#sistemas-coordenadas} 
 
-
-### Ejercicios
+### 3.9.1 Ejercicios{-#ejercicios-391} 
 
 1. Convierte un gráfico de barras apiladas en un gráfico circular usando `coord_polar()`.
 

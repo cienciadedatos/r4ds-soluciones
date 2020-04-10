@@ -1,3 +1,5 @@
 # (PART) Manejar o domar datos {-}
 
-[sección sin ejercicios]
+# Introducción
+
+Esta sección no tiene ejercicios.

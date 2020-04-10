@@ -1,3 +1,5 @@
 # (PART) Comunicar {-}
 
-[Esta sección no tiene ejercicios]
+# Introducción
+
+Esta sección no tiene ejercicios.

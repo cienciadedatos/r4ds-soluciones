@@ -6,9 +6,9 @@ library(tidyverse)
 library(datos)
 ```
 
-## Datos ordenados
+## 12.2 Datos ordenados{-#datos-ordenados122}
 
-### Ejercicios
+### 12.2.1 Ejercicios{-#ejercicios-1221}
 
 1. Usando prosa, describe como las variables y observaciones se organizan en las tablas de ejemplo.
 
@@ -18,13 +18,13 @@ library(datos)
 </div>
 
 
-1. Calcula la `tasa` para las tablas `tabla2` y `tabla4a` + `tabla4b`.
+2. Calcula la `tasa` para las tablas `tabla2` y `tabla4a` + `tabla4b`.
  Necesitarás las siguientes operaciones:
 
- 1. Extrae el número de casos de tuberculosis por país y año.
- 1. Extrae la población por país y año.
- 1. Divide los casos por la población y multiplica por 10000.
- 1. Inserta los datos en el lugar adecuado.
+   1. Extrae el número de casos de tuberculosis por país y año.
+   2. Extrae la población por país y año.
+   3. Divide los casos por la población y multiplica por 10000.
+   4. Inserta los datos en el lugar adecuado.
 
  ¿Cuál representación es más fácil de trabajar? ¿Cuál es la más difícil? ¿Por qué?
 
@@ -34,7 +34,7 @@ library(datos)
 </div>
 
 
-1. Recrea el gráfico que muestra el cambio en el número de casos usando la `tabla2` en lugar de la `tabla1`. ¿Qué debes hacer en primer lugar?
+2. Recrea el gráfico que muestra el cambio en el número de casos usando la `tabla2` en lugar de la `tabla1`. ¿Qué debes hacer en primer lugar?
 
 
 <div class="solucion">
@@ -42,11 +42,11 @@ library(datos)
 
 </div>
 
-## Reunir y Esparcir [HAY QUE ACTUALIZAR ESTOS EJERCICIOS A LAS FUNCIONES PIVOT]
+## 12.3 Pivotar{-#pivotar}
 
-### Ejercicios
+### 12.3.3 Ejercicios{-#ejercicios-1233}
 
-1. ¿Por qué `gather()` y `spread()` no son perfectamente simétricas?
+1. ¿Por qué `pivot_longer()` y `pivot_wider()` no son perfectamente simétricas?
  Observa cuidadosamente el siguiente ejemplo:
 
 ```{r, eval = FALSE}
@@ -56,22 +56,32 @@ acciones <- tibble(
   retorno = c(1.88, 0.59, 0.92, 0.17)
 )
 acciones %>%
-  spread(anio, retorno) %>%
-  gather("anio", "retorno", `2015`:`2016`)
+  pivot_wider(names_from = anio, values_from = retorno) %>%
+  pivot_longer(`2015`:`2016`, names_to = "anio", values_to = "retorno")
 ```
 
  (Pista: observa los tipos de variables y piensa en los nombres de las columnas)
 
- Tanto `spread()` como `gather()` tienen el argumento `convert` (convertir). ¿Qué hace dicho argumento?
+`pivot_longer()` y `pivot_wider()` tienen el argumento `names_ptype`. Por ejemplo, `names_ptype = list(year = double())`. ¿Qué es lo que hace dicho argumento?
 
-1. ¿Por qué falla el siguiente código?
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+2. ¿Por qué falla el siguiente código?
 
 ```{r, error = TRUE}
 tabla4a %>%
-  gather(`1999`, `2000`, key = "anio", value = "casos")
+  pivot_longer(c(`1999`, `2000`), names_to = "anio", values_to = "casos")
 ```
 
-1. ¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarias una nueva columna para resolver el problema?
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+3. ¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarias una nueva columna para resolver el problema?
 
 ```{r}
 personas <- tribble(
@@ -85,7 +95,12 @@ personas <- tribble(
 )
 ```
 
-1. Ordena la siguiente tabla. ¿Necesitas extenderla o contraerla? ¿Cuáles son las variables?
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+4. Ordena la siguiente tabla. ¿Necesitas extenderla o contraerla? ¿Cuáles son las variables?
 
 ```{r}
 embarazo <- tribble(
@@ -95,9 +110,14 @@ embarazo <- tribble(
 )
 ```
 
-## Separar y unir
+<div class="solucion">
+<h3>Solución</h3>
 
-### Ejercicios
+</div>
+
+## 12.4 Separar y unir{-#separar-unir}
+
+### 12.4.3 Ejercicios{-#ejercicios-1243}
 
 1. ¿Qué hacen los argumentos `extra` y `fill` en `separate()`?
  Experimenta con las diversas opciones a partir de los siguientes datasets de ejemplo.
@@ -116,7 +136,7 @@ tibble(x = c("a,b,c", "d,e", "f,g,i")) %>%
 </div>
 
 
-1. Tanto `unite()` como `separate()` tienen un argumento `remove`. ¿Qué es lo que hace?
+2. Tanto `unite()` como `separate()` tienen un argumento `remove`. ¿Qué es lo que hace?
 ¿Por qué lo dejarías en `FALSE`?
 
 <div class="solucion">
@@ -125,7 +145,7 @@ tibble(x = c("a,b,c", "d,e", "f,g,i")) %>%
 </div>
 
 
-1. Compara y contrasta `separate()` y `extract()`. ¿Por qué existen tres variaciones de
+3. Compara y contrasta `separate()` y `extract()`. ¿Por qué existen tres variaciones de
 separación (por posición, separador y grupos), pero solo una forma de unir?
 
 <div class="solucion">
@@ -134,9 +154,9 @@ separación (por posición, separador y grupos), pero solo una forma de unir?
 </div>
 
 
-## Valores faltantes
+## 12.5 Valores faltantes{-#valores-faltantes125}
 
-### Ejercicios
+### 12.5.1 Ejercicios{-#ejercicios-1251}
 
 1. Compara y contrasta el argumento `fill` que se usa en `spread()` con `complete()`.
 
@@ -146,7 +166,7 @@ separación (por posición, separador y grupos), pero solo una forma de unir?
 </div>
 
 
-1. ¿Qué hace el argumento de dirección en `fill()`?
+2. ¿Qué hace el argumento de dirección en `fill()`?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -154,9 +174,9 @@ separación (por posición, separador y grupos), pero solo una forma de unir?
 </div>
 
 
-## Estudio de caso
+## 12.6 Estudio de caso{-#estudio-caso}
 
-### Ejercicios
+### 12.6.1 Ejercicios{-#ejercicios-1261}
 
 1. En este caso de estudio fijamos `na.rm = TRUE` para simplificar la verificación de que tenemos los valores correctos. ¿Es esto razonable? Piensa en como los valores faltantes están representados en este dataset. ¿Existen valores faltantes implícitos? ¿Cuál es la diferencia entre `NA` y cero?
 
@@ -166,7 +186,7 @@ separación (por posición, separador y grupos), pero solo una forma de unir?
 </div>
 
 
-1. ¿Qué ocurre si omites la aplicación de `mutate()`?
+2. ¿Qué ocurre si omites la aplicación de `mutate()`?
  (`mutate(clave = stringr::str_replace(clave, "nuevosrecaida", "nuevos_recaida"))`)
 
 <div class="solucion">
@@ -175,14 +195,14 @@ separación (por posición, separador y grupos), pero solo una forma de unir?
 </div>
 
 
-1. Afirmamos que `iso2` e `iso3` son redundantes respecto a `pais`. Confirma esta premisa.
+3. Afirmamos que `iso2` e `iso3` son redundantes respecto a `pais`. Confirma esta premisa.
 
 <div class="solucion">
 <h3>Solución</h3>
 
 </div>
 
-1. Para cada país, año y sexo calcula el total del número de casos de tuberculosis. Crea una visualización informativa de los datos.
+4. Para cada país, año y sexo calcula el total del número de casos de tuberculosis. Crea una visualización informativa de los datos.
 
 <div class="solucion">
 <h3>Solución</h3>

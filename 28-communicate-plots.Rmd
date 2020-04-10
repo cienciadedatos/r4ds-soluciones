@@ -1,15 +1,13 @@
 # Comunicar con gráficos
 
-## Paquetes necesarios
-
-```{r}
-library(ggplot2)
+```{r, include = FALSE}
+library(tidyverse)
 library(datos)
 ```
 
-## Etiquetas
+## 2.8 Etiquetas{-#etiquetas}
 
-### Ejercicios
+### 28.2.1 Ejercicios{-#ejercicios-2821}
 
 1. Crea un gráfico partiendo de los datos de economía de combustible con etiquetas para `title` , `subtitle`, `caption`, `x`, `y` y `color` personalizadas.
 
@@ -32,9 +30,9 @@ library(datos)
 
 </div>
 
-## Anotaciones
+## 28.3 Anotaciones{-#anotaciones}
 
-### Ejercicios
+### 28.3.1 Ejercicios{-#ejercicios-2831}
 
 1. Usa las infinitas posiciones que permite `geom_text()` para colocar texto en cada una de las cuatro esquinas del gráfico.
 
@@ -72,9 +70,9 @@ library(datos)
 
 </div>
 
-## Escalas
+## 28.4 Escalas{-#escalas}
 
-### Ejercicios
+### 28.4.4 Ejercicios{-#ejercicios-2844}
 
 1. ¿Por qué el siguiente código no reemplaza la escala predeterminada?
 

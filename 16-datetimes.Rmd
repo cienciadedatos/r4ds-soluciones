@@ -7,10 +7,9 @@ library(lubridate)
 library(datos)
 ```
 
-## Creando horas/fechas
+## 16.2 Creando horas/fechas{-#crear-horas}
 
-
-### Ejercicios
+### 16.2.4 Ejercicios{-#ejercicios-1624}
 
 1. ¿Qué sucede si analizas una cadena de caracteres que contiene fechas inválidas?
 
@@ -20,19 +19,32 @@ ymd(c("2010-10-10", "bananas"))
 
 <div class="solucion">
 <h3>Solución</h3>
+Las cadenas de caracteres que contienen cadenas inválidas se convierten en `NA` y R arroja un mensaje de advertencia en el que se indica la candidad de veces que se encontró con este error:
+
+```
+[1] "2010-10-10" NA          
+Warning message:
+ 1 failed to parse. 
+```
 
 </div>
 
-
-1. ¿Qué hace el argumento `tzone` (del inglés, _huso horario_ abreviado) para `today()`? ¿Por qué es importante?
+2. ¿Qué hace el argumento `tzone` (del inglés, _huso horario_ abreviado) para `today()`? ¿Por qué es importante?
 
 <div class="solucion">
 <h3>Solución</h3>
+El argumento `tzone` permite indicar en qué huso horarios queremos la fecha actual. Por defecto entrega la de tu sistema, pero si queremos la de una zona horaria específica, podemos ajustarla con ese argumento:
+
+```{r}
+today()
+today ("UTC")
+today(tzone = "Australia/Sydney")
+today(tzone = "Pacific/Honolulu")
+```
 
 </div>
 
-
-1. Usa la función de __lubridate__ apropiada para analizar las siguientes fechas:
+3. Usa la función de __lubridate__ apropiada para analizar las siguientes fechas:
 
  ```{r}
 d1 <- "Enero 1, 2010"
@@ -45,13 +57,20 @@ d5 <- "12/30/14" # Diciembre 30, 2014
 <div class="solucion">
 <h3>Solución</h3>
 
+```{r}
+mdy(d1)
+ymd(d2)
+dmy(d3)
+mdy(d4)
+mdy(d5)
+```
+
 </div>
 
 
-## Componentes fecha-hora
+## 16.3 Componentes fecha-hora{-#componentes-fecha}
 
-
-### Ejercicios
+### 16.3.4 Ejercicios{-#ejercicios-1634}
 
 1. ¿Cómo cambia la distribución de las horas de los vuelos dentro de un día, a lo largo del año?
 
@@ -61,7 +80,7 @@ d5 <- "12/30/14" # Diciembre 30, 2014
 </div>
 
 
-1. Compara `horario_salida`, `salida_programada` and `atraso_salida`. ¿Son consistentes? Explica tus hallazgos.
+2. Compara `horario_salida`, `salida_programada` and `atraso_salida`. ¿Son consistentes? Explica tus hallazgos.
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -69,7 +88,7 @@ d5 <- "12/30/14" # Diciembre 30, 2014
 </div>
 
 
-1. Compara `tiempo_vuelo` con la duración entre la salida y la llegada. Explica tus hallazgos. (Pista: considera la ubicación del aeropuerto).
+3. Compara `tiempo_vuelo` con la duración entre la salida y la llegada. Explica tus hallazgos. (Pista: considera la ubicación del aeropuerto).
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -77,7 +96,7 @@ d5 <- "12/30/14" # Diciembre 30, 2014
 </div>
 
 
-1. ¿Cómo cambia la demora promedio durante el curso de un día? ¿Deberías usar `horario_salida` o `salida_programada`? ¿Por qué?
+4. ¿Cómo cambia la demora promedio durante el curso de un día? ¿Deberías usar `horario_salida` o `salida_programada`? ¿Por qué?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -85,7 +104,7 @@ d5 <- "12/30/14" # Diciembre 30, 2014
 </div>
 
 
-1. ¿En qué día de la semana deberías salir, si quieres minimizar las posibilidades de una demora?
+5. ¿En qué día de la semana deberías salir, si quieres minimizar las posibilidades de una demora?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -93,7 +112,7 @@ d5 <- "12/30/14" # Diciembre 30, 2014
 </div>
 
 
-1. ¿Qué hace que la distribución de `diamantes$carat` y `vuelos$salida_programada` sean similares?
+6. ¿Qué hace que la distribución de `diamantes$quilate` y `vuelos$salida_programada` sean similares?
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -101,43 +120,33 @@ d5 <- "12/30/14" # Diciembre 30, 2014
 </div>
 
 
-1. Confirma mi hipótesis de que salidas programas en los minutos 20-30 y 50-60 están casuadas por los vuelos programados que salen más temprano. Pista: crea una variable binaria que te diga si un vuelo tuvo o no demora.
+7. Confirma mi hipótesis de que salidas programas en los minutos 20-30 y 50-60 están casuadas por los vuelos programados que salen más temprano. Pista: crea una variable binaria que te diga si un vuelo tuvo o no demora.
 
 <div class="solucion">
 <h3>Solución</h3>
 
 </div>
 
-## Plazos de tiempo
+## 16.4 Lapsos de tiempo{-#lapsos-tiempo}
 
+### 16.4.5 Ejercicios{-#ejercicios-1645}
 
-### Ejercicios
-
-1. ¿Por qué hay `months()` pero no `dmonths()` (del inglés, _días del mes_)?
-
-<div class="solucion">
-<h3>Solución</h3>
-
-</div>
-
-
-1. Explica `days(nocturno * 1)` a alguien que apenas comienza a aprender R. ¿Cómo funciona?
-
+1. ¿Por qué hay `months()` pero no `dmonths()` (_días del mes_)?
 
 <div class="solucion">
 <h3>Solución</h3>
 
 </div>
 
-1. Crea un vector de fechas dando el primer día de cada mes en 2015. Crea un vector de fechas dando el primer día de cada mes del año _actual_.
+2. Explica `days(nocturno * 1)` a alguien que apenas comienza a aprender R. ¿Cómo funciona?
+
 
 <div class="solucion">
 <h3>Solución</h3>
 
 </div>
 
-
-1. Crea una función en la cual, dado tu cumpleaños (como una fecha), retorne cuán viejo eres en años.
+3. Crea un vector de fechas dando el primer día de cada mes en 2015. Crea un vector de fechas dando el primer día de cada mes del año _actual_.
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -145,7 +154,15 @@ d5 <- "12/30/14" # Diciembre 30, 2014
 </div>
 
 
-1. ¿Por qué no puedes hacer funcionar a `(today() %--% (today() + years(1)) / months(1)` ?
+4. Crea una función en la cual, dado tu cumpleaños (como una fecha), retorne cuán viejo eres en años.
+
+<div class="solucion">
+<h3>Solución</h3>
+
+</div>
+
+
+5. ¿Por qué no puedes hacer funcionar a `(today() %--% (today() + years(1)) / months(1)` ?
 
 <div class="solucion">
 <h3>Solución</h3>

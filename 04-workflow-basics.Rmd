@@ -6,7 +6,7 @@ library(tidyverse)
 library(datos)
 ```
 
-## Ejercicios
+## 4.4 Ejercicios{-#ejercicios-41} 
 
 1.  ¿Por qué no funciona este código?
 
