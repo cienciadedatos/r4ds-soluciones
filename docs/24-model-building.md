@@ -1,2 +1,0 @@
-# Model building
-¡AGREGAR CUANDO ESTÉ TRADUCIDO!
