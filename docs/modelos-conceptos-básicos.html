@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>23 Modelos: conceptos básicos | R para Ciencia de Datos: Soluciones de los ejercicios</title>
+  <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="23 Modelos: conceptos básicos | R para Ciencia de Datos: Soluciones de los ejercicios" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://cienciadedatos.github.io/r4ds-soluciones" />
+  <meta property="og:image" content="http://cienciadedatos.github.io/r4ds-solucionescover.png" />
+  <meta property="og:description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
+  <meta name="github-repo" content="cienciadedatos/r4ds-soluciones" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="23 Modelos: conceptos básicos | R para Ciencia de Datos: Soluciones de los ejercicios" />
+  
+  <meta name="twitter:description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
+  <meta name="twitter:image" content="http://cienciadedatos.github.io/r4ds-solucionescover.png" />
+
+<meta name="author" content="Riva Quiroga" />
+<meta name="author" content="Mauricio ‘Pachá’ Vargas" />
+<meta name="author" content="Gabriela Sandoval" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introducción-7.html"/>
+<link rel="next" href="construcción-de-modelos.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="r4ds.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Soluciones R para Ciencia de Datos</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bienvenida</a></li>
+<li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="part"><span><b>I Explorar</b></span></li>
+<li class="chapter" data-level="2" data-path="introducción-1.html"><a href="introducción-1.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
+<li class="chapter" data-level="3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#introducción-2"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#primeros-pasos"><i class="fa fa-check"></i>3.2 Primeros pasos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-324"><i class="fa fa-check"></i>3.2.4 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#mapeos-esteticos"><i class="fa fa-check"></i>3.3 Mapeos estéticos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-331"><i class="fa fa-check"></i>3.3.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#separar-facetas"><i class="fa fa-check"></i>3.5 Separar en facetas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-351"><i class="fa fa-check"></i>3.5.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#objetos-geometricos"><i class="fa fa-check"></i>3.6 Objetos geométricos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-361"><i class="fa fa-check"></i>3.6.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#transformaciones-estadisticas"><i class="fa fa-check"></i>3.7 Transformaciones estadísticas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-371"><i class="fa fa-check"></i>3.7.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ajustes-posicion"><i class="fa fa-check"></i>3.8 Ajustes de posición</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-381"><i class="fa fa-check"></i>3.8.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#sistemas-coordenadas"><i class="fa fa-check"></i>3.9 Sistemas de coordenadas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-391"><i class="fa fa-check"></i>3.9.1 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="flujo-de-trabajo-conocimientos-básicos.html"><a href="flujo-de-trabajo-conocimientos-básicos.html"><i class="fa fa-check"></i><b>4</b> Flujo de trabajo: conocimientos básicos</a><ul>
+<li class="chapter" data-level="" data-path="flujo-de-trabajo-conocimientos-básicos.html"><a href="flujo-de-trabajo-conocimientos-básicos.html#ejercicios-41"><i class="fa fa-check"></i>4.4 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>5</b> Transformación de datos</a><ul>
+<li class="chapter" data-level="5.1" data-path="transform.html"><a href="transform.html#introducción-3"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
+<li><a href="transform.html#filter">5.2 Filtrar filas con <code>filter()</code></a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-524"><i class="fa fa-check"></i>5.2.4 Ejercicios</a></li>
+</ul></li>
+<li><a href="transform.html#arrange">5.3 Reordenar las filas con <code>arrange()</code></a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-531"><i class="fa fa-check"></i>5.3.1 Ejercicios</a></li>
+</ul></li>
+<li><a href="transform.html#select">5.4 Seleccionar columnas con <code>select()</code></a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-541"><i class="fa fa-check"></i>5.4.1 Ejercicios</a></li>
+</ul></li>
+<li><a href="transform.html#mutate">5.5 Añadir nuevas variables con <code>mutate()</code></a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-552"><i class="fa fa-check"></i>5.5.2 Ejercicios</a></li>
+</ul></li>
+<li><a href="transform.html#sumamarise">5.6 Resúmenes agrupados con <code>summarise()</code></a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-567"><i class="fa fa-check"></i>5.6.7 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#mutate-filter"><i class="fa fa-check"></i>5.7 Transformaciones agrupadas (y filtros)</a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-571"><i class="fa fa-check"></i>5.7.1 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="flujo-de-trabajo-scripts.html"><a href="flujo-de-trabajo-scripts.html"><i class="fa fa-check"></i><b>6</b> Flujo de trabajo: <em>Scripts</em></a><ul>
+<li class="chapter" data-level="" data-path="flujo-de-trabajo-scripts.html"><a href="flujo-de-trabajo-scripts.html#ejercicios-63"><i class="fa fa-check"></i>6.3 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html"><i class="fa fa-check"></i><b>7</b> Análisis exploratorio de datos (<em>EDA</em>)</a><ul>
+<li class="chapter" data-level="7.1" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#introducción-4"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#preguntas"><i class="fa fa-check"></i>7.3 Variación</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-734"><i class="fa fa-check"></i>7.3.4 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#valores-faltantes"><i class="fa fa-check"></i>7.4 Valores faltantes</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-741"><i class="fa fa-check"></i>7.4.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#covariacion"><i class="fa fa-check"></i>7.5 Covariación</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#categorica-continua"><i class="fa fa-check"></i>7.5.1 Una variable categórica y otra continua</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#categorica"><i class="fa fa-check"></i>7.5.2 Dos variables categóricas</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-7521"><i class="fa fa-check"></i>7.5.2.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#continuas"><i class="fa fa-check"></i>7.5.3 Dos variables continuas</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-7532"><i class="fa fa-check"></i>7.5.3.1 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="workflow-projects.html"><a href="workflow-projects.html"><i class="fa fa-check"></i><b>8</b> Workflow: projects</a></li>
+<li class="part"><span><b>II Manejar o domar datos</b></span></li>
+<li class="chapter" data-level="9" data-path="introducción-5.html"><a href="introducción-5.html"><i class="fa fa-check"></i><b>9</b> Introducción</a></li>
+<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a><ul>
+<li class="chapter" data-level="" data-path="tibbles.html"><a href="tibbles.html#ejercicios-105"><i class="fa fa-check"></i>10.5 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="importación-de-datos.html"><a href="importación-de-datos.html"><i class="fa fa-check"></i><b>11</b> Importación de datos</a><ul>
+<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#comenzando"><i class="fa fa-check"></i>11.2 Comenzando</a><ul>
+<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#ejercicios-1122"><i class="fa fa-check"></i>11.2.2 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#segmentar-vector"><i class="fa fa-check"></i>11.3 Segmentar un vector</a><ul>
+<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#ejercicios-1135"><i class="fa fa-check"></i>11.3.5 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="datos-ordenados.html"><a href="datos-ordenados.html"><i class="fa fa-check"></i><b>12</b> Datos ordenados</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#datos-ordenados122"><i class="fa fa-check"></i>12.2 Datos ordenados</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1221"><i class="fa fa-check"></i>12.2.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#pivotar"><i class="fa fa-check"></i>12.3 Pivotar</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1233"><i class="fa fa-check"></i>12.3.3 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#separar-unir"><i class="fa fa-check"></i>12.4 Separar y unir</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1243"><i class="fa fa-check"></i>12.4.3 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#valores-faltantes125"><i class="fa fa-check"></i>12.5 Valores faltantes</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1251"><i class="fa fa-check"></i>12.5.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#estudio-caso"><i class="fa fa-check"></i>12.6 Estudio de caso</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1261"><i class="fa fa-check"></i>12.6.1 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="datos-relacionales.html"><a href="datos-relacionales.html"><i class="fa fa-check"></i><b>13</b> Datos relacionales</a><ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#vuelos-relacionales"><i class="fa fa-check"></i>13.2 Datos sobre vuelos</a><ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1321"><i class="fa fa-check"></i>13.2.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#claves"><i class="fa fa-check"></i>13.3 Claves</a><ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1331"><i class="fa fa-check"></i>13.3.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="13.1" data-path="datos-relacionales.html"><a href="datos-relacionales.html#mutating-joins"><i class="fa fa-check"></i><b>13.1</b> 13.4 Uniones de transformación</a><ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1346"><i class="fa fa-check"></i>13.4.6 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="datos-relacionales.html"><a href="datos-relacionales.html#filtering-joins"><i class="fa fa-check"></i><b>13.2</b> 13.5 Uniones de filtro</a><ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1351"><i class="fa fa-check"></i>13.5.1 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html"><i class="fa fa-check"></i><b>14</b> Cadenas de caracteres</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#cadena-basics"><i class="fa fa-check"></i>14.2 Cadenas: elementos básicos</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1425"><i class="fa fa-check"></i>14.2.5 Ejercicios</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#coincidencia"><i class="fa fa-check"></i>14.2.6 Buscar coincidencia de patrones con expresiones regulares</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#anclas"><i class="fa fa-check"></i>14.2.8 Anclas</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#clases-caracteres"><i class="fa fa-check"></i>14.2.9 Clases de caracteres y alternativas</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#repeticion"><i class="fa fa-check"></i>14.2.10 Repetición</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#agrupamiento"><i class="fa fa-check"></i>14.2.11 Agrupamiento y referencias previas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#herramientas"><i class="fa fa-check"></i>14.3 Herramientas</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1432"><i class="fa fa-check"></i>14.3.2 Ejercicios</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#extraer-coincidencias"><i class="fa fa-check"></i>14.3.3 Extraer coincidencias</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#coincidencias-agrupadas"><i class="fa fa-check"></i>14.3.4 Coincidencias agrupadas</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#remplazar-coincidencias"><i class="fa fa-check"></i>14.3.5 Remplazar coincidencias</a></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#divisiones"><i class="fa fa-check"></i>14.3.6 Divisiones</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#otros-patrones144"><i class="fa fa-check"></i>14.4 Otro tipo de patrones</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1441"><i class="fa fa-check"></i>14.4.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#stringi"><i class="fa fa-check"></i>14.6 stringi</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1461"><i class="fa fa-check"></i>14.6.1 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="factores.html"><a href="factores.html"><i class="fa fa-check"></i><b>15</b> Factores</a><ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#encuesta"><i class="fa fa-check"></i>15.3 Encuesta social general</a><ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1531"><i class="fa fa-check"></i>15.3.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-factores"><i class="fa fa-check"></i>15.4 Modificar el orden de los factores</a><ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1541"><i class="fa fa-check"></i>15.4.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-niveles"><i class="fa fa-check"></i>15.5 Modificar los niveles de los factores</a><ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1551"><i class="fa fa-check"></i>15.5.1 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html"><i class="fa fa-check"></i><b>16</b> Horas y fechas</a><ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#crear-horas"><i class="fa fa-check"></i>16.2 Creando horas/fechas</a><ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1624"><i class="fa fa-check"></i>16.2.4 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#componentes-fecha"><i class="fa fa-check"></i>16.3 Componentes fecha-hora</a><ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1634"><i class="fa fa-check"></i>16.3.4 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#lapsos-tiempo"><i class="fa fa-check"></i>16.4 Lapsos de tiempo</a><ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1645"><i class="fa fa-check"></i>16.4.5 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Programar</b></span></li>
+<li class="chapter" data-level="17" data-path="introducción-6.html"><a href="introducción-6.html"><i class="fa fa-check"></i><b>17</b> Introducción</a></li>
+<li class="chapter" data-level="18" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>18</b> Pipes</a></li>
+<li class="chapter" data-level="19" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>19</b> Funciones</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#escribir-funcion"><i class="fa fa-check"></i>19.2 ¿Cuándo deberías escribir una función?</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1921"><i class="fa fa-check"></i>19.2.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#funciones-humanos"><i class="fa fa-check"></i>19.3 Las funciones son para los humanos y las computadoras</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1931"><i class="fa fa-check"></i>19.3.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejecucion-condicional"><i class="fa fa-check"></i>19.4 Ejecución condicional</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1944"><i class="fa fa-check"></i>19.4.4 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#argumentos-funciones"><i class="fa fa-check"></i>19.5 Argumentos de funciones</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1955"><i class="fa fa-check"></i>19.5.5 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>20</b> Vectores</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-atomicos"><i class="fa fa-check"></i>20.3 Tipos importantes de vectores atómicos</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2035"><i class="fa fa-check"></i>20.3.5 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#uso-vectores"><i class="fa fa-check"></i>20.4 Usando vectores atómicos</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2046"><i class="fa fa-check"></i>20.4.6 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#listas"><i class="fa fa-check"></i>20.5 Vectores Recursivos (listas)</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2054"><i class="fa fa-check"></i>20.5.4 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-aumentados"><i class="fa fa-check"></i>20.7 Vectores Aumentados</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2074"><i class="fa fa-check"></i>20.7.4 Ejecicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="iteración.html"><a href="iteración.html"><i class="fa fa-check"></i><b>21</b> Iteración</a><ul>
+<li><a href="iteración.html#bucles-for">21.2 Bucles <em>for</em></a><ul>
+<li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios2121"><i class="fa fa-check"></i>21.2.1 Ejercicios</a></li>
+</ul></li>
+<li><a href="iteración.html#variaciones-bucles">21.3 Variaciones de bucles <em>for</em></a><ul>
+<li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2135"><i class="fa fa-check"></i>21.3.5 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="21.1" data-path="iteración.html"><a href="iteración.html#bucles-for-vs.-funcionales-for-funcionales"><i class="fa fa-check"></i><b>21.1</b> 21.4 Bucles <em>for</em> vs. funcionales{-for-funcionales</a><ul>
+<li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2141"><i class="fa fa-check"></i>21.4.1 Ejercicios</a></li>
+</ul></li>
+<li><a href="iteración.html#funciones-map">21.5 Las funciones <em>map</em></a><ul>
+<li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2153"><i class="fa fa-check"></i>21.5.3 Ejercicios</a></li>
+</ul></li>
+<li><a href="iteración.html#otros-patrones">21.9.1 Otros patrones para los bucles <em>for</em></a><ul>
+<li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2193"><i class="fa fa-check"></i>21.9.3 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Modelar</b></span></li>
+<li class="chapter" data-level="22" data-path="introducción-7.html"><a href="introducción-7.html"><i class="fa fa-check"></i><b>22</b> Introducción</a></li>
+<li class="chapter" data-level="23" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html"><i class="fa fa-check"></i><b>23</b> Modelos: conceptos básicos</a><ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#modelo-simple"><i class="fa fa-check"></i>23.2 Un modelo simple</a><ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2321"><i class="fa fa-check"></i>23.2.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#visualizando-modelos"><i class="fa fa-check"></i>23.3 Visualizando modelos</a><ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2333"><i class="fa fa-check"></i>23.3.3 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#familias-modelos"><i class="fa fa-check"></i>23.4 Fórmulas y familias de modelos</a><ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2345"><i class="fa fa-check"></i>23.4.5 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html"><i class="fa fa-check"></i><b>24</b> Construcción de modelos</a><ul>
+<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#diamantes-caros"><i class="fa fa-check"></i>24.2 ¿Por qué los diamantes de baja calidad son más caros?</a><ul>
+<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#ejercicios-2423"><i class="fa fa-check"></i>24.2.3 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#vuelos-diarios"><i class="fa fa-check"></i>24.3 ¿Qué afecta el número de vuelos diarios?</a><ul>
+<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#ejercicios-2435"><i class="fa fa-check"></i>24.3.5 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="muchos-modelos.html"><a href="muchos-modelos.html"><i class="fa fa-check"></i><b>25</b> Muchos modelos</a><ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#gapminder"><i class="fa fa-check"></i>25.2 gapminder</a><ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2525"><i class="fa fa-check"></i>25.2.5 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#columnas-lista"><i class="fa fa-check"></i>25.4 Creando columnas-lista</a><ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2545"><i class="fa fa-check"></i>25.4.5 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#simplificando"><i class="fa fa-check"></i>25.5 Simplificando columnas-lista</a><ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2553"><i class="fa fa-check"></i>25.5.3 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Comunicar</b></span></li>
+<li class="chapter" data-level="26" data-path="introducción-8.html"><a href="introducción-8.html"><i class="fa fa-check"></i><b>26</b> Introducción</a></li>
+<li class="chapter" data-level="27" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>27</b> R Markdown</a><ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#rmarkdown-basico"><i class="fa fa-check"></i>27.2 R Markdown básico</a><ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2721"><i class="fa fa-check"></i>27.2.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#formateo-texto"><i class="fa fa-check"></i>27.3 Formateo de texto con Markdown</a><ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2731"><i class="fa fa-check"></i>27.3.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bloques-codigo"><i class="fa fa-check"></i>27.4 Bloques de código</a><ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2747"><i class="fa fa-check"></i>27.4.7 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html"><i class="fa fa-check"></i><b>28</b> Comunicar con gráficos</a><ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#etiquetas"><i class="fa fa-check"></i>2.8 Etiquetas</a><ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2821"><i class="fa fa-check"></i>28.2.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#anotaciones"><i class="fa fa-check"></i>28.3 Anotaciones</a><ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2831"><i class="fa fa-check"></i>28.3.1 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#escalas"><i class="fa fa-check"></i>28.4 Escalas</a><ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2844"><i class="fa fa-check"></i>28.4.4 Ejercicios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="r-markdown-formats.html"><a href="r-markdown-formats.html"><i class="fa fa-check"></i><b>29</b> R Markdown formats</a></li>
+<li class="chapter" data-level="30" data-path="flujo-de-trabajo-en-r-markdown.html"><a href="flujo-de-trabajo-en-r-markdown.html"><i class="fa fa-check"></i><b>30</b> Flujo de trabajo en R Markdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R para Ciencia de Datos: Soluciones de los ejercicios</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelos-conceptos-básicos" class="section level1">
+<h1><span class="header-section-number">23</span> Modelos: conceptos básicos</h1>
+<div id="modelo-simple" class="section level2 unnumbered">
+<h2>23.2 Un modelo simple</h2>
+<div id="ejercicios-2321" class="section level3 unnumbered">
+<h3>23.2.1 Ejercicios</h3>
+<ol style="list-style-type: decimal">
+<li>Una desventaja del modelo lineal es ser sensible a valores inusuales
+debido a que la distancia incorpora un término al cuadrado. Ajusta un
+modelo a los datos simulados que se presentan a continuación y visualiza
+los resultados. Corre el modelo varias veces para generar diferentes conjuntos
+de datos simulados. ¿Qué puedes observar respecto del modelo?</li>
+</ol>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="modelos-conceptos-básicos.html#cb198-1"></a>sim1a &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb198-2"><a href="modelos-conceptos-básicos.html#cb198-2"></a>  <span class="dt">x =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">each =</span> <span class="dv">3</span>),</span>
+<span id="cb198-3"><a href="modelos-conceptos-básicos.html#cb198-3"></a>  <span class="dt">y =</span> x <span class="op">*</span><span class="st"> </span><span class="fl">1.5</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span><span class="st"> </span><span class="kw">rt</span>(<span class="kw">length</span>(x), <span class="dt">df =</span> <span class="dv">2</span>)</span>
+<span id="cb198-4"><a href="modelos-conceptos-básicos.html#cb198-4"></a>)</span></code></pre></div>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>Se puede correr una vez y graficar los resultados.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="modelos-conceptos-básicos.html#cb199-1"></a><span class="kw">ggplot</span>(sim1a, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb199-2"><a href="modelos-conceptos-básicos.html#cb199-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb199-3"><a href="modelos-conceptos-básicos.html#cb199-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb199-4"><a href="modelos-conceptos-básicos.html#cb199-4"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="23-model-basics_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Para sistematizarlo, se pueden generar varias simulaciones y luego graficar
+las líneas.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="modelos-conceptos-básicos.html#cb200-1"></a>simt &lt;-<span class="st"> </span><span class="cf">function</span>(i) {</span>
+<span id="cb200-2"><a href="modelos-conceptos-básicos.html#cb200-2"></a>  <span class="kw">tibble</span>(</span>
+<span id="cb200-3"><a href="modelos-conceptos-básicos.html#cb200-3"></a>    <span class="dt">x =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">each =</span> <span class="dv">3</span>),</span>
+<span id="cb200-4"><a href="modelos-conceptos-básicos.html#cb200-4"></a>    <span class="dt">y =</span> x <span class="op">*</span><span class="st"> </span><span class="fl">1.5</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span><span class="st"> </span><span class="kw">rt</span>(<span class="kw">length</span>(x), <span class="dt">df =</span> <span class="dv">2</span>),</span>
+<span id="cb200-5"><a href="modelos-conceptos-básicos.html#cb200-5"></a>    <span class="dt">.id =</span> i</span>
+<span id="cb200-6"><a href="modelos-conceptos-básicos.html#cb200-6"></a>  )</span>
+<span id="cb200-7"><a href="modelos-conceptos-básicos.html#cb200-7"></a>}</span>
+<span id="cb200-8"><a href="modelos-conceptos-básicos.html#cb200-8"></a></span>
+<span id="cb200-9"><a href="modelos-conceptos-básicos.html#cb200-9"></a>sims &lt;-<span class="st"> </span><span class="kw">map_df</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, simt)</span>
+<span id="cb200-10"><a href="modelos-conceptos-básicos.html#cb200-10"></a></span>
+<span id="cb200-11"><a href="modelos-conceptos-básicos.html#cb200-11"></a><span class="kw">ggplot</span>(sims, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb200-12"><a href="modelos-conceptos-básicos.html#cb200-12"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb200-13"><a href="modelos-conceptos-básicos.html#cb200-13"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb200-14"><a href="modelos-conceptos-básicos.html#cb200-14"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>.id, <span class="dt">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb200-15"><a href="modelos-conceptos-básicos.html#cb200-15"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="23-model-basics_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>El ejercicio usa la función <code>rt()</code> la cual entrega
+un muestreo a partir de una distribución t-Student, la cual tiene colas más
+largas que la distribución normal (<code>rnorm()</code>), por lo tanto asigna una mayor
+probabilidad a los valores fuera del centro de la distribución.</p>
+<p>¿Qué ocurre si usamos una distribución normal?</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="modelos-conceptos-básicos.html#cb201-1"></a>sim_norm &lt;-<span class="st"> </span><span class="cf">function</span>(i) {</span>
+<span id="cb201-2"><a href="modelos-conceptos-básicos.html#cb201-2"></a>  <span class="kw">tibble</span>(</span>
+<span id="cb201-3"><a href="modelos-conceptos-básicos.html#cb201-3"></a>    <span class="dt">x =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">each =</span> <span class="dv">3</span>),</span>
+<span id="cb201-4"><a href="modelos-conceptos-básicos.html#cb201-4"></a>    <span class="dt">y =</span> x <span class="op">*</span><span class="st"> </span><span class="fl">1.5</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(x)),</span>
+<span id="cb201-5"><a href="modelos-conceptos-básicos.html#cb201-5"></a>    <span class="dt">.id =</span> i</span>
+<span id="cb201-6"><a href="modelos-conceptos-básicos.html#cb201-6"></a>  )</span>
+<span id="cb201-7"><a href="modelos-conceptos-básicos.html#cb201-7"></a>}</span>
+<span id="cb201-8"><a href="modelos-conceptos-básicos.html#cb201-8"></a></span>
+<span id="cb201-9"><a href="modelos-conceptos-básicos.html#cb201-9"></a>simdf_norm &lt;-<span class="st"> </span><span class="kw">map_df</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, sim_norm)</span>
+<span id="cb201-10"><a href="modelos-conceptos-básicos.html#cb201-10"></a></span>
+<span id="cb201-11"><a href="modelos-conceptos-básicos.html#cb201-11"></a><span class="kw">ggplot</span>(simdf_norm, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb201-12"><a href="modelos-conceptos-básicos.html#cb201-12"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb201-13"><a href="modelos-conceptos-básicos.html#cb201-13"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb201-14"><a href="modelos-conceptos-básicos.html#cb201-14"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>.id, <span class="dt">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb201-15"><a href="modelos-conceptos-básicos.html#cb201-15"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="23-model-basics_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Al usar distribución normal no hay tantos valores extremos y las pendientes
+son más similares.</p>
+<p>Para el caso de la distribución normal con media cero y desviación estándar uno,
+la probabilidad de que un valor sea mayor a dos se obtiene con <code>pnorm()</code>.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="modelos-conceptos-básicos.html#cb202-1"></a><span class="kw">pnorm</span>(<span class="dv">2</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb202-2"><a href="modelos-conceptos-básicos.html#cb202-2"></a><span class="co">#&gt; [1] 0.0228</span></span></code></pre></div>
+<p>Para el caso de la distribución t-Student con dos grados de libertad, la
+probabilidad es más del triple del caso anterior y se obtiene con <code>pt()</code>.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="modelos-conceptos-básicos.html#cb203-1"></a><span class="kw">pt</span>(<span class="dv">2</span>, <span class="dt">df =</span> <span class="dv">2</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb203-2"><a href="modelos-conceptos-básicos.html#cb203-2"></a><span class="co">#&gt; [1] 0.0918</span></span></code></pre></div>
+<p>Podemos concluir que el modelo es sensible a valores extremos y en general a
+la distribución que siguen los datos.</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Una forma de obtener un modelo lineal más robusto es usar una métrica
+distinta para la distancia. Por ejemplo, en lugar de la raíz de la distancia
+media cuadrática (del inglés <em>root-mean-squared distance</em>) se podría usar la
+media de la distancia absoluta:</li>
+</ol>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="modelos-conceptos-básicos.html#cb204-1"></a>medir_distancia &lt;-<span class="st"> </span><span class="cf">function</span>(modelo, datos) {</span>
+<span id="cb204-2"><a href="modelos-conceptos-básicos.html#cb204-2"></a>  diferencia &lt;-<span class="st"> </span>datos<span class="op">$</span>y <span class="op">-</span><span class="st"> </span><span class="kw">modelo1</span>(modelo, datos)</span>
+<span id="cb204-3"><a href="modelos-conceptos-básicos.html#cb204-3"></a>  <span class="kw">mean</span>(<span class="kw">abs</span>(diferencia))</span>
+<span id="cb204-4"><a href="modelos-conceptos-básicos.html#cb204-4"></a>}</span></code></pre></div>
+<p>Usa <code>optim()</code> para ajustar este modelo a los datos simulados anteriormente y
+compara el resultado con el modelo lineal.</p>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>Usando los datos <code>sim1a</code> y <code>optim()</code> podemos encontrar los parámetros que
+minimizan la desviación absoluta. Definiremos la función <code>modelo1()</code> tal como
+se hizo en el libro.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="modelos-conceptos-básicos.html#cb205-1"></a>modelo1 &lt;-<span class="st"> </span><span class="cf">function</span>(a, datos) {</span>
+<span id="cb205-2"><a href="modelos-conceptos-básicos.html#cb205-2"></a>  a[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>datos<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>a[<span class="dv">2</span>]</span>
+<span id="cb205-3"><a href="modelos-conceptos-básicos.html#cb205-3"></a>}</span>
+<span id="cb205-4"><a href="modelos-conceptos-básicos.html#cb205-4"></a></span>
+<span id="cb205-5"><a href="modelos-conceptos-básicos.html#cb205-5"></a>beta &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), medir_distancia, <span class="dt">datos =</span> sim1a)</span>
+<span id="cb205-6"><a href="modelos-conceptos-básicos.html#cb205-6"></a>beta<span class="op">$</span>par</span>
+<span id="cb205-7"><a href="modelos-conceptos-básicos.html#cb205-7"></a><span class="co">#&gt; [1] 5.25 1.66</span></span></code></pre></div>
+<p>Los resultados del modelo lineal son los mismos que se obtienen si se minimiza
+la desviación al cuadrado.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="modelos-conceptos-básicos.html#cb206-1"></a>medir_distancia_ml &lt;-<span class="st"> </span><span class="cf">function</span>(modelo, datos) {</span>
+<span id="cb206-2"><a href="modelos-conceptos-básicos.html#cb206-2"></a>  diferencia &lt;-<span class="st"> </span>datos<span class="op">$</span>y <span class="op">-</span><span class="st"> </span>(modelo[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>datos<span class="op">$</span>x)</span>
+<span id="cb206-3"><a href="modelos-conceptos-básicos.html#cb206-3"></a>  <span class="kw">sqrt</span>(<span class="kw">mean</span>(diferencia<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb206-4"><a href="modelos-conceptos-básicos.html#cb206-4"></a>}</span>
+<span id="cb206-5"><a href="modelos-conceptos-básicos.html#cb206-5"></a></span>
+<span id="cb206-6"><a href="modelos-conceptos-básicos.html#cb206-6"></a>beta &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), medir_distancia_ml, <span class="dt">datos =</span> sim1a)</span>
+<span id="cb206-7"><a href="modelos-conceptos-básicos.html#cb206-7"></a>beta<span class="op">$</span>par</span>
+<span id="cb206-8"><a href="modelos-conceptos-básicos.html#cb206-8"></a><span class="co">#&gt; [1] 5.87 1.56</span></span></code></pre></div>
+<p>En la práctica no es recomendable usar <code>optim()</code> para ajustar un modelo, es
+mejor utilizar implementaciones ya existentes como <code>rlm()</code> y <code>lqs()</code> que son
+parte del paquete <a href="https://CRAN.R-project.org/package=MASS">MASS</a>.</p>
+<p>La justificación es que estas implementaciones permiten ajustar modelos
+robustos sin los múltiples problemas de carácter numérico que pueden surgir de
+manera condicional a los datos al momento de usar <code>optim()</code>.</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Un desafío al realizar optimización numérica es que únicamente garantiza
+encontrar un óptimo local. ¿Qué problema se presenta al optimizar un modelo de
+tres parámetros como el que se presenta a continuación?</li>
+</ol>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="modelos-conceptos-básicos.html#cb207-1"></a>modelo3 &lt;-<span class="st"> </span><span class="cf">function</span>(a, datos) {</span>
+<span id="cb207-2"><a href="modelos-conceptos-básicos.html#cb207-2"></a>  a[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>datos<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>a[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>a[<span class="dv">3</span>]</span>
+<span id="cb207-3"><a href="modelos-conceptos-básicos.html#cb207-3"></a>}</span></code></pre></div>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>El problema es que dados los valores <code>a[1] = a1</code> y <code>a[3] = a3</code>, cualquier otra
+combinación de <code>a[1]</code> y <code>a[3]</code> tal que <code>a[1] + a[3] == (a1 + a3)</code> tendrá el
+mismo ajuste.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="modelos-conceptos-básicos.html#cb208-1"></a>medir_distancia_<span class="dv">3</span>_ml &lt;-<span class="st"> </span><span class="cf">function</span>(a, datos) {</span>
+<span id="cb208-2"><a href="modelos-conceptos-básicos.html#cb208-2"></a>  diferencia &lt;-<span class="st"> </span>datos<span class="op">$</span>y <span class="op">-</span><span class="st"> </span><span class="kw">modelo3</span>(a, datos)</span>
+<span id="cb208-3"><a href="modelos-conceptos-básicos.html#cb208-3"></a>  <span class="kw">sqrt</span>(<span class="kw">mean</span>(diferencia<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb208-4"><a href="modelos-conceptos-básicos.html#cb208-4"></a>}</span></code></pre></div>
+<p>Dependiendo de los valores inciales se van a obtener distintos valores óptimos.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="modelos-conceptos-básicos.html#cb209-1"></a>beta_<span class="dv">000</span> &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), medir_distancia_<span class="dv">3</span>_ml, <span class="dt">datos =</span> sim1a)</span>
+<span id="cb209-2"><a href="modelos-conceptos-básicos.html#cb209-2"></a>beta_<span class="dv">000</span><span class="op">$</span>par</span>
+<span id="cb209-3"><a href="modelos-conceptos-básicos.html#cb209-3"></a><span class="co">#&gt; [1]  6.461  1.564 -0.594</span></span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="modelos-conceptos-básicos.html#cb210-1"></a>beta_<span class="dv">001</span> &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), medir_distancia_<span class="dv">3</span>_ml, <span class="dt">datos =</span> sim1a)</span>
+<span id="cb210-2"><a href="modelos-conceptos-básicos.html#cb210-2"></a>beta_<span class="dv">001</span><span class="op">$</span>par</span>
+<span id="cb210-3"><a href="modelos-conceptos-básicos.html#cb210-3"></a><span class="co">#&gt; [1] -8.38  1.56 14.25</span></span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="modelos-conceptos-básicos.html#cb211-1"></a>beta_<span class="dv">005</span> &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>), medir_distancia_<span class="dv">3</span>_ml, <span class="dt">datos =</span> sim1a)</span>
+<span id="cb211-2"><a href="modelos-conceptos-básicos.html#cb211-2"></a>beta_<span class="dv">005</span><span class="op">$</span>par</span>
+<span id="cb211-3"><a href="modelos-conceptos-básicos.html#cb211-3"></a><span class="co">#&gt; [1] 0.596 1.564 5.272</span></span></code></pre></div>
+<p>Si seguimos alterando los valores inciales no es muy difícil concluir que
+existen infinitos valores óptimos para este modelo.</p>
+</div>
+</div>
+</div>
+<div id="visualizando-modelos" class="section level2 unnumbered">
+<h2>23.3 Visualizando modelos</h2>
+<div id="ejercicios-2333" class="section level3 unnumbered">
+<h3>23.3.3 Ejercicios</h3>
+<ol style="list-style-type: decimal">
+<li>En lugar de usar <code>lm()</code> para ajustar una línea recta, puedes usar <code>loess()</code>
+para ajustar una curva suave. Repite el proceso de ajustar el modelo,
+generar la cuadrícula, predicciones y visualización con <code>sim1</code> usando <code>loess()</code>
+en vez de <code>lm()</code>. ¿Cómo se compara el resultado a <code>geom_smooth()</code>.</li>
+</ol>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>Usando <code>add_predictions()</code> y <code>add_residuals()</code> se pueden agregar las
+predicciones y los residuos de la regresión loess a los datos <code>sim1a</code>.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="modelos-conceptos-básicos.html#cb212-1"></a>sim1_loess &lt;-<span class="st"> </span><span class="kw">loess</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> sim1a)</span>
+<span id="cb212-2"><a href="modelos-conceptos-básicos.html#cb212-2"></a>sim1_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> sim1a)</span>
+<span id="cb212-3"><a href="modelos-conceptos-básicos.html#cb212-3"></a></span>
+<span id="cb212-4"><a href="modelos-conceptos-básicos.html#cb212-4"></a>grid_loess &lt;-<span class="st"> </span>sim1a <span class="op">%&gt;%</span></span>
+<span id="cb212-5"><a href="modelos-conceptos-básicos.html#cb212-5"></a><span class="st">  </span><span class="kw">add_predictions</span>(sim1_loess)</span>
+<span id="cb212-6"><a href="modelos-conceptos-básicos.html#cb212-6"></a></span>
+<span id="cb212-7"><a href="modelos-conceptos-básicos.html#cb212-7"></a>sim1a &lt;-<span class="st"> </span>sim1a <span class="op">%&gt;%</span></span>
+<span id="cb212-8"><a href="modelos-conceptos-básicos.html#cb212-8"></a><span class="st">  </span><span class="kw">add_residuals</span>(sim1_lm) <span class="op">%&gt;%</span></span>
+<span id="cb212-9"><a href="modelos-conceptos-básicos.html#cb212-9"></a><span class="st">  </span><span class="kw">add_predictions</span>(sim1_lm) <span class="op">%&gt;%</span></span>
+<span id="cb212-10"><a href="modelos-conceptos-básicos.html#cb212-10"></a><span class="st">  </span><span class="kw">add_residuals</span>(sim1_loess, <span class="dt">var =</span> <span class="st">&quot;resid_loess&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb212-11"><a href="modelos-conceptos-básicos.html#cb212-11"></a><span class="st">  </span><span class="kw">add_predictions</span>(sim1_loess, <span class="dt">var =</span> <span class="st">&quot;pred_loess&quot;</span>)</span></code></pre></div>
+<p>Ahora procedemos a graficar las predicciones. La regresión loess genera un
+ajuste no lineal a partir de los datos.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="modelos-conceptos-básicos.html#cb213-1"></a>plot_sim1_loess &lt;-<span class="st"> </span><span class="kw">ggplot</span>(sim1, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb213-2"><a href="modelos-conceptos-básicos.html#cb213-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb213-3"><a href="modelos-conceptos-básicos.html#cb213-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> pred), <span class="dt">data =</span> grid_loess, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb213-4"><a href="modelos-conceptos-básicos.html#cb213-4"></a></span>
+<span id="cb213-5"><a href="modelos-conceptos-básicos.html#cb213-5"></a>plot_sim1_loess</span></code></pre></div>
+<p><img src="23-model-basics_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Las predicciones del modelo loess son las mismas que entrega el método por
+defecto de <code>geom_smooth()</code> ya que este usa <code>loess()</code> y entrega un mensaje al
+respecto.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="modelos-conceptos-básicos.html#cb214-1"></a>plot_sim1_loess <span class="op">+</span></span>
+<span id="cb214-2"><a href="modelos-conceptos-básicos.html#cb214-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">0.20</span>)</span>
+<span id="cb214-3"><a href="modelos-conceptos-básicos.html#cb214-3"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="23-model-basics_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Podemos graficar los residuos de loess (en rojo) y compararlos con los del
+modelo lineal (en negro). En general, el modelo loess tiene un menor residuo
+dada la muestra (fuera de la muestra no se asegura este comportamiento y no
+hemos considerado la incertidumbre de la estimación).</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="modelos-conceptos-básicos.html#cb215-1"></a><span class="kw">ggplot</span>(sim1a, <span class="kw">aes</span>(<span class="dt">x =</span> x)) <span class="op">+</span></span>
+<span id="cb215-2"><a href="modelos-conceptos-básicos.html#cb215-2"></a><span class="st">  </span><span class="kw">geom_ref_line</span>(<span class="dt">h =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb215-3"><a href="modelos-conceptos-básicos.html#cb215-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> resid)) <span class="op">+</span></span>
+<span id="cb215-4"><a href="modelos-conceptos-básicos.html#cb215-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> resid_loess), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="23-model-basics_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li><code>add_predictions()</code> está pareada con <code>gather_predictions()</code> y
+<code>spread_predictions()</code>. ¿Cómo difieren estas tres funciones?</li>
+</ol>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>Las funciones <code>gather_predictions()</code> y <code>spread_predictions()</code> permiten incluir
+simultáneamente las predicciones de múltiples modelos.</p>
+<p>Por ejemplo, se puede incluir <code>sim1_mod</code>.</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="modelos-conceptos-básicos.html#cb216-1"></a>sim1_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> sim1)</span>
+<span id="cb216-2"><a href="modelos-conceptos-básicos.html#cb216-2"></a></span>
+<span id="cb216-3"><a href="modelos-conceptos-básicos.html#cb216-3"></a>grid &lt;-<span class="st"> </span>sim1 <span class="op">%&gt;%</span></span>
+<span id="cb216-4"><a href="modelos-conceptos-básicos.html#cb216-4"></a><span class="st">  </span><span class="kw">data_grid</span>(x)</span></code></pre></div>
+<p>La función <code>add_predictions()</code> permite incluir un modelo a la vez. Para agregar
+dos modelos se debe encadenar con el operador <code>%&gt;%</code>.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="modelos-conceptos-básicos.html#cb217-1"></a>grid <span class="op">%&gt;%</span></span>
+<span id="cb217-2"><a href="modelos-conceptos-básicos.html#cb217-2"></a><span class="st">  </span><span class="kw">add_predictions</span>(sim1_mod, <span class="dt">var =</span> <span class="st">&quot;pred_lm&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb217-3"><a href="modelos-conceptos-básicos.html#cb217-3"></a><span class="st">  </span><span class="kw">add_predictions</span>(sim1_loess, <span class="dt">var =</span> <span class="st">&quot;pred_loess&quot;</span>)</span>
+<span id="cb217-4"><a href="modelos-conceptos-básicos.html#cb217-4"></a><span class="co">#&gt; # A tibble: 10 x 3</span></span>
+<span id="cb217-5"><a href="modelos-conceptos-básicos.html#cb217-5"></a><span class="co">#&gt;       x pred_lm pred_loess</span></span>
+<span id="cb217-6"><a href="modelos-conceptos-básicos.html#cb217-6"></a><span class="co">#&gt;   &lt;int&gt;   &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb217-7"><a href="modelos-conceptos-básicos.html#cb217-7"></a><span class="co">#&gt; 1     1    6.27       7.05</span></span>
+<span id="cb217-8"><a href="modelos-conceptos-básicos.html#cb217-8"></a><span class="co">#&gt; 2     2    8.32       8.76</span></span>
+<span id="cb217-9"><a href="modelos-conceptos-básicos.html#cb217-9"></a><span class="co">#&gt; 3     3   10.4       10.5 </span></span>
+<span id="cb217-10"><a href="modelos-conceptos-básicos.html#cb217-10"></a><span class="co">#&gt; 4     4   12.4       12.1 </span></span>
+<span id="cb217-11"><a href="modelos-conceptos-básicos.html#cb217-11"></a><span class="co">#&gt; 5     5   14.5       14.1 </span></span>
+<span id="cb217-12"><a href="modelos-conceptos-básicos.html#cb217-12"></a><span class="co">#&gt; 6     6   16.5       15.9 </span></span>
+<span id="cb217-13"><a href="modelos-conceptos-básicos.html#cb217-13"></a><span class="co">#&gt; # … with 4 more rows</span></span></code></pre></div>
+<p>La función <code>gather_predictions()</code> incorpora predicciones de múltiples modelos
+por medio de agrupar los resultados e incluir una columna con el nombre del
+modelo.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="modelos-conceptos-básicos.html#cb218-1"></a>grid <span class="op">%&gt;%</span></span>
+<span id="cb218-2"><a href="modelos-conceptos-básicos.html#cb218-2"></a><span class="st">  </span><span class="kw">gather_predictions</span>(sim1_mod, sim1_loess)</span>
+<span id="cb218-3"><a href="modelos-conceptos-básicos.html#cb218-3"></a><span class="co">#&gt; # A tibble: 20 x 3</span></span>
+<span id="cb218-4"><a href="modelos-conceptos-básicos.html#cb218-4"></a><span class="co">#&gt;   model        x  pred</span></span>
+<span id="cb218-5"><a href="modelos-conceptos-básicos.html#cb218-5"></a><span class="co">#&gt;   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;</span></span>
+<span id="cb218-6"><a href="modelos-conceptos-básicos.html#cb218-6"></a><span class="co">#&gt; 1 sim1_mod     1  6.27</span></span>
+<span id="cb218-7"><a href="modelos-conceptos-básicos.html#cb218-7"></a><span class="co">#&gt; 2 sim1_mod     2  8.32</span></span>
+<span id="cb218-8"><a href="modelos-conceptos-básicos.html#cb218-8"></a><span class="co">#&gt; 3 sim1_mod     3 10.4 </span></span>
+<span id="cb218-9"><a href="modelos-conceptos-básicos.html#cb218-9"></a><span class="co">#&gt; 4 sim1_mod     4 12.4 </span></span>
+<span id="cb218-10"><a href="modelos-conceptos-básicos.html#cb218-10"></a><span class="co">#&gt; 5 sim1_mod     5 14.5 </span></span>
+<span id="cb218-11"><a href="modelos-conceptos-básicos.html#cb218-11"></a><span class="co">#&gt; 6 sim1_mod     6 16.5 </span></span>
+<span id="cb218-12"><a href="modelos-conceptos-básicos.html#cb218-12"></a><span class="co">#&gt; # … with 14 more rows</span></span></code></pre></div>
+<p>La función <code>spread_predictions()</code> incorpora predicciones de múltiples modelos
+agregando múltiples columnas (de acuerdo al nombre de cada modelo) que contienen
+las predicciones respectivas.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="modelos-conceptos-básicos.html#cb219-1"></a>grid <span class="op">%&gt;%</span></span>
+<span id="cb219-2"><a href="modelos-conceptos-básicos.html#cb219-2"></a><span class="st">  </span><span class="kw">spread_predictions</span>(sim1_mod, sim1_loess)</span>
+<span id="cb219-3"><a href="modelos-conceptos-básicos.html#cb219-3"></a><span class="co">#&gt; # A tibble: 10 x 3</span></span>
+<span id="cb219-4"><a href="modelos-conceptos-básicos.html#cb219-4"></a><span class="co">#&gt;       x sim1_mod sim1_loess</span></span>
+<span id="cb219-5"><a href="modelos-conceptos-básicos.html#cb219-5"></a><span class="co">#&gt;   &lt;int&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb219-6"><a href="modelos-conceptos-básicos.html#cb219-6"></a><span class="co">#&gt; 1     1     6.27       7.05</span></span>
+<span id="cb219-7"><a href="modelos-conceptos-básicos.html#cb219-7"></a><span class="co">#&gt; 2     2     8.32       8.76</span></span>
+<span id="cb219-8"><a href="modelos-conceptos-básicos.html#cb219-8"></a><span class="co">#&gt; 3     3    10.4       10.5 </span></span>
+<span id="cb219-9"><a href="modelos-conceptos-básicos.html#cb219-9"></a><span class="co">#&gt; 4     4    12.4       12.1 </span></span>
+<span id="cb219-10"><a href="modelos-conceptos-básicos.html#cb219-10"></a><span class="co">#&gt; 5     5    14.5       14.1 </span></span>
+<span id="cb219-11"><a href="modelos-conceptos-básicos.html#cb219-11"></a><span class="co">#&gt; 6     6    16.5       15.9 </span></span>
+<span id="cb219-12"><a href="modelos-conceptos-básicos.html#cb219-12"></a><span class="co">#&gt; # … with 4 more rows</span></span></code></pre></div>
+<p>La función <code>spread_predictions()</code> es similar a correr <code>add_predictions()</code> para
+cada modelo que se quiere incorporar y es equivalente a correr <code>spread()</code> luego
+de <code>gather_predictions()</code>.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="modelos-conceptos-básicos.html#cb220-1"></a>grid <span class="op">%&gt;%</span></span>
+<span id="cb220-2"><a href="modelos-conceptos-básicos.html#cb220-2"></a><span class="st">  </span><span class="kw">gather_predictions</span>(sim1_mod, sim1_loess) <span class="op">%&gt;%</span></span>
+<span id="cb220-3"><a href="modelos-conceptos-básicos.html#cb220-3"></a><span class="st">  </span><span class="kw">spread</span>(model, pred)</span>
+<span id="cb220-4"><a href="modelos-conceptos-básicos.html#cb220-4"></a><span class="co">#&gt; # A tibble: 10 x 3</span></span>
+<span id="cb220-5"><a href="modelos-conceptos-básicos.html#cb220-5"></a><span class="co">#&gt;       x sim1_loess sim1_mod</span></span>
+<span id="cb220-6"><a href="modelos-conceptos-básicos.html#cb220-6"></a><span class="co">#&gt;   &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb220-7"><a href="modelos-conceptos-básicos.html#cb220-7"></a><span class="co">#&gt; 1     1       7.05     6.27</span></span>
+<span id="cb220-8"><a href="modelos-conceptos-básicos.html#cb220-8"></a><span class="co">#&gt; 2     2       8.76     8.32</span></span>
+<span id="cb220-9"><a href="modelos-conceptos-básicos.html#cb220-9"></a><span class="co">#&gt; 3     3      10.5     10.4 </span></span>
+<span id="cb220-10"><a href="modelos-conceptos-básicos.html#cb220-10"></a><span class="co">#&gt; 4     4      12.1     12.4 </span></span>
+<span id="cb220-11"><a href="modelos-conceptos-básicos.html#cb220-11"></a><span class="co">#&gt; 5     5      14.1     14.5 </span></span>
+<span id="cb220-12"><a href="modelos-conceptos-básicos.html#cb220-12"></a><span class="co">#&gt; 6     6      15.9     16.5 </span></span>
+<span id="cb220-13"><a href="modelos-conceptos-básicos.html#cb220-13"></a><span class="co">#&gt; # … with 4 more rows</span></span></code></pre></div>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>¿Qué hace <code>geom_ref_line()</code>? ¿De qué paquete proviene? ¿Por qué es útil e importante
+incluir una línea de referencia en los gráficos que muestran residuos?</li>
+</ol>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>La geometría <code>geom_ref_line()</code> agrega una línea de referencia al gráfico. Es el
+equivalente a usar <code>geom_hline()</code> o <code>geom_vline()</code> con las opciones por defecto
+y que nos sirven para visualizar modelos.</p>
+<p>Agregar una línea de referencia en torno a cero para los residuos es importante
+ya que un buen modelo, por lo general, tiene residuos centrados en torno a cero.
+Otras características relevantes son que los errores deben tener idéntica
+varianza y no estar correlacionados entre si.</p>
+<p>La línea de referencia en torno a cero permite evaluar visualmente estas
+características.</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>¿Por qué quisieras mirar un polígono de frecuencias con los residuos absolutos? ¿Cuáles son las
+ventajas y desventajas de los residuos crudos?</li>
+</ol>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>Mostrar los valores absolutos de los residuos facilita ver la magnitud del
+error. El modelo lineal asume que los residuos tienen media cero y usar los
+valores absolutos de los residuos permite ver lo que ocurre cuando los errores
+de signos opuestos no se cancelan mutuamente.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="modelos-conceptos-básicos.html#cb221-1"></a>sim1_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> sim1a)</span>
+<span id="cb221-2"><a href="modelos-conceptos-básicos.html#cb221-2"></a></span>
+<span id="cb221-3"><a href="modelos-conceptos-básicos.html#cb221-3"></a>sim1 &lt;-<span class="st"> </span>sim1 <span class="op">%&gt;%</span></span>
+<span id="cb221-4"><a href="modelos-conceptos-básicos.html#cb221-4"></a><span class="st">  </span><span class="kw">add_residuals</span>(sim1_mod)</span>
+<span id="cb221-5"><a href="modelos-conceptos-básicos.html#cb221-5"></a></span>
+<span id="cb221-6"><a href="modelos-conceptos-básicos.html#cb221-6"></a><span class="kw">ggplot</span>(sim1a, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">abs</span>(resid))) <span class="op">+</span></span>
+<span id="cb221-7"><a href="modelos-conceptos-básicos.html#cb221-7"></a><span class="st">  </span><span class="kw">geom_freqpoly</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="23-model-basics_files/figure-html/unnamed-chunk-25-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>El inconveniente que aparece visualmente es que se pierde toda información
+respecto de los signos de los residuos. Por lo tanto, el polígono de frecuencias
+no distingue si acaso el modelo sobre-estima o sub-estima de manera consistente.</p>
+</div>
+</div>
+</div>
+<div id="familias-modelos" class="section level2 unnumbered">
+<h2>23.4 Fórmulas y familias de modelos</h2>
+<div id="ejercicios-2345" class="section level3 unnumbered">
+<h3>23.4.5 Ejercicios</h3>
+<ol style="list-style-type: decimal">
+<li>¿Qué pasa si repites el análisis de <code>sim2</code> usando un modelo sin intercepto? ¿Qué ocurre con la
+ecuación del modelo? ¿Qué ocurre con las predicciones?</li>
+</ol>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>Para estimar el modelo sin intercepto agregamos <code>-1</code> o <code>+0</code> al lado derecho
+de la fórmula.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="modelos-conceptos-básicos.html#cb222-1"></a>mod2a &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> sim2)</span>
+<span id="cb222-2"><a href="modelos-conceptos-básicos.html#cb222-2"></a></span>
+<span id="cb222-3"><a href="modelos-conceptos-básicos.html#cb222-3"></a>mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> sim2)</span></code></pre></div>
+<p>Las predicciones son las mismas en el caso con o sin intercepto:</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="modelos-conceptos-básicos.html#cb223-1"></a>grid &lt;-<span class="st"> </span>sim2 <span class="op">%&gt;%</span></span>
+<span id="cb223-2"><a href="modelos-conceptos-básicos.html#cb223-2"></a><span class="st">  </span><span class="kw">data_grid</span>(x) <span class="op">%&gt;%</span></span>
+<span id="cb223-3"><a href="modelos-conceptos-básicos.html#cb223-3"></a><span class="st">  </span><span class="kw">spread_predictions</span>(mod2, mod2a)</span>
+<span id="cb223-4"><a href="modelos-conceptos-básicos.html#cb223-4"></a></span>
+<span id="cb223-5"><a href="modelos-conceptos-básicos.html#cb223-5"></a>grid</span>
+<span id="cb223-6"><a href="modelos-conceptos-básicos.html#cb223-6"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
+<span id="cb223-7"><a href="modelos-conceptos-básicos.html#cb223-7"></a><span class="co">#&gt;   x      mod2 mod2a</span></span>
+<span id="cb223-8"><a href="modelos-conceptos-básicos.html#cb223-8"></a><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb223-9"><a href="modelos-conceptos-básicos.html#cb223-9"></a><span class="co">#&gt; 1 a      1.15  1.15</span></span>
+<span id="cb223-10"><a href="modelos-conceptos-básicos.html#cb223-10"></a><span class="co">#&gt; 2 b      8.12  8.12</span></span>
+<span id="cb223-11"><a href="modelos-conceptos-básicos.html#cb223-11"></a><span class="co">#&gt; 3 c      6.13  6.13</span></span>
+<span id="cb223-12"><a href="modelos-conceptos-básicos.html#cb223-12"></a><span class="co">#&gt; 4 d      1.91  1.91</span></span></code></pre></div>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Usa <code>model_matrix()</code> para explorar las ecuaciones generadas por los modelos ajustados a <code>sim3</code> y
+<code>sim4</code>. ¿Por qué <code>*</code> es un atajo para la interacción?</li>
+</ol>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>El caso <code>x1 * x2</code> cuando <code>x2</code> es una variable categórica produce las variables
+binarias <code>x2b</code>, <code>x2c</code> y <code>x2d</code> y las variables continuas <code>x1:x2b</code>, <code>x1:x2c</code> y
+<code>x1:x2d</code> que son el producto de <code>x1</code> y <code>x2*</code>.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="modelos-conceptos-básicos.html#cb224-1"></a>x3 &lt;-<span class="st"> </span><span class="kw">model_matrix</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2, <span class="dt">data =</span> sim3)</span>
+<span id="cb224-2"><a href="modelos-conceptos-básicos.html#cb224-2"></a>x3</span>
+<span id="cb224-3"><a href="modelos-conceptos-básicos.html#cb224-3"></a><span class="co">#&gt; # A tibble: 120 x 8</span></span>
+<span id="cb224-4"><a href="modelos-conceptos-básicos.html#cb224-4"></a><span class="co">#&gt;   `(Intercept)`    x1   x2b   x2c   x2d `x1:x2b` `x1:x2c` `x1:x2d`</span></span>
+<span id="cb224-5"><a href="modelos-conceptos-básicos.html#cb224-5"></a><span class="co">#&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb224-6"><a href="modelos-conceptos-básicos.html#cb224-6"></a><span class="co">#&gt; 1             1     1     0     0     0        0        0        0</span></span>
+<span id="cb224-7"><a href="modelos-conceptos-básicos.html#cb224-7"></a><span class="co">#&gt; 2             1     1     0     0     0        0        0        0</span></span>
+<span id="cb224-8"><a href="modelos-conceptos-básicos.html#cb224-8"></a><span class="co">#&gt; 3             1     1     0     0     0        0        0        0</span></span>
+<span id="cb224-9"><a href="modelos-conceptos-básicos.html#cb224-9"></a><span class="co">#&gt; 4             1     1     1     0     0        1        0        0</span></span>
+<span id="cb224-10"><a href="modelos-conceptos-básicos.html#cb224-10"></a><span class="co">#&gt; 5             1     1     1     0     0        1        0        0</span></span>
+<span id="cb224-11"><a href="modelos-conceptos-básicos.html#cb224-11"></a><span class="co">#&gt; 6             1     1     1     0     0        1        0        0</span></span>
+<span id="cb224-12"><a href="modelos-conceptos-básicos.html#cb224-12"></a><span class="co">#&gt; # … with 114 more rows</span></span></code></pre></div>
+<p>Podemos confirmar que las variables <code>x1:x2b</code> son el producto de <code>x1</code> y <code>x2b</code>.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="modelos-conceptos-básicos.html#cb225-1"></a><span class="kw">all</span>(x3[[<span class="st">&quot;x1:x2b&quot;</span>]] <span class="op">==</span><span class="st"> </span>(x3[[<span class="st">&quot;x1&quot;</span>]] <span class="op">*</span><span class="st"> </span>x3[[<span class="st">&quot;x2b&quot;</span>]]))</span>
+<span id="cb225-2"><a href="modelos-conceptos-básicos.html#cb225-2"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>Es similar para <code>x1:x2c</code> y <code>x2c</code> como para el caso de <code>x1:x2d</code> y <code>x2d</code>.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="modelos-conceptos-básicos.html#cb226-1"></a><span class="kw">all</span>(x3[[<span class="st">&quot;x1:x2c&quot;</span>]] <span class="op">==</span><span class="st"> </span>(x3[[<span class="st">&quot;x1&quot;</span>]] <span class="op">*</span><span class="st"> </span>x3[[<span class="st">&quot;x2c&quot;</span>]]))</span>
+<span id="cb226-2"><a href="modelos-conceptos-básicos.html#cb226-2"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb226-3"><a href="modelos-conceptos-básicos.html#cb226-3"></a><span class="kw">all</span>(x3[[<span class="st">&quot;x1:x2d&quot;</span>]] <span class="op">==</span><span class="st"> </span>(x3[[<span class="st">&quot;x1&quot;</span>]] <span class="op">*</span><span class="st"> </span>x3[[<span class="st">&quot;x2d&quot;</span>]]))</span>
+<span id="cb226-4"><a href="modelos-conceptos-básicos.html#cb226-4"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>Para <code>x1 * x2</code> cuando <code>x1</code> y <code>x2</code> son continuas, <code>model_matrix()</code> creas las
+variables <code>x1</code>, <code>x2</code> y <code>x1:x2</code>.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="modelos-conceptos-básicos.html#cb227-1"></a>x4 &lt;-<span class="st"> </span><span class="kw">model_matrix</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2, <span class="dt">data =</span> sim4)</span>
+<span id="cb227-2"><a href="modelos-conceptos-básicos.html#cb227-2"></a>x4</span>
+<span id="cb227-3"><a href="modelos-conceptos-básicos.html#cb227-3"></a><span class="co">#&gt; # A tibble: 300 x 4</span></span>
+<span id="cb227-4"><a href="modelos-conceptos-básicos.html#cb227-4"></a><span class="co">#&gt;   `(Intercept)`    x1     x2 `x1:x2`</span></span>
+<span id="cb227-5"><a href="modelos-conceptos-básicos.html#cb227-5"></a><span class="co">#&gt;           &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb227-6"><a href="modelos-conceptos-básicos.html#cb227-6"></a><span class="co">#&gt; 1             1    -1 -1       1    </span></span>
+<span id="cb227-7"><a href="modelos-conceptos-básicos.html#cb227-7"></a><span class="co">#&gt; 2             1    -1 -1       1    </span></span>
+<span id="cb227-8"><a href="modelos-conceptos-básicos.html#cb227-8"></a><span class="co">#&gt; 3             1    -1 -1       1    </span></span>
+<span id="cb227-9"><a href="modelos-conceptos-básicos.html#cb227-9"></a><span class="co">#&gt; 4             1    -1 -0.778   0.778</span></span>
+<span id="cb227-10"><a href="modelos-conceptos-básicos.html#cb227-10"></a><span class="co">#&gt; 5             1    -1 -0.778   0.778</span></span>
+<span id="cb227-11"><a href="modelos-conceptos-básicos.html#cb227-11"></a><span class="co">#&gt; 6             1    -1 -0.778   0.778</span></span>
+<span id="cb227-12"><a href="modelos-conceptos-básicos.html#cb227-12"></a><span class="co">#&gt; # … with 294 more rows</span></span></code></pre></div>
+<p>Se puede confirmar que <code>x1:x2</code> es el producto de <code>x1</code> y <code>x2</code>.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="modelos-conceptos-básicos.html#cb228-1"></a><span class="kw">all</span>(x4[[<span class="st">&quot;x1&quot;</span>]] <span class="op">*</span><span class="st"> </span>x4[[<span class="st">&quot;x2&quot;</span>]] <span class="op">==</span><span class="st"> </span>x4[[<span class="st">&quot;x1:x2&quot;</span>]])</span>
+<span id="cb228-2"><a href="modelos-conceptos-básicos.html#cb228-2"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Usando los principios básicos, convierte las fórmulas de los siguientes modelos en funciones.
+(Sugerencia: comienza por convertir las variables categóricas en ceros y unos.)</li>
+</ol>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="modelos-conceptos-básicos.html#cb229-1"></a>mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2, <span class="dt">data =</span> sim3)</span>
+<span id="cb229-2"><a href="modelos-conceptos-básicos.html#cb229-2"></a>mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2, <span class="dt">data =</span> sim3)</span></code></pre></div>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>El lado derecho de las fórmulas se encarga de generar una matriz de diseño a
+partir de las columnas <code>x1</code> y <code>x2</code>, lo que se ve reflejado en <code>model_matrix()</code>.</p>
+<p>Veamos los niveles de <code>x2</code>, que por ser una variable categórica es la más
+compleja de llevar a la matriz de diseño. <code>x1</code> permanece inalterada.</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="modelos-conceptos-básicos.html#cb230-1"></a><span class="kw">levels</span>(sim3<span class="op">$</span>x2)</span>
+<span id="cb230-2"><a href="modelos-conceptos-básicos.html#cb230-2"></a><span class="co">#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</span></span></code></pre></div>
+<p>Para el caso <code>~ x1 + x2</code> lo que haremos es considerar “a” como el nivel de
+referencia, por lo que se omite, y luego generamos nuevas columnas para los
+niveles “b”, “c” y “d”.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="modelos-conceptos-básicos.html#cb231-1"></a>model_matrix_mod1 &lt;-<span class="st"> </span><span class="cf">function</span>(.data) {</span>
+<span id="cb231-2"><a href="modelos-conceptos-básicos.html#cb231-2"></a>  <span class="kw">mutate</span>(.data,</span>
+<span id="cb231-3"><a href="modelos-conceptos-básicos.html#cb231-3"></a>    <span class="dt">x2b =</span> <span class="kw">as.numeric</span>(x2 <span class="op">==</span><span class="st"> &quot;b&quot;</span>),</span>
+<span id="cb231-4"><a href="modelos-conceptos-básicos.html#cb231-4"></a>    <span class="dt">x2c =</span> <span class="kw">as.numeric</span>(x2 <span class="op">==</span><span class="st"> &quot;c&quot;</span>),</span>
+<span id="cb231-5"><a href="modelos-conceptos-básicos.html#cb231-5"></a>    <span class="dt">x2d =</span> <span class="kw">as.numeric</span>(x2 <span class="op">==</span><span class="st"> &quot;d&quot;</span>),</span>
+<span id="cb231-6"><a href="modelos-conceptos-básicos.html#cb231-6"></a>    <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb231-7"><a href="modelos-conceptos-básicos.html#cb231-7"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb231-8"><a href="modelos-conceptos-básicos.html#cb231-8"></a><span class="st">    </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span>, x1, x2b, x2c, x2d)</span>
+<span id="cb231-9"><a href="modelos-conceptos-básicos.html#cb231-9"></a>}</span>
+<span id="cb231-10"><a href="modelos-conceptos-básicos.html#cb231-10"></a></span>
+<span id="cb231-11"><a href="modelos-conceptos-básicos.html#cb231-11"></a><span class="kw">model_matrix_mod1</span>(sim3)</span>
+<span id="cb231-12"><a href="modelos-conceptos-básicos.html#cb231-12"></a><span class="co">#&gt; # A tibble: 120 x 5</span></span>
+<span id="cb231-13"><a href="modelos-conceptos-básicos.html#cb231-13"></a><span class="co">#&gt;   `(Intercept)`    x1   x2b   x2c   x2d</span></span>
+<span id="cb231-14"><a href="modelos-conceptos-básicos.html#cb231-14"></a><span class="co">#&gt;           &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb231-15"><a href="modelos-conceptos-básicos.html#cb231-15"></a><span class="co">#&gt; 1             1     1     0     0     0</span></span>
+<span id="cb231-16"><a href="modelos-conceptos-básicos.html#cb231-16"></a><span class="co">#&gt; 2             1     1     0     0     0</span></span>
+<span id="cb231-17"><a href="modelos-conceptos-básicos.html#cb231-17"></a><span class="co">#&gt; 3             1     1     0     0     0</span></span>
+<span id="cb231-18"><a href="modelos-conceptos-básicos.html#cb231-18"></a><span class="co">#&gt; 4             1     1     1     0     0</span></span>
+<span id="cb231-19"><a href="modelos-conceptos-básicos.html#cb231-19"></a><span class="co">#&gt; 5             1     1     1     0     0</span></span>
+<span id="cb231-20"><a href="modelos-conceptos-básicos.html#cb231-20"></a><span class="co">#&gt; 6             1     1     1     0     0</span></span>
+<span id="cb231-21"><a href="modelos-conceptos-básicos.html#cb231-21"></a><span class="co">#&gt; # … with 114 more rows</span></span></code></pre></div>
+<p>Es posible crear función para <code>~ x1 + x2</code> que no depende de los niveles
+específicos de <code>x2</code>.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="modelos-conceptos-básicos.html#cb232-1"></a>model_matrix_mod1b &lt;-<span class="st"> </span><span class="cf">function</span>(.data) {</span>
+<span id="cb232-2"><a href="modelos-conceptos-básicos.html#cb232-2"></a>  <span class="co"># niveles de x2</span></span>
+<span id="cb232-3"><a href="modelos-conceptos-básicos.html#cb232-3"></a>  lvls &lt;-<span class="st"> </span><span class="kw">levels</span>(.data<span class="op">$</span>x2)</span>
+<span id="cb232-4"><a href="modelos-conceptos-básicos.html#cb232-4"></a>  </span>
+<span id="cb232-5"><a href="modelos-conceptos-básicos.html#cb232-5"></a>  <span class="co"># borramos el primer nivel (es de referencia)</span></span>
+<span id="cb232-6"><a href="modelos-conceptos-básicos.html#cb232-6"></a>  <span class="co"># asumimos que hay al menos dos niveles</span></span>
+<span id="cb232-7"><a href="modelos-conceptos-básicos.html#cb232-7"></a>  lvls &lt;-<span class="st"> </span>lvls[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(lvls)]</span>
+<span id="cb232-8"><a href="modelos-conceptos-básicos.html#cb232-8"></a>  </span>
+<span id="cb232-9"><a href="modelos-conceptos-básicos.html#cb232-9"></a>  <span class="co"># creamos una variable binaria para cada nivel de x2</span></span>
+<span id="cb232-10"><a href="modelos-conceptos-básicos.html#cb232-10"></a>  <span class="cf">for</span> (lvl <span class="cf">in</span> lvls) {</span>
+<span id="cb232-11"><a href="modelos-conceptos-básicos.html#cb232-11"></a>    varname &lt;-<span class="st"> </span><span class="kw">str_c</span>(<span class="st">&quot;x2&quot;</span>, lvl)</span>
+<span id="cb232-12"><a href="modelos-conceptos-básicos.html#cb232-12"></a>    .data[[varname]] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(.data<span class="op">$</span>x2 <span class="op">==</span><span class="st"> </span>lvl)</span>
+<span id="cb232-13"><a href="modelos-conceptos-básicos.html#cb232-13"></a>  }</span>
+<span id="cb232-14"><a href="modelos-conceptos-básicos.html#cb232-14"></a>  </span>
+<span id="cb232-15"><a href="modelos-conceptos-básicos.html#cb232-15"></a>  <span class="co"># generamos una lista de las variables que se mantienen</span></span>
+<span id="cb232-16"><a href="modelos-conceptos-básicos.html#cb232-16"></a>  x2_variables &lt;-<span class="st"> </span><span class="kw">str_c</span>(<span class="st">&quot;x2&quot;</span>, lvls)</span>
+<span id="cb232-17"><a href="modelos-conceptos-básicos.html#cb232-17"></a>  </span>
+<span id="cb232-18"><a href="modelos-conceptos-básicos.html#cb232-18"></a>  <span class="co"># agregamos el intercepto</span></span>
+<span id="cb232-19"><a href="modelos-conceptos-básicos.html#cb232-19"></a>  .data[[<span class="st">&quot;(Intercept)&quot;</span>]] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb232-20"><a href="modelos-conceptos-básicos.html#cb232-20"></a>  </span>
+<span id="cb232-21"><a href="modelos-conceptos-básicos.html#cb232-21"></a>  <span class="co"># mantenemos las variables binarias x1 y x2</span></span>
+<span id="cb232-22"><a href="modelos-conceptos-básicos.html#cb232-22"></a>  <span class="kw">select</span>(.data, <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span>, x1, <span class="kw">one_of</span>(x2_variables))</span>
+<span id="cb232-23"><a href="modelos-conceptos-básicos.html#cb232-23"></a>}</span>
+<span id="cb232-24"><a href="modelos-conceptos-básicos.html#cb232-24"></a></span>
+<span id="cb232-25"><a href="modelos-conceptos-básicos.html#cb232-25"></a><span class="kw">model_matrix_mod1b</span>(sim3)</span>
+<span id="cb232-26"><a href="modelos-conceptos-básicos.html#cb232-26"></a><span class="co">#&gt; # A tibble: 120 x 5</span></span>
+<span id="cb232-27"><a href="modelos-conceptos-básicos.html#cb232-27"></a><span class="co">#&gt;   `(Intercept)`    x1   x2b   x2c   x2d</span></span>
+<span id="cb232-28"><a href="modelos-conceptos-básicos.html#cb232-28"></a><span class="co">#&gt;           &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb232-29"><a href="modelos-conceptos-básicos.html#cb232-29"></a><span class="co">#&gt; 1             1     1     0     0     0</span></span>
+<span id="cb232-30"><a href="modelos-conceptos-básicos.html#cb232-30"></a><span class="co">#&gt; 2             1     1     0     0     0</span></span>
+<span id="cb232-31"><a href="modelos-conceptos-básicos.html#cb232-31"></a><span class="co">#&gt; 3             1     1     0     0     0</span></span>
+<span id="cb232-32"><a href="modelos-conceptos-básicos.html#cb232-32"></a><span class="co">#&gt; 4             1     1     1     0     0</span></span>
+<span id="cb232-33"><a href="modelos-conceptos-básicos.html#cb232-33"></a><span class="co">#&gt; 5             1     1     1     0     0</span></span>
+<span id="cb232-34"><a href="modelos-conceptos-básicos.html#cb232-34"></a><span class="co">#&gt; 6             1     1     1     0     0</span></span>
+<span id="cb232-35"><a href="modelos-conceptos-básicos.html#cb232-35"></a><span class="co">#&gt; # … with 114 more rows</span></span></code></pre></div>
+<p>Para el caso <code>~ x1 * x2</code> hay que tener en cuenta que debemos generar una columna
+por cada nivel de <code>x2</code>, sin contar el nivel de referencia que interactúa con
+<code>x1</code>.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="modelos-conceptos-básicos.html#cb233-1"></a>model_matrix_mod2 &lt;-<span class="st"> </span><span class="cf">function</span>(.data) {</span>
+<span id="cb233-2"><a href="modelos-conceptos-básicos.html#cb233-2"></a>  <span class="kw">mutate</span>(.data,</span>
+<span id="cb233-3"><a href="modelos-conceptos-básicos.html#cb233-3"></a>    <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb233-4"><a href="modelos-conceptos-básicos.html#cb233-4"></a>    <span class="dt">x2b =</span> <span class="kw">as.numeric</span>(x2 <span class="op">==</span><span class="st"> &quot;b&quot;</span>),</span>
+<span id="cb233-5"><a href="modelos-conceptos-básicos.html#cb233-5"></a>    <span class="dt">x2c =</span> <span class="kw">as.numeric</span>(x2 <span class="op">==</span><span class="st"> &quot;c&quot;</span>),</span>
+<span id="cb233-6"><a href="modelos-conceptos-básicos.html#cb233-6"></a>    <span class="dt">x2d =</span> <span class="kw">as.numeric</span>(x2 <span class="op">==</span><span class="st"> &quot;d&quot;</span>),</span>
+<span id="cb233-7"><a href="modelos-conceptos-básicos.html#cb233-7"></a>    <span class="st">`</span><span class="dt">x1:x2b</span><span class="st">`</span> =<span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2b,</span>
+<span id="cb233-8"><a href="modelos-conceptos-básicos.html#cb233-8"></a>    <span class="st">`</span><span class="dt">x1:x2c</span><span class="st">`</span> =<span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2c,</span>
+<span id="cb233-9"><a href="modelos-conceptos-básicos.html#cb233-9"></a>    <span class="st">`</span><span class="dt">x1:x2d</span><span class="st">`</span> =<span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2d</span>
+<span id="cb233-10"><a href="modelos-conceptos-básicos.html#cb233-10"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb233-11"><a href="modelos-conceptos-básicos.html#cb233-11"></a><span class="st">    </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span>, x1, x2b, x2c, x2d, <span class="st">`</span><span class="dt">x1:x2b</span><span class="st">`</span>, <span class="st">`</span><span class="dt">x1:x2c</span><span class="st">`</span>, <span class="st">`</span><span class="dt">x1:x2d</span><span class="st">`</span>)</span>
+<span id="cb233-12"><a href="modelos-conceptos-básicos.html#cb233-12"></a>}</span>
+<span id="cb233-13"><a href="modelos-conceptos-básicos.html#cb233-13"></a></span>
+<span id="cb233-14"><a href="modelos-conceptos-básicos.html#cb233-14"></a><span class="kw">model_matrix_mod2</span>(sim3)</span>
+<span id="cb233-15"><a href="modelos-conceptos-básicos.html#cb233-15"></a><span class="co">#&gt; # A tibble: 120 x 8</span></span>
+<span id="cb233-16"><a href="modelos-conceptos-básicos.html#cb233-16"></a><span class="co">#&gt;   `(Intercept)`    x1   x2b   x2c   x2d `x1:x2b` `x1:x2c` `x1:x2d`</span></span>
+<span id="cb233-17"><a href="modelos-conceptos-básicos.html#cb233-17"></a><span class="co">#&gt;           &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb233-18"><a href="modelos-conceptos-básicos.html#cb233-18"></a><span class="co">#&gt; 1             1     1     0     0     0        0        0        0</span></span>
+<span id="cb233-19"><a href="modelos-conceptos-básicos.html#cb233-19"></a><span class="co">#&gt; 2             1     1     0     0     0        0        0        0</span></span>
+<span id="cb233-20"><a href="modelos-conceptos-básicos.html#cb233-20"></a><span class="co">#&gt; 3             1     1     0     0     0        0        0        0</span></span>
+<span id="cb233-21"><a href="modelos-conceptos-básicos.html#cb233-21"></a><span class="co">#&gt; 4             1     1     1     0     0        1        0        0</span></span>
+<span id="cb233-22"><a href="modelos-conceptos-básicos.html#cb233-22"></a><span class="co">#&gt; 5             1     1     1     0     0        1        0        0</span></span>
+<span id="cb233-23"><a href="modelos-conceptos-básicos.html#cb233-23"></a><span class="co">#&gt; 6             1     1     1     0     0        1        0        0</span></span>
+<span id="cb233-24"><a href="modelos-conceptos-básicos.html#cb233-24"></a><span class="co">#&gt; # … with 114 more rows</span></span></code></pre></div>
+<p>Es posible crear una función para <code>~ x1 * x2</code> que no depende de los niveles
+específicos de <code>x2</code>.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="modelos-conceptos-básicos.html#cb234-1"></a>model_matrix_mod2b &lt;-<span class="st"> </span><span class="cf">function</span>(.data) {</span>
+<span id="cb234-2"><a href="modelos-conceptos-básicos.html#cb234-2"></a>  <span class="co"># partimos de la base del modelo x1 + x2</span></span>
+<span id="cb234-3"><a href="modelos-conceptos-básicos.html#cb234-3"></a>  out &lt;-<span class="st"> </span><span class="kw">model_matrix_mod1b</span>(.data)</span>
+<span id="cb234-4"><a href="modelos-conceptos-básicos.html#cb234-4"></a>  </span>
+<span id="cb234-5"><a href="modelos-conceptos-básicos.html#cb234-5"></a>  <span class="co"># tomamos las columnas que contienen &quot;x2&quot;</span></span>
+<span id="cb234-6"><a href="modelos-conceptos-básicos.html#cb234-6"></a>  x2cols &lt;-<span class="st"> </span><span class="kw">str_subset</span>(<span class="kw">colnames</span>(out), <span class="st">&quot;^x2&quot;</span>)</span>
+<span id="cb234-7"><a href="modelos-conceptos-básicos.html#cb234-7"></a>  </span>
+<span id="cb234-8"><a href="modelos-conceptos-básicos.html#cb234-8"></a>  <span class="co"># creamos las variables de interacción</span></span>
+<span id="cb234-9"><a href="modelos-conceptos-básicos.html#cb234-9"></a>  <span class="cf">for</span> (varname <span class="cf">in</span> x2cols) {</span>
+<span id="cb234-10"><a href="modelos-conceptos-básicos.html#cb234-10"></a>    newvar &lt;-<span class="st"> </span><span class="kw">str_c</span>(<span class="st">&quot;x1:&quot;</span>, varname)</span>
+<span id="cb234-11"><a href="modelos-conceptos-básicos.html#cb234-11"></a>    out[[newvar]] &lt;-<span class="st"> </span>out<span class="op">$</span>x1 <span class="op">*</span><span class="st"> </span>out[[varname]]</span>
+<span id="cb234-12"><a href="modelos-conceptos-básicos.html#cb234-12"></a>  }</span>
+<span id="cb234-13"><a href="modelos-conceptos-básicos.html#cb234-13"></a>  </span>
+<span id="cb234-14"><a href="modelos-conceptos-básicos.html#cb234-14"></a>  out</span>
+<span id="cb234-15"><a href="modelos-conceptos-básicos.html#cb234-15"></a>}</span>
+<span id="cb234-16"><a href="modelos-conceptos-básicos.html#cb234-16"></a></span>
+<span id="cb234-17"><a href="modelos-conceptos-básicos.html#cb234-17"></a><span class="kw">model_matrix_mod2b</span>(sim3)</span>
+<span id="cb234-18"><a href="modelos-conceptos-básicos.html#cb234-18"></a><span class="co">#&gt; # A tibble: 120 x 8</span></span>
+<span id="cb234-19"><a href="modelos-conceptos-básicos.html#cb234-19"></a><span class="co">#&gt;   `(Intercept)`    x1   x2b   x2c   x2d `x1:x2b` `x1:x2c` `x1:x2d`</span></span>
+<span id="cb234-20"><a href="modelos-conceptos-básicos.html#cb234-20"></a><span class="co">#&gt;           &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb234-21"><a href="modelos-conceptos-básicos.html#cb234-21"></a><span class="co">#&gt; 1             1     1     0     0     0        0        0        0</span></span>
+<span id="cb234-22"><a href="modelos-conceptos-básicos.html#cb234-22"></a><span class="co">#&gt; 2             1     1     0     0     0        0        0        0</span></span>
+<span id="cb234-23"><a href="modelos-conceptos-básicos.html#cb234-23"></a><span class="co">#&gt; 3             1     1     0     0     0        0        0        0</span></span>
+<span id="cb234-24"><a href="modelos-conceptos-básicos.html#cb234-24"></a><span class="co">#&gt; 4             1     1     1     0     0        1        0        0</span></span>
+<span id="cb234-25"><a href="modelos-conceptos-básicos.html#cb234-25"></a><span class="co">#&gt; 5             1     1     1     0     0        1        0        0</span></span>
+<span id="cb234-26"><a href="modelos-conceptos-básicos.html#cb234-26"></a><span class="co">#&gt; 6             1     1     1     0     0        1        0        0</span></span>
+<span id="cb234-27"><a href="modelos-conceptos-básicos.html#cb234-27"></a><span class="co">#&gt; # … with 114 more rows</span></span></code></pre></div>
+<p>Estas funciones se podrían generalizar para los casos en que <code>x1</code> y <code>x2</code> pueden
+ser de tipo numérico o categórico. Si seguimos generalizando acabaremos
+reescribiendo la función <code>matrix_model()</code>.</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Para <code>sim4</code>, ¿Es mejor <code>mod1</code> o <code>mod2</code>? Yo creo que <code>mod2</code> es ligeramente mejor
+removiendo las tendencias, pero es bastante sutil. ¿Puedes generar un gráfico
+que de sustento a esta hipótesis?</li>
+</ol>
+<div class="solucion">
+<h3>
+Solución
+</h3>
+<p>Estimamos los modelos <code>mod1</code> y <code>mod2</code> a partir de <code>sim4</code>,</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="modelos-conceptos-básicos.html#cb235-1"></a>mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2, <span class="dt">data =</span> sim4)</span>
+<span id="cb235-2"><a href="modelos-conceptos-básicos.html#cb235-2"></a>mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2, <span class="dt">data =</span> sim4)</span></code></pre></div>
+<p>Luego agregamos los residuos a los datos de <code>sim4</code>.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="modelos-conceptos-básicos.html#cb236-1"></a>sim4_mods &lt;-<span class="st"> </span><span class="kw">gather_residuals</span>(sim4, mod1, mod2)</span></code></pre></div>
+<p>Ahora podemos generar un gráfico de frecuencias de los residuos y los valores
+absolutos de estos.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="modelos-conceptos-básicos.html#cb237-1"></a></span>
+<span id="cb237-2"><a href="modelos-conceptos-básicos.html#cb237-2"></a><span class="kw">ggplot</span>(sim4_mods, <span class="kw">aes</span>(<span class="dt">x =</span> resid, <span class="dt">colour =</span> model)) <span class="op">+</span></span>
+<span id="cb237-3"><a href="modelos-conceptos-básicos.html#cb237-3"></a><span class="st">  </span><span class="kw">geom_freqpoly</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb237-4"><a href="modelos-conceptos-básicos.html#cb237-4"></a><span class="st">  </span><span class="kw">geom_rug</span>()</span>
+<span id="cb237-5"><a href="modelos-conceptos-básicos.html#cb237-5"></a></span>
+<span id="cb237-6"><a href="modelos-conceptos-básicos.html#cb237-6"></a><span class="kw">ggplot</span>(sim4_mods, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">abs</span>(resid), <span class="dt">colour =</span> model)) <span class="op">+</span></span>
+<span id="cb237-7"><a href="modelos-conceptos-básicos.html#cb237-7"></a><span class="st">  </span><span class="kw">geom_freqpoly</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb237-8"><a href="modelos-conceptos-básicos.html#cb237-8"></a><span class="st">  </span><span class="kw">geom_rug</span>()</span></code></pre></div>
+<p><img src="23-model-basics_files/figure-html/unnamed-chunk-41-1.png" width="70%" style="display: block; margin: auto;" /><img src="23-model-basics_files/figure-html/unnamed-chunk-41-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Esto no muestra una gran diferencia. Sin embargo, <code>mod2</code> parece tener menos
+residuos en las colas de la distribución entre 2,5 y 5, aunque los residuos más
+extremos son los de este modelo.</p>
+<p>Podemos verificar lo anterior calculando la desviación estándar de los residuos
+para cada modelo.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="modelos-conceptos-básicos.html#cb238-1"></a>sim4_mods <span class="op">%&gt;%</span></span>
+<span id="cb238-2"><a href="modelos-conceptos-básicos.html#cb238-2"></a><span class="st">  </span><span class="kw">group_by</span>(model) <span class="op">%&gt;%</span></span>
+<span id="cb238-3"><a href="modelos-conceptos-básicos.html#cb238-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">resid =</span> <span class="kw">sd</span>(resid))</span>
+<span id="cb238-4"><a href="modelos-conceptos-básicos.html#cb238-4"></a><span class="co">#&gt; # A tibble: 2 x 2</span></span>
+<span id="cb238-5"><a href="modelos-conceptos-básicos.html#cb238-5"></a><span class="co">#&gt;   model resid</span></span>
+<span id="cb238-6"><a href="modelos-conceptos-básicos.html#cb238-6"></a><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;</span></span>
+<span id="cb238-7"><a href="modelos-conceptos-básicos.html#cb238-7"></a><span class="co">#&gt; 1 mod1   2.10</span></span>
+<span id="cb238-8"><a href="modelos-conceptos-básicos.html#cb238-8"></a><span class="co">#&gt; 2 mod2   2.07</span></span></code></pre></div>
+<p>La desviación estándar de los residuos de <code>mod2</code> es menor que la de <code>mod1</code>.</p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introducción-7.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="construcción-de-modelos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/cienciadedatos/r4ds-soluciones/edit/master/23-model-basics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

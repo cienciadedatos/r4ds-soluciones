@@ -1,10 +1,7 @@
 # Vectores
 
 
-```{r, include = FALSE}
-library(tidyverse)
-library(datos)
-```
+
 
 ## 20.3 Tipos importantes de vectores atómicos{-#vectores-atomicos}
 

@@ -1,10 +1,7 @@
 # Cadenas de caracteres
 
 
-```{r, include = FALSE}
-library(tidyverse)
-library(datos)
-```
+
 
 ## 14.2 Cadenas: elementos básicos{-#cadena-basics}
 
@@ -20,25 +17,32 @@ library(datos)
 
 `paste()` y `paste0()` se diferencian en la opción por defecto para separar los elementos que se concatenan. `paste()` deja un espacio; `paste0()` no.
 
-```{r}
+
+```r
 paste("uno", "dos", "tres")
+#> [1] "uno dos tres"
 paste0("uno", "dos", "tres")
+#> [1] "unodostres"
 ```
 
 Estas funciones son equivalentes a `str_c()`. Esta función por defecto no agrega un espacio entre los elementos concatenados, por lo que si queremoos que lo incluya tenemos que explicitarlo en el argumento `sep = `:
 
-```{r}
-str_c("uno", "dos", "tres")
-str_c("uno", "dos", "tres", sep = " ")
 
+```r
+str_c("uno", "dos", "tres")
+#> [1] "unodostres"
+str_c("uno", "dos", "tres", sep = " ")
+#> [1] "uno dos tres"
 ```
 
 Si `str_c()` se encuentra un `NA` entrega como resultado `NA`. `paste()`, en cambio, `paste()` y `paste0()` lo concatenan.
 
-```{r}
-str_c("uno", "dos", NA, sep = " ")
-paste("uno", "dos", NA)
 
+```r
+str_c("uno", "dos", NA, sep = " ")
+#> [1] NA
+paste("uno", "dos", NA)
+#> [1] "uno dos NA"
 ```
 
 </div> 
@@ -50,13 +54,15 @@ paste("uno", "dos", NA)
 <h3>Solución</h3>
 
 `sep` define el caracter que se inserta entre los elementos a concatenar. `collapse`, por su parte, es el caracter para combinar entre los elementos a concatenar para generar un vector de extensión 1: 
-```{r}
+
+```r
 x <- c("uno", "dos", "tres")
 y <- c("cuatro", "cinco", "seis")
 
 str_c(x, y, sep = "-")
+#> [1] "uno-cuatro" "dos-cinco"  "tres-seis"
 str_c(x, y, collapse = "-")
-
+#> [1] "unocuatro-doscinco-tresseis"
 ```
 
 
@@ -68,12 +74,13 @@ str_c(x, y, collapse = "-")
 <div class="solucion">
 <h3>Solución</h3>
 
-```{r}
+
+```r
 x <- c("uno", "dos", "tres")
 largo <- str_length(x)
 mitad <- ceiling(largo / 2)
 str_sub(x, start = mitad, end = mitad)
-
+#> [1] "n" "o" "r"
 ```
 
 </div> 
@@ -85,13 +92,16 @@ str_sub(x, start = mitad, end = mitad)
 <h3>Solución</h3>
 `str_wrap()` permite formatear párrafos indicando el ancho en cantidad de caracteres que queremos que tenga. El valor por defecto es 80. 
 
-```{r}
+
+```r
 texto <- "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in risus magna. Nulla consequat imperdiet nisl sit amet euismod. Sed nec molestie velit, non cursus neque. Suspendisse dapibus, justo at convallis pulvinar, nibh neque congue lectus, nec sollicitudin libero lacus eget nisl. Vivamus cursus turpis id quam aliquam, et fermentum tellus lacinia. Aliquam a eros nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc finibus auctor auctor."
 
 str_wrap(texto)
+#> [1] "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in risus magna.\nNulla consequat imperdiet nisl sit amet euismod. Sed nec molestie velit, non\ncursus neque. Suspendisse dapibus, justo at convallis pulvinar, nibh neque\ncongue lectus, nec sollicitudin libero lacus eget nisl. Vivamus cursus turpis\nid quam aliquam, et fermentum tellus lacinia. Aliquam a eros nunc. Pellentesque\nhabitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\nNunc finibus auctor auctor."
 str_wrap(texto, width = 40)
+#> [1] "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Mauris in risus magna.\nNulla consequat imperdiet nisl sit amet\neuismod. Sed nec molestie velit, non\ncursus neque. Suspendisse dapibus, justo\nat convallis pulvinar, nibh neque congue\nlectus, nec sollicitudin libero lacus\neget nisl. Vivamus cursus turpis id quam\naliquam, et fermentum tellus lacinia.\nAliquam a eros nunc. Pellentesque\nhabitant morbi tristique senectus et\nnetus et malesuada fames ac turpis\negestas. Nunc finibus auctor auctor."
 str_wrap(texto, width = 40, indent = 3)
-
+#> [1] "   Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Mauris in risus magna.\nNulla consequat imperdiet nisl sit amet\neuismod. Sed nec molestie velit, non\ncursus neque. Suspendisse dapibus, justo\nat convallis pulvinar, nibh neque congue\nlectus, nec sollicitudin libero lacus\neget nisl. Vivamus cursus turpis id quam\naliquam, et fermentum tellus lacinia.\nAliquam a eros nunc. Pellentesque\nhabitant morbi tristique senectus et\nnetus et malesuada fames ac turpis\negestas. Nunc finibus auctor auctor."
 ```
 
 </div> 
@@ -103,20 +113,26 @@ str_wrap(texto, width = 40, indent = 3)
 <h3>Solución</h3>
 `str_trim()` permite eliminar espacios en blancos al inicio y al final de una cadena de caracteres:
 
-```{r}
-str_trim(" palabra ")
-str_trim(" palabra ", side = "left")
-str_trim(" palabra ", side = "right")
 
+```r
+str_trim(" palabra ")
+#> [1] "palabra"
+str_trim(" palabra ", side = "left")
+#> [1] "palabra "
+str_trim(" palabra ", side = "right")
+#> [1] " palabra"
 ```
 
 La función opuesta es `str_pad()`:
 
-```{r}
-str_pad("palabra", width = 15)
-str_pad("palabra", width = 15, side = "right")
-str_pad("palabra", width = 15, side = "both")
 
+```r
+str_pad("palabra", width = 15)
+#> [1] "        palabra"
+str_pad("palabra", width = 15, side = "right")
+#> [1] "palabra        "
+str_pad("palabra", width = 15, side = "both")
+#> [1] "    palabra    "
 ```
 
 </div> 
@@ -150,9 +166,13 @@ str_pad("palabra", width = 15, side = "both")
 <div class="solucion">
 <h3>Solución</h3>
 
-```{r}
+
+```r
 str_view("\"'\\", "\"'\\\\", match = TRUE)
 ```
+
+<!--html_preserve--><div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"html":"<ul>\n  <li><span class='match'>\"'\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 </div> 
 
@@ -176,8 +196,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 <div class="solucion">
 <h3>Solución</h3>
 
-```{r}
-```
+
 
 
 </div> 
@@ -215,9 +234,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 <div class="solucion">
 <h3>Solución</h3>
 
-```{r}
 
-```
 
 
 </div> 
@@ -289,19 +306,30 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 `^.*$`: coincidiría con cualquier cadena de caracteres, incluso si no tiene nada en su interior. La expresión regular buscar cualquier caracter (`.`) que aparezca 0 o más veces (`*`) al inicio (`^`) o al final `$` de una cadena de caracteres:
 
-```{r}
+
+```r
 cadena <- c("123", "una palabra", "estas son cuatro palabras", " ", "")
 
 str_match(cadena, "^.*$")
+#>      [,1]                       
+#> [1,] "123"                      
+#> [2,] "una palabra"              
+#> [3,] "estas son cuatro palabras"
+#> [4,] " "                        
+#> [5,] ""
 ```
 
 `"\\{.+\\}"`: coincidiría con `{}` y lo que tengan dentro, siempre que tenga al menos un caracter (`.+`):
 
-```{r}
+
+```r
 cadena <- c("uno {dos} tres", "uno {} tres", "uno {2} tres")
 
 str_view(cadena, "\\{.+\\}")
 ```
+
+<!--html_preserve--><div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"html":"<ul>\n  <li>uno <span class='match'>{dos}<\/span> tres<\/li>\n  <li>uno {} tres<\/li>\n  <li>uno <span class='match'>{2}<\/span> tres<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 
 </div> 
@@ -468,9 +496,12 @@ str_view(cadena, "\\{.+\\}")
 <div class="solucion">
 <h3>Solución</h3>
 
-```{r}
+
+```r
 x <- c("manzanas, peras y bananas")
 str_split(x, "(, )|( y )")
+#> [[1]]
+#> [1] "manzanas" "peras"    "bananas"
 ```
 
 
@@ -525,7 +556,8 @@ str_split(x, "(, )|( y )")
 
 Las funciones que nos sirven en cada uno de estos casos son:
 
-```{r, eval = FALSE}
+
+```r
 stringi::stri_count_words()
 stringi::stri_duplicated(palabras)
 stringi::stri_rand_lipsum()
@@ -542,9 +574,12 @@ stringi::stri_rand_lipsum()
 
 Podemos controlar la lengua que se utiliza en `stri_sort()` con el argumento `locale`. El archivo de ayuda de esta función propone el siguiente ejemplo para ilustrar este comportamiento:
 
-```{r}
+
+```r
 stringi::stri_sort(c("hladny", "chladny"), locale="pl_PL")
+#> [1] "chladny" "hladny"
 stringi::stri_sort(c("hladny", "chladny"), locale="sk_SK")
+#> [1] "hladny"  "chladny"
 ```
 
 </div> 
