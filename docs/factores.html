@@ -437,29 +437,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Solución
 </h3>
 <p>Este es el gráfico por defecto:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="factores.html#cb170-1"></a><span class="kw">ggplot</span>(encuesta) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb170-2"><a href="factores.html#cb170-2"></a><span class="st">  </span><span class="kw">aes</span>(ingreso) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb170-3"><a href="factores.html#cb170-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="factores.html#cb172-1"></a><span class="kw">ggplot</span>(encuesta) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb172-2"><a href="factores.html#cb172-2"></a><span class="st">  </span><span class="kw">aes</span>(ingreso) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb172-3"><a href="factores.html#cb172-3"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
 <p><img src="15-factors_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Resulta difícil de leer porque las etiquetas de los valores son muy largas. Una opción para resolver esto sería girando el gráfico. Esto se puede hacer con <code>coord_flip()</code> o, en la última versión de ggplot, moviendo la variable de eje:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="factores.html#cb171-1"></a><span class="kw">ggplot</span>(encuesta) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb171-2"><a href="factores.html#cb171-2"></a><span class="st">  </span><span class="kw">aes</span>(ingreso) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb171-3"><a href="factores.html#cb171-3"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
-<span id="cb171-4"><a href="factores.html#cb171-4"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span>
-<span id="cb171-5"><a href="factores.html#cb171-5"></a></span>
-<span id="cb171-6"><a href="factores.html#cb171-6"></a><span class="co"># es lo mismo que </span></span>
-<span id="cb171-7"><a href="factores.html#cb171-7"></a></span>
-<span id="cb171-8"><a href="factores.html#cb171-8"></a><span class="kw">ggplot</span>(encuesta) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb171-9"><a href="factores.html#cb171-9"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">y =</span> ingreso) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb171-10"><a href="factores.html#cb171-10"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="factores.html#cb173-1"></a><span class="kw">ggplot</span>(encuesta) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb173-2"><a href="factores.html#cb173-2"></a><span class="st">  </span><span class="kw">aes</span>(ingreso) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb173-3"><a href="factores.html#cb173-3"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
+<span id="cb173-4"><a href="factores.html#cb173-4"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span>
+<span id="cb173-5"><a href="factores.html#cb173-5"></a></span>
+<span id="cb173-6"><a href="factores.html#cb173-6"></a><span class="co"># es lo mismo que </span></span>
+<span id="cb173-7"><a href="factores.html#cb173-7"></a></span>
+<span id="cb173-8"><a href="factores.html#cb173-8"></a><span class="kw">ggplot</span>(encuesta) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb173-9"><a href="factores.html#cb173-9"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">y =</span> ingreso) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb173-10"><a href="factores.html#cb173-10"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
 <p><img src="15-factors_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /><img src="15-factors_files/figure-html/unnamed-chunk-3-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>En este caso particular no tendría tanto sentido ordenar las barras de forma ascendente o descente, ya que los datos ya tienen un orden. Algo que sí podríamos hacer es eliminar “No aplica” y cambiar el nombre de la etiqueta del eje x:</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="factores.html#cb172-1"></a>encuesta <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb172-2"><a href="factores.html#cb172-2"></a><span class="st">  </span><span class="kw">filter</span>(ingreso <span class="op">!=</span><span class="st"> &quot;No aplica&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb172-3"><a href="factores.html#cb172-3"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb172-4"><a href="factores.html#cb172-4"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">y =</span> ingreso) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb172-5"><a href="factores.html#cb172-5"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
-<span id="cb172-6"><a href="factores.html#cb172-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Respuestas&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="factores.html#cb174-1"></a>encuesta <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb174-2"><a href="factores.html#cb174-2"></a><span class="st">  </span><span class="kw">filter</span>(ingreso <span class="op">!=</span><span class="st"> &quot;No aplica&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb174-3"><a href="factores.html#cb174-3"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb174-4"><a href="factores.html#cb174-4"></a><span class="st">  </span><span class="kw">aes</span>(<span class="dt">y =</span> ingreso) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb174-5"><a href="factores.html#cb174-5"></a><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
+<span id="cb174-6"><a href="factores.html#cb174-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Respuestas&quot;</span>)</span></code></pre></div>
 <p><img src="15-factors_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <ol start="2" style="list-style-type: decimal">
@@ -471,23 +471,23 @@ Solución
 </h3>
 <p>Una forma de encontrar el valor con mayor frecuencia sería contando con <code>count()</code> y luego ordenando de mayor a menor con <code>arrange(desc())</code> para ver cuál queda primero. Otra opción es utilizar la función <code>top_n()</code>, también del paquete <strong>dplyr</strong>.</p>
 <p>La religión más común es “Protestante”:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="factores.html#cb173-1"></a>encuesta <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb173-2"><a href="factores.html#cb173-2"></a><span class="st">  </span><span class="kw">count</span>(religion) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb173-3"><a href="factores.html#cb173-3"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>)</span>
-<span id="cb173-4"><a href="factores.html#cb173-4"></a><span class="co">#&gt; Selecting by n</span></span>
-<span id="cb173-5"><a href="factores.html#cb173-5"></a><span class="co">#&gt; # A tibble: 1 x 2</span></span>
-<span id="cb173-6"><a href="factores.html#cb173-6"></a><span class="co">#&gt;   religion        n</span></span>
-<span id="cb173-7"><a href="factores.html#cb173-7"></a><span class="co">#&gt;   &lt;fct&gt;       &lt;int&gt;</span></span>
-<span id="cb173-8"><a href="factores.html#cb173-8"></a><span class="co">#&gt; 1 Protestante 10846</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="factores.html#cb175-1"></a>encuesta <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb175-2"><a href="factores.html#cb175-2"></a><span class="st">  </span><span class="kw">count</span>(religion) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb175-3"><a href="factores.html#cb175-3"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>)</span>
+<span id="cb175-4"><a href="factores.html#cb175-4"></a><span class="co">#&gt; Selecting by n</span></span>
+<span id="cb175-5"><a href="factores.html#cb175-5"></a><span class="co">#&gt; # A tibble: 1 x 2</span></span>
+<span id="cb175-6"><a href="factores.html#cb175-6"></a><span class="co">#&gt;   religion        n</span></span>
+<span id="cb175-7"><a href="factores.html#cb175-7"></a><span class="co">#&gt;   &lt;fct&gt;       &lt;int&gt;</span></span>
+<span id="cb175-8"><a href="factores.html#cb175-8"></a><span class="co">#&gt; 1 Protestante 10846</span></span></code></pre></div>
 <p>El valor más común en <code>partido</code> es “Independiente”:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="factores.html#cb174-1"></a>encuesta <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb174-2"><a href="factores.html#cb174-2"></a><span class="st">  </span><span class="kw">count</span>(partido) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb174-3"><a href="factores.html#cb174-3"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>)</span>
-<span id="cb174-4"><a href="factores.html#cb174-4"></a><span class="co">#&gt; Selecting by n</span></span>
-<span id="cb174-5"><a href="factores.html#cb174-5"></a><span class="co">#&gt; # A tibble: 1 x 2</span></span>
-<span id="cb174-6"><a href="factores.html#cb174-6"></a><span class="co">#&gt;   partido           n</span></span>
-<span id="cb174-7"><a href="factores.html#cb174-7"></a><span class="co">#&gt;   &lt;fct&gt;         &lt;int&gt;</span></span>
-<span id="cb174-8"><a href="factores.html#cb174-8"></a><span class="co">#&gt; 1 Independiente  4119</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="factores.html#cb176-1"></a>encuesta <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb176-2"><a href="factores.html#cb176-2"></a><span class="st">  </span><span class="kw">count</span>(partido) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb176-3"><a href="factores.html#cb176-3"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>)</span>
+<span id="cb176-4"><a href="factores.html#cb176-4"></a><span class="co">#&gt; Selecting by n</span></span>
+<span id="cb176-5"><a href="factores.html#cb176-5"></a><span class="co">#&gt; # A tibble: 1 x 2</span></span>
+<span id="cb176-6"><a href="factores.html#cb176-6"></a><span class="co">#&gt;   partido           n</span></span>
+<span id="cb176-7"><a href="factores.html#cb176-7"></a><span class="co">#&gt;   &lt;fct&gt;         &lt;int&gt;</span></span>
+<span id="cb176-8"><a href="factores.html#cb176-8"></a><span class="co">#&gt; 1 Independiente  4119</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>¿A qué <code>religion</code> se aplica cada <code>denominacion</code>? ¿Cómo puedes encontrarlo con una tabla? ¿Cómo lo puedes descubrir con una visualización?</li>

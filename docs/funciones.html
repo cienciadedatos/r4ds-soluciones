@@ -448,11 +448,11 @@ Solución
 <ol start="3" style="list-style-type: decimal">
 <li>Practica convertir los siguientes fragmentos de código en funciones. Piensa en lo que hace cada función. ¿Cómo lo llamarías? ¿Cuántos argumentos necesita? ¿Puedes reescribirlo para ser más expresivo o menos duplicado?</li>
 </ol>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="funciones.html#cb183-1"></a> <span class="kw">mean</span>(<span class="kw">is.na</span>(x))</span>
-<span id="cb183-2"><a href="funciones.html#cb183-2"></a></span>
-<span id="cb183-3"><a href="funciones.html#cb183-3"></a> x <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb183-4"><a href="funciones.html#cb183-4"></a></span>
-<span id="cb183-5"><a href="funciones.html#cb183-5"></a> <span class="kw">sd</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="funciones.html#cb185-1"></a> <span class="kw">mean</span>(<span class="kw">is.na</span>(x))</span>
+<span id="cb185-2"><a href="funciones.html#cb185-2"></a></span>
+<span id="cb185-3"><a href="funciones.html#cb185-3"></a> x <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb185-4"><a href="funciones.html#cb185-4"></a></span>
+<span id="cb185-5"><a href="funciones.html#cb185-5"></a> <span class="kw">sd</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
@@ -485,8 +485,8 @@ Solución
 <ol start="6" style="list-style-type: decimal">
 <li>¿Qué hacen las siguientes funciones? ¿Por qué son tan útiles aún cuando son tan cortas?</li>
 </ol>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="funciones.html#cb184-1"></a>is_directory &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">file.info</span>(x)<span class="op">$</span>isdir</span>
-<span id="cb184-2"><a href="funciones.html#cb184-2"></a>is_readable &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">file.access</span>(x, <span class="dv">4</span>) <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="funciones.html#cb186-1"></a>is_directory &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">file.info</span>(x)<span class="op">$</span>isdir</span>
+<span id="cb186-2"><a href="funciones.html#cb186-2"></a>is_readable &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">file.access</span>(x, <span class="dv">4</span>) <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
@@ -510,16 +510,16 @@ Solución
 <ol style="list-style-type: decimal">
 <li>Lee el código fuente para cada una de las siguientes tres funciones, interpreta que hacen, y luego propone nombres mejores.</li>
 </ol>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="funciones.html#cb185-1"></a> f1 &lt;-<span class="st"> </span><span class="cf">function</span>(string, prefix) {</span>
-<span id="cb185-2"><a href="funciones.html#cb185-2"></a> <span class="kw">substr</span>(string, <span class="dv">1</span>, <span class="kw">nchar</span>(prefix)) <span class="op">==</span><span class="st"> </span>prefix</span>
-<span id="cb185-3"><a href="funciones.html#cb185-3"></a> }</span>
-<span id="cb185-4"><a href="funciones.html#cb185-4"></a> f2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb185-5"><a href="funciones.html#cb185-5"></a> <span class="cf">if</span> (<span class="kw">length</span>(x) <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
-<span id="cb185-6"><a href="funciones.html#cb185-6"></a> x[<span class="op">-</span><span class="kw">length</span>(x)]</span>
-<span id="cb185-7"><a href="funciones.html#cb185-7"></a> }</span>
-<span id="cb185-8"><a href="funciones.html#cb185-8"></a> f3 &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
-<span id="cb185-9"><a href="funciones.html#cb185-9"></a> <span class="kw">rep</span>(y, <span class="dt">length.out =</span> <span class="kw">length</span>(x))</span>
-<span id="cb185-10"><a href="funciones.html#cb185-10"></a> }</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="funciones.html#cb187-1"></a> f1 &lt;-<span class="st"> </span><span class="cf">function</span>(string, prefix) {</span>
+<span id="cb187-2"><a href="funciones.html#cb187-2"></a> <span class="kw">substr</span>(string, <span class="dv">1</span>, <span class="kw">nchar</span>(prefix)) <span class="op">==</span><span class="st"> </span>prefix</span>
+<span id="cb187-3"><a href="funciones.html#cb187-3"></a> }</span>
+<span id="cb187-4"><a href="funciones.html#cb187-4"></a> f2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb187-5"><a href="funciones.html#cb187-5"></a> <span class="cf">if</span> (<span class="kw">length</span>(x) <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
+<span id="cb187-6"><a href="funciones.html#cb187-6"></a> x[<span class="op">-</span><span class="kw">length</span>(x)]</span>
+<span id="cb187-7"><a href="funciones.html#cb187-7"></a> }</span>
+<span id="cb187-8"><a href="funciones.html#cb187-8"></a> f3 &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
+<span id="cb187-9"><a href="funciones.html#cb187-9"></a> <span class="kw">rep</span>(y, <span class="dt">length.out =</span> <span class="kw">length</span>(x))</span>
+<span id="cb187-10"><a href="funciones.html#cb187-10"></a> }</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
@@ -582,17 +582,17 @@ Solución
 <ol start="4" style="list-style-type: decimal">
 <li>¿Cómo podrías usar <code>cut()</code> para simplificar este conjunto de sentencias if-else anidada?</li>
 </ol>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="funciones.html#cb186-1"></a> <span class="cf">if</span> (temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb186-2"><a href="funciones.html#cb186-2"></a> <span class="st">&quot;congelado&quot;</span></span>
-<span id="cb186-3"><a href="funciones.html#cb186-3"></a> } <span class="cf">else</span> <span class="cf">if</span> (temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>) {</span>
-<span id="cb186-4"><a href="funciones.html#cb186-4"></a> <span class="st">&quot;helado&quot;</span></span>
-<span id="cb186-5"><a href="funciones.html#cb186-5"></a> } <span class="cf">else</span> <span class="cf">if</span> (temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>) {</span>
-<span id="cb186-6"><a href="funciones.html#cb186-6"></a> <span class="st">&quot;fresco&quot;</span></span>
-<span id="cb186-7"><a href="funciones.html#cb186-7"></a> } <span class="cf">else</span> <span class="cf">if</span> (temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>) {</span>
-<span id="cb186-8"><a href="funciones.html#cb186-8"></a> <span class="st">&quot;tibio&quot;</span></span>
-<span id="cb186-9"><a href="funciones.html#cb186-9"></a> } <span class="cf">else</span> {</span>
-<span id="cb186-10"><a href="funciones.html#cb186-10"></a> <span class="st">&quot;caluroso&quot;</span></span>
-<span id="cb186-11"><a href="funciones.html#cb186-11"></a> }</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="funciones.html#cb188-1"></a> <span class="cf">if</span> (temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb188-2"><a href="funciones.html#cb188-2"></a> <span class="st">&quot;congelado&quot;</span></span>
+<span id="cb188-3"><a href="funciones.html#cb188-3"></a> } <span class="cf">else</span> <span class="cf">if</span> (temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>) {</span>
+<span id="cb188-4"><a href="funciones.html#cb188-4"></a> <span class="st">&quot;helado&quot;</span></span>
+<span id="cb188-5"><a href="funciones.html#cb188-5"></a> } <span class="cf">else</span> <span class="cf">if</span> (temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>) {</span>
+<span id="cb188-6"><a href="funciones.html#cb188-6"></a> <span class="st">&quot;fresco&quot;</span></span>
+<span id="cb188-7"><a href="funciones.html#cb188-7"></a> } <span class="cf">else</span> <span class="cf">if</span> (temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>) {</span>
+<span id="cb188-8"><a href="funciones.html#cb188-8"></a> <span class="st">&quot;tibio&quot;</span></span>
+<span id="cb188-9"><a href="funciones.html#cb188-9"></a> } <span class="cf">else</span> {</span>
+<span id="cb188-10"><a href="funciones.html#cb188-10"></a> <span class="st">&quot;caluroso&quot;</span></span>
+<span id="cb188-11"><a href="funciones.html#cb188-11"></a> }</span></code></pre></div>
 <p>¿Cómo cambiarías la sentencia a <code>cut()</code> si hubieras usado <code>&lt;</code>en lugar de <code>&lt;=</code>? ¿Cuál es la otra ventaja principal de <code>cut()</code> para este problema? (Sugerencia: ¿qué sucede si tienes muchos valores en <code>temp</code>?)</p>
 <div class="solucion">
 <h3>
@@ -610,12 +610,12 @@ Solución
 <ol start="6" style="list-style-type: decimal">
 <li>¿Qué hace la llamada a <code>switch()</code>? ¿Qúe sucede si <code>x</code> fuera “e”?</li>
 </ol>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="funciones.html#cb187-1"></a> <span class="cf">switch</span>(x,</span>
-<span id="cb187-2"><a href="funciones.html#cb187-2"></a> <span class="dt">a =</span> ,</span>
-<span id="cb187-3"><a href="funciones.html#cb187-3"></a> <span class="dt">b =</span> <span class="st">&quot;ab&quot;</span>,</span>
-<span id="cb187-4"><a href="funciones.html#cb187-4"></a> <span class="dt">c =</span> ,</span>
-<span id="cb187-5"><a href="funciones.html#cb187-5"></a> <span class="dt">d =</span> <span class="st">&quot;cd&quot;</span></span>
-<span id="cb187-6"><a href="funciones.html#cb187-6"></a> )</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="funciones.html#cb189-1"></a> <span class="cf">switch</span>(x,</span>
+<span id="cb189-2"><a href="funciones.html#cb189-2"></a> <span class="dt">a =</span> ,</span>
+<span id="cb189-3"><a href="funciones.html#cb189-3"></a> <span class="dt">b =</span> <span class="st">&quot;ab&quot;</span>,</span>
+<span id="cb189-4"><a href="funciones.html#cb189-4"></a> <span class="dt">c =</span> ,</span>
+<span id="cb189-5"><a href="funciones.html#cb189-5"></a> <span class="dt">d =</span> <span class="st">&quot;cd&quot;</span></span>
+<span id="cb189-6"><a href="funciones.html#cb189-6"></a> )</span></code></pre></div>
 <p>Experimenta, luego lea cuidadosamente la documentación.</p>
 <div class="solucion">
 <h3>

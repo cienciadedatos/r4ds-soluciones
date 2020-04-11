@@ -203,7 +203,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 
 2.  Dado el corpus de palabras comunes en `datos::palabras`, crea una expresión
-    regular que busque palabras que:
+    regular que busque palabras:
     
     1. Empiecen con "y".
     1. Terminen con "x"
@@ -233,6 +233,9 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 <div class="solucion">
 <h3>Solución</h3>
+
+
+
 
 </div> 
     
@@ -272,12 +275,19 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 ### 14.2.10 Repetición{-#repeticion}
 
-#### 14.1.10.1 Ejercicios{-#ejercicios-141101}
+#### 14.2.10.1 Ejercicios{-#ejercicios-142101}
 
 1.  Describe los equivalentes de `?`, `+`, `*` en el formato `{m,n}`.
 
 <div class="solucion">
 <h3>Solución</h3>
+
+`?` = `{0,1}`
+
+`+` = `{1,}`
+
+`*` = `{0,}`
+
 
 </div> 
 
@@ -293,6 +303,34 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 <div class="solucion">
 <h3>Solución</h3>
+
+`^.*$`: coincidiría con cualquier cadena de caracteres, incluso si no tiene nada en su interior. La expresión regular buscar cualquier caracter (`.`) que aparezca 0 o más veces (`*`) al inicio (`^`) o al final `$` de una cadena de caracteres:
+
+
+```r
+cadena <- c("123", "una palabra", "estas son cuatro palabras", " ", "")
+
+str_match(cadena, "^.*$")
+#>      [,1]                       
+#> [1,] "123"                      
+#> [2,] "una palabra"              
+#> [3,] "estas son cuatro palabras"
+#> [4,] " "                        
+#> [5,] ""
+```
+
+`"\\{.+\\}"`: coincidiría con `{}` y lo que tengan dentro, siempre que tenga al menos un caracter (`.+`):
+
+
+```r
+cadena <- c("uno {dos} tres", "uno {} tres", "uno {2} tres")
+
+str_view(cadena, "\\{.+\\}")
+```
+
+<!--html_preserve--><div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"html":"<ul>\n  <li>uno <span class='match'>{dos}<\/span> tres<\/li>\n  <li>uno {} tres<\/li>\n  <li>uno <span class='match'>{2}<\/span> tres<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+
 
 </div> 
 

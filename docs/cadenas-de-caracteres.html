@@ -582,7 +582,7 @@ Solución
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Dado el corpus de palabras comunes en <code>datos::palabras</code>, crea una expresión
-regular que busque palabras que:</p>
+regular que busque palabras:</p>
 <ol style="list-style-type: decimal">
 <li>Empiecen con “y”.</li>
 <li>Terminen con “x”</li>
@@ -656,8 +656,8 @@ Solución
 </div>
 <div id="repeticion" class="section level3 unnumbered">
 <h3>14.2.10 Repetición</h3>
-<div id="ejercicios-141101" class="section level4 unnumbered">
-<h4>14.1.10.1 Ejercicios</h4>
+<div id="ejercicios-142101" class="section level4 unnumbered">
+<h4>14.2.10.1 Ejercicios</h4>
 <ol style="list-style-type: decimal">
 <li>Describe los equivalentes de <code>?</code>, <code>+</code>, <code>*</code> en el formato <code>{m,n}</code>.</li>
 </ol>
@@ -665,6 +665,9 @@ Solución
 <h3>
 Solución
 </h3>
+<p><code>?</code> = <code>{0,1}</code></p>
+<p><code>+</code> = <code>{1,}</code></p>
+<p><code>*</code> = <code>{0,}</code></p>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Describe en palabras con qué coincidiría cada una de estas expresiones regulares:
@@ -681,6 +684,22 @@ que define una expresión regular.)</p>
 <h3>
 Solución
 </h3>
+<p><code>^.*$</code>: coincidiría con cualquier cadena de caracteres, incluso si no tiene nada en su interior. La expresión regular buscar cualquier caracter (<code>.</code>) que aparezca 0 o más veces (<code>*</code>) al inicio (<code>^</code>) o al final <code>$</code> de una cadena de caracteres:</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="cadenas-de-caracteres.html#cb167-1"></a>cadena &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;123&quot;</span>, <span class="st">&quot;una palabra&quot;</span>, <span class="st">&quot;estas son cuatro palabras&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb167-2"><a href="cadenas-de-caracteres.html#cb167-2"></a></span>
+<span id="cb167-3"><a href="cadenas-de-caracteres.html#cb167-3"></a><span class="kw">str_match</span>(cadena, <span class="st">&quot;^.*$&quot;</span>)</span>
+<span id="cb167-4"><a href="cadenas-de-caracteres.html#cb167-4"></a><span class="co">#&gt;      [,1]                       </span></span>
+<span id="cb167-5"><a href="cadenas-de-caracteres.html#cb167-5"></a><span class="co">#&gt; [1,] &quot;123&quot;                      </span></span>
+<span id="cb167-6"><a href="cadenas-de-caracteres.html#cb167-6"></a><span class="co">#&gt; [2,] &quot;una palabra&quot;              </span></span>
+<span id="cb167-7"><a href="cadenas-de-caracteres.html#cb167-7"></a><span class="co">#&gt; [3,] &quot;estas son cuatro palabras&quot;</span></span>
+<span id="cb167-8"><a href="cadenas-de-caracteres.html#cb167-8"></a><span class="co">#&gt; [4,] &quot; &quot;                        </span></span>
+<span id="cb167-9"><a href="cadenas-de-caracteres.html#cb167-9"></a><span class="co">#&gt; [5,] &quot;&quot;</span></span></code></pre></div>
+<p><code>"\\{.+\\}"</code>: coincidiría con <code>{}</code> y lo que tengan dentro, siempre que tenga al menos un caracter (<code>.+</code>):</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="cadenas-de-caracteres.html#cb168-1"></a>cadena &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;uno {dos} tres&quot;</span>, <span class="st">&quot;uno {} tres&quot;</span>, <span class="st">&quot;uno {2} tres&quot;</span>)</span>
+<span id="cb168-2"><a href="cadenas-de-caracteres.html#cb168-2"></a></span>
+<span id="cb168-3"><a href="cadenas-de-caracteres.html#cb168-3"></a><span class="kw">str_view</span>(cadena, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">{.+</span><span class="ch">\\</span><span class="st">}&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"html":"<ul>\n  <li>uno <span class='match'>{dos}<\/span> tres<\/li>\n  <li>uno {} tres<\/li>\n  <li>uno <span class='match'>{2}<\/span> tres<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Crea expresiones regulares para buscar todas las palabras que:</p>
@@ -858,10 +877,10 @@ individuales.</li>
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="cadenas-de-caracteres.html#cb167-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;manzanas, peras y bananas&quot;</span>)</span>
-<span id="cb167-2"><a href="cadenas-de-caracteres.html#cb167-2"></a><span class="kw">str_split</span>(x, <span class="st">&quot;(, )|( y )&quot;</span>)</span>
-<span id="cb167-3"><a href="cadenas-de-caracteres.html#cb167-3"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb167-4"><a href="cadenas-de-caracteres.html#cb167-4"></a><span class="co">#&gt; [1] &quot;manzanas&quot; &quot;peras&quot;    &quot;bananas&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="cadenas-de-caracteres.html#cb169-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;manzanas, peras y bananas&quot;</span>)</span>
+<span id="cb169-2"><a href="cadenas-de-caracteres.html#cb169-2"></a><span class="kw">str_split</span>(x, <span class="st">&quot;(, )|( y )&quot;</span>)</span>
+<span id="cb169-3"><a href="cadenas-de-caracteres.html#cb169-3"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb169-4"><a href="cadenas-de-caracteres.html#cb169-4"></a><span class="co">#&gt; [1] &quot;manzanas&quot; &quot;peras&quot;    &quot;bananas&quot;</span></span></code></pre></div>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>¿Por qué es mejor dividir utilizando <code>boundary("palabra")</code> en vez de <code>" "</code>?</li>
@@ -923,9 +942,9 @@ Solución
 Solución
 </h3>
 <p>Las funciones que nos sirven en cada uno de estos casos son:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="cadenas-de-caracteres.html#cb168-1"></a>stringi<span class="op">::</span><span class="kw">stri_count_words</span>()</span>
-<span id="cb168-2"><a href="cadenas-de-caracteres.html#cb168-2"></a>stringi<span class="op">::</span><span class="kw">stri_duplicated</span>(palabras)</span>
-<span id="cb168-3"><a href="cadenas-de-caracteres.html#cb168-3"></a>stringi<span class="op">::</span><span class="kw">stri_rand_lipsum</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="cadenas-de-caracteres.html#cb170-1"></a>stringi<span class="op">::</span><span class="kw">stri_count_words</span>()</span>
+<span id="cb170-2"><a href="cadenas-de-caracteres.html#cb170-2"></a>stringi<span class="op">::</span><span class="kw">stri_duplicated</span>(palabras)</span>
+<span id="cb170-3"><a href="cadenas-de-caracteres.html#cb170-3"></a>stringi<span class="op">::</span><span class="kw">stri_rand_lipsum</span>()</span></code></pre></div>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>¿Cómo puedes controlar qué lengua usa <code>stri_sort()</code> para ordenar?</li>
@@ -935,10 +954,10 @@ Solución
 Solución
 </h3>
 <p>Podemos controlar la lengua que se utiliza en <code>stri_sort()</code> con el argumento <code>locale</code>. El archivo de ayuda de esta función propone el siguiente ejemplo para ilustrar este comportamiento:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="cadenas-de-caracteres.html#cb169-1"></a>stringi<span class="op">::</span><span class="kw">stri_sort</span>(<span class="kw">c</span>(<span class="st">&quot;hladny&quot;</span>, <span class="st">&quot;chladny&quot;</span>), <span class="dt">locale=</span><span class="st">&quot;pl_PL&quot;</span>)</span>
-<span id="cb169-2"><a href="cadenas-de-caracteres.html#cb169-2"></a><span class="co">#&gt; [1] &quot;chladny&quot; &quot;hladny&quot;</span></span>
-<span id="cb169-3"><a href="cadenas-de-caracteres.html#cb169-3"></a>stringi<span class="op">::</span><span class="kw">stri_sort</span>(<span class="kw">c</span>(<span class="st">&quot;hladny&quot;</span>, <span class="st">&quot;chladny&quot;</span>), <span class="dt">locale=</span><span class="st">&quot;sk_SK&quot;</span>)</span>
-<span id="cb169-4"><a href="cadenas-de-caracteres.html#cb169-4"></a><span class="co">#&gt; [1] &quot;hladny&quot;  &quot;chladny&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="cadenas-de-caracteres.html#cb171-1"></a>stringi<span class="op">::</span><span class="kw">stri_sort</span>(<span class="kw">c</span>(<span class="st">&quot;hladny&quot;</span>, <span class="st">&quot;chladny&quot;</span>), <span class="dt">locale=</span><span class="st">&quot;pl_PL&quot;</span>)</span>
+<span id="cb171-2"><a href="cadenas-de-caracteres.html#cb171-2"></a><span class="co">#&gt; [1] &quot;chladny&quot; &quot;hladny&quot;</span></span>
+<span id="cb171-3"><a href="cadenas-de-caracteres.html#cb171-3"></a>stringi<span class="op">::</span><span class="kw">stri_sort</span>(<span class="kw">c</span>(<span class="st">&quot;hladny&quot;</span>, <span class="st">&quot;chladny&quot;</span>), <span class="dt">locale=</span><span class="st">&quot;sk_SK&quot;</span>)</span>
+<span id="cb171-4"><a href="cadenas-de-caracteres.html#cb171-4"></a><span class="co">#&gt; [1] &quot;hladny&quot;  &quot;chladny&quot;</span></span></code></pre></div>
 </div>
 
 </div>

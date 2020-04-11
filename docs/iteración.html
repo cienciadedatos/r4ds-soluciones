@@ -448,24 +448,24 @@ Solución
 <ol start="2" style="list-style-type: decimal">
 <li><p>Elimina el bucle <em>for</em> en cada uno de los siguientes ejemplos tomando
 ventaja de una función existente que trabaja con vectores:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="iteración.html#cb188-1"></a>out &lt;-<span class="st"> &quot;&quot;</span></span>
-<span id="cb188-2"><a href="iteración.html#cb188-2"></a><span class="cf">for</span> (x <span class="cf">in</span> letters) {</span>
-<span id="cb188-3"><a href="iteración.html#cb188-3"></a>  out &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw">str_c</span>(out, x)</span>
-<span id="cb188-4"><a href="iteración.html#cb188-4"></a>}</span>
-<span id="cb188-5"><a href="iteración.html#cb188-5"></a></span>
-<span id="cb188-6"><a href="iteración.html#cb188-6"></a>x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">100</span>)</span>
-<span id="cb188-7"><a href="iteración.html#cb188-7"></a>sd &lt;-<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb188-8"><a href="iteración.html#cb188-8"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) {</span>
-<span id="cb188-9"><a href="iteración.html#cb188-9"></a>  sd &lt;-<span class="st"> </span>sd <span class="op">+</span><span class="st"> </span>(x[i] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x)) <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb188-10"><a href="iteración.html#cb188-10"></a>}</span>
-<span id="cb188-11"><a href="iteración.html#cb188-11"></a>sd &lt;-<span class="st"> </span><span class="kw">sqrt</span>(sd <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span>
-<span id="cb188-12"><a href="iteración.html#cb188-12"></a></span>
-<span id="cb188-13"><a href="iteración.html#cb188-13"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>)</span>
-<span id="cb188-14"><a href="iteración.html#cb188-14"></a>out &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="kw">length</span>(x))</span>
-<span id="cb188-15"><a href="iteración.html#cb188-15"></a>out[<span class="dv">1</span>] &lt;-<span class="st"> </span>x[<span class="dv">1</span>]</span>
-<span id="cb188-16"><a href="iteración.html#cb188-16"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(x)) {</span>
-<span id="cb188-17"><a href="iteración.html#cb188-17"></a>  out[i] &lt;-<span class="st"> </span>out[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>x[i]</span>
-<span id="cb188-18"><a href="iteración.html#cb188-18"></a>}</span></code></pre></div></li>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="iteración.html#cb190-1"></a>out &lt;-<span class="st"> &quot;&quot;</span></span>
+<span id="cb190-2"><a href="iteración.html#cb190-2"></a><span class="cf">for</span> (x <span class="cf">in</span> letters) {</span>
+<span id="cb190-3"><a href="iteración.html#cb190-3"></a>  out &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw">str_c</span>(out, x)</span>
+<span id="cb190-4"><a href="iteración.html#cb190-4"></a>}</span>
+<span id="cb190-5"><a href="iteración.html#cb190-5"></a></span>
+<span id="cb190-6"><a href="iteración.html#cb190-6"></a>x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">100</span>)</span>
+<span id="cb190-7"><a href="iteración.html#cb190-7"></a>sd &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb190-8"><a href="iteración.html#cb190-8"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) {</span>
+<span id="cb190-9"><a href="iteración.html#cb190-9"></a>  sd &lt;-<span class="st"> </span>sd <span class="op">+</span><span class="st"> </span>(x[i] <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x)) <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb190-10"><a href="iteración.html#cb190-10"></a>}</span>
+<span id="cb190-11"><a href="iteración.html#cb190-11"></a>sd &lt;-<span class="st"> </span><span class="kw">sqrt</span>(sd <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span>
+<span id="cb190-12"><a href="iteración.html#cb190-12"></a></span>
+<span id="cb190-13"><a href="iteración.html#cb190-13"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>)</span>
+<span id="cb190-14"><a href="iteración.html#cb190-14"></a>out &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="kw">length</span>(x))</span>
+<span id="cb190-15"><a href="iteración.html#cb190-15"></a>out[<span class="dv">1</span>] &lt;-<span class="st"> </span>x[<span class="dv">1</span>]</span>
+<span id="cb190-16"><a href="iteración.html#cb190-16"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(x)) {</span>
+<span id="cb190-17"><a href="iteración.html#cb190-17"></a>  out[i] &lt;-<span class="st"> </span>out[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>x[i]</span>
+<span id="cb190-18"><a href="iteración.html#cb190-18"></a>}</span></code></pre></div></li>
 </ol>
 <div class="solucion">
 <h3>
@@ -502,11 +502,11 @@ Solución
 <ol start="4" style="list-style-type: decimal">
 <li><p>Es común ver bucles <em>for</em> que no preasignan la salida y en su lugar
 aumentan la longitud de un vector en cada paso:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="iteración.html#cb191-1"></a>output &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;integer&quot;</span>, <span class="dv">0</span>)</span>
-<span id="cb191-2"><a href="iteración.html#cb191-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) {</span>
-<span id="cb191-3"><a href="iteración.html#cb191-3"></a>  output &lt;-<span class="st"> </span><span class="kw">c</span>(output, <span class="kw">lengths</span>(x[[i]]))</span>
-<span id="cb191-4"><a href="iteración.html#cb191-4"></a>}</span>
-<span id="cb191-5"><a href="iteración.html#cb191-5"></a>output</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="iteración.html#cb193-1"></a>output &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;integer&quot;</span>, <span class="dv">0</span>)</span>
+<span id="cb193-2"><a href="iteración.html#cb193-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) {</span>
+<span id="cb193-3"><a href="iteración.html#cb193-3"></a>  output &lt;-<span class="st"> </span><span class="kw">c</span>(output, <span class="kw">lengths</span>(x[[i]]))</span>
+<span id="cb193-4"><a href="iteración.html#cb193-4"></a>}</span>
+<span id="cb193-5"><a href="iteración.html#cb193-5"></a>output</span></code></pre></div>
 <p>¿Cómo afecta esto el rendimiento? Diseña y ejecuta un experimento.</p></li>
 </ol>
 <div class="solucion">
@@ -545,11 +545,11 @@ Solución
 <ol start="3" style="list-style-type: decimal">
 <li><p>Escribe una función que imprima el promedio de cada columna numérica en un
 <em>data frame</em>, junto con su nombre. Por ejemplo, <code>mostrar_promedio(iris)</code> debe imprimir:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="iteración.html#cb192-1"></a><span class="kw">mostrar_promedio</span>(iris)</span>
-<span id="cb192-2"><a href="iteración.html#cb192-2"></a><span class="co">#&gt; Sepal.Length: 5.84</span></span>
-<span id="cb192-3"><a href="iteración.html#cb192-3"></a><span class="co">#&gt; Sepal.Width:  3.06</span></span>
-<span id="cb192-4"><a href="iteración.html#cb192-4"></a><span class="co">#&gt; Petal.Length: 3.76</span></span>
-<span id="cb192-5"><a href="iteración.html#cb192-5"></a><span class="co">#&gt; Petal.Width:  1.20</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="iteración.html#cb194-1"></a><span class="kw">mostrar_promedio</span>(iris)</span>
+<span id="cb194-2"><a href="iteración.html#cb194-2"></a><span class="co">#&gt; Sepal.Length: 5.84</span></span>
+<span id="cb194-3"><a href="iteración.html#cb194-3"></a><span class="co">#&gt; Sepal.Width:  3.06</span></span>
+<span id="cb194-4"><a href="iteración.html#cb194-4"></a><span class="co">#&gt; Petal.Length: 3.76</span></span>
+<span id="cb194-5"><a href="iteración.html#cb194-5"></a><span class="co">#&gt; Petal.Width:  1.20</span></span></code></pre></div>
 <p>(Desafío adicional: ¿qué función utilizamos para asegurarnos que los números
 queden alineados a pesar que los nombres de las variables tienen diferentes longitudes?)</p></li>
 </ol>
@@ -560,15 +560,15 @@ Solución
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li><p>¿Qué hace este código? ¿Cómo funciona?</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="iteración.html#cb193-1"></a>trans &lt;-<span class="st"> </span><span class="kw">list</span>( </span>
-<span id="cb193-2"><a href="iteración.html#cb193-2"></a>  <span class="dt">disp =</span> <span class="cf">function</span>(x) x <span class="op">*</span><span class="st"> </span><span class="fl">0.0163871</span>,</span>
-<span id="cb193-3"><a href="iteración.html#cb193-3"></a>  <span class="dt">am =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb193-4"><a href="iteración.html#cb193-4"></a>    <span class="kw">factor</span>(x, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;auto&quot;</span>, <span class="st">&quot;manual&quot;</span>))</span>
-<span id="cb193-5"><a href="iteración.html#cb193-5"></a>  }</span>
-<span id="cb193-6"><a href="iteración.html#cb193-6"></a>)</span>
-<span id="cb193-7"><a href="iteración.html#cb193-7"></a><span class="cf">for</span> (var <span class="cf">in</span> <span class="kw">names</span>(trans)) {</span>
-<span id="cb193-8"><a href="iteración.html#cb193-8"></a>  mtcars[[var]] &lt;-<span class="st"> </span>trans[[var]](mtcars[[var]])</span>
-<span id="cb193-9"><a href="iteración.html#cb193-9"></a>}</span></code></pre></div></li>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="iteración.html#cb195-1"></a>trans &lt;-<span class="st"> </span><span class="kw">list</span>( </span>
+<span id="cb195-2"><a href="iteración.html#cb195-2"></a>  <span class="dt">disp =</span> <span class="cf">function</span>(x) x <span class="op">*</span><span class="st"> </span><span class="fl">0.0163871</span>,</span>
+<span id="cb195-3"><a href="iteración.html#cb195-3"></a>  <span class="dt">am =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb195-4"><a href="iteración.html#cb195-4"></a>    <span class="kw">factor</span>(x, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;auto&quot;</span>, <span class="st">&quot;manual&quot;</span>))</span>
+<span id="cb195-5"><a href="iteración.html#cb195-5"></a>  }</span>
+<span id="cb195-6"><a href="iteración.html#cb195-6"></a>)</span>
+<span id="cb195-7"><a href="iteración.html#cb195-7"></a><span class="cf">for</span> (var <span class="cf">in</span> <span class="kw">names</span>(trans)) {</span>
+<span id="cb195-8"><a href="iteración.html#cb195-8"></a>  mtcars[[var]] &lt;-<span class="st"> </span>trans[[var]](mtcars[[var]])</span>
+<span id="cb195-9"><a href="iteración.html#cb195-9"></a>}</span></code></pre></div></li>
 </ol>
 <div class="solucion">
 <h3>
@@ -680,24 +680,24 @@ Solución
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Un posible equivalente de <code>col_sum()</code> es:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="iteración.html#cb194-1"></a>col_sum3 &lt;-<span class="st"> </span><span class="cf">function</span>(df, f) {</span>
-<span id="cb194-2"><a href="iteración.html#cb194-2"></a>  is_num &lt;-<span class="st"> </span><span class="kw">sapply</span>(df, is.numeric)</span>
-<span id="cb194-3"><a href="iteración.html#cb194-3"></a>  df_num &lt;-<span class="st"> </span>df[, is_num]</span>
-<span id="cb194-4"><a href="iteración.html#cb194-4"></a></span>
-<span id="cb194-5"><a href="iteración.html#cb194-5"></a>  <span class="kw">sapply</span>(df_num, f)</span>
-<span id="cb194-6"><a href="iteración.html#cb194-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="iteración.html#cb196-1"></a>col_sum3 &lt;-<span class="st"> </span><span class="cf">function</span>(df, f) {</span>
+<span id="cb196-2"><a href="iteración.html#cb196-2"></a>  is_num &lt;-<span class="st"> </span><span class="kw">sapply</span>(df, is.numeric)</span>
+<span id="cb196-3"><a href="iteración.html#cb196-3"></a>  df_num &lt;-<span class="st"> </span>df[, is_num]</span>
+<span id="cb196-4"><a href="iteración.html#cb196-4"></a></span>
+<span id="cb196-5"><a href="iteración.html#cb196-5"></a>  <span class="kw">sapply</span>(df_num, f)</span>
+<span id="cb196-6"><a href="iteración.html#cb196-6"></a>}</span></code></pre></div>
 <p>Pero tiene una cantidad de bugs que queda ilustrada con las siguientes entradas:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="iteración.html#cb195-1"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb195-2"><a href="iteración.html#cb195-2"></a>  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, </span>
-<span id="cb195-3"><a href="iteración.html#cb195-3"></a>  <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>,</span>
-<span id="cb195-4"><a href="iteración.html#cb195-4"></a>  <span class="dt">z =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
-<span id="cb195-5"><a href="iteración.html#cb195-5"></a>)</span>
-<span id="cb195-6"><a href="iteración.html#cb195-6"></a><span class="co"># OK</span></span>
-<span id="cb195-7"><a href="iteración.html#cb195-7"></a><span class="kw">col_sum3</span>(df, mean)</span>
-<span id="cb195-8"><a href="iteración.html#cb195-8"></a><span class="co"># Tiene problemas: no siempre devuelve un vector numérico</span></span>
-<span id="cb195-9"><a href="iteración.html#cb195-9"></a><span class="kw">col_sum3</span>(df[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], mean)</span>
-<span id="cb195-10"><a href="iteración.html#cb195-10"></a><span class="kw">col_sum3</span>(df[<span class="dv">1</span>], mean)</span>
-<span id="cb195-11"><a href="iteración.html#cb195-11"></a><span class="kw">col_sum3</span>(df[<span class="dv">0</span>], mean)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="iteración.html#cb197-1"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb197-2"><a href="iteración.html#cb197-2"></a>  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, </span>
+<span id="cb197-3"><a href="iteración.html#cb197-3"></a>  <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>,</span>
+<span id="cb197-4"><a href="iteración.html#cb197-4"></a>  <span class="dt">z =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb197-5"><a href="iteración.html#cb197-5"></a>)</span>
+<span id="cb197-6"><a href="iteración.html#cb197-6"></a><span class="co"># OK</span></span>
+<span id="cb197-7"><a href="iteración.html#cb197-7"></a><span class="kw">col_sum3</span>(df, mean)</span>
+<span id="cb197-8"><a href="iteración.html#cb197-8"></a><span class="co"># Tiene problemas: no siempre devuelve un vector numérico</span></span>
+<span id="cb197-9"><a href="iteración.html#cb197-9"></a><span class="kw">col_sum3</span>(df[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], mean)</span>
+<span id="cb197-10"><a href="iteración.html#cb197-10"></a><span class="kw">col_sum3</span>(df[<span class="dv">1</span>], mean)</span>
+<span id="cb197-11"><a href="iteración.html#cb197-11"></a><span class="kw">col_sum3</span>(df[<span class="dv">0</span>], mean)</span></code></pre></div>
 <p>¿Qué causa los bugs?</p></li>
 </ol>
 <div class="solucion">
