@@ -151,6 +151,26 @@ mdy(d5)
 <div class="solucion">
 <h3>Solución</h3>
 
+Una manera de resolver la primera pregunta sería obtener el primer día del primer mes y luego sumarle 11 meses:
+```{r}
+ymd("2015-01-01") + months(0:11)
+
+```
+
+La segunda pregunta podemos resolverla de las misma manera, pero obteniendo el primer día del año actual. Como queremos que esta respuesta sirva el próximo año, tenemos que generar ese primer día de manera automática (y no solo escribiendo `"2020-01-01"`). Para ello, podemos redondear hacia abajo la fecha actual. `floor_date()` permite indicar el criterio de redondeo:
+
+```{r}
+
+floor_date(today(), "year")
+```
+
+Ahora que obtuvimos el primer día del año actual, podemos sumarle los meses:
+
+
+```{r}
+floor_date(today(), "year") + month(0:11)
+```
+
 </div>
 
 
