@@ -25,7 +25,7 @@ paste("uno", "dos", "tres")
 paste0("uno", "dos", "tres")
 ```
 
-Estas funciones son equivalentes a `str_c()`. Esta función por defecto no agrega un espacio entre los elementos concatenados, por lo que si queremoos que lo incluya tenemos que explicitarlo en el argumento `sep = `:
+Estas funciones son equivalentes a `str_c()`. Esta función por defecto no agrega un espacio entre los elementos concatenados, por lo que si queremos incluirlo es necesario explicitarlo con el argumento `sep = `:
 
 ```{r}
 str_c("uno", "dos", "tres")
@@ -54,8 +54,13 @@ paste("uno", "dos", NA)
 x <- c("uno", "dos", "tres")
 y <- c("cuatro", "cinco", "seis")
 
+str_c(x, sep = "-")
+str_c(x, collapse = "-")
+
 str_c(x, y, sep = "-")
 str_c(x, y, collapse = "-")
+
+
 
 ```
 
@@ -101,7 +106,7 @@ str_wrap(texto, width = 40, indent = 3)
 
 <div class="solucion">
 <h3>Solución</h3>
-`str_trim()` permite eliminar espacios en blancos al inicio y al final de una cadena de caracteres:
+`str_trim()` permite eliminar espacios en blanco al inicio y al final de una cadena de caracteres:
 
 ```{r}
 str_trim(" palabra ")
@@ -123,11 +128,51 @@ str_pad("palabra", width = 15, side = "both")
 
 
 6.  Escribe una función que convierta, por ejemplo, el vector `c("a", "b", "c")` en
-    la cadena `a, b, y c`. Piensa con detención qué debería hacer 
+    la cadena `a, b y c`. Piensa con detención qué debería hacer 
     dado un vector de largo 0, 1, o 2.
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Necesitamos crear una función que tome un vector de caracteres y lo convierta en una oración enumerativa. Cuando el vector tiene un largo mayor a 2, deberá separar los elementos con coma, excepto el último, que debe separarse con "y". Por ejemplo: `a, b, c, d y e`. Si su largo es 2, solo los deberá separar con "y": `a y b`. Si su largo es 1, solo debería devolver ese único elemento: `a`. Si es de largo 0, debería devolver una cadena vacía: `""`.
+
+```{r}
+
+y <- c("a", "b", "c", "d")
+
+str_enumeracion <- function(x, delim = ",") {
+  n <- length(x)
+  if (n == 0) {
+    ""
+  } else if (n == 1) {
+    x
+  } else if (n == 2) {
+    # solo separar con "y"
+    str_c(x[[1]], "y", x[[2]], sep = " ")
+  } else {
+    # separar con comas todos los elementos, excepto los dos último, que llevan una "y"
+    str_c(c(str_c(x[seq_len(n - 2)], delim), 
+            str_c(x[[n-1]], "y", x[[n]], sep = " ")), 
+          collapse = " ")
+  }
+}
+```
+
+Ahora, probemos la función con `c("a", "b", "c")`:
+
+```{r}
+str_enumeracion(c("a", "b", "c"))
+```
+
+Veamos qué pasa cuando son menos y cuando son más elementos en la cadena:
+
+```{r}
+str_enumeracion("")
+str_enumeracion("a")
+str_enumeracion(c("a", "b"))
+str_enumeracion(c("a", "b", "c", "d", "e"))
+```
+
 
 </div> 
 
@@ -142,6 +187,30 @@ str_pad("palabra", width = 15, side = "both")
 <div class="solucion">
 <h3>Solución</h3>
 
+Como se menciona en el capítulo, tenemos que distinguir entre expresiones regulares y las cadenas de caracteres que la representan. La expresión regular que permite buscar una coincidencia con `\` es `\\`, ya que tenemos que escapar la barra invertida con otra barra invertida para que sea interpretada de manera literal. Pero para que R interprete esas dos barras como la expresión regular para coincidir con `\` en una cadena de caracteres, tenemos que escapar ambas, es decir `"\\\\"`.
+
+Usar una sola barra invertida dentro de una cadena escapa el siguiente caracter. 
+
+```{r}
+writeLines("una comilla\"")
+```
+
+Dos barras invertidas se interpretan como una expresión regular que escapará el siguiente caracter. 
+
+```{r}
+x <- "¿aló?"
+str_view(x, "\\?")
+```
+
+Tres barras invertidas en una cadena permiten escapar una barra y el siguiente caracter escapado para poder coincidir con este último:
+
+```{r}
+y <- "una barra seguida de una comilla: \\\""
+
+str_view(y, "\\\"")
+
+```
+
 </div> 
 
 
@@ -150,9 +219,17 @@ str_pad("palabra", width = 15, side = "both")
 <div class="solucion">
 <h3>Solución</h3>
 
+Primero, para generar esa secuencia tenemos que escapar las comillas y la barra invertida usando barras invertidas:
 ```{r}
-str_view("\"'\\", "\"'\\\\", match = TRUE)
+x <- "\"'\\"
+writeLines(x)
 ```
+
+Para buscar la coincidencia:
+```{r}
+str_view(x, "\\\"'\\\\")
+```
+
 
 </div> 
 
@@ -162,6 +239,13 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Esa expresión regular repite tres veces el mismo patrón: escapa un punto para que sea interpretado de manera literal y luego utiliza un punto para hacer coincidir cualquier caracter. Por lo tanto, coincidiría con patrones como: `.a.b.c`, `.1.r.3`, `.#. .!`.
+
+```{r}
+x <- c("abc.d.e.f", ".1. .3", ".a.b.c", "\\.\\.\\.")
+str_view(x, "\\..\\..\\..")
+```
 
 </div> 
 
@@ -177,6 +261,8 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 <h3>Solución</h3>
 
 ```{r}
+x <- "$^$"
+str_view(x, "\\$\\^\\$")
 ```
 
 
@@ -197,8 +283,30 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 <div class="solucion">
 <h3>Solución</h3>
 
-</div> 
+Las palabras que empiezan con "y" podemos buscarlas utilizando el ancla de inicio de cadena:
 
+```{r}
+str_view(palabras, "^y", match = TRUE)
+```
+
+Las palabras que terminen con "z" podemos buscarlas utilizando el ancla de final de cadena:
+```{r}
+str_view(palabras, "z$", match = TRUE)
+```
+
+Las que tienen una extensión de 3 letras podemos buscarlas usando tres `.`. Pero para que solo coincida con aquellas que tienen una extensión igual a 3, tenemos que usar anclas al inicio y final de la cadena:
+```{r}
+str_view(palabras, "^...$", match = TRUE)
+```
+
+Para buscar palabras con 8 letras o más, podemos seguir la misma lógica del caso anterior, pero esta vez sin las anclas:
+
+```{r}
+str_view(palabras, "........", match = TRUE)
+
+```
+
+</div> 
 
 ### 14.2.9 Clases de caracteres y alternativas{-#clases-caracteres}
 
@@ -210,15 +318,32 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
     1. Solo contengan consonantes. (Pista: piensa en cómo buscar coincidencias para 
        "no"-vocales.)
     1. Terminen en `ón`, pero no en `ión`.
-    1. Terminen con `ndo` or `ado`.
+    1. Terminen con `ndo` o `ado`.
 
 <div class="solucion">
 <h3>Solución</h3>
 
+Para buscar todas las palabras que empiecen con vocal utilizaremos `str_subset()` porque son muchos resultados:
 ```{r}
-
+str_subset(palabras, "^[aáeéiíoóuúü]")
 ```
 
+Para buscar palabras que solo tienen consonantes buscamos no-vocales que se repitan una o más veces (`+`) y anclamos el inicio y fin de la cadena. `datos::palabras` incluye algunas abreviaciones (por ejemplo, pp = páginas), por lo que junto con "y" es lo único que encontraremos. 
+```{r}
+str_view(palabras, "^[^aáeéiíoóuúü]+$", match = TRUE)
+```
+
+Palabras que terminan en `ón`, pero no en `ión`.
+    
+```{r}
+str_view(palabras, "[^i]ón$", match = TRUE)
+```
+
+Palabras que terminan con `ndo` o `ado`:
+
+```{r}
+str_view(palabras, "(n|a)do", match = TRUE)
+```
 
 </div> 
     
@@ -227,6 +352,17 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Podemos buscar las "q" y ver qué las sigue:
+```{r}
+str_subset(palabras, "q.")
+```
+
+O podemos buscar al revés: si a alguna "q" la sigue algo que no sea una "u":
+```{r}
+str_subset(palabras, "q[^u]")
+```
+
 
 </div> 
 
@@ -237,6 +373,14 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 <div class="solucion">
 <h3>Solución</h3>
 
+
+
+```{r}
+segunda_persona <- c("queréis", "quieren")
+str_view(segunda_persona, "éis$", match = TRUE)
+```
+
+
 </div> 
 
 
@@ -245,6 +389,14 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 <div class="solucion">
 <h3>Solución</h3>
+La respuesta varía según país y a veces dentro de un mismo país no siempre se usa un mismo formato. Para este ejercicio trataremos de encontrar este patrón: "(XX) XXX XX XX", es decir, un código de ciudad entre paréntesis y el número separado en bloques de 3-2-2 dígitos con un espacio entre medio. Los dígitos pueden representarse como `[0-9]` o `\\d`
+
+```{r}
+telefonos <- c("(32) 281 91 76", "(32)2819176", "(32)281 9176")
+str_view(telefonos, "\\(\\d\\d\\) \\d\\d\\d \\d\\d \\d\\d")
+```
+
+Este código podría simplificarse si es que utilizáramos algún modificador que nos permita controlar la repetición de patrones. En la próxima sesión se aborda este tema. 
 
 </div> 
 
@@ -253,6 +405,26 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Para comprobar esta regla primero podríamos buscar si existe el patrón: `cie`
+```{r}
+str_subset(words, "cie")
+```
+¡Hay dos palabras que indicarían que la excepción no se cumple siempre!
+¿Y hay casos en los que la letra i va después de la e sin que esté precedida de una c?
+
+```{r}
+str_subset(words, "[^c]ei")
+
+```
+Hay uno. 
+Puede que estas sean excepciones, así que para ver qué tan frecuente es el patrón que indica la regla, busquemos las palabras en que sí se cumple
+
+```{r}
+str_subset(words, "[^c]ie|cei")
+```
+Son muchas más.
+
 
 </div> 
 
@@ -265,11 +437,11 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 <div class="solucion">
 <h3>Solución</h3>
 
-`?` = `{0,1}`
+`?` = `{0,1}` = una sola coincidencia
 
-`+` = `{1,}`
+`+` = `{1,}` = uno o más coincidencias
 
-`*` = `{0,}`
+`*` = `{0,}`= cero o más coincidencias
 
 
 </div> 
@@ -287,7 +459,7 @@ str_view("\"'\\", "\"'\\\\", match = TRUE)
 <div class="solucion">
 <h3>Solución</h3>
 
-`^.*$`: coincidiría con cualquier cadena de caracteres, incluso si no tiene nada en su interior. La expresión regular buscar cualquier caracter (`.`) que aparezca 0 o más veces (`*`) al inicio (`^`) o al final `$` de una cadena de caracteres:
+`^.*$`: es una expresión regular que coincidiría con cualquier cadena de caracteres, incluso si no tiene nada en su interior. La expresión regular buscar cualquier caracter (`.`) que aparezca 0 o más veces (`*`) al inicio (`^`) o al final `$` de una cadena de caracteres:
 
 ```{r}
 cadena <- c("123", "una palabra", "estas son cuatro palabras", " ", "")
@@ -295,7 +467,7 @@ cadena <- c("123", "una palabra", "estas son cuatro palabras", " ", "")
 str_match(cadena, "^.*$")
 ```
 
-`"\\{.+\\}"`: coincidiría con `{}` y lo que tengan dentro, siempre que tenga al menos un caracter (`.+`):
+`"\\{.+\\}"`: es la cadena que representa una expresión regular coincidiría con `{}` y lo que tengan dentro, siempre que tenga al menos un caracter (`.+`):
 
 ```{r}
 cadena <- c("uno {dos} tres", "uno {} tres", "uno {2} tres")
@@ -303,6 +475,20 @@ cadena <- c("uno {dos} tres", "uno {} tres", "uno {2} tres")
 str_view(cadena, "\\{.+\\}")
 ```
 
+
+La expresión regular `\d{4}-\d{2}-\d{2}` coincide con secuencias de 4, 2 y 2 dígitos separados por un guión.
+
+```{r}
+numeros <- c("4444-22-22", "333-22-22", "88888888")
+str_view(numeros, "\\d{4}-\\d{2}-\\d{2}")
+```
+
+La cadena "\\\\{4}" coincidiría con una barra invertida repetida 4 veces:
+
+```{r}
+barras <- c("\\", "\\\\", "\\\\\\", "\\\\\\\\")
+str_view(barras, "\\\\{4}")
+```
 
 </div> 
 
@@ -316,6 +502,24 @@ str_view(cadena, "\\{.+\\}")
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Para buscar palabras que empiecen con dos consonantes buscaremos la repetición de no-vocales al inicio de una cadena:
+
+```{r}
+str_view(palabras, "^[^aáeéiíoóuúü]{2}", match = TRUE)
+```
+
+Palabras con tres o más vocales seguidas
+```{r}
+str_view(palabras, "[aáeéiíoóuúü]{3,}", match = TRUE)
+
+```
+
+Palabras que tengan tres o más pares de vocal-consonante seguidos:
+
+```{r}
+str_view(palabras, "([aáeéiíoóuúü][^aáeéiíoóuúü]){3,}", match = TRUE)
+```
 
 </div> 
 
@@ -334,6 +538,38 @@ str_view(cadena, "\\{.+\\}")
 <div class="solucion">
 <h3>Solución</h3>
 
+La expresión regular `(.)\1\1` coincide con cualquier caracter repetido tres veces seguidas.
+
+```{r}
+str_view(c("a", "aa", "aaa", "aaaa"), "(.)\\1\\1")
+```
+
+La cadena `"(.)(.)\\2\\1"` coincide con los dos caracteres capturados seguidos de los mismos dos caracteres pero en orden inverso:
+
+```{r}
+str_view(c("abba", "abab"), "(.)(.)\\2\\1")
+```
+
+La expresión regular `(..)\1` coincide con un par de letras que se repite dos veces:
+
+```{r}
+str_view(c("abba", "abab"), "(..)\\1")
+```
+
+La cadena `"(.).\\1.\\1"` coicide con la secuencia: caracter capturado, otro caracter, caracter capturado, otro caracter, caracter capturado: 
+
+
+```{r}
+str_view(c("babab", "babeb", "abab"), "(.).\\1.\\1")
+```
+
+La cadena `"(.)(.)(.).*\\3\\2\\1"` coincide con los tres caracteres capturados, cero o más de otros caracteres y luego los tres caracteres capturados en orden inverso:
+
+
+```{r}
+str_view(c("abcdefgcba", "abccba", "abcabc"), "(.)(.)(.).*\\3\\2\\1")
+```
+
 </div> 
 
 
@@ -350,7 +586,33 @@ str_view(cadena, "\\{.+\\}")
 <div class="solucion">
 <h3>Solución</h3>
 
-</div> 
+Para buscar palabras que empiecen y terminen con el mismo caracter:
+
+```{r}
+str_subset(palabras, "^(.).*\\1$")
+```
+
+Si bien el código permite encontrar lo que buscábamos, lo cierto es que ese patrón busca cadenas de caracteres que empiecen y terminen con el mismo caracter, no necesariamente una letra. Es decir, también coincidería con `#455#`. Si quisiéramos que solo encontrara letras:
+
+```{r}
+str_subset(palabras, "^([:alpha:]).*\\1$")
+```
+
+
+Palabras que contienen un par de letras repetido:
+
+```{r}
+str_subset(palabras, "([:alpha:][:alpha:]).*\\1")
+```
+
+    
+Palabras que contienen una letra repetida en al menos tres lugares:
+
+```{r}
+str_subset(palabras, "([:alpha:]).*\\1.*\\1")
+```
+
+ </div> 
 
 
 ## 14.3 Herramientas{-#herramientas}
@@ -369,6 +631,49 @@ str_view(cadena, "\\{.+\\}")
 <div class="solucion">
 <h3>Solución</h3>
 
+Para encontrar todas las palabras que empiezan o terminan con `y` con una sola expresión regular:
+
+```{r}
+str_view(palabras, "^y|y$", match = TRUE)
+```
+
+Con múltiples llamadas a `str_detect()`:
+```{r}
+palabras[str_detect(palabras, "^y") | str_detect(palabras, "y$")]
+```
+
+    
+Para encontrar todas las palabras que empiezan con una vocal y terminan con una consonante con una expresión regular:
+
+```{r}
+palabras %>% 
+    str_subset("^[aáeéiíoóuúü].*[^aáeéiíoóuúü]$") %>% 
+    head(n = 10) # son muchas así que miraremos las 10 primeras
+
+```
+
+Con múltiples llamadas a `str_detect()`:
+
+```{r}
+palabras[str_detect(palabras, "^[aáeéiíoóuú]") & str_detect(palabras, "[^aáeéiíoóuú]$")][1:10]
+```
+
+¿Existen palabras que tengan todas las vocales? Para resolver esto con una sola expresión regular:
+
+```{r}
+palabras[str_detect(palabras, "(?=.*(a|á))(?=.*(e|é))(?=.*(i|í))(?=.*(o|o))(?=.*(u|ú|ü))")]
+```
+
+Con varias llamas a `str_detect()`
+
+```{r}
+palabras[str_detect(palabras, "a|á") &
+  str_detect(palabras, "e|é") &
+  str_detect(palabras, "i|í") &
+  str_detect(palabras, "o|o") &
+  str_detect(palabras, "u|ú|ü")]
+```
+
 </div> 
 
 
@@ -377,6 +682,28 @@ str_view(cadena, "\\{.+\\}")
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Para responder esta pregunta tenemos que contar la cantidad de vocales y además calcular su proporción respecto del total de letras de la palabra. Hay varias formas de resolver esto. La que usaremos acá será crear un tibble y usar las funciones de **stringr** dentro de `mutate`:
+
+```{r}
+df <- palabras %>% 
+    tibble(palabra = .) %>% 
+    mutate(largo = str_length(palabra)) %>% 
+    mutate(vocales = str_count(palabra, "[aáeéiíoóuúü]")) %>% 
+    mutate(prop_vocales = vocales / largo)
+```
+
+Ahora podemos responder las preguntas. Las palabras con más vocales en este set de datos tienen 6 en total. Son 15:
+
+```{r}
+top_n(df, 1, vocales)
+```
+
+Hay palabras solo compuestas por vocales. Cuatro son efectivamente palabras (una preposición y tres conjunciones) y dos son vocales que se usan para numerar ("i", "ii"):
+```{r}
+top_n(df, 1, prop_vocales)
+```
+
 
 </div> 
 
@@ -394,6 +721,26 @@ str_view(cadena, "\\{.+\\}")
 <div class="solucion">
 <h3>Solución</h3>
 
+En principio, para asegurarnos que solo busque nuestro patrón de manera exacta podríamos indicar límites de palabra con `\\b`. Con el inicio no tendríamos problemas y eso eliminaría "arrojo". Sin embargo, si ponemos el límite de final de palabra no solo eliminaría "azulejo" sino también "verdes". Para este ejemplo en particular no importa porque estamos buscando más de una coincidencia por cadena y "verdes" está en la misma cadena que azulajos (es decir, al eliminar esta última palabra queda un solo color en la cadena y por tanto que no responde a lo que estamos buscando). Pero si hubiese otro caso de color en plural sí tendríamos que modificar nuestro patrón.
+Una manera de resolver esto sería que nuestro patrón busque también las versiones en plural de los colores que indicamos. Y para hacerlo mejor aún, que busque también cuando el adjetivo sea femenino o masculino:
+
+```{r}
+# agregamos la opción de plural
+colores <- c("roj(a|o)s*", "amarill(a|o)s*", "verde", "azul(es)*", "marr(o|ó)n")
+
+# agregamos límites de palabra al inicio y al final
+coincidencia_color <- str_c("\\b(", str_c(colores, collapse = "|"), ")\\b")
+tiene_color <- str_subset(oraciones, coincidencia_color)
+mas <- oraciones[str_count(oraciones, coincidencia_color) > 1]
+str_view_all(mas, coincidencia_color)
+
+# chequear que encuentra también colores en plural y adjetivos femeninos en otros ejemplos:
+
+otras_oraciones <- c("amarillas y rojas", "rojas y azules")
+otras_oraciones[str_count(otras_oraciones, coincidencia_color) > 1]
+```
+
+
 </div> 
 
 2.  De `datos::oraciones` extrae:
@@ -405,8 +752,20 @@ str_view(cadena, "\\{.+\\}")
 <div class="solucion">
 <h3>Solución</h3>
 
-</div> 
+Como cada oración es una cadena, podemos extraer la primera palabra de cada oración con `\\w`, que busca cualquier caracter de palabra con un ancla al inicio y un límite de palabra al final. Otra forma de buscar solo caracteres de palabras es con `[:alpha:]`:
 
+```{r}
+str_extract(oraciones, "^(\\w+)\\b")
+str_extract(oraciones, "^([:alpha:]+)\\b")
+```
+
+Es posible encontrar también el siguiente patrón para representar caracteres de palabras: `[a-z]` o `[A-Za-z]` (para que busque mayúsculas también)- Sin embargo, hay que tener cuidado con su utilización en español, ya que no reconoce tildes. En este mismo ejemplo, nos devuelve `NA` en todas las palabras en las que hay tildes:
+
+```{r}
+str_extract(oraciones, "^([A-Za-z]+)\\b")
+```
+
+</div> 
 
 ### 14.3.4 Coincidencias agrupadas{-#coincidencias-agrupadas}
 
@@ -418,6 +777,35 @@ str_view(cadena, "\\{.+\\}")
 <div class="solucion">
 <h3>Solución</h3>
 
+Responderemos esta pregunta para números del 1 al 10 utilizando las dos formas recién vistas: `str_match()` y `tidyr::extract()`:
+
+```{r}
+numero_palabra <- "(una*o*|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez) ([^ ]+)"
+
+str_match(oraciones, numero_palabra)
+
+tibble(oracion = oraciones) %>% 
+    tidyr::extract(
+        oracion, c("numero", "palabra"), numero_palabra,
+        remove = FALSE
+    ) %>% 
+    filter(!is.na(palabra)) # solo ver las filas con resultados
+```
+
+Para definir lo que es una palabra utilizamos la misma heurística propuesta en esta sección del libro, es decir, todo lo que no es un espacio. Sin embargo, esto hace que se extraigan también los puntos. Una manera de evitarlo es utilizar `\\w`:
+
+```{r}
+numero_palabra2 <- "(una*o*|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez) (\\w+)"
+
+tibble(oracion = oraciones) %>% 
+    tidyr::extract(
+        oracion, c("numero", "palabra"), numero_palabra2,
+        remove = FALSE
+    ) %>% 
+    filter(!is.na(palabra)) # solo ver las filas con resultados
+
+```
+
 </div> 
 
 
@@ -425,6 +813,26 @@ str_view(cadena, "\\{.+\\}")
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Para separar las palabras podemos utilizar la función `str_split()`
+```{r}
+
+compuestas <- c("teórico-práctico", "precio-calidad", "franco-porteño")
+tiene_guion <- "\\w+-\\w+"
+
+str_extract(compuestas, tiene_guion) %>% 
+    str_split("-")
+```
+
+Si quisiéramos hacer esto mismo en el contexto de un _data frame_, podríamos utilizar la función `tidyr::separate`:
+
+```{r}
+tibble(palabras_compuestas = compuestas) %>% 
+    tidyr::separate(palabras_compuestas, 
+        c("palabra1", "palabra2"), 
+        sep = "-", 
+        remove = FALSE) # para no eliminar la columna original
+```
 
 </div> 
 
@@ -438,6 +846,12 @@ str_view(cadena, "\\{.+\\}")
 <div class="solucion">
 <h3>Solución</h3>
 
+```{r}
+barras <- "una /, dos barras //, tres ///"
+str_replace_all(barras, "/", "\\\\") %>% 
+    writeLines()
+```
+
 </div> 
 
 
@@ -445,6 +859,18 @@ str_view(cadena, "\\{.+\\}")
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Una manera sería buscar todas las mayúsculas y remplazarlas por su versión en minúcula. 
+```{r}
+# Crear un vector con todos los remplazos:
+
+a_minuscula <- c(  "A" = "a", "Á" = "á", "B" = "b", "C" = "c", "D" = "d", "E" = "e", "É" = "é","F" = "f", "G" = "g", "H" = "h", "I" = "i", "Í" = "í", "J" = "j", "K" = "k", "L" = "l", "M" = "m", "N" = "n", "Ñ" = "ñ","O" = "o", "Ó" = "ó", "P" = "p", "Q" = "q", "R" = "r", "S" = "s", "T" = "t", "U" = "u", "Ú" = "ú","V" = "v", "W" = "w", "X" = "x", "Y" = "y", "Z" = "z")
+
+mayusculas <- c("Hola", "Buenos días", "Adiós")
+
+str_replace_all(mayusculas, pattern = a_minuscula)
+
+```
 
 </div> 
 
@@ -454,6 +880,30 @@ str_view(cadena, "\\{.+\\}")
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Primero, cambiemos la primera y la última letra. Para esto podemos utilizar grupos de captura y referencias previas.
+
+El patrón que queremos buscar son nuestros tres grupos de captura tendría que ser: 
+1. la primera letra (`^([:alpha:])`)
+2. de la segunda a la penúltima letra (`(.*)`)
+3. la última letra (`([:alpha:])$`)
+
+Luego, remplazamos con nuestro patrón con el primer y el último grupo invertido: `"\\3\\2\\1"`
+
+```{r}
+invertidas <- str_replace_all(palabras, "^([:alpha:])(.*)([:alpha:])$", "\\3\\2\\1") 
+
+head(invertidas)
+```
+
+La segunda pregunta es un poco amplia e implicaría revisar las 1000 palabras y evaluar en cada caso si es o no una palabra de nuestra lengua. Lo que sí podemos hacer es chequear si sigue siendo una palabra contenida en nuestro dataset `palabras`. Para ello, podemos utilizar `dplyr::interset`. Para eliminar las palabras y abreviaciones que tienen una sola letra ("y", "a", "o", etc.), podemos comparar `invertidas` solo con las palabras de dos o más letras: 
+
+```{r}
+intersect(invertidas, palabras[str_length(palabras) > 1])
+
+
+```
+
 
 </div> 
 
@@ -481,6 +931,14 @@ str_split(x, "(, )|( y )")
 <div class="solucion">
 <h3>Solución</h3>
 
+El ejemplo que aparece en el libro muestra uno de los problemas de `" "`: no elimina la puntuación. Es decir, no es capaz de indentificar claramente los límites de una palabra. `boundary("word")` no tiene ese problema.
+```{r}
+x <- "Esta es una oración. Esta es otra oración"
+str_split(x, " ")[[1]]
+str_split(x, boundary("word"))[[1]]
+```
+
+
 </div> 
 
 3.  ¿Qué pasa si dividimos con una cadena vacía (`""`)? Experimenta y
@@ -488,6 +946,14 @@ str_split(x, "(, )|( y )")
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Experimentemos:
+```{r}
+str_split("palabra", "")[[1]]
+str_split("una frase", "")[[1]]
+```
+
+Una cadena vacía `""` divide cada caracter de la cadena.
 
 </div> 
 
@@ -501,12 +967,37 @@ str_split(x, "(, )|( y )")
 <div class="solucion">
 <h3>Solución</h3>
 
+La diferencia se encuentra en la cadena que representa la expresión regular:
+```{r}
+barras <- "una barra \\, dos barras \\\\, tres barras \\\\\\"
+writeLines(barras)
+
+
+str_view_all(barras, regex("\\\\"))
+
+str_view_all(barras, fixed("\\"))
+```
+
+
 </div> 
 
 2.  ¿Cuáles son las cinco palabras más comunes en `oraciones`?
 
 <div class="solucion">
 <h3>Solución</h3>
+Para resolver esta pregunta tenemos que extraer cada palabra de forma individual y luego contar su frecuencia. 
+
+Podemos extraer todas las palabras de forma individual utilizando el código al final de esta sección. Luego, podemos convertir eso en un tibble y contar. No hay que olvidar convertir todas las mayúsculas a minúsculas con `str_to_lower`
+
+```{r}
+str_extract_all(oraciones, boundary("word")) %>%
+  unlist() %>% # convertimos la lista en vector
+  tibble(palabra = .) %>%  #creamos un tibble
+  count(str_to_lower(palabra)) %>% # contamos
+  top_n(5) # buscamos las cinco más frecuentes
+```
+
+Como era de esperar, las palabras más frecuentes son palabras de función como preposiciones, artículos y conjunciones.
 
 </div> 
 
