@@ -33,7 +33,11 @@ filter(vuelos, atraso_llegada >= 120)
 <h3>Solución</h3>
 
 ```{r}
+#Opcion 1
 filter(vuelos, destino %in% c("IAH", "HOU"))
+
+#Opción 2
+filter(vuelos,destino == "IAH" | destino ==  "HOU" )
 ```
 
 
@@ -70,7 +74,7 @@ filter(vuelos, mes %in% c(7, 8, 9))
 <h3>Solución</h3>
 
 ```{r}
-filter(vuelos, atraso_salida <= 0 & atraso_llegada > 90)
+filter(vuelos, atraso_salida <= 0 & atraso_llegada > 120)
 ```
 
 
@@ -92,7 +96,7 @@ filter(vuelos, atraso_salida >= 60 & atraso_salida - atraso_llegada > 30)
 <h3>Solución</h3>
 
 ```{r}
-filter(vuelos, horario_salida %in% 000:600)
+filter(vuelos,horario_salida %in% c(1:600) | horario_salida == 2400 )
 ```
 
 
@@ -109,7 +113,6 @@ Podemos reescribir el código para encontrar los vuelos que partieron en el invi
 
 ```{r}
 filter(vuelos, between(mes, 7, 9))
-
 ```
 
 </div>
@@ -134,8 +137,44 @@ Los vuelos que tienen `NA` en su horario de salida, también lo tienen en el hor
 <div class="solucion">
 <h3>Solución</h3>
 
-$x ^ 0 = 1$, por lo que `NA ^ 0 == 1`
 
+```{r}
+x <- c(NA) 
+
+is.na(x)
+```
+
+La función `is.na()` determina si falta un valor y devuelve un valor lógico `TRUE` en los casos en que es NA (Not Available). 
+
+```{r}
+x^0
+```
+
+Dado que el NA podría tomar cualquier valor, es práctico pensar que cualquier número (aunque sea muy grande) a la potencia cero es igual a 1.
+
+```{r}
+x | TRUE
+```
+
+Es igual a TRUE pues el NA se entiende como un valor lógico (`TRUE` or `FALSE`) y por lógica proposicional `TRUE` | `TRUE`  y  `FALSE` | `TRUE` es siempre igual a `TRUE`.
+
+```{r}
+x & FALSE
+```
+Es igual a `TRUE` pues el NA se entiende como un valor lógico (`TRUE` or `FALSE`) y por lógica proposicional `TRUE`&`FALSE` y `FALSE`&`FALSE` es siempre `FALSE`.
+
+El contraejemplo a la regla general:
+
+```{r}
+x * 0
+```
+
+```{r}
+Inf*0
+```
+
+En este contraejemplo puede ser útil pensar que el `NA` puede tomar cualquier valor, incluso podría ser un número muy grande; el cual al multiplicarse por cero nos da una indeterminación que `R` define como `NaN` (Not a Number). Por otro lado, si el `NA` fuese un valor pequeño, entonces `NA*0` sería igual a cero. Luego, es mejor pensar en `x*0` como un `NA` porque no sabemos en cual de los dos casos anteriores estamos.
+ 
 </div>
 
 

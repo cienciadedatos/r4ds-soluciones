@@ -86,6 +86,45 @@ encuesta %>%
 <div class="solucion">
 <h3>Solución</h3>
 
+Una forma de hacerlo sería contar las combinaciones de religión y denominación, lo que nos entregaría una tabla en la que podríamos ver cada cruce (por ejemplo, con `encuesta %>% count(religion, denominacion)`). Sin embargo, antes de hacer eso sería bueno eliminar los niveles que corresponden a una denominación: "Sin respuesta", "No sabe", "No aplica", "No denominacional":
+
+```{r}
+encuesta %>% 
+  filter(!denominacion %in% c("Sin respuesta", "No sabe", "No aplica", "No denominacional")) %>% 
+  count(religion, denominacion)
+```
+
+Las denominaciones corresponden a la religión Protestante. Podemos comprobar que es la única que aparece solo contando `religion`:
+
+```{r}
+encuesta %>% 
+  filter(!denominacion %in% c("Sin respuesta", "No sabe", "No aplica", "No denominacional")) %>% 
+  count(religion)
+```
+
+En una visualización lo podríamos descubrir con `facet_wrap()`. Podemos hacer un gráfico de columnas para la frecuencia de respuestas por cada denominación. Si faceteamos el gráfico según religión, solo nos aparecerá protestante porque en las otras religiones no hay valores.
+
+```{r}
+encuesta %>% 
+  filter(!denominacion %in% c("Sin respuesta", "No sabe", "No aplica", "No denominacional")) %>% 
+  count(religion, denominacion) %>% 
+  ggplot(aes(y = denominacion, x = n)) +
+  geom_col() +
+  facet_wrap(~religion)
+
+```
+
+Como se comentó antes en el capítulo, ggplot descarta los niveles no utilizados. Si quisieras que los mostrara igual, podrías agregar la opción `drop = FALSE`, aunque como son tantos los niveles de `denominacion` quedarían amontonadas las etiquetas y habría que editar el tamaño del gráfico para evitar este problema:
+
+```{r}
+encuesta %>% 
+  filter(!denominacion %in% c("Sin respuesta", "No sabe", "No aplica", "No denominacional")) %>% 
+  count(religion, denominacion) %>% 
+  ggplot(aes(y = denominacion, x = n)) +
+  geom_col() +
+  facet_wrap(~religion, drop = FALSE)
+```
+
 </div>
 
 ## 15.4 Modificar el orden de los factores {-#modificar-factores}
@@ -97,6 +136,18 @@ encuesta %>%
 <div class="solucion">
 <h3>Solución</h3>
 
+Miremos los estadísticos de resumen y hagamos un histograma para explorar los datos:
+```{r}
+summary(encuesta$horas_tv)
+
+
+encuesta %>% 
+  filter(!is.na(horas_tv)) %>% 
+  ggplot(aes((horas_tv))) + geom_histogram(binwidth = 1)
+```
+
+Efectivamente, hay valores demasiado altos. Pareciera que hay personas que ven televisión todo el día y no duermen nunca, lo que es poco verosímil. Podría ser mejor utilizar la mediana como resumen. En todo caso, estos números anormalmente altos son bastante pocos. 
+
 </div>
 
 2. Identifica, para cada factor en `encuesta`, si el orden de los niveles es arbitrario o responde a algún principio.
@@ -104,12 +155,66 @@ encuesta %>%
 <div class="solucion">
 <h3>Solución</h3>
 
+Primero, identifiquemos qué variables son factores. Una forma de hacerlo es utilizar `select_if`, que selecciona columnas de acuerdo a una condición, y luego extraer los nombres de las variables. 
+
+```{r}
+encuesta %>% 
+  select_if(is.factor) %>% 
+  names()
+
+```
+
+Ahora, revisemos los niveles de cada una de ellas.
+
+En el caso de `estado_civil` pareciera que tenemos dos extremos: nunca se ha casado y casado, y entre ellas están agrupadas las categorías que hacen alusión a gente que estuvo casada, pero ya no.
+```{r}
+levels(encuesta$estado_civil)
+```
+
+
+En la variable `raza` pareciera no haber ningún orden en particular:
+```{r}
+levels(encuesta$raza)
+```
+Si visualizamos los datos, es posible ver que los tres primeros niveles se ordenaron por frecuencia.
+
+```{r}
+ggplot(encuesta, aes(raza)) + geom_bar() + scale_x_discrete(drop = FALSE)
+
+```
+
+`ingreso` está ordenado por rangos que van de mayor a menor. 
+```{r}
+levels(encuesta$ingreso)
+```
+
+Los niveles de `partido` están ordenados a partir de más republicano a más demócrata.
+```{r}
+levels(encuesta$partido)
+```
+
+`religión` pareciera no tener ningún orden en particular:
+```{r}
+levels(encuesta$religion)
+```
+
+Si visualizamos para chequear, podemos confirmar el orden aleatorio:
+```{r}
+ggplot(encuesta, aes(y = religion)) + geom_bar() + scale_x_discrete(drop = FALSE)
+```
+
+En el caso de `denominacion`, los niveles que pertencen a variantes de una denominacion (luterana, episcopal, metodista, etc.) están agrupados. Pero estos grupos entre sí no responden a un orden en particular:
+```{r}
+levels(encuesta$denominacion)
+```
+
 </div>
 
 3. ¿Por qué mover "No aplica" al inicio de los niveles lo llevó al final del gráfico?
 
 <div class="solucion">
 <h3>Solución</h3>
+
 
 </div>
 
@@ -122,6 +227,36 @@ encuesta %>%
 
 <div class="solucion">
 <h3>Solución</h3>
+Para responder esta pregunta vamos a usar la versión de los datos que se muestran al final de esta sección en que los niveles de `partido` se agruparon con `factor_collapse)`
+
+```{r}
+partido_anio <- encuesta %>%
+  mutate(partido = fct_collapse(partido,
+    otro = c("Sin respuesta", "No sabe", "Otro partido"),
+    republicano = c("Fuertemente republicano", "No fuertemente republicano"),
+    independiente = c("Ind, pro rep", "Independiente", "Ind, pro dem"),
+    demócrata = c("No fuertemente demócrata", "Fuertemente demócrata")
+  )) %>%
+  count(anio, partido) 
+
+ggplot(partido_anio) +
+  aes(anio, n, colour = partido) + 
+  geom_line()
+```
+
+Sería mejor si más que el número de respuestas, graficáramos la proporción:
+
+```{r}
+
+partido_anio %>% 
+  group_by(anio) %>%
+  mutate(proporcion = n / sum(n)) %>% 
+  ggplot() +
+  aes(anio, proporcion, colour = partido) + 
+  geom_line()
+
+```
+
 
 </div>
 
@@ -129,5 +264,45 @@ encuesta %>%
 
 <div class="solucion">
 <h3>Solución</h3>
+
+Actualmente los niveles agrupan los datos de tres formas: tramos de mil, dos mil y cinco mil dólares:
+```{r}
+levels(encuesta$ingreso)
+```
+
+Una forma de colapsaros en menos categorías sería solo utilizar los tramos de 5000 dólares. Esto hace sentido si revisamos cómo se distribuyen los datos: 
+
+```{r}
+ggplot(encuesta) +
+  aes(y = ingreso) +
+  geom_bar()
+```
+
+
+Para la agrupación, podemos utilizar `fct_collapse()`
+```{r}
+encuesta %>% 
+  mutate(ingreso_reagrupado = fct_collapse(ingreso,
+      "Menos de 5000" = c("Menos de 1000", "1000 - 2999", "3000 - 3999", "4000 - 4999"),
+      "5000 - 9999" = c("5000 - 5999", "6000 - 6999", "7000 - 7999", "8000 - 9999"))) %>% 
+  ggplot() +
+  aes(y = ingreso_reagrupado) +
+  geom_bar()
+  
+```
+
+También podemos reagrupar "Sin respuesta", "No sabe", "Se niega a responder" y "No aplica" en una categoría a la que podríamos llamar "Desconocido" o "Sin información". Editemos el código anterior para que refleje este cambio:
+
+```{r}
+encuesta %>% 
+  mutate(ingreso_reagrupado = fct_collapse(ingreso,
+      "Menos de 5000" = c("Menos de 1000", "1000 - 2999", "3000 - 3999", "4000 - 4999"),
+      "5000 - 9999" = c("5000 - 5999", "6000 - 6999", "7000 - 7999", "8000 - 9999"),
+      "Sin información" = c("Sin respuesta", "No sabe", "Se niega a responder", "No aplica")
+      )) %>% 
+  ggplot() +
+  aes(y = ingreso_reagrupado) +
+  geom_bar()
+```
 
 </div>
