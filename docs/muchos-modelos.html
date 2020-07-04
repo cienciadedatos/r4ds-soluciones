@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>25 Muchos modelos | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="25 Muchos modelos | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -442,48 +443,48 @@ Solución
 <p>El siguiente código replica el análisis que se hizo en el libro pero cambia l
 función <code>modelo_pais()</code> para incluir una regresión que incluye el año al
 cuadrado.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="muchos-modelos.html#cb240-1"></a>modelo_pais_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(df) {</span>
-<span id="cb240-2"><a href="muchos-modelos.html#cb240-2"></a>  <span class="kw">lm</span>(esperanza_de_vida <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(anio <span class="op">-</span><span class="st"> </span><span class="kw">median</span>(anio), <span class="dv">2</span>), <span class="dt">data =</span> df)</span>
-<span id="cb240-3"><a href="muchos-modelos.html#cb240-3"></a>}</span>
-<span id="cb240-4"><a href="muchos-modelos.html#cb240-4"></a></span>
-<span id="cb240-5"><a href="muchos-modelos.html#cb240-5"></a>por_pais &lt;-<span class="st"> </span>paises <span class="op">%&gt;%</span></span>
-<span id="cb240-6"><a href="muchos-modelos.html#cb240-6"></a><span class="st">  </span><span class="kw">group_by</span>(pais, continente) <span class="op">%&gt;%</span></span>
-<span id="cb240-7"><a href="muchos-modelos.html#cb240-7"></a><span class="st">  </span><span class="kw">nest</span>()</span>
-<span id="cb240-8"><a href="muchos-modelos.html#cb240-8"></a></span>
-<span id="cb240-9"><a href="muchos-modelos.html#cb240-9"></a>por_pais &lt;-<span class="st"> </span>por_pais <span class="op">%&gt;%</span></span>
-<span id="cb240-10"><a href="muchos-modelos.html#cb240-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="kw">map</span>(data, modelo_pais_<span class="dv">2</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="muchos-modelos.html#cb241-1"></a>por_pais &lt;-<span class="st"> </span>por_pais <span class="op">%&gt;%</span></span>
-<span id="cb241-2"><a href="muchos-modelos.html#cb241-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb241-3"><a href="muchos-modelos.html#cb241-3"></a>    <span class="dt">residuo =</span> <span class="kw">map2</span>(data, modelo, add_residuals)</span>
-<span id="cb241-4"><a href="muchos-modelos.html#cb241-4"></a>  )</span>
-<span id="cb241-5"><a href="muchos-modelos.html#cb241-5"></a></span>
-<span id="cb241-6"><a href="muchos-modelos.html#cb241-6"></a>por_pais</span>
-<span id="cb241-7"><a href="muchos-modelos.html#cb241-7"></a><span class="co">#&gt; # A tibble: 142 x 5</span></span>
-<span id="cb241-8"><a href="muchos-modelos.html#cb241-8"></a><span class="co">#&gt; # Groups:   pais, continente [710]</span></span>
-<span id="cb241-9"><a href="muchos-modelos.html#cb241-9"></a><span class="co">#&gt;   pais       continente data              modelo residuo          </span></span>
-<span id="cb241-10"><a href="muchos-modelos.html#cb241-10"></a><span class="co">#&gt;   &lt;fct&gt;      &lt;fct&gt;      &lt;list&gt;            &lt;list&gt; &lt;list&gt;           </span></span>
-<span id="cb241-11"><a href="muchos-modelos.html#cb241-11"></a><span class="co">#&gt; 1 Afganistán Asia       &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
-<span id="cb241-12"><a href="muchos-modelos.html#cb241-12"></a><span class="co">#&gt; 2 Albania    Europa     &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
-<span id="cb241-13"><a href="muchos-modelos.html#cb241-13"></a><span class="co">#&gt; 3 Argelia    África     &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
-<span id="cb241-14"><a href="muchos-modelos.html#cb241-14"></a><span class="co">#&gt; 4 Angola     África     &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
-<span id="cb241-15"><a href="muchos-modelos.html#cb241-15"></a><span class="co">#&gt; 5 Argentina  Américas   &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
-<span id="cb241-16"><a href="muchos-modelos.html#cb241-16"></a><span class="co">#&gt; 6 Australia  Oceanía    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
-<span id="cb241-17"><a href="muchos-modelos.html#cb241-17"></a><span class="co">#&gt; # … with 136 more rows</span></span></code></pre></div>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="muchos-modelos.html#cb242-1"></a><span class="kw">unnest</span>(por_pais, residuo) <span class="op">%&gt;%</span></span>
-<span id="cb242-2"><a href="muchos-modelos.html#cb242-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, resid)) <span class="op">+</span></span>
-<span id="cb242-3"><a href="muchos-modelos.html#cb242-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> pais), <span class="dt">alpha =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb242-4"><a href="muchos-modelos.html#cb242-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb242-5"><a href="muchos-modelos.html#cb242-5"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="muchos-modelos.html#cb341-1"></a>modelo_pais_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(df) {</span>
+<span id="cb341-2"><a href="muchos-modelos.html#cb341-2"></a>  <span class="kw">lm</span>(esperanza_de_vida <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(anio <span class="op">-</span><span class="st"> </span><span class="kw">median</span>(anio), <span class="dv">2</span>), <span class="dt">data =</span> df)</span>
+<span id="cb341-3"><a href="muchos-modelos.html#cb341-3"></a>}</span>
+<span id="cb341-4"><a href="muchos-modelos.html#cb341-4"></a></span>
+<span id="cb341-5"><a href="muchos-modelos.html#cb341-5"></a>por_pais &lt;-<span class="st"> </span>paises <span class="op">%&gt;%</span></span>
+<span id="cb341-6"><a href="muchos-modelos.html#cb341-6"></a><span class="st">  </span><span class="kw">group_by</span>(pais, continente) <span class="op">%&gt;%</span></span>
+<span id="cb341-7"><a href="muchos-modelos.html#cb341-7"></a><span class="st">  </span><span class="kw">nest</span>()</span>
+<span id="cb341-8"><a href="muchos-modelos.html#cb341-8"></a></span>
+<span id="cb341-9"><a href="muchos-modelos.html#cb341-9"></a>por_pais &lt;-<span class="st"> </span>por_pais <span class="op">%&gt;%</span></span>
+<span id="cb341-10"><a href="muchos-modelos.html#cb341-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="kw">map</span>(data, modelo_pais_<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="muchos-modelos.html#cb342-1"></a>por_pais &lt;-<span class="st"> </span>por_pais <span class="op">%&gt;%</span></span>
+<span id="cb342-2"><a href="muchos-modelos.html#cb342-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb342-3"><a href="muchos-modelos.html#cb342-3"></a>    <span class="dt">residuo =</span> <span class="kw">map2</span>(data, modelo, add_residuals)</span>
+<span id="cb342-4"><a href="muchos-modelos.html#cb342-4"></a>  )</span>
+<span id="cb342-5"><a href="muchos-modelos.html#cb342-5"></a></span>
+<span id="cb342-6"><a href="muchos-modelos.html#cb342-6"></a>por_pais</span>
+<span id="cb342-7"><a href="muchos-modelos.html#cb342-7"></a><span class="co">#&gt; # A tibble: 142 x 5</span></span>
+<span id="cb342-8"><a href="muchos-modelos.html#cb342-8"></a><span class="co">#&gt; # Groups:   pais, continente [142]</span></span>
+<span id="cb342-9"><a href="muchos-modelos.html#cb342-9"></a><span class="co">#&gt;   pais       continente data              modelo residuo          </span></span>
+<span id="cb342-10"><a href="muchos-modelos.html#cb342-10"></a><span class="co">#&gt;   &lt;fct&gt;      &lt;fct&gt;      &lt;list&gt;            &lt;list&gt; &lt;list&gt;           </span></span>
+<span id="cb342-11"><a href="muchos-modelos.html#cb342-11"></a><span class="co">#&gt; 1 Afganistán Asia       &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
+<span id="cb342-12"><a href="muchos-modelos.html#cb342-12"></a><span class="co">#&gt; 2 Albania    Europa     &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
+<span id="cb342-13"><a href="muchos-modelos.html#cb342-13"></a><span class="co">#&gt; 3 Argelia    África     &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
+<span id="cb342-14"><a href="muchos-modelos.html#cb342-14"></a><span class="co">#&gt; 4 Angola     África     &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
+<span id="cb342-15"><a href="muchos-modelos.html#cb342-15"></a><span class="co">#&gt; 5 Argentina  Américas   &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
+<span id="cb342-16"><a href="muchos-modelos.html#cb342-16"></a><span class="co">#&gt; 6 Australia  Oceanía    &lt;tibble [12 × 4]&gt; &lt;lm&gt;   &lt;tibble [12 × 5]&gt;</span></span>
+<span id="cb342-17"><a href="muchos-modelos.html#cb342-17"></a><span class="co">#&gt; # … with 136 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="muchos-modelos.html#cb343-1"></a><span class="kw">unnest</span>(por_pais, residuo) <span class="op">%&gt;%</span></span>
+<span id="cb343-2"><a href="muchos-modelos.html#cb343-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, resid)) <span class="op">+</span></span>
+<span id="cb343-3"><a href="muchos-modelos.html#cb343-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> pais), <span class="dt">alpha =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb343-4"><a href="muchos-modelos.html#cb343-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb343-5"><a href="muchos-modelos.html#cb343-5"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
 <p><img src="25-model-many_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="muchos-modelos.html#cb243-1"></a>por_pais <span class="op">%&gt;%</span></span>
-<span id="cb243-2"><a href="muchos-modelos.html#cb243-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></span>
-<span id="cb243-3"><a href="muchos-modelos.html#cb243-3"></a><span class="st">  </span><span class="kw">unnest</span>(estadistica, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb243-4"><a href="muchos-modelos.html#cb243-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continente, r.squared)) <span class="op">+</span></span>
-<span id="cb243-5"><a href="muchos-modelos.html#cb243-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)</span>
-<span id="cb243-6"><a href="muchos-modelos.html#cb243-6"></a><span class="co">#&gt; Warning: The `.drop` argument of `unnest()` is deprecated as of tidyr 1.0.0.</span></span>
-<span id="cb243-7"><a href="muchos-modelos.html#cb243-7"></a><span class="co">#&gt; All list-columns are now preserved.</span></span>
-<span id="cb243-8"><a href="muchos-modelos.html#cb243-8"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
-<span id="cb243-9"><a href="muchos-modelos.html#cb243-9"></a><span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="muchos-modelos.html#cb344-1"></a>por_pais <span class="op">%&gt;%</span></span>
+<span id="cb344-2"><a href="muchos-modelos.html#cb344-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></span>
+<span id="cb344-3"><a href="muchos-modelos.html#cb344-3"></a><span class="st">  </span><span class="kw">unnest</span>(estadistica, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb344-4"><a href="muchos-modelos.html#cb344-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continente, r.squared)) <span class="op">+</span></span>
+<span id="cb344-5"><a href="muchos-modelos.html#cb344-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)</span>
+<span id="cb344-6"><a href="muchos-modelos.html#cb344-6"></a><span class="co">#&gt; Warning: The `.drop` argument of `unnest()` is deprecated as of tidyr 1.0.0.</span></span>
+<span id="cb344-7"><a href="muchos-modelos.html#cb344-7"></a><span class="co">#&gt; All list-columns are now preserved.</span></span>
+<span id="cb344-8"><a href="muchos-modelos.html#cb344-8"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
+<span id="cb344-9"><a href="muchos-modelos.html#cb344-9"></a><span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></span></code></pre></div>
 <p><img src="25-model-many_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <ol start="2" style="list-style-type: decimal">
@@ -497,11 +498,11 @@ determinísticos.</li>
 Solución
 </h3>
 <p>El paquete <code>gbeeswarm</code> se usó en el capítulo de análisis exploratorio.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="muchos-modelos.html#cb244-1"></a>por_pais <span class="op">%&gt;%</span></span>
-<span id="cb244-2"><a href="muchos-modelos.html#cb244-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></span>
-<span id="cb244-3"><a href="muchos-modelos.html#cb244-3"></a><span class="st">  </span><span class="kw">unnest</span>(estadistica, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb244-4"><a href="muchos-modelos.html#cb244-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continente, r.squared)) <span class="op">+</span></span>
-<span id="cb244-5"><a href="muchos-modelos.html#cb244-5"></a><span class="st">  </span><span class="kw">geom_beeswarm</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="muchos-modelos.html#cb345-1"></a>por_pais <span class="op">%&gt;%</span></span>
+<span id="cb345-2"><a href="muchos-modelos.html#cb345-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></span>
+<span id="cb345-3"><a href="muchos-modelos.html#cb345-3"></a><span class="st">  </span><span class="kw">unnest</span>(estadistica, <span class="dt">.drop =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb345-4"><a href="muchos-modelos.html#cb345-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continente, r.squared)) <span class="op">+</span></span>
+<span id="cb345-5"><a href="muchos-modelos.html#cb345-5"></a><span class="st">  </span><span class="kw">geom_beeswarm</span>()</span></code></pre></div>
 <p><img src="25-model-many_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <ol start="3" style="list-style-type: decimal">
@@ -515,16 +516,16 @@ Es posible evitar este <em>join</em> si usamos <code>unnest()</code> en lugar de
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="muchos-modelos.html#cb245-1"></a>paises <span class="op">%&gt;%</span></span>
-<span id="cb245-2"><a href="muchos-modelos.html#cb245-2"></a><span class="st">  </span><span class="kw">group_by</span>(pais, continente) <span class="op">%&gt;%</span></span>
-<span id="cb245-3"><a href="muchos-modelos.html#cb245-3"></a><span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span></span>
-<span id="cb245-4"><a href="muchos-modelos.html#cb245-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="kw">map</span>(data, <span class="op">~</span><span class="kw">lm</span>(esperanza_de_vida <span class="op">~</span><span class="st"> </span>anio, .))) <span class="op">%&gt;%</span></span>
-<span id="cb245-5"><a href="muchos-modelos.html#cb245-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></span>
-<span id="cb245-6"><a href="muchos-modelos.html#cb245-6"></a><span class="st">  </span><span class="kw">unnest</span>(estadistica) <span class="op">%&gt;%</span></span>
-<span id="cb245-7"><a href="muchos-modelos.html#cb245-7"></a><span class="st">  </span><span class="kw">unnest</span>(data) <span class="op">%&gt;%</span></span>
-<span id="cb245-8"><a href="muchos-modelos.html#cb245-8"></a><span class="st">  </span><span class="kw">filter</span>(r.squared <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span></span>
-<span id="cb245-9"><a href="muchos-modelos.html#cb245-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, esperanza_de_vida)) <span class="op">+</span></span>
-<span id="cb245-10"><a href="muchos-modelos.html#cb245-10"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> pais))</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="muchos-modelos.html#cb346-1"></a>paises <span class="op">%&gt;%</span></span>
+<span id="cb346-2"><a href="muchos-modelos.html#cb346-2"></a><span class="st">  </span><span class="kw">group_by</span>(pais, continente) <span class="op">%&gt;%</span></span>
+<span id="cb346-3"><a href="muchos-modelos.html#cb346-3"></a><span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span></span>
+<span id="cb346-4"><a href="muchos-modelos.html#cb346-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">modelo =</span> <span class="kw">map</span>(data, <span class="op">~</span><span class="kw">lm</span>(esperanza_de_vida <span class="op">~</span><span class="st"> </span>anio, .))) <span class="op">%&gt;%</span></span>
+<span id="cb346-5"><a href="muchos-modelos.html#cb346-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estadistica =</span> <span class="kw">map</span>(modelo, broom<span class="op">::</span>glance)) <span class="op">%&gt;%</span></span>
+<span id="cb346-6"><a href="muchos-modelos.html#cb346-6"></a><span class="st">  </span><span class="kw">unnest</span>(estadistica) <span class="op">%&gt;%</span></span>
+<span id="cb346-7"><a href="muchos-modelos.html#cb346-7"></a><span class="st">  </span><span class="kw">unnest</span>(data) <span class="op">%&gt;%</span></span>
+<span id="cb346-8"><a href="muchos-modelos.html#cb346-8"></a><span class="st">  </span><span class="kw">filter</span>(r.squared <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span></span>
+<span id="cb346-9"><a href="muchos-modelos.html#cb346-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, esperanza_de_vida)) <span class="op">+</span></span>
+<span id="cb346-10"><a href="muchos-modelos.html#cb346-10"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> pais))</span></code></pre></div>
 <p><img src="25-model-many_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -542,40 +543,40 @@ retornen una lista.</li>
 Solución
 </h3>
 <p>Muchas funciones del paquete <code>stringr</code> cumplen con el criterio.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="muchos-modelos.html#cb246-1"></a><span class="kw">str_split</span>(sentences[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="st">&quot; &quot;</span>)</span>
-<span id="cb246-2"><a href="muchos-modelos.html#cb246-2"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb246-3"><a href="muchos-modelos.html#cb246-3"></a><span class="co">#&gt; [1] &quot;The&quot;     &quot;birch&quot;   &quot;canoe&quot;   &quot;slid&quot;    &quot;on&quot;      &quot;the&quot;     &quot;smooth&quot; </span></span>
-<span id="cb246-4"><a href="muchos-modelos.html#cb246-4"></a><span class="co">#&gt; [8] &quot;planks.&quot;</span></span>
-<span id="cb246-5"><a href="muchos-modelos.html#cb246-5"></a><span class="co">#&gt; </span></span>
-<span id="cb246-6"><a href="muchos-modelos.html#cb246-6"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb246-7"><a href="muchos-modelos.html#cb246-7"></a><span class="co">#&gt; [1] &quot;Glue&quot;        &quot;the&quot;         &quot;sheet&quot;       &quot;to&quot;          &quot;the&quot;        </span></span>
-<span id="cb246-8"><a href="muchos-modelos.html#cb246-8"></a><span class="co">#&gt; [6] &quot;dark&quot;        &quot;blue&quot;        &quot;background.&quot;</span></span>
-<span id="cb246-9"><a href="muchos-modelos.html#cb246-9"></a><span class="co">#&gt; </span></span>
-<span id="cb246-10"><a href="muchos-modelos.html#cb246-10"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb246-11"><a href="muchos-modelos.html#cb246-11"></a><span class="co">#&gt; [1] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;  &quot;the&quot;   &quot;depth&quot; &quot;of&quot;    &quot;a&quot;     &quot;well.&quot;</span></span>
-<span id="cb246-12"><a href="muchos-modelos.html#cb246-12"></a><span class="kw">str_match_all</span>(<span class="kw">c</span>(<span class="st">&quot;paul&quot;</span>, <span class="st">&quot;john&quot;</span>, <span class="st">&quot;george&quot;</span>, <span class="st">&quot;ringo&quot;</span>), <span class="st">&quot;a+&quot;</span>)</span>
-<span id="cb246-13"><a href="muchos-modelos.html#cb246-13"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb246-14"><a href="muchos-modelos.html#cb246-14"></a><span class="co">#&gt;      [,1]</span></span>
-<span id="cb246-15"><a href="muchos-modelos.html#cb246-15"></a><span class="co">#&gt; [1,] &quot;a&quot; </span></span>
-<span id="cb246-16"><a href="muchos-modelos.html#cb246-16"></a><span class="co">#&gt; </span></span>
-<span id="cb246-17"><a href="muchos-modelos.html#cb246-17"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb246-18"><a href="muchos-modelos.html#cb246-18"></a><span class="co">#&gt;      [,1]</span></span>
-<span id="cb246-19"><a href="muchos-modelos.html#cb246-19"></a><span class="co">#&gt; </span></span>
-<span id="cb246-20"><a href="muchos-modelos.html#cb246-20"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb246-21"><a href="muchos-modelos.html#cb246-21"></a><span class="co">#&gt;      [,1]</span></span>
-<span id="cb246-22"><a href="muchos-modelos.html#cb246-22"></a><span class="co">#&gt; </span></span>
-<span id="cb246-23"><a href="muchos-modelos.html#cb246-23"></a><span class="co">#&gt; [[4]]</span></span>
-<span id="cb246-24"><a href="muchos-modelos.html#cb246-24"></a><span class="co">#&gt;      [,1]</span></span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="muchos-modelos.html#cb347-1"></a><span class="kw">str_split</span>(sentences[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="st">&quot; &quot;</span>)</span>
+<span id="cb347-2"><a href="muchos-modelos.html#cb347-2"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb347-3"><a href="muchos-modelos.html#cb347-3"></a><span class="co">#&gt; [1] &quot;The&quot;     &quot;birch&quot;   &quot;canoe&quot;   &quot;slid&quot;    &quot;on&quot;      &quot;the&quot;     &quot;smooth&quot; </span></span>
+<span id="cb347-4"><a href="muchos-modelos.html#cb347-4"></a><span class="co">#&gt; [8] &quot;planks.&quot;</span></span>
+<span id="cb347-5"><a href="muchos-modelos.html#cb347-5"></a><span class="co">#&gt; </span></span>
+<span id="cb347-6"><a href="muchos-modelos.html#cb347-6"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb347-7"><a href="muchos-modelos.html#cb347-7"></a><span class="co">#&gt; [1] &quot;Glue&quot;        &quot;the&quot;         &quot;sheet&quot;       &quot;to&quot;          &quot;the&quot;        </span></span>
+<span id="cb347-8"><a href="muchos-modelos.html#cb347-8"></a><span class="co">#&gt; [6] &quot;dark&quot;        &quot;blue&quot;        &quot;background.&quot;</span></span>
+<span id="cb347-9"><a href="muchos-modelos.html#cb347-9"></a><span class="co">#&gt; </span></span>
+<span id="cb347-10"><a href="muchos-modelos.html#cb347-10"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb347-11"><a href="muchos-modelos.html#cb347-11"></a><span class="co">#&gt; [1] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;  &quot;the&quot;   &quot;depth&quot; &quot;of&quot;    &quot;a&quot;     &quot;well.&quot;</span></span>
+<span id="cb347-12"><a href="muchos-modelos.html#cb347-12"></a><span class="kw">str_match_all</span>(<span class="kw">c</span>(<span class="st">&quot;paul&quot;</span>, <span class="st">&quot;john&quot;</span>, <span class="st">&quot;george&quot;</span>, <span class="st">&quot;ringo&quot;</span>), <span class="st">&quot;a+&quot;</span>)</span>
+<span id="cb347-13"><a href="muchos-modelos.html#cb347-13"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb347-14"><a href="muchos-modelos.html#cb347-14"></a><span class="co">#&gt;      [,1]</span></span>
+<span id="cb347-15"><a href="muchos-modelos.html#cb347-15"></a><span class="co">#&gt; [1,] &quot;a&quot; </span></span>
+<span id="cb347-16"><a href="muchos-modelos.html#cb347-16"></a><span class="co">#&gt; </span></span>
+<span id="cb347-17"><a href="muchos-modelos.html#cb347-17"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb347-18"><a href="muchos-modelos.html#cb347-18"></a><span class="co">#&gt;      [,1]</span></span>
+<span id="cb347-19"><a href="muchos-modelos.html#cb347-19"></a><span class="co">#&gt; </span></span>
+<span id="cb347-20"><a href="muchos-modelos.html#cb347-20"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb347-21"><a href="muchos-modelos.html#cb347-21"></a><span class="co">#&gt;      [,1]</span></span>
+<span id="cb347-22"><a href="muchos-modelos.html#cb347-22"></a><span class="co">#&gt; </span></span>
+<span id="cb347-23"><a href="muchos-modelos.html#cb347-23"></a><span class="co">#&gt; [[4]]</span></span>
+<span id="cb347-24"><a href="muchos-modelos.html#cb347-24"></a><span class="co">#&gt;      [,1]</span></span></code></pre></div>
 <p>En el caso del paquete <code>purrr</code>, la función <code>map()</code> también cumple el criterio.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="muchos-modelos.html#cb247-1"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, runif)</span>
-<span id="cb247-2"><a href="muchos-modelos.html#cb247-2"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb247-3"><a href="muchos-modelos.html#cb247-3"></a><span class="co">#&gt; [1] 0.601</span></span>
-<span id="cb247-4"><a href="muchos-modelos.html#cb247-4"></a><span class="co">#&gt; </span></span>
-<span id="cb247-5"><a href="muchos-modelos.html#cb247-5"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb247-6"><a href="muchos-modelos.html#cb247-6"></a><span class="co">#&gt; [1] 0.1572 0.0074</span></span>
-<span id="cb247-7"><a href="muchos-modelos.html#cb247-7"></a><span class="co">#&gt; </span></span>
-<span id="cb247-8"><a href="muchos-modelos.html#cb247-8"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb247-9"><a href="muchos-modelos.html#cb247-9"></a><span class="co">#&gt; [1] 0.466 0.498 0.290</span></span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="muchos-modelos.html#cb348-1"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, runif)</span>
+<span id="cb348-2"><a href="muchos-modelos.html#cb348-2"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb348-3"><a href="muchos-modelos.html#cb348-3"></a><span class="co">#&gt; [1] 0.601</span></span>
+<span id="cb348-4"><a href="muchos-modelos.html#cb348-4"></a><span class="co">#&gt; </span></span>
+<span id="cb348-5"><a href="muchos-modelos.html#cb348-5"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb348-6"><a href="muchos-modelos.html#cb348-6"></a><span class="co">#&gt; [1] 0.1572 0.0074</span></span>
+<span id="cb348-7"><a href="muchos-modelos.html#cb348-7"></a><span class="co">#&gt; </span></span>
+<span id="cb348-8"><a href="muchos-modelos.html#cb348-8"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb348-9"><a href="muchos-modelos.html#cb348-9"></a><span class="co">#&gt; [1] 0.466 0.498 0.290</span></span></code></pre></div>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>Piensa en funciones de resumen útiles que, como <code>quantile()</code>, retornen
@@ -586,43 +587,44 @@ múltiples valores.</li>
 Solución
 </h3>
 <p>Algunos ejemplos de funciones básicas de R que cumplen con el criterio.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="muchos-modelos.html#cb248-1"></a><span class="kw">range</span>(mtcars<span class="op">$</span>mpg)</span>
-<span id="cb248-2"><a href="muchos-modelos.html#cb248-2"></a><span class="co">#&gt; [1] 10.4 33.9</span></span>
-<span id="cb248-3"><a href="muchos-modelos.html#cb248-3"></a><span class="kw">fivenum</span>(mtcars<span class="op">$</span>mpg)</span>
-<span id="cb248-4"><a href="muchos-modelos.html#cb248-4"></a><span class="co">#&gt; [1] 10.4 15.3 19.2 22.8 33.9</span></span>
-<span id="cb248-5"><a href="muchos-modelos.html#cb248-5"></a><span class="kw">boxplot.stats</span>(mtcars<span class="op">$</span>mpg)</span>
-<span id="cb248-6"><a href="muchos-modelos.html#cb248-6"></a><span class="co">#&gt; $stats</span></span>
-<span id="cb248-7"><a href="muchos-modelos.html#cb248-7"></a><span class="co">#&gt; [1] 10.4 15.3 19.2 22.8 33.9</span></span>
-<span id="cb248-8"><a href="muchos-modelos.html#cb248-8"></a><span class="co">#&gt; </span></span>
-<span id="cb248-9"><a href="muchos-modelos.html#cb248-9"></a><span class="co">#&gt; $n</span></span>
-<span id="cb248-10"><a href="muchos-modelos.html#cb248-10"></a><span class="co">#&gt; [1] 32</span></span>
-<span id="cb248-11"><a href="muchos-modelos.html#cb248-11"></a><span class="co">#&gt; </span></span>
-<span id="cb248-12"><a href="muchos-modelos.html#cb248-12"></a><span class="co">#&gt; $conf</span></span>
-<span id="cb248-13"><a href="muchos-modelos.html#cb248-13"></a><span class="co">#&gt; [1] 17.1 21.3</span></span>
-<span id="cb248-14"><a href="muchos-modelos.html#cb248-14"></a><span class="co">#&gt; </span></span>
-<span id="cb248-15"><a href="muchos-modelos.html#cb248-15"></a><span class="co">#&gt; $out</span></span>
-<span id="cb248-16"><a href="muchos-modelos.html#cb248-16"></a><span class="co">#&gt; numeric(0)</span></span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="muchos-modelos.html#cb349-1"></a><span class="kw">range</span>(mtcars<span class="op">$</span>mpg)</span>
+<span id="cb349-2"><a href="muchos-modelos.html#cb349-2"></a><span class="co">#&gt; [1] 10.4 33.9</span></span>
+<span id="cb349-3"><a href="muchos-modelos.html#cb349-3"></a><span class="kw">fivenum</span>(mtcars<span class="op">$</span>mpg)</span>
+<span id="cb349-4"><a href="muchos-modelos.html#cb349-4"></a><span class="co">#&gt; [1] 10.4 15.3 19.2 22.8 33.9</span></span>
+<span id="cb349-5"><a href="muchos-modelos.html#cb349-5"></a><span class="kw">boxplot.stats</span>(mtcars<span class="op">$</span>mpg)</span>
+<span id="cb349-6"><a href="muchos-modelos.html#cb349-6"></a><span class="co">#&gt; $stats</span></span>
+<span id="cb349-7"><a href="muchos-modelos.html#cb349-7"></a><span class="co">#&gt; [1] 10.4 15.3 19.2 22.8 33.9</span></span>
+<span id="cb349-8"><a href="muchos-modelos.html#cb349-8"></a><span class="co">#&gt; </span></span>
+<span id="cb349-9"><a href="muchos-modelos.html#cb349-9"></a><span class="co">#&gt; $n</span></span>
+<span id="cb349-10"><a href="muchos-modelos.html#cb349-10"></a><span class="co">#&gt; [1] 32</span></span>
+<span id="cb349-11"><a href="muchos-modelos.html#cb349-11"></a><span class="co">#&gt; </span></span>
+<span id="cb349-12"><a href="muchos-modelos.html#cb349-12"></a><span class="co">#&gt; $conf</span></span>
+<span id="cb349-13"><a href="muchos-modelos.html#cb349-13"></a><span class="co">#&gt; [1] 17.1 21.3</span></span>
+<span id="cb349-14"><a href="muchos-modelos.html#cb349-14"></a><span class="co">#&gt; </span></span>
+<span id="cb349-15"><a href="muchos-modelos.html#cb349-15"></a><span class="co">#&gt; $out</span></span>
+<span id="cb349-16"><a href="muchos-modelos.html#cb349-16"></a><span class="co">#&gt; numeric(0)</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>¿Qué es lo que falta en el siguiente <em>data frame</em>? ¿Cómo <code>quantile()</code> retorna
 eso que falta? ¿Por qué eso no es tan útil aquí?</li>
 </ol>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="muchos-modelos.html#cb249-1"></a>mtautos <span class="op">%&gt;%</span></span>
-<span id="cb249-2"><a href="muchos-modelos.html#cb249-2"></a><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></span>
-<span id="cb249-3"><a href="muchos-modelos.html#cb249-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">q =</span> <span class="kw">list</span>(<span class="kw">quantile</span>(millas))) <span class="op">%&gt;%</span></span>
-<span id="cb249-4"><a href="muchos-modelos.html#cb249-4"></a><span class="st">  </span><span class="kw">unnest</span>()</span>
-<span id="cb249-5"><a href="muchos-modelos.html#cb249-5"></a><span class="co">#&gt; Warning: `cols` is now required.</span></span>
-<span id="cb249-6"><a href="muchos-modelos.html#cb249-6"></a><span class="co">#&gt; Please use `cols = c(q)`</span></span>
-<span id="cb249-7"><a href="muchos-modelos.html#cb249-7"></a><span class="co">#&gt; # A tibble: 15 x 2</span></span>
-<span id="cb249-8"><a href="muchos-modelos.html#cb249-8"></a><span class="co">#&gt;   cilindros     q</span></span>
-<span id="cb249-9"><a href="muchos-modelos.html#cb249-9"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb249-10"><a href="muchos-modelos.html#cb249-10"></a><span class="co">#&gt; 1         4  21.4</span></span>
-<span id="cb249-11"><a href="muchos-modelos.html#cb249-11"></a><span class="co">#&gt; 2         4  22.8</span></span>
-<span id="cb249-12"><a href="muchos-modelos.html#cb249-12"></a><span class="co">#&gt; 3         4  26  </span></span>
-<span id="cb249-13"><a href="muchos-modelos.html#cb249-13"></a><span class="co">#&gt; 4         4  30.4</span></span>
-<span id="cb249-14"><a href="muchos-modelos.html#cb249-14"></a><span class="co">#&gt; 5         4  33.9</span></span>
-<span id="cb249-15"><a href="muchos-modelos.html#cb249-15"></a><span class="co">#&gt; 6         6  17.8</span></span>
-<span id="cb249-16"><a href="muchos-modelos.html#cb249-16"></a><span class="co">#&gt; # … with 9 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="muchos-modelos.html#cb350-1"></a>mtautos <span class="op">%&gt;%</span></span>
+<span id="cb350-2"><a href="muchos-modelos.html#cb350-2"></a><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></span>
+<span id="cb350-3"><a href="muchos-modelos.html#cb350-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">q =</span> <span class="kw">list</span>(<span class="kw">quantile</span>(millas))) <span class="op">%&gt;%</span></span>
+<span id="cb350-4"><a href="muchos-modelos.html#cb350-4"></a><span class="st">  </span><span class="kw">unnest</span>()</span>
+<span id="cb350-5"><a href="muchos-modelos.html#cb350-5"></a><span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></span>
+<span id="cb350-6"><a href="muchos-modelos.html#cb350-6"></a><span class="co">#&gt; Warning: `cols` is now required when using unnest().</span></span>
+<span id="cb350-7"><a href="muchos-modelos.html#cb350-7"></a><span class="co">#&gt; Please use `cols = c(q)`</span></span>
+<span id="cb350-8"><a href="muchos-modelos.html#cb350-8"></a><span class="co">#&gt; # A tibble: 15 x 2</span></span>
+<span id="cb350-9"><a href="muchos-modelos.html#cb350-9"></a><span class="co">#&gt;   cilindros     q</span></span>
+<span id="cb350-10"><a href="muchos-modelos.html#cb350-10"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb350-11"><a href="muchos-modelos.html#cb350-11"></a><span class="co">#&gt; 1         4  21.4</span></span>
+<span id="cb350-12"><a href="muchos-modelos.html#cb350-12"></a><span class="co">#&gt; 2         4  22.8</span></span>
+<span id="cb350-13"><a href="muchos-modelos.html#cb350-13"></a><span class="co">#&gt; 3         4  26  </span></span>
+<span id="cb350-14"><a href="muchos-modelos.html#cb350-14"></a><span class="co">#&gt; 4         4  30.4</span></span>
+<span id="cb350-15"><a href="muchos-modelos.html#cb350-15"></a><span class="co">#&gt; 5         4  33.9</span></span>
+<span id="cb350-16"><a href="muchos-modelos.html#cb350-16"></a><span class="co">#&gt; 6         6  17.8</span></span>
+<span id="cb350-17"><a href="muchos-modelos.html#cb350-17"></a><span class="co">#&gt; # … with 9 more rows</span></span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
@@ -630,16 +632,16 @@ Solución
 <p>No se muestran los cuartiles correspondientes. Esto se debe a que la función
 <code>quantile()</code> entrega los valores <code>0%</code>, <code>25%</code>, <code>50%</code>, <code>75%</code>, <code>100%</code> como nombres
 del vector resultante y <code>unnest()</code> descarta los nombres del vector.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="muchos-modelos.html#cb250-1"></a><span class="kw">quantile</span>(mtcars<span class="op">$</span>mpg)</span>
-<span id="cb250-2"><a href="muchos-modelos.html#cb250-2"></a><span class="co">#&gt;   0%  25%  50%  75% 100% </span></span>
-<span id="cb250-3"><a href="muchos-modelos.html#cb250-3"></a><span class="co">#&gt; 10.4 15.4 19.2 22.8 33.9</span></span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="muchos-modelos.html#cb351-1"></a><span class="kw">quantile</span>(mtcars<span class="op">$</span>mpg)</span>
+<span id="cb351-2"><a href="muchos-modelos.html#cb351-2"></a><span class="co">#&gt;   0%  25%  50%  75% 100% </span></span>
+<span id="cb351-3"><a href="muchos-modelos.html#cb351-3"></a><span class="co">#&gt; 10.4 15.4 19.2 22.8 33.9</span></span></code></pre></div>
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>¿Qué hace este código? ¿Por qué podría ser útil?</li>
 </ol>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="muchos-modelos.html#cb251-1"></a>mtautos <span class="op">%&gt;%</span></span>
-<span id="cb251-2"><a href="muchos-modelos.html#cb251-2"></a><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></span>
-<span id="cb251-3"><a href="muchos-modelos.html#cb251-3"></a><span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(list))</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="muchos-modelos.html#cb352-1"></a>mtautos <span class="op">%&gt;%</span></span>
+<span id="cb352-2"><a href="muchos-modelos.html#cb352-2"></a><span class="st">  </span><span class="kw">group_by</span>(cilindros) <span class="op">%&gt;%</span></span>
+<span id="cb352-3"><a href="muchos-modelos.html#cb352-3"></a><span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(list))</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución

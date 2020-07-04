@@ -15,32 +15,11 @@
 <h3>Solución</h3>
 
 Necesitas combinar `aeropuertos` con `vuelos` ya que el dataset `aeropuertos` 
-con tiene las coordenadas de los aeropuertos. Puedes unir las tablas por medio
+contiene las coordenadas de los aeropuertos. Puedes unir las tablas por medio
 de la variable `codigo_aeropuerto` en `aeropuertos` y `origen` y `destino` en
 `vuelos`.
 
 
-```r
-vuelos %>%
-  left_join(aeropuertos, by = c("origen" = "codigo_aeropuerto",
-                                "destino" = "codigo_aeropuerto"))
-#> # A tibble: 336,776 x 26
-#>    anio   mes   dia horario_salida salida_programa… atraso_salida
-#>   <int> <int> <int>          <int>            <int>         <dbl>
-#> 1  2013     1     1            517              515             2
-#> 2  2013     1     1            533              529             4
-#> 3  2013     1     1            542              540             2
-#> 4  2013     1     1            544              545            -1
-#> 5  2013     1     1            554              600            -6
-#> 6  2013     1     1            554              558            -4
-#> # … with 336,770 more rows, and 20 more variables: horario_llegada <int>,
-#> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
-#> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
-#> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
-#> #   fecha_hora <dttm>, nombre <chr>, latitud <dbl>, longitud <dbl>,
-#> #   altura <dbl>, zona_horaria <dbl>, horario_verano <chr>,
-#> #   zona_horaria_iana <chr>
-```
 </div>
 
 2. Olvidamos incluir la relación entre `clima` y `aeropuertos`. ¿Cuál es la
@@ -176,6 +155,7 @@ atraso_promedio_destino <- vuelos %>%
    # los vuelos con NA en atraso_llegada son vuelos cancelados
    summarise(atraso = mean(atraso_llegada, na.rm = TRUE)) %>%
    inner_join(aeropuertos, by = c(destino = "codigo_aeropuerto"))
+#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 
@@ -285,6 +265,7 @@ atrasos_por_antiguedad <- inner_join(vuelos,
       desv_est_atraso_salida = sd(atraso_salida, na.rm = TRUE),
       nro_vuelos_atrasados_salida = sum(!is.na(atraso_salida))
    )
+#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 Ahora podemos explorar la reglación entre los atrasos en la salida y la
@@ -333,6 +314,7 @@ vuelo_clima %>%
   ggplot(aes(x = precipitacion, y = atraso)) +
   geom_line() +
   geom_point()
+#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 <img src="13-relational-data_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" />
@@ -364,6 +346,7 @@ vuelos %>%
   geom_point() +
   coord_quickmap() +
   scale_colour_viridis_c()
+#> `summarise()` ungrouping output (override with `.groups` argument)
 #> Warning: Removed 3 rows containing missing values (geom_point).
 ```
 
@@ -426,6 +409,7 @@ vuelos %>%
             faltan_en_aviones = sum(is.na(modelo))) %>%
   mutate(porcentaje_perdidos = faltan_en_aviones / total_aviones) %>%
   arrange(desc(porcentaje_perdidos))
+#> `summarise()` ungrouping output (override with `.groups` argument)
 #> # A tibble: 16 x 4
 #>   aerolinea total_aviones faltan_en_aviones porcentaje_perdidos
 #>   <chr>             <int>             <int>               <dbl>
@@ -554,6 +538,7 @@ peores_horas <- vuelos %>%
   ungroup() %>%
   arrange(desc(atraso_salida)) %>%
   slice(1:48)
+#> `summarise()` regrouping output by 'origen', 'anio', 'mes', 'dia' (override with `.groups` argument)
 ```
 
 Este resultado se debe unir con la tabla `clima`.

@@ -773,6 +773,7 @@ para cada modelo.
 sim4_mods %>%
   group_by(model) %>%
   summarise(resid = sd(resid))
+#> `summarise()` ungrouping output (override with `.groups` argument)
 #> # A tibble: 2 x 2
 #>   model resid
 #>   <chr> <dbl>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16 Horas y fechas | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16 Horas y fechas | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -432,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>¿Qué sucede si analizas una cadena de caracteres que contiene fechas inválidas?</li>
 </ol>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="horas-y-fechas.html#cb177-1"></a><span class="kw">ymd</span>(<span class="kw">c</span>(<span class="st">&quot;2010-10-10&quot;</span>, <span class="st">&quot;bananas&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="horas-y-fechas.html#cb278-1"></a><span class="kw">ymd</span>(<span class="kw">c</span>(<span class="st">&quot;2010-10-10&quot;</span>, <span class="st">&quot;bananas&quot;</span>))</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
@@ -450,38 +451,38 @@ Warning message:
 Solución
 </h3>
 <p>El argumento <code>tzone</code> permite indicar en qué huso horarios queremos la fecha actual. Por defecto entrega la de tu sistema, pero si queremos la de una zona horaria específica, podemos ajustarla con ese argumento:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="horas-y-fechas.html#cb179-1"></a><span class="kw">today</span>()</span>
-<span id="cb179-2"><a href="horas-y-fechas.html#cb179-2"></a><span class="co">#&gt; [1] &quot;2020-04-09&quot;</span></span>
-<span id="cb179-3"><a href="horas-y-fechas.html#cb179-3"></a><span class="kw">today</span> (<span class="st">&quot;UTC&quot;</span>)</span>
-<span id="cb179-4"><a href="horas-y-fechas.html#cb179-4"></a><span class="co">#&gt; [1] &quot;2020-04-09&quot;</span></span>
-<span id="cb179-5"><a href="horas-y-fechas.html#cb179-5"></a><span class="kw">today</span>(<span class="dt">tzone =</span> <span class="st">&quot;Australia/Sydney&quot;</span>)</span>
-<span id="cb179-6"><a href="horas-y-fechas.html#cb179-6"></a><span class="co">#&gt; [1] &quot;2020-04-10&quot;</span></span>
-<span id="cb179-7"><a href="horas-y-fechas.html#cb179-7"></a><span class="kw">today</span>(<span class="dt">tzone =</span> <span class="st">&quot;Pacific/Honolulu&quot;</span>)</span>
-<span id="cb179-8"><a href="horas-y-fechas.html#cb179-8"></a><span class="co">#&gt; [1] &quot;2020-04-09&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="horas-y-fechas.html#cb280-1"></a><span class="kw">today</span>()</span>
+<span id="cb280-2"><a href="horas-y-fechas.html#cb280-2"></a><span class="co">#&gt; [1] &quot;2020-07-04&quot;</span></span>
+<span id="cb280-3"><a href="horas-y-fechas.html#cb280-3"></a><span class="kw">today</span> (<span class="st">&quot;UTC&quot;</span>)</span>
+<span id="cb280-4"><a href="horas-y-fechas.html#cb280-4"></a><span class="co">#&gt; [1] &quot;2020-07-04&quot;</span></span>
+<span id="cb280-5"><a href="horas-y-fechas.html#cb280-5"></a><span class="kw">today</span>(<span class="dt">tzone =</span> <span class="st">&quot;Australia/Sydney&quot;</span>)</span>
+<span id="cb280-6"><a href="horas-y-fechas.html#cb280-6"></a><span class="co">#&gt; [1] &quot;2020-07-05&quot;</span></span>
+<span id="cb280-7"><a href="horas-y-fechas.html#cb280-7"></a><span class="kw">today</span>(<span class="dt">tzone =</span> <span class="st">&quot;Pacific/Honolulu&quot;</span>)</span>
+<span id="cb280-8"><a href="horas-y-fechas.html#cb280-8"></a><span class="co">#&gt; [1] &quot;2020-07-04&quot;</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Usa la función de <strong>lubridate</strong> apropiada para analizar las siguientes fechas:</li>
 </ol>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="horas-y-fechas.html#cb180-1"></a>d1 &lt;-<span class="st"> &quot;Enero 1, 2010&quot;</span></span>
-<span id="cb180-2"><a href="horas-y-fechas.html#cb180-2"></a>d2 &lt;-<span class="st"> &quot;2015-Mar-07&quot;</span></span>
-<span id="cb180-3"><a href="horas-y-fechas.html#cb180-3"></a>d3 &lt;-<span class="st"> &quot;06-Jun-2017&quot;</span></span>
-<span id="cb180-4"><a href="horas-y-fechas.html#cb180-4"></a>d4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Agosto 19 (2015)&quot;</span>, <span class="st">&quot;Julio 1 (2015)&quot;</span>)</span>
-<span id="cb180-5"><a href="horas-y-fechas.html#cb180-5"></a>d5 &lt;-<span class="st"> &quot;12/30/14&quot;</span> <span class="co"># Diciembre 30, 2014</span></span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="horas-y-fechas.html#cb281-1"></a>d1 &lt;-<span class="st"> &quot;Enero 1, 2010&quot;</span></span>
+<span id="cb281-2"><a href="horas-y-fechas.html#cb281-2"></a>d2 &lt;-<span class="st"> &quot;2015-Mar-07&quot;</span></span>
+<span id="cb281-3"><a href="horas-y-fechas.html#cb281-3"></a>d3 &lt;-<span class="st"> &quot;06-Jun-2017&quot;</span></span>
+<span id="cb281-4"><a href="horas-y-fechas.html#cb281-4"></a>d4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Agosto 19 (2015)&quot;</span>, <span class="st">&quot;Julio 1 (2015)&quot;</span>)</span>
+<span id="cb281-5"><a href="horas-y-fechas.html#cb281-5"></a>d5 &lt;-<span class="st"> &quot;12/30/14&quot;</span> <span class="co"># Diciembre 30, 2014</span></span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="horas-y-fechas.html#cb181-1"></a><span class="kw">mdy</span>(d1)</span>
-<span id="cb181-2"><a href="horas-y-fechas.html#cb181-2"></a><span class="co">#&gt; [1] &quot;2010-01-01&quot;</span></span>
-<span id="cb181-3"><a href="horas-y-fechas.html#cb181-3"></a><span class="kw">ymd</span>(d2)</span>
-<span id="cb181-4"><a href="horas-y-fechas.html#cb181-4"></a><span class="co">#&gt; Warning: All formats failed to parse. No formats found.</span></span>
-<span id="cb181-5"><a href="horas-y-fechas.html#cb181-5"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb181-6"><a href="horas-y-fechas.html#cb181-6"></a><span class="kw">dmy</span>(d3)</span>
-<span id="cb181-7"><a href="horas-y-fechas.html#cb181-7"></a><span class="co">#&gt; [1] &quot;2017-06-06&quot;</span></span>
-<span id="cb181-8"><a href="horas-y-fechas.html#cb181-8"></a><span class="kw">mdy</span>(d4)</span>
-<span id="cb181-9"><a href="horas-y-fechas.html#cb181-9"></a><span class="co">#&gt; [1] &quot;2015-08-19&quot; &quot;2015-07-01&quot;</span></span>
-<span id="cb181-10"><a href="horas-y-fechas.html#cb181-10"></a><span class="kw">mdy</span>(d5)</span>
-<span id="cb181-11"><a href="horas-y-fechas.html#cb181-11"></a><span class="co">#&gt; [1] &quot;2014-12-30&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="horas-y-fechas.html#cb282-1"></a><span class="kw">mdy</span>(d1)</span>
+<span id="cb282-2"><a href="horas-y-fechas.html#cb282-2"></a><span class="co">#&gt; [1] &quot;2010-01-01&quot;</span></span>
+<span id="cb282-3"><a href="horas-y-fechas.html#cb282-3"></a><span class="kw">ymd</span>(d2)</span>
+<span id="cb282-4"><a href="horas-y-fechas.html#cb282-4"></a><span class="co">#&gt; Warning: All formats failed to parse. No formats found.</span></span>
+<span id="cb282-5"><a href="horas-y-fechas.html#cb282-5"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb282-6"><a href="horas-y-fechas.html#cb282-6"></a><span class="kw">dmy</span>(d3)</span>
+<span id="cb282-7"><a href="horas-y-fechas.html#cb282-7"></a><span class="co">#&gt; [1] &quot;2017-06-06&quot;</span></span>
+<span id="cb282-8"><a href="horas-y-fechas.html#cb282-8"></a><span class="kw">mdy</span>(d4)</span>
+<span id="cb282-9"><a href="horas-y-fechas.html#cb282-9"></a><span class="co">#&gt; [1] &quot;2015-08-19&quot; &quot;2015-07-01&quot;</span></span>
+<span id="cb282-10"><a href="horas-y-fechas.html#cb282-10"></a><span class="kw">mdy</span>(d5)</span>
+<span id="cb282-11"><a href="horas-y-fechas.html#cb282-11"></a><span class="co">#&gt; [1] &quot;2014-12-30&quot;</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -575,19 +576,19 @@ Solución
 Solución
 </h3>
 <p>Una manera de resolver la primera pregunta sería obtener el primer día del primer mes y luego sumarle 11 meses:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="horas-y-fechas.html#cb182-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2015-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">11</span>)</span>
-<span id="cb182-2"><a href="horas-y-fechas.html#cb182-2"></a><span class="co">#&gt;  [1] &quot;2015-01-01&quot; &quot;2015-02-01&quot; &quot;2015-03-01&quot; &quot;2015-04-01&quot; &quot;2015-05-01&quot;</span></span>
-<span id="cb182-3"><a href="horas-y-fechas.html#cb182-3"></a><span class="co">#&gt;  [6] &quot;2015-06-01&quot; &quot;2015-07-01&quot; &quot;2015-08-01&quot; &quot;2015-09-01&quot; &quot;2015-10-01&quot;</span></span>
-<span id="cb182-4"><a href="horas-y-fechas.html#cb182-4"></a><span class="co">#&gt; [11] &quot;2015-11-01&quot; &quot;2015-12-01&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="horas-y-fechas.html#cb283-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2015-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">11</span>)</span>
+<span id="cb283-2"><a href="horas-y-fechas.html#cb283-2"></a><span class="co">#&gt;  [1] &quot;2015-01-01&quot; &quot;2015-02-01&quot; &quot;2015-03-01&quot; &quot;2015-04-01&quot; &quot;2015-05-01&quot;</span></span>
+<span id="cb283-3"><a href="horas-y-fechas.html#cb283-3"></a><span class="co">#&gt;  [6] &quot;2015-06-01&quot; &quot;2015-07-01&quot; &quot;2015-08-01&quot; &quot;2015-09-01&quot; &quot;2015-10-01&quot;</span></span>
+<span id="cb283-4"><a href="horas-y-fechas.html#cb283-4"></a><span class="co">#&gt; [11] &quot;2015-11-01&quot; &quot;2015-12-01&quot;</span></span></code></pre></div>
 <p>La segunda pregunta podemos resolverla de las misma manera, pero obteniendo el primer día del año actual. Como queremos que esta respuesta sirva el próximo año, tenemos que generar ese primer día de manera automática (y no solo escribiendo <code>"2020-01-01"</code>). Para ello, podemos redondear hacia abajo la fecha actual. <code>floor_date()</code> permite indicar el criterio de redondeo:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="horas-y-fechas.html#cb183-1"></a></span>
-<span id="cb183-2"><a href="horas-y-fechas.html#cb183-2"></a><span class="kw">floor_date</span>(<span class="kw">today</span>(), <span class="st">&quot;year&quot;</span>)</span>
-<span id="cb183-3"><a href="horas-y-fechas.html#cb183-3"></a><span class="co">#&gt; [1] &quot;2020-01-01&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="horas-y-fechas.html#cb284-1"></a></span>
+<span id="cb284-2"><a href="horas-y-fechas.html#cb284-2"></a><span class="kw">floor_date</span>(<span class="kw">today</span>(), <span class="st">&quot;year&quot;</span>)</span>
+<span id="cb284-3"><a href="horas-y-fechas.html#cb284-3"></a><span class="co">#&gt; [1] &quot;2020-01-01&quot;</span></span></code></pre></div>
 <p>Ahora que obtuvimos el primer día del año actual, podemos sumarle los meses:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="horas-y-fechas.html#cb184-1"></a><span class="kw">floor_date</span>(<span class="kw">today</span>(), <span class="st">&quot;year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">month</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">11</span>)</span>
-<span id="cb184-2"><a href="horas-y-fechas.html#cb184-2"></a><span class="co">#&gt;  [1] &quot;2020-01-01&quot; &quot;2020-01-02&quot; &quot;2020-01-03&quot; &quot;2020-01-04&quot; &quot;2020-01-05&quot;</span></span>
-<span id="cb184-3"><a href="horas-y-fechas.html#cb184-3"></a><span class="co">#&gt;  [6] &quot;2020-01-06&quot; &quot;2020-01-07&quot; &quot;2020-01-08&quot; &quot;2020-01-09&quot; &quot;2020-01-10&quot;</span></span>
-<span id="cb184-4"><a href="horas-y-fechas.html#cb184-4"></a><span class="co">#&gt; [11] &quot;2020-01-11&quot; &quot;2020-01-12&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="horas-y-fechas.html#cb285-1"></a><span class="kw">floor_date</span>(<span class="kw">today</span>(), <span class="st">&quot;year&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">11</span>)</span>
+<span id="cb285-2"><a href="horas-y-fechas.html#cb285-2"></a><span class="co">#&gt;  [1] &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot; &quot;2020-04-01&quot; &quot;2020-05-01&quot;</span></span>
+<span id="cb285-3"><a href="horas-y-fechas.html#cb285-3"></a><span class="co">#&gt;  [6] &quot;2020-06-01&quot; &quot;2020-07-01&quot; &quot;2020-08-01&quot; &quot;2020-09-01&quot; &quot;2020-10-01&quot;</span></span>
+<span id="cb285-4"><a href="horas-y-fechas.html#cb285-4"></a><span class="co">#&gt; [11] &quot;2020-11-01&quot; &quot;2020-12-01&quot;</span></span></code></pre></div>
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Crea una función en la cual, dado tu cumpleaños (como una fecha), retorne cuán viejo eres en años.</li>

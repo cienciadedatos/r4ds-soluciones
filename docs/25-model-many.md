@@ -41,7 +41,7 @@ por_pais <- por_pais %>%
 
 por_pais
 #> # A tibble: 142 x 5
-#> # Groups:   pais, continente [710]
+#> # Groups:   pais, continente [142]
 #>   pais       continente data              modelo residuo          
 #>   <fct>      <fct>      <list>            <list> <list>           
 #> 1 Afganistán Asia       <tibble [12 × 4]> <lm>   <tibble [12 × 5]>
@@ -219,7 +219,8 @@ mtautos %>%
   group_by(cilindros) %>%
   summarise(q = list(quantile(millas))) %>%
   unnest()
-#> Warning: `cols` is now required.
+#> `summarise()` ungrouping output (override with `.groups` argument)
+#> Warning: `cols` is now required when using unnest().
 #> Please use `cols = c(q)`
 #> # A tibble: 15 x 2
 #>   cilindros     q

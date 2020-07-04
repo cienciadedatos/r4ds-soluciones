@@ -74,7 +74,7 @@ acciones %>%
 tabla4a %>%
   pivot_longer(c(1999, 2000), names_to = "anio", values_to = "casos")
 #> Error: Can't subset columns that don't exist.
-#> [31mx[39m The locations 1999 and 2000 don't exist.
+#> [31mx[39m Locations 1999 and 2000 don't exist.
 #> [34mℹ[39m There are only 3 columns.
 ```
 

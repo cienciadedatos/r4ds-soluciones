@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Transformación de datos | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Transformación de datos | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -465,21 +466,39 @@ Solución
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="transform.html#cb70-1"></a><span class="kw">filter</span>(vuelos, destino <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;IAH&quot;</span>, <span class="st">&quot;HOU&quot;</span>))</span>
-<span id="cb70-2"><a href="transform.html#cb70-2"></a><span class="co">#&gt; # A tibble: 9,313 x 19</span></span>
-<span id="cb70-3"><a href="transform.html#cb70-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
-<span id="cb70-4"><a href="transform.html#cb70-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
-<span id="cb70-5"><a href="transform.html#cb70-5"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
-<span id="cb70-6"><a href="transform.html#cb70-6"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
-<span id="cb70-7"><a href="transform.html#cb70-7"></a><span class="co">#&gt; 3  2013     1     1            623              627            -4</span></span>
-<span id="cb70-8"><a href="transform.html#cb70-8"></a><span class="co">#&gt; 4  2013     1     1            728              732            -4</span></span>
-<span id="cb70-9"><a href="transform.html#cb70-9"></a><span class="co">#&gt; 5  2013     1     1            739              739             0</span></span>
-<span id="cb70-10"><a href="transform.html#cb70-10"></a><span class="co">#&gt; 6  2013     1     1            908              908             0</span></span>
-<span id="cb70-11"><a href="transform.html#cb70-11"></a><span class="co">#&gt; # … with 9,307 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
-<span id="cb70-12"><a href="transform.html#cb70-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
-<span id="cb70-13"><a href="transform.html#cb70-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
-<span id="cb70-14"><a href="transform.html#cb70-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
-<span id="cb70-15"><a href="transform.html#cb70-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="transform.html#cb70-1"></a><span class="co">#Opcion 1</span></span>
+<span id="cb70-2"><a href="transform.html#cb70-2"></a><span class="kw">filter</span>(vuelos, destino <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;IAH&quot;</span>, <span class="st">&quot;HOU&quot;</span>))</span>
+<span id="cb70-3"><a href="transform.html#cb70-3"></a><span class="co">#&gt; # A tibble: 9,313 x 19</span></span>
+<span id="cb70-4"><a href="transform.html#cb70-4"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb70-5"><a href="transform.html#cb70-5"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb70-6"><a href="transform.html#cb70-6"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
+<span id="cb70-7"><a href="transform.html#cb70-7"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
+<span id="cb70-8"><a href="transform.html#cb70-8"></a><span class="co">#&gt; 3  2013     1     1            623              627            -4</span></span>
+<span id="cb70-9"><a href="transform.html#cb70-9"></a><span class="co">#&gt; 4  2013     1     1            728              732            -4</span></span>
+<span id="cb70-10"><a href="transform.html#cb70-10"></a><span class="co">#&gt; 5  2013     1     1            739              739             0</span></span>
+<span id="cb70-11"><a href="transform.html#cb70-11"></a><span class="co">#&gt; 6  2013     1     1            908              908             0</span></span>
+<span id="cb70-12"><a href="transform.html#cb70-12"></a><span class="co">#&gt; # … with 9,307 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb70-13"><a href="transform.html#cb70-13"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb70-14"><a href="transform.html#cb70-14"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb70-15"><a href="transform.html#cb70-15"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb70-16"><a href="transform.html#cb70-16"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span>
+<span id="cb70-17"><a href="transform.html#cb70-17"></a></span>
+<span id="cb70-18"><a href="transform.html#cb70-18"></a><span class="co">#Opción 2</span></span>
+<span id="cb70-19"><a href="transform.html#cb70-19"></a><span class="kw">filter</span>(vuelos,destino <span class="op">==</span><span class="st"> &quot;IAH&quot;</span> <span class="op">|</span><span class="st"> </span>destino <span class="op">==</span><span class="st">  &quot;HOU&quot;</span> )</span>
+<span id="cb70-20"><a href="transform.html#cb70-20"></a><span class="co">#&gt; # A tibble: 9,313 x 19</span></span>
+<span id="cb70-21"><a href="transform.html#cb70-21"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb70-22"><a href="transform.html#cb70-22"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb70-23"><a href="transform.html#cb70-23"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
+<span id="cb70-24"><a href="transform.html#cb70-24"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
+<span id="cb70-25"><a href="transform.html#cb70-25"></a><span class="co">#&gt; 3  2013     1     1            623              627            -4</span></span>
+<span id="cb70-26"><a href="transform.html#cb70-26"></a><span class="co">#&gt; 4  2013     1     1            728              732            -4</span></span>
+<span id="cb70-27"><a href="transform.html#cb70-27"></a><span class="co">#&gt; 5  2013     1     1            739              739             0</span></span>
+<span id="cb70-28"><a href="transform.html#cb70-28"></a><span class="co">#&gt; 6  2013     1     1            908              908             0</span></span>
+<span id="cb70-29"><a href="transform.html#cb70-29"></a><span class="co">#&gt; # … with 9,307 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb70-30"><a href="transform.html#cb70-30"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb70-31"><a href="transform.html#cb70-31"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb70-32"><a href="transform.html#cb70-32"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb70-33"><a href="transform.html#cb70-33"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Fueron operados por United, American o Delta</li>
@@ -535,17 +554,17 @@ Solución
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="transform.html#cb73-1"></a><span class="kw">filter</span>(vuelos, atraso_salida <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>atraso_llegada <span class="op">&gt;</span><span class="st"> </span><span class="dv">90</span>)</span>
-<span id="cb73-2"><a href="transform.html#cb73-2"></a><span class="co">#&gt; # A tibble: 146 x 19</span></span>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="transform.html#cb73-1"></a><span class="kw">filter</span>(vuelos, atraso_salida <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>atraso_llegada <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>)</span>
+<span id="cb73-2"><a href="transform.html#cb73-2"></a><span class="co">#&gt; # A tibble: 29 x 19</span></span>
 <span id="cb73-3"><a href="transform.html#cb73-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
 <span id="cb73-4"><a href="transform.html#cb73-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
-<span id="cb73-5"><a href="transform.html#cb73-5"></a><span class="co">#&gt; 1  2013     1    13            729              730            -1</span></span>
-<span id="cb73-6"><a href="transform.html#cb73-6"></a><span class="co">#&gt; 2  2013     1    16            658              705            -7</span></span>
-<span id="cb73-7"><a href="transform.html#cb73-7"></a><span class="co">#&gt; 3  2013     1    25           2023             2025            -2</span></span>
-<span id="cb73-8"><a href="transform.html#cb73-8"></a><span class="co">#&gt; 4  2013     1    27           1419             1420            -1</span></span>
-<span id="cb73-9"><a href="transform.html#cb73-9"></a><span class="co">#&gt; 5  2013     1    28           1154             1200            -6</span></span>
-<span id="cb73-10"><a href="transform.html#cb73-10"></a><span class="co">#&gt; 6  2013    10     5           1650             1659            -9</span></span>
-<span id="cb73-11"><a href="transform.html#cb73-11"></a><span class="co">#&gt; # … with 140 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb73-5"><a href="transform.html#cb73-5"></a><span class="co">#&gt; 1  2013     1    27           1419             1420            -1</span></span>
+<span id="cb73-6"><a href="transform.html#cb73-6"></a><span class="co">#&gt; 2  2013    10     7           1350             1350             0</span></span>
+<span id="cb73-7"><a href="transform.html#cb73-7"></a><span class="co">#&gt; 3  2013    10     7           1357             1359            -2</span></span>
+<span id="cb73-8"><a href="transform.html#cb73-8"></a><span class="co">#&gt; 4  2013    10    16            657              700            -3</span></span>
+<span id="cb73-9"><a href="transform.html#cb73-9"></a><span class="co">#&gt; 5  2013    11     1            658              700            -2</span></span>
+<span id="cb73-10"><a href="transform.html#cb73-10"></a><span class="co">#&gt; 6  2013     3    18           1844             1847            -3</span></span>
+<span id="cb73-11"><a href="transform.html#cb73-11"></a><span class="co">#&gt; # … with 23 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
 <span id="cb73-12"><a href="transform.html#cb73-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
 <span id="cb73-13"><a href="transform.html#cb73-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
 <span id="cb73-14"><a href="transform.html#cb73-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
@@ -581,8 +600,8 @@ Solución
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="transform.html#cb75-1"></a><span class="kw">filter</span>(vuelos, horario_salida <span class="op">%in%</span><span class="st"> </span><span class="dv">000</span><span class="op">:</span><span class="dv">600</span>)</span>
-<span id="cb75-2"><a href="transform.html#cb75-2"></a><span class="co">#&gt; # A tibble: 9,344 x 19</span></span>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="transform.html#cb75-1"></a><span class="kw">filter</span>(vuelos,horario_salida <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">600</span>) <span class="op">|</span><span class="st"> </span>horario_salida <span class="op">==</span><span class="st"> </span><span class="dv">2400</span> )</span>
+<span id="cb75-2"><a href="transform.html#cb75-2"></a><span class="co">#&gt; # A tibble: 9,373 x 19</span></span>
 <span id="cb75-3"><a href="transform.html#cb75-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
 <span id="cb75-4"><a href="transform.html#cb75-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
 <span id="cb75-5"><a href="transform.html#cb75-5"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
@@ -591,7 +610,7 @@ Solución
 <span id="cb75-8"><a href="transform.html#cb75-8"></a><span class="co">#&gt; 4  2013     1     1            544              545            -1</span></span>
 <span id="cb75-9"><a href="transform.html#cb75-9"></a><span class="co">#&gt; 5  2013     1     1            554              600            -6</span></span>
 <span id="cb75-10"><a href="transform.html#cb75-10"></a><span class="co">#&gt; 6  2013     1     1            554              558            -4</span></span>
-<span id="cb75-11"><a href="transform.html#cb75-11"></a><span class="co">#&gt; # … with 9,338 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb75-11"><a href="transform.html#cb75-11"></a><span class="co">#&gt; # … with 9,367 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
 <span id="cb75-12"><a href="transform.html#cb75-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
 <span id="cb75-13"><a href="transform.html#cb75-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
 <span id="cb75-14"><a href="transform.html#cb75-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
@@ -654,7 +673,26 @@ Solución
 <h3>
 Solución
 </h3>
-<p><span class="math inline">\(x ^ 0 = 1\)</span>, por lo que <code>NA ^ 0 == 1</code></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="transform.html#cb78-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>) </span>
+<span id="cb78-2"><a href="transform.html#cb78-2"></a></span>
+<span id="cb78-3"><a href="transform.html#cb78-3"></a><span class="kw">is.na</span>(x)</span>
+<span id="cb78-4"><a href="transform.html#cb78-4"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>La función <code>is.na()</code> determina si falta un valor y devuelve un valor lógico <code>TRUE</code> en los casos en que es NA (Not Available).</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="transform.html#cb79-1"></a>x<span class="op">^</span><span class="dv">0</span></span>
+<span id="cb79-2"><a href="transform.html#cb79-2"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<p>Dado que el NA podría tomar cualquier valor, es práctico pensar que cualquier número (aunque sea muy grande) a la potencia cero es igual a 1.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="transform.html#cb80-1"></a>x <span class="op">|</span><span class="st"> </span><span class="ot">TRUE</span></span>
+<span id="cb80-2"><a href="transform.html#cb80-2"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>Es igual a TRUE pues el NA se entiende como un valor lógico (<code>TRUE</code> or <code>FALSE</code>) y por lógica proposicional <code>TRUE</code> | <code>TRUE</code> y <code>FALSE</code> | <code>TRUE</code> es siempre igual a <code>TRUE</code>.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="transform.html#cb81-1"></a>x <span class="op">&amp;</span><span class="st"> </span><span class="ot">FALSE</span></span>
+<span id="cb81-2"><a href="transform.html#cb81-2"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>Es igual a <code>TRUE</code> pues el NA se entiende como un valor lógico (<code>TRUE</code> or <code>FALSE</code>) y por lógica proposicional <code>TRUE</code>&amp;<code>FALSE</code> y <code>FALSE</code>&amp;<code>FALSE</code> es siempre <code>FALSE</code>.</p>
+<p>El contraejemplo a la regla general:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="transform.html#cb82-1"></a>x <span class="op">*</span><span class="st"> </span><span class="dv">0</span></span>
+<span id="cb82-2"><a href="transform.html#cb82-2"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="transform.html#cb83-1"></a><span class="ot">Inf</span><span class="op">*</span><span class="dv">0</span></span>
+<span id="cb83-2"><a href="transform.html#cb83-2"></a><span class="co">#&gt; [1] NaN</span></span></code></pre></div>
+<p>En este contraejemplo puede ser útil pensar que el <code>NA</code> puede tomar cualquier valor, incluso podría ser un número muy grande; el cual al multiplicarse por cero nos da una indeterminación que <code>R</code> define como <code>NaN</code> (Not a Number). Por otro lado, si el <code>NA</code> fuese un valor pequeño, entonces <code>NA*0</code> sería igual a cero. Luego, es mejor pensar en <code>x*0</code> como un <code>NA</code> porque no sabemos en cual de los dos casos anteriores estamos.</p>
 </div>
 </div>
 </div>
@@ -669,21 +707,22 @@ Solución
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="transform.html#cb78-1"></a><span class="kw">arrange</span>(vuelos, <span class="kw">desc</span>(<span class="kw">is.na</span>(horario_salida)))</span>
-<span id="cb78-2"><a href="transform.html#cb78-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
-<span id="cb78-3"><a href="transform.html#cb78-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
-<span id="cb78-4"><a href="transform.html#cb78-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
-<span id="cb78-5"><a href="transform.html#cb78-5"></a><span class="co">#&gt; 1  2013     1     1             NA             1630            NA</span></span>
-<span id="cb78-6"><a href="transform.html#cb78-6"></a><span class="co">#&gt; 2  2013     1     1             NA             1935            NA</span></span>
-<span id="cb78-7"><a href="transform.html#cb78-7"></a><span class="co">#&gt; 3  2013     1     1             NA             1500            NA</span></span>
-<span id="cb78-8"><a href="transform.html#cb78-8"></a><span class="co">#&gt; 4  2013     1     1             NA              600            NA</span></span>
-<span id="cb78-9"><a href="transform.html#cb78-9"></a><span class="co">#&gt; 5  2013     1     2             NA             1540            NA</span></span>
-<span id="cb78-10"><a href="transform.html#cb78-10"></a><span class="co">#&gt; 6  2013     1     2             NA             1620            NA</span></span>
-<span id="cb78-11"><a href="transform.html#cb78-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
-<span id="cb78-12"><a href="transform.html#cb78-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
-<span id="cb78-13"><a href="transform.html#cb78-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
-<span id="cb78-14"><a href="transform.html#cb78-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
-<span id="cb78-15"><a href="transform.html#cb78-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="transform.html#cb84-1"></a><span class="kw">arrange</span>(vuelos,<span class="kw">desc</span>(<span class="kw">is.na</span>(tiempo_vuelo)))</span>
+<span id="cb84-2"><a href="transform.html#cb84-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
+<span id="cb84-3"><a href="transform.html#cb84-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb84-4"><a href="transform.html#cb84-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb84-5"><a href="transform.html#cb84-5"></a><span class="co">#&gt; 1  2013     1     1           1525             1530            -5</span></span>
+<span id="cb84-6"><a href="transform.html#cb84-6"></a><span class="co">#&gt; 2  2013     1     1           1528             1459            29</span></span>
+<span id="cb84-7"><a href="transform.html#cb84-7"></a><span class="co">#&gt; 3  2013     1     1           1740             1745            -5</span></span>
+<span id="cb84-8"><a href="transform.html#cb84-8"></a><span class="co">#&gt; 4  2013     1     1           1807             1738            29</span></span>
+<span id="cb84-9"><a href="transform.html#cb84-9"></a><span class="co">#&gt; 5  2013     1     1           1939             1840            59</span></span>
+<span id="cb84-10"><a href="transform.html#cb84-10"></a><span class="co">#&gt; 6  2013     1     1           1952             1930            22</span></span>
+<span id="cb84-11"><a href="transform.html#cb84-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb84-12"><a href="transform.html#cb84-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb84-13"><a href="transform.html#cb84-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb84-14"><a href="transform.html#cb84-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb84-15"><a href="transform.html#cb84-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
+<p>Se usa la variable <code>tiempo_vuelo</code> porque es la que contiene mayor número de NA´s.</p>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>Ordena <code>vuelos</code> para encontrar los vuelos más retrasados. Encuentra los vuelos que salieron más temprano.</li>
@@ -693,37 +732,37 @@ Solución
 Solución
 </h3>
 <p>Vuelos que salieron con más retraso</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="transform.html#cb79-1"></a><span class="kw">arrange</span>(vuelos, <span class="kw">desc</span>(atraso_salida))</span>
-<span id="cb79-2"><a href="transform.html#cb79-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
-<span id="cb79-3"><a href="transform.html#cb79-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
-<span id="cb79-4"><a href="transform.html#cb79-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
-<span id="cb79-5"><a href="transform.html#cb79-5"></a><span class="co">#&gt; 1  2013     1     9            641              900          1301</span></span>
-<span id="cb79-6"><a href="transform.html#cb79-6"></a><span class="co">#&gt; 2  2013     6    15           1432             1935          1137</span></span>
-<span id="cb79-7"><a href="transform.html#cb79-7"></a><span class="co">#&gt; 3  2013     1    10           1121             1635          1126</span></span>
-<span id="cb79-8"><a href="transform.html#cb79-8"></a><span class="co">#&gt; 4  2013     9    20           1139             1845          1014</span></span>
-<span id="cb79-9"><a href="transform.html#cb79-9"></a><span class="co">#&gt; 5  2013     7    22            845             1600          1005</span></span>
-<span id="cb79-10"><a href="transform.html#cb79-10"></a><span class="co">#&gt; 6  2013     4    10           1100             1900           960</span></span>
-<span id="cb79-11"><a href="transform.html#cb79-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
-<span id="cb79-12"><a href="transform.html#cb79-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
-<span id="cb79-13"><a href="transform.html#cb79-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
-<span id="cb79-14"><a href="transform.html#cb79-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
-<span id="cb79-15"><a href="transform.html#cb79-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="transform.html#cb85-1"></a><span class="kw">arrange</span>(vuelos, <span class="kw">desc</span>(atraso_salida))</span>
+<span id="cb85-2"><a href="transform.html#cb85-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
+<span id="cb85-3"><a href="transform.html#cb85-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb85-4"><a href="transform.html#cb85-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb85-5"><a href="transform.html#cb85-5"></a><span class="co">#&gt; 1  2013     1     9            641              900          1301</span></span>
+<span id="cb85-6"><a href="transform.html#cb85-6"></a><span class="co">#&gt; 2  2013     6    15           1432             1935          1137</span></span>
+<span id="cb85-7"><a href="transform.html#cb85-7"></a><span class="co">#&gt; 3  2013     1    10           1121             1635          1126</span></span>
+<span id="cb85-8"><a href="transform.html#cb85-8"></a><span class="co">#&gt; 4  2013     9    20           1139             1845          1014</span></span>
+<span id="cb85-9"><a href="transform.html#cb85-9"></a><span class="co">#&gt; 5  2013     7    22            845             1600          1005</span></span>
+<span id="cb85-10"><a href="transform.html#cb85-10"></a><span class="co">#&gt; 6  2013     4    10           1100             1900           960</span></span>
+<span id="cb85-11"><a href="transform.html#cb85-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb85-12"><a href="transform.html#cb85-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb85-13"><a href="transform.html#cb85-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb85-14"><a href="transform.html#cb85-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb85-15"><a href="transform.html#cb85-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
 <p>Vuelos que salieron más temprano</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="transform.html#cb80-1"></a><span class="kw">arrange</span>(vuelos, atraso_salida)</span>
-<span id="cb80-2"><a href="transform.html#cb80-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
-<span id="cb80-3"><a href="transform.html#cb80-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
-<span id="cb80-4"><a href="transform.html#cb80-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
-<span id="cb80-5"><a href="transform.html#cb80-5"></a><span class="co">#&gt; 1  2013    12     7           2040             2123           -43</span></span>
-<span id="cb80-6"><a href="transform.html#cb80-6"></a><span class="co">#&gt; 2  2013     2     3           2022             2055           -33</span></span>
-<span id="cb80-7"><a href="transform.html#cb80-7"></a><span class="co">#&gt; 3  2013    11    10           1408             1440           -32</span></span>
-<span id="cb80-8"><a href="transform.html#cb80-8"></a><span class="co">#&gt; 4  2013     1    11           1900             1930           -30</span></span>
-<span id="cb80-9"><a href="transform.html#cb80-9"></a><span class="co">#&gt; 5  2013     1    29           1703             1730           -27</span></span>
-<span id="cb80-10"><a href="transform.html#cb80-10"></a><span class="co">#&gt; 6  2013     8     9            729              755           -26</span></span>
-<span id="cb80-11"><a href="transform.html#cb80-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
-<span id="cb80-12"><a href="transform.html#cb80-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
-<span id="cb80-13"><a href="transform.html#cb80-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
-<span id="cb80-14"><a href="transform.html#cb80-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
-<span id="cb80-15"><a href="transform.html#cb80-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="transform.html#cb86-1"></a><span class="kw">arrange</span>(vuelos, atraso_salida)</span>
+<span id="cb86-2"><a href="transform.html#cb86-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
+<span id="cb86-3"><a href="transform.html#cb86-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb86-4"><a href="transform.html#cb86-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb86-5"><a href="transform.html#cb86-5"></a><span class="co">#&gt; 1  2013    12     7           2040             2123           -43</span></span>
+<span id="cb86-6"><a href="transform.html#cb86-6"></a><span class="co">#&gt; 2  2013     2     3           2022             2055           -33</span></span>
+<span id="cb86-7"><a href="transform.html#cb86-7"></a><span class="co">#&gt; 3  2013    11    10           1408             1440           -32</span></span>
+<span id="cb86-8"><a href="transform.html#cb86-8"></a><span class="co">#&gt; 4  2013     1    11           1900             1930           -30</span></span>
+<span id="cb86-9"><a href="transform.html#cb86-9"></a><span class="co">#&gt; 5  2013     1    29           1703             1730           -27</span></span>
+<span id="cb86-10"><a href="transform.html#cb86-10"></a><span class="co">#&gt; 6  2013     8     9            729              755           -26</span></span>
+<span id="cb86-11"><a href="transform.html#cb86-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb86-12"><a href="transform.html#cb86-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb86-13"><a href="transform.html#cb86-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb86-14"><a href="transform.html#cb86-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb86-15"><a href="transform.html#cb86-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Ordena <code>vuelos</code> para encontrar los vuelos más rápidos.</li>
@@ -732,6 +771,23 @@ Solución
 <h3>
 Solución
 </h3>
+<p>Si se considera que la velocidad es igual a <code>distancia</code>/<code>tiempo_vuelo</code> (distancia recorrida por minuto).</p>
+<p>Los datos ordenados de forma descendente nos dará como resultado los vuelos más rápidos primero.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="transform.html#cb87-1"></a><span class="kw">arrange</span>(vuelos,<span class="kw">desc</span>(distancia<span class="op">/</span>tiempo_vuelo))</span>
+<span id="cb87-2"><a href="transform.html#cb87-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
+<span id="cb87-3"><a href="transform.html#cb87-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb87-4"><a href="transform.html#cb87-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb87-5"><a href="transform.html#cb87-5"></a><span class="co">#&gt; 1  2013     5    25           1709             1700             9</span></span>
+<span id="cb87-6"><a href="transform.html#cb87-6"></a><span class="co">#&gt; 2  2013     7     2           1558             1513            45</span></span>
+<span id="cb87-7"><a href="transform.html#cb87-7"></a><span class="co">#&gt; 3  2013     5    13           2040             2025            15</span></span>
+<span id="cb87-8"><a href="transform.html#cb87-8"></a><span class="co">#&gt; 4  2013     3    23           1914             1910             4</span></span>
+<span id="cb87-9"><a href="transform.html#cb87-9"></a><span class="co">#&gt; 5  2013     1    12           1559             1600            -1</span></span>
+<span id="cb87-10"><a href="transform.html#cb87-10"></a><span class="co">#&gt; 6  2013    11    17            650              655            -5</span></span>
+<span id="cb87-11"><a href="transform.html#cb87-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb87-12"><a href="transform.html#cb87-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb87-13"><a href="transform.html#cb87-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb87-14"><a href="transform.html#cb87-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb87-15"><a href="transform.html#cb87-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>¿Cuáles vuelos viajaron más lejos? ¿Cuál viajó menos cerca?</li>
@@ -740,6 +796,38 @@ Solución
 <h3>
 Solución
 </h3>
+<p>Vuelos que viajaron más lejos (considerando la distancia en millas entre aeropuertos):</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="transform.html#cb88-1"></a><span class="kw">arrange</span>(vuelos,<span class="kw">desc</span>(distancia))</span>
+<span id="cb88-2"><a href="transform.html#cb88-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
+<span id="cb88-3"><a href="transform.html#cb88-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb88-4"><a href="transform.html#cb88-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb88-5"><a href="transform.html#cb88-5"></a><span class="co">#&gt; 1  2013     1     1            857              900            -3</span></span>
+<span id="cb88-6"><a href="transform.html#cb88-6"></a><span class="co">#&gt; 2  2013     1     2            909              900             9</span></span>
+<span id="cb88-7"><a href="transform.html#cb88-7"></a><span class="co">#&gt; 3  2013     1     3            914              900            14</span></span>
+<span id="cb88-8"><a href="transform.html#cb88-8"></a><span class="co">#&gt; 4  2013     1     4            900              900             0</span></span>
+<span id="cb88-9"><a href="transform.html#cb88-9"></a><span class="co">#&gt; 5  2013     1     5            858              900            -2</span></span>
+<span id="cb88-10"><a href="transform.html#cb88-10"></a><span class="co">#&gt; 6  2013     1     6           1019              900            79</span></span>
+<span id="cb88-11"><a href="transform.html#cb88-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb88-12"><a href="transform.html#cb88-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb88-13"><a href="transform.html#cb88-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb88-14"><a href="transform.html#cb88-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb88-15"><a href="transform.html#cb88-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
+<p>Vuelos que viajaron más cerca (considerando la distancia en millas entre aeropuertos):</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="transform.html#cb89-1"></a><span class="kw">arrange</span>(vuelos,distancia)</span>
+<span id="cb89-2"><a href="transform.html#cb89-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
+<span id="cb89-3"><a href="transform.html#cb89-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb89-4"><a href="transform.html#cb89-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb89-5"><a href="transform.html#cb89-5"></a><span class="co">#&gt; 1  2013     7    27             NA              106            NA</span></span>
+<span id="cb89-6"><a href="transform.html#cb89-6"></a><span class="co">#&gt; 2  2013     1     3           2127             2129            -2</span></span>
+<span id="cb89-7"><a href="transform.html#cb89-7"></a><span class="co">#&gt; 3  2013     1     4           1240             1200            40</span></span>
+<span id="cb89-8"><a href="transform.html#cb89-8"></a><span class="co">#&gt; 4  2013     1     4           1829             1615           134</span></span>
+<span id="cb89-9"><a href="transform.html#cb89-9"></a><span class="co">#&gt; 5  2013     1     4           2128             2129            -1</span></span>
+<span id="cb89-10"><a href="transform.html#cb89-10"></a><span class="co">#&gt; 6  2013     1     5           1155             1200            -5</span></span>
+<span id="cb89-11"><a href="transform.html#cb89-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb89-12"><a href="transform.html#cb89-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb89-13"><a href="transform.html#cb89-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb89-14"><a href="transform.html#cb89-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb89-15"><a href="transform.html#cb89-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -755,29 +843,53 @@ Solución
 Solución
 </h3>
 <p>Una primera opción sería seleccionaras por su nombre:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="transform.html#cb81-1"></a><span class="kw">select</span>(vuelos, horario_salida, atraso_salida, horario_llegada, atraso_llegada)</span>
-<span id="cb81-2"><a href="transform.html#cb81-2"></a><span class="co">#&gt; # A tibble: 336,776 x 4</span></span>
-<span id="cb81-3"><a href="transform.html#cb81-3"></a><span class="co">#&gt;   horario_salida atraso_salida horario_llegada atraso_llegada</span></span>
-<span id="cb81-4"><a href="transform.html#cb81-4"></a><span class="co">#&gt;            &lt;int&gt;         &lt;dbl&gt;           &lt;int&gt;          &lt;dbl&gt;</span></span>
-<span id="cb81-5"><a href="transform.html#cb81-5"></a><span class="co">#&gt; 1            517             2             830             11</span></span>
-<span id="cb81-6"><a href="transform.html#cb81-6"></a><span class="co">#&gt; 2            533             4             850             20</span></span>
-<span id="cb81-7"><a href="transform.html#cb81-7"></a><span class="co">#&gt; 3            542             2             923             33</span></span>
-<span id="cb81-8"><a href="transform.html#cb81-8"></a><span class="co">#&gt; 4            544            -1            1004            -18</span></span>
-<span id="cb81-9"><a href="transform.html#cb81-9"></a><span class="co">#&gt; 5            554            -6             812            -25</span></span>
-<span id="cb81-10"><a href="transform.html#cb81-10"></a><span class="co">#&gt; 6            554            -4             740             12</span></span>
-<span id="cb81-11"><a href="transform.html#cb81-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="transform.html#cb90-1"></a><span class="kw">select</span>(vuelos, horario_salida, atraso_salida, horario_llegada, atraso_llegada)</span>
+<span id="cb90-2"><a href="transform.html#cb90-2"></a><span class="co">#&gt; # A tibble: 336,776 x 4</span></span>
+<span id="cb90-3"><a href="transform.html#cb90-3"></a><span class="co">#&gt;   horario_salida atraso_salida horario_llegada atraso_llegada</span></span>
+<span id="cb90-4"><a href="transform.html#cb90-4"></a><span class="co">#&gt;            &lt;int&gt;         &lt;dbl&gt;           &lt;int&gt;          &lt;dbl&gt;</span></span>
+<span id="cb90-5"><a href="transform.html#cb90-5"></a><span class="co">#&gt; 1            517             2             830             11</span></span>
+<span id="cb90-6"><a href="transform.html#cb90-6"></a><span class="co">#&gt; 2            533             4             850             20</span></span>
+<span id="cb90-7"><a href="transform.html#cb90-7"></a><span class="co">#&gt; 3            542             2             923             33</span></span>
+<span id="cb90-8"><a href="transform.html#cb90-8"></a><span class="co">#&gt; 4            544            -1            1004            -18</span></span>
+<span id="cb90-9"><a href="transform.html#cb90-9"></a><span class="co">#&gt; 5            554            -6             812            -25</span></span>
+<span id="cb90-10"><a href="transform.html#cb90-10"></a><span class="co">#&gt; 6            554            -4             740             12</span></span>
+<span id="cb90-11"><a href="transform.html#cb90-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
 <p>Otra forma es seleccionando las variables que empiezan con “horario” y “atraso” con la función <code>starts_with()</code> (“empieza con”) del paquete <strong>dplyr</strong>:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="transform.html#cb82-1"></a><span class="kw">select</span>(vuelos, <span class="kw">starts_with</span>(<span class="st">&quot;horario&quot;</span>), <span class="kw">starts_with</span>(<span class="st">&quot;atraso&quot;</span>))</span>
-<span id="cb82-2"><a href="transform.html#cb82-2"></a><span class="co">#&gt; # A tibble: 336,776 x 4</span></span>
-<span id="cb82-3"><a href="transform.html#cb82-3"></a><span class="co">#&gt;   horario_salida horario_llegada atraso_salida atraso_llegada</span></span>
-<span id="cb82-4"><a href="transform.html#cb82-4"></a><span class="co">#&gt;            &lt;int&gt;           &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;</span></span>
-<span id="cb82-5"><a href="transform.html#cb82-5"></a><span class="co">#&gt; 1            517             830             2             11</span></span>
-<span id="cb82-6"><a href="transform.html#cb82-6"></a><span class="co">#&gt; 2            533             850             4             20</span></span>
-<span id="cb82-7"><a href="transform.html#cb82-7"></a><span class="co">#&gt; 3            542             923             2             33</span></span>
-<span id="cb82-8"><a href="transform.html#cb82-8"></a><span class="co">#&gt; 4            544            1004            -1            -18</span></span>
-<span id="cb82-9"><a href="transform.html#cb82-9"></a><span class="co">#&gt; 5            554             812            -6            -25</span></span>
-<span id="cb82-10"><a href="transform.html#cb82-10"></a><span class="co">#&gt; 6            554             740            -4             12</span></span>
-<span id="cb82-11"><a href="transform.html#cb82-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="transform.html#cb91-1"></a><span class="kw">select</span>(vuelos, <span class="kw">starts_with</span>(<span class="st">&quot;horario&quot;</span>), <span class="kw">starts_with</span>(<span class="st">&quot;atraso&quot;</span>))</span>
+<span id="cb91-2"><a href="transform.html#cb91-2"></a><span class="co">#&gt; # A tibble: 336,776 x 4</span></span>
+<span id="cb91-3"><a href="transform.html#cb91-3"></a><span class="co">#&gt;   horario_salida horario_llegada atraso_salida atraso_llegada</span></span>
+<span id="cb91-4"><a href="transform.html#cb91-4"></a><span class="co">#&gt;            &lt;int&gt;           &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb91-5"><a href="transform.html#cb91-5"></a><span class="co">#&gt; 1            517             830             2             11</span></span>
+<span id="cb91-6"><a href="transform.html#cb91-6"></a><span class="co">#&gt; 2            533             850             4             20</span></span>
+<span id="cb91-7"><a href="transform.html#cb91-7"></a><span class="co">#&gt; 3            542             923             2             33</span></span>
+<span id="cb91-8"><a href="transform.html#cb91-8"></a><span class="co">#&gt; 4            544            1004            -1            -18</span></span>
+<span id="cb91-9"><a href="transform.html#cb91-9"></a><span class="co">#&gt; 5            554             812            -6            -25</span></span>
+<span id="cb91-10"><a href="transform.html#cb91-10"></a><span class="co">#&gt; 6            554             740            -4             12</span></span>
+<span id="cb91-11"><a href="transform.html#cb91-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
+<p>También es útil en este caso utilizar la función <code>ends_with()</code>:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="transform.html#cb92-1"></a><span class="kw">select</span>(vuelos,<span class="kw">ends_with</span>(<span class="st">&quot;llegada&quot;</span>),<span class="kw">ends_with</span>(<span class="st">&quot;salida&quot;</span>))</span>
+<span id="cb92-2"><a href="transform.html#cb92-2"></a><span class="co">#&gt; # A tibble: 336,776 x 4</span></span>
+<span id="cb92-3"><a href="transform.html#cb92-3"></a><span class="co">#&gt;   horario_llegada atraso_llegada horario_salida atraso_salida</span></span>
+<span id="cb92-4"><a href="transform.html#cb92-4"></a><span class="co">#&gt;             &lt;int&gt;          &lt;dbl&gt;          &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb92-5"><a href="transform.html#cb92-5"></a><span class="co">#&gt; 1             830             11            517             2</span></span>
+<span id="cb92-6"><a href="transform.html#cb92-6"></a><span class="co">#&gt; 2             850             20            533             4</span></span>
+<span id="cb92-7"><a href="transform.html#cb92-7"></a><span class="co">#&gt; 3             923             33            542             2</span></span>
+<span id="cb92-8"><a href="transform.html#cb92-8"></a><span class="co">#&gt; 4            1004            -18            544            -1</span></span>
+<span id="cb92-9"><a href="transform.html#cb92-9"></a><span class="co">#&gt; 5             812            -25            554            -6</span></span>
+<span id="cb92-10"><a href="transform.html#cb92-10"></a><span class="co">#&gt; 6             740             12            554            -4</span></span>
+<span id="cb92-11"><a href="transform.html#cb92-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
+<p>Y una manera adicional es usando la función <code>contains()</code>:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="transform.html#cb93-1"></a><span class="kw">select</span>(vuelos,<span class="kw">contains</span>(<span class="st">&quot;horario&quot;</span>),<span class="kw">contains</span>(<span class="st">&quot;atraso&quot;</span>))</span>
+<span id="cb93-2"><a href="transform.html#cb93-2"></a><span class="co">#&gt; # A tibble: 336,776 x 4</span></span>
+<span id="cb93-3"><a href="transform.html#cb93-3"></a><span class="co">#&gt;   horario_salida horario_llegada atraso_salida atraso_llegada</span></span>
+<span id="cb93-4"><a href="transform.html#cb93-4"></a><span class="co">#&gt;            &lt;int&gt;           &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb93-5"><a href="transform.html#cb93-5"></a><span class="co">#&gt; 1            517             830             2             11</span></span>
+<span id="cb93-6"><a href="transform.html#cb93-6"></a><span class="co">#&gt; 2            533             850             4             20</span></span>
+<span id="cb93-7"><a href="transform.html#cb93-7"></a><span class="co">#&gt; 3            542             923             2             33</span></span>
+<span id="cb93-8"><a href="transform.html#cb93-8"></a><span class="co">#&gt; 4            544            1004            -1            -18</span></span>
+<span id="cb93-9"><a href="transform.html#cb93-9"></a><span class="co">#&gt; 5            554             812            -6            -25</span></span>
+<span id="cb93-10"><a href="transform.html#cb93-10"></a><span class="co">#&gt; 6            554             740            -4             12</span></span>
+<span id="cb93-11"><a href="transform.html#cb93-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>¿Qué sucede si incluyes el nombre de una variable varias veces en una llamada <code>select()</code>?</li>
@@ -787,50 +899,67 @@ Solución
 Solución
 </h3>
 <p>A diferencia de lo que podría pensarse inicialmente, aunque se incluya más de una vez una variable al utilizar <code>select()</code> esta solo se considerará una vez:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="transform.html#cb83-1"></a><span class="kw">select</span>(vuelos, horario_salida, horario_salida, horario_salida)</span>
-<span id="cb83-2"><a href="transform.html#cb83-2"></a><span class="co">#&gt; # A tibble: 336,776 x 1</span></span>
-<span id="cb83-3"><a href="transform.html#cb83-3"></a><span class="co">#&gt;   horario_salida</span></span>
-<span id="cb83-4"><a href="transform.html#cb83-4"></a><span class="co">#&gt;            &lt;int&gt;</span></span>
-<span id="cb83-5"><a href="transform.html#cb83-5"></a><span class="co">#&gt; 1            517</span></span>
-<span id="cb83-6"><a href="transform.html#cb83-6"></a><span class="co">#&gt; 2            533</span></span>
-<span id="cb83-7"><a href="transform.html#cb83-7"></a><span class="co">#&gt; 3            542</span></span>
-<span id="cb83-8"><a href="transform.html#cb83-8"></a><span class="co">#&gt; 4            544</span></span>
-<span id="cb83-9"><a href="transform.html#cb83-9"></a><span class="co">#&gt; 5            554</span></span>
-<span id="cb83-10"><a href="transform.html#cb83-10"></a><span class="co">#&gt; 6            554</span></span>
-<span id="cb83-11"><a href="transform.html#cb83-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="transform.html#cb94-1"></a><span class="kw">select</span>(vuelos, horario_salida, horario_salida, horario_salida)</span>
+<span id="cb94-2"><a href="transform.html#cb94-2"></a><span class="co">#&gt; # A tibble: 336,776 x 1</span></span>
+<span id="cb94-3"><a href="transform.html#cb94-3"></a><span class="co">#&gt;   horario_salida</span></span>
+<span id="cb94-4"><a href="transform.html#cb94-4"></a><span class="co">#&gt;            &lt;int&gt;</span></span>
+<span id="cb94-5"><a href="transform.html#cb94-5"></a><span class="co">#&gt; 1            517</span></span>
+<span id="cb94-6"><a href="transform.html#cb94-6"></a><span class="co">#&gt; 2            533</span></span>
+<span id="cb94-7"><a href="transform.html#cb94-7"></a><span class="co">#&gt; 3            542</span></span>
+<span id="cb94-8"><a href="transform.html#cb94-8"></a><span class="co">#&gt; 4            544</span></span>
+<span id="cb94-9"><a href="transform.html#cb94-9"></a><span class="co">#&gt; 5            554</span></span>
+<span id="cb94-10"><a href="transform.html#cb94-10"></a><span class="co">#&gt; 6            554</span></span>
+<span id="cb94-11"><a href="transform.html#cb94-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>¿Qué hace la función <code>one_of()</code>? ¿Por qué podría ser útil en conjunto con este vector?</li>
 </ol>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="transform.html#cb84-1"></a>vars &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;anio&quot;</span>, <span class="st">&quot;mes&quot;</span>, <span class="st">&quot;dia&quot;</span>, <span class="st">&quot;atraso_salida&quot;</span>, <span class="st">&quot;atraso_llegada&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="transform.html#cb95-1"></a>vars &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;anio&quot;</span>, <span class="st">&quot;mes&quot;</span>, <span class="st">&quot;dia&quot;</span>, <span class="st">&quot;atraso_salida&quot;</span>, <span class="st">&quot;atraso_llegada&quot;</span>)</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
 </h3>
-<p>Con la función <code>one_of()</code> podemos indicar las variables que queremos seleccionar con el nombre del vector que las contiene:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="transform.html#cb85-1"></a><span class="kw">select</span>(vuelos, <span class="kw">one_of</span>(vars))</span>
-<span id="cb85-2"><a href="transform.html#cb85-2"></a><span class="co">#&gt; # A tibble: 336,776 x 5</span></span>
-<span id="cb85-3"><a href="transform.html#cb85-3"></a><span class="co">#&gt;    anio   mes   dia atraso_salida atraso_llegada</span></span>
-<span id="cb85-4"><a href="transform.html#cb85-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;</span></span>
-<span id="cb85-5"><a href="transform.html#cb85-5"></a><span class="co">#&gt; 1  2013     1     1             2             11</span></span>
-<span id="cb85-6"><a href="transform.html#cb85-6"></a><span class="co">#&gt; 2  2013     1     1             4             20</span></span>
-<span id="cb85-7"><a href="transform.html#cb85-7"></a><span class="co">#&gt; 3  2013     1     1             2             33</span></span>
-<span id="cb85-8"><a href="transform.html#cb85-8"></a><span class="co">#&gt; 4  2013     1     1            -1            -18</span></span>
-<span id="cb85-9"><a href="transform.html#cb85-9"></a><span class="co">#&gt; 5  2013     1     1            -6            -25</span></span>
-<span id="cb85-10"><a href="transform.html#cb85-10"></a><span class="co">#&gt; 6  2013     1     1            -4             12</span></span>
-<span id="cb85-11"><a href="transform.html#cb85-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
+<p>Con la función <code>one_of()</code> podemos indicar las variables que queremos seleccionar con el nombre del vector que las contiene.</p>
+<p>La función <code>one_of()</code> selecciona todas las variables que están en el vector <code>vars</code>:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="transform.html#cb96-1"></a><span class="kw">select</span>(vuelos, <span class="kw">one_of</span>(vars))</span>
+<span id="cb96-2"><a href="transform.html#cb96-2"></a><span class="co">#&gt; # A tibble: 336,776 x 5</span></span>
+<span id="cb96-3"><a href="transform.html#cb96-3"></a><span class="co">#&gt;    anio   mes   dia atraso_salida atraso_llegada</span></span>
+<span id="cb96-4"><a href="transform.html#cb96-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb96-5"><a href="transform.html#cb96-5"></a><span class="co">#&gt; 1  2013     1     1             2             11</span></span>
+<span id="cb96-6"><a href="transform.html#cb96-6"></a><span class="co">#&gt; 2  2013     1     1             4             20</span></span>
+<span id="cb96-7"><a href="transform.html#cb96-7"></a><span class="co">#&gt; 3  2013     1     1             2             33</span></span>
+<span id="cb96-8"><a href="transform.html#cb96-8"></a><span class="co">#&gt; 4  2013     1     1            -1            -18</span></span>
+<span id="cb96-9"><a href="transform.html#cb96-9"></a><span class="co">#&gt; 5  2013     1     1            -6            -25</span></span>
+<span id="cb96-10"><a href="transform.html#cb96-10"></a><span class="co">#&gt; 6  2013     1     1            -4             12</span></span>
+<span id="cb96-11"><a href="transform.html#cb96-11"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
+<p>Sin embargo, es posible también hacerlo de la siguiente forma (Siempre y cuando no exista una variable que se llame <code>vars</code> en el set de datos):</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="transform.html#cb97-1"></a><span class="kw">select</span>(vuelos,vars)</span>
+<span id="cb97-2"><a href="transform.html#cb97-2"></a><span class="co">#&gt; Note: Using an external vector in selections is ambiguous.</span></span>
+<span id="cb97-3"><a href="transform.html#cb97-3"></a><span class="co">#&gt; ℹ Use `all_of(vars)` instead of `vars` to silence this message.</span></span>
+<span id="cb97-4"><a href="transform.html#cb97-4"></a><span class="co">#&gt; ℹ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</span></span>
+<span id="cb97-5"><a href="transform.html#cb97-5"></a><span class="co">#&gt; This message is displayed once per session.</span></span>
+<span id="cb97-6"><a href="transform.html#cb97-6"></a><span class="co">#&gt; # A tibble: 336,776 x 5</span></span>
+<span id="cb97-7"><a href="transform.html#cb97-7"></a><span class="co">#&gt;    anio   mes   dia atraso_salida atraso_llegada</span></span>
+<span id="cb97-8"><a href="transform.html#cb97-8"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;         &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb97-9"><a href="transform.html#cb97-9"></a><span class="co">#&gt; 1  2013     1     1             2             11</span></span>
+<span id="cb97-10"><a href="transform.html#cb97-10"></a><span class="co">#&gt; 2  2013     1     1             4             20</span></span>
+<span id="cb97-11"><a href="transform.html#cb97-11"></a><span class="co">#&gt; 3  2013     1     1             2             33</span></span>
+<span id="cb97-12"><a href="transform.html#cb97-12"></a><span class="co">#&gt; 4  2013     1     1            -1            -18</span></span>
+<span id="cb97-13"><a href="transform.html#cb97-13"></a><span class="co">#&gt; 5  2013     1     1            -6            -25</span></span>
+<span id="cb97-14"><a href="transform.html#cb97-14"></a><span class="co">#&gt; 6  2013     1     1            -4             12</span></span>
+<span id="cb97-15"><a href="transform.html#cb97-15"></a><span class="co">#&gt; # … with 336,770 more rows</span></span></code></pre></div>
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>¿Te sorprende el resultado de ejecutar el siguiente código? ¿Cómo tratan por defecto las funciones auxiliares de <code>select()</code> a las palabras en mayúsculas o en minúsculas? ¿Cómo puedes cambiar ese comportamiento predeterminado?</li>
 </ol>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="transform.html#cb86-1"></a><span class="kw">select</span>(vuelos, <span class="kw">contains</span>(<span class="st">&quot;SALIDA&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="transform.html#cb98-1"></a><span class="kw">select</span>(vuelos, <span class="kw">contains</span>(<span class="st">&quot;SALIDA&quot;</span>))</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
 </h3>
 <p>La función <code>contains()</code> (“contiene”) no distingue entre mayúsculas y minúsculas, por eso puede identificar sin problema todas las variables que contienen “salida”. Si queremos cambiar este comportamiento y que sí las diferencie, entonces debemos agregar el argumento <code>ignore.case = FALSE</code> (por defecto, es TRUE):</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="transform.html#cb87-1"></a><span class="kw">select</span>(vuelos, <span class="kw">contains</span>(<span class="st">&quot;SALIDA&quot;</span>, <span class="dt">ignore.case =</span> <span class="ot">FALSE</span>))</span>
-<span id="cb87-2"><a href="transform.html#cb87-2"></a><span class="co">#&gt; # A tibble: 336,776 x 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="transform.html#cb99-1"></a><span class="kw">select</span>(vuelos, <span class="kw">contains</span>(<span class="st">&quot;SALIDA&quot;</span>, <span class="dt">ignore.case =</span> <span class="ot">FALSE</span>))</span>
+<span id="cb99-2"><a href="transform.html#cb99-2"></a><span class="co">#&gt; # A tibble: 336,776 x 0</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -845,6 +974,55 @@ Solución
 <h3>
 Solución
 </h3>
+<p>Los datos de estas variables son de tal forma que las 6:59 AM toman el valor 659. Luego, el número de horas desde la media noche es:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="transform.html#cb100-1"></a><span class="dv">659</span><span class="op">%/%</span><span class="dv">100</span> <span class="co">#division entera</span></span>
+<span id="cb100-2"><a href="transform.html#cb100-2"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
+<p>La cantidad de minutos en esas 6 horas:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="transform.html#cb101-1"></a><span class="dv">659</span><span class="op">%/%</span><span class="dv">100</span> <span class="op">*</span><span class="dv">60</span></span>
+<span id="cb101-2"><a href="transform.html#cb101-2"></a><span class="co">#&gt; [1] 360</span></span></code></pre></div>
+<p>Solo queda sumar los 59 minutos:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="transform.html#cb102-1"></a><span class="dv">659</span> <span class="op">%%</span><span class="st"> </span><span class="dv">100</span> <span class="co">#resto</span></span>
+<span id="cb102-2"><a href="transform.html#cb102-2"></a><span class="co">#&gt; [1] 59</span></span></code></pre></div>
+<p>Entonces, el número de minutos transcurridos desde las 00:00 hasta las 6:59 AM son:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="transform.html#cb103-1"></a><span class="dv">659</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="dv">60</span> <span class="op">+</span><span class="st"> </span><span class="dv">659</span> <span class="op">%%</span><span class="st"> </span><span class="dv">100</span> </span>
+<span id="cb103-2"><a href="transform.html#cb103-2"></a><span class="co">#&gt; [1] 419</span></span></code></pre></div>
+<p>Sin embargo, la medianoche toma el valor 24:00 con lo cual el número de minutos desde la medianoche es 1440 en lugar de 0. Para resolver esto usamos nuevamente <code>%%</code>.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="transform.html#cb104-1"></a>(<span class="dv">659</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="dv">60</span> <span class="op">+</span><span class="st"> </span><span class="dv">659</span> <span class="op">%%</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%%</span><span class="st"> </span><span class="dv">1440</span> <span class="co">#mismo resultado anterior</span></span>
+<span id="cb104-2"><a href="transform.html#cb104-2"></a><span class="co">#&gt; [1] 419</span></span>
+<span id="cb104-3"><a href="transform.html#cb104-3"></a></span>
+<span id="cb104-4"><a href="transform.html#cb104-4"></a>(<span class="dv">2400</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="dv">60</span> <span class="op">+</span><span class="st"> </span><span class="dv">2400</span> <span class="op">%%</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%%</span><span class="st"> </span><span class="dv">1440</span> <span class="co">#cero minutos desde la medianoche</span></span>
+<span id="cb104-5"><a href="transform.html#cb104-5"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="transform.html#cb105-1"></a><span class="kw">mutate</span>(vuelos, <span class="dt">salida_programada_min =</span> (salida_programada <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="dv">60</span> <span class="op">+</span><span class="st"> </span>salida_programada <span class="op">%%</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%%</span><span class="st"> </span><span class="dv">1440</span>)</span>
+<span id="cb105-2"><a href="transform.html#cb105-2"></a><span class="co">#&gt; # A tibble: 336,776 x 20</span></span>
+<span id="cb105-3"><a href="transform.html#cb105-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb105-4"><a href="transform.html#cb105-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb105-5"><a href="transform.html#cb105-5"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
+<span id="cb105-6"><a href="transform.html#cb105-6"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
+<span id="cb105-7"><a href="transform.html#cb105-7"></a><span class="co">#&gt; 3  2013     1     1            542              540             2</span></span>
+<span id="cb105-8"><a href="transform.html#cb105-8"></a><span class="co">#&gt; 4  2013     1     1            544              545            -1</span></span>
+<span id="cb105-9"><a href="transform.html#cb105-9"></a><span class="co">#&gt; 5  2013     1     1            554              600            -6</span></span>
+<span id="cb105-10"><a href="transform.html#cb105-10"></a><span class="co">#&gt; 6  2013     1     1            554              558            -4</span></span>
+<span id="cb105-11"><a href="transform.html#cb105-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 14 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb105-12"><a href="transform.html#cb105-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb105-13"><a href="transform.html#cb105-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb105-14"><a href="transform.html#cb105-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb105-15"><a href="transform.html#cb105-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;, salida_programada_min &lt;dbl&gt;</span></span>
+<span id="cb105-16"><a href="transform.html#cb105-16"></a></span>
+<span id="cb105-17"><a href="transform.html#cb105-17"></a><span class="kw">mutate</span>(vuelos, <span class="dt">horario_salida_min =</span> (horario_salida <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="dv">60</span> <span class="op">+</span><span class="st"> </span>horario_salida <span class="op">%%</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%%</span><span class="st"> </span><span class="dv">1440</span>)</span>
+<span id="cb105-18"><a href="transform.html#cb105-18"></a><span class="co">#&gt; # A tibble: 336,776 x 20</span></span>
+<span id="cb105-19"><a href="transform.html#cb105-19"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb105-20"><a href="transform.html#cb105-20"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb105-21"><a href="transform.html#cb105-21"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
+<span id="cb105-22"><a href="transform.html#cb105-22"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
+<span id="cb105-23"><a href="transform.html#cb105-23"></a><span class="co">#&gt; 3  2013     1     1            542              540             2</span></span>
+<span id="cb105-24"><a href="transform.html#cb105-24"></a><span class="co">#&gt; 4  2013     1     1            544              545            -1</span></span>
+<span id="cb105-25"><a href="transform.html#cb105-25"></a><span class="co">#&gt; 5  2013     1     1            554              600            -6</span></span>
+<span id="cb105-26"><a href="transform.html#cb105-26"></a><span class="co">#&gt; 6  2013     1     1            554              558            -4</span></span>
+<span id="cb105-27"><a href="transform.html#cb105-27"></a><span class="co">#&gt; # … with 336,770 more rows, and 14 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb105-28"><a href="transform.html#cb105-28"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb105-29"><a href="transform.html#cb105-29"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb105-30"><a href="transform.html#cb105-30"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb105-31"><a href="transform.html#cb105-31"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;, horario_salida_min &lt;dbl&gt;</span></span></code></pre></div>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>Compara <code>tiempo_vuelo</code> con <code>horario_llegada - horario_salida</code>. ¿Qué esperas ver? ¿Qué ves? ¿Qué necesitas hacer para arreglarlo?</li>
@@ -853,6 +1031,7 @@ Solución
 <h3>
 Solución
 </h3>
+<p>Lo que se espera es que <code>tiempo_vuelo</code> = <code>horario_llegada</code> - <code>horario_salida</code>.</p>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Compara <code>horario_salida</code>, <code>salida_programada</code>, y <code>atraso_salida</code>. ¿Cómo esperarías que esos tres números estén relacionados?</li>
