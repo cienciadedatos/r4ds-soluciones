@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10 Tibbles | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10 Tibbles | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -435,128 +436,124 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Solución
 </h3>
 <p>Los objetos que son tibbles lo indican cuando se imprimen en la consola. Por ejemplo, <code>vuelos</code> es un tibble:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="tibbles.html#cb91-1"></a>vuelos</span>
-<span id="cb91-2"><a href="tibbles.html#cb91-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
-<span id="cb91-3"><a href="tibbles.html#cb91-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
-<span id="cb91-4"><a href="tibbles.html#cb91-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
-<span id="cb91-5"><a href="tibbles.html#cb91-5"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
-<span id="cb91-6"><a href="tibbles.html#cb91-6"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
-<span id="cb91-7"><a href="tibbles.html#cb91-7"></a><span class="co">#&gt; 3  2013     1     1            542              540             2</span></span>
-<span id="cb91-8"><a href="tibbles.html#cb91-8"></a><span class="co">#&gt; 4  2013     1     1            544              545            -1</span></span>
-<span id="cb91-9"><a href="tibbles.html#cb91-9"></a><span class="co">#&gt; 5  2013     1     1            554              600            -6</span></span>
-<span id="cb91-10"><a href="tibbles.html#cb91-10"></a><span class="co">#&gt; 6  2013     1     1            554              558            -4</span></span>
-<span id="cb91-11"><a href="tibbles.html#cb91-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
-<span id="cb91-12"><a href="tibbles.html#cb91-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
-<span id="cb91-13"><a href="tibbles.html#cb91-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
-<span id="cb91-14"><a href="tibbles.html#cb91-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
-<span id="cb91-15"><a href="tibbles.html#cb91-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="tibbles.html#cb109-1"></a>vuelos</span>
+<span id="cb109-2"><a href="tibbles.html#cb109-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
+<span id="cb109-3"><a href="tibbles.html#cb109-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb109-4"><a href="tibbles.html#cb109-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb109-5"><a href="tibbles.html#cb109-5"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
+<span id="cb109-6"><a href="tibbles.html#cb109-6"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
+<span id="cb109-7"><a href="tibbles.html#cb109-7"></a><span class="co">#&gt; 3  2013     1     1            542              540             2</span></span>
+<span id="cb109-8"><a href="tibbles.html#cb109-8"></a><span class="co">#&gt; 4  2013     1     1            544              545            -1</span></span>
+<span id="cb109-9"><a href="tibbles.html#cb109-9"></a><span class="co">#&gt; 5  2013     1     1            554              600            -6</span></span>
+<span id="cb109-10"><a href="tibbles.html#cb109-10"></a><span class="co">#&gt; 6  2013     1     1            554              558            -4</span></span>
+<span id="cb109-11"><a href="tibbles.html#cb109-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb109-12"><a href="tibbles.html#cb109-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, aerolinea &lt;chr&gt;,</span></span>
+<span id="cb109-13"><a href="tibbles.html#cb109-13"></a><span class="co">#&gt; #   vuelo &lt;int&gt;, codigo_cola &lt;chr&gt;, origen &lt;chr&gt;, destino &lt;chr&gt;,</span></span>
+<span id="cb109-14"><a href="tibbles.html#cb109-14"></a><span class="co">#&gt; #   tiempo_vuelo &lt;dbl&gt;, distancia &lt;dbl&gt;, hora &lt;dbl&gt;, minuto &lt;dbl&gt;,</span></span>
+<span id="cb109-15"><a href="tibbles.html#cb109-15"></a><span class="co">#&gt; #   fecha_hora &lt;dttm&gt;</span></span></code></pre></div>
 <p><code>mtautos</code>, en cambio, es un data frame clásico:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="tibbles.html#cb92-1"></a>mtautos</span>
-<span id="cb92-2"><a href="tibbles.html#cb92-2"></a><span class="co">#&gt;                     millas cilindros cilindrada caballos  eje peso velocidad</span></span>
-<span id="cb92-3"><a href="tibbles.html#cb92-3"></a><span class="co">#&gt; Mazda RX4             21.0         6      160.0      110 3.90 2.62      16.5</span></span>
-<span id="cb92-4"><a href="tibbles.html#cb92-4"></a><span class="co">#&gt; Mazda RX4 Wag         21.0         6      160.0      110 3.90 2.88      17.0</span></span>
-<span id="cb92-5"><a href="tibbles.html#cb92-5"></a><span class="co">#&gt; Datsun 710            22.8         4      108.0       93 3.85 2.32      18.6</span></span>
-<span id="cb92-6"><a href="tibbles.html#cb92-6"></a><span class="co">#&gt; Hornet 4 Drive        21.4         6      258.0      110 3.08 3.21      19.4</span></span>
-<span id="cb92-7"><a href="tibbles.html#cb92-7"></a><span class="co">#&gt; Hornet Sportabout     18.7         8      360.0      175 3.15 3.44      17.0</span></span>
-<span id="cb92-8"><a href="tibbles.html#cb92-8"></a><span class="co">#&gt; Valiant               18.1         6      225.0      105 2.76 3.46      20.2</span></span>
-<span id="cb92-9"><a href="tibbles.html#cb92-9"></a><span class="co">#&gt; Duster 360            14.3         8      360.0      245 3.21 3.57      15.8</span></span>
-<span id="cb92-10"><a href="tibbles.html#cb92-10"></a><span class="co">#&gt; Merc 240D             24.4         4      146.7       62 3.69 3.19      20.0</span></span>
-<span id="cb92-11"><a href="tibbles.html#cb92-11"></a><span class="co">#&gt; Merc 230              22.8         4      140.8       95 3.92 3.15      22.9</span></span>
-<span id="cb92-12"><a href="tibbles.html#cb92-12"></a><span class="co">#&gt; Merc 280              19.2         6      167.6      123 3.92 3.44      18.3</span></span>
-<span id="cb92-13"><a href="tibbles.html#cb92-13"></a><span class="co">#&gt; Merc 280C             17.8         6      167.6      123 3.92 3.44      18.9</span></span>
-<span id="cb92-14"><a href="tibbles.html#cb92-14"></a><span class="co">#&gt; Merc 450SE            16.4         8      275.8      180 3.07 4.07      17.4</span></span>
-<span id="cb92-15"><a href="tibbles.html#cb92-15"></a><span class="co">#&gt; Merc 450SL            17.3         8      275.8      180 3.07 3.73      17.6</span></span>
-<span id="cb92-16"><a href="tibbles.html#cb92-16"></a><span class="co">#&gt; Merc 450SLC           15.2         8      275.8      180 3.07 3.78      18.0</span></span>
-<span id="cb92-17"><a href="tibbles.html#cb92-17"></a><span class="co">#&gt; Cadillac Fleetwood    10.4         8      472.0      205 2.93 5.25      18.0</span></span>
-<span id="cb92-18"><a href="tibbles.html#cb92-18"></a><span class="co">#&gt; Lincoln Continental   10.4         8      460.0      215 3.00 5.42      17.8</span></span>
-<span id="cb92-19"><a href="tibbles.html#cb92-19"></a><span class="co">#&gt; Chrysler Imperial     14.7         8      440.0      230 3.23 5.34      17.4</span></span>
-<span id="cb92-20"><a href="tibbles.html#cb92-20"></a><span class="co">#&gt; Fiat 128              32.4         4       78.7       66 4.08 2.20      19.5</span></span>
-<span id="cb92-21"><a href="tibbles.html#cb92-21"></a><span class="co">#&gt; Honda Civic           30.4         4       75.7       52 4.93 1.61      18.5</span></span>
-<span id="cb92-22"><a href="tibbles.html#cb92-22"></a><span class="co">#&gt; Toyota Corolla        33.9         4       71.1       65 4.22 1.83      19.9</span></span>
-<span id="cb92-23"><a href="tibbles.html#cb92-23"></a><span class="co">#&gt; Toyota Corona         21.5         4      120.1       97 3.70 2.46      20.0</span></span>
-<span id="cb92-24"><a href="tibbles.html#cb92-24"></a><span class="co">#&gt; Dodge Challenger      15.5         8      318.0      150 2.76 3.52      16.9</span></span>
-<span id="cb92-25"><a href="tibbles.html#cb92-25"></a><span class="co">#&gt; AMC Javelin           15.2         8      304.0      150 3.15 3.44      17.3</span></span>
-<span id="cb92-26"><a href="tibbles.html#cb92-26"></a><span class="co">#&gt; Camaro Z28            13.3         8      350.0      245 3.73 3.84      15.4</span></span>
-<span id="cb92-27"><a href="tibbles.html#cb92-27"></a><span class="co">#&gt; Pontiac Firebird      19.2         8      400.0      175 3.08 3.85      17.1</span></span>
-<span id="cb92-28"><a href="tibbles.html#cb92-28"></a><span class="co">#&gt; Fiat X1-9             27.3         4       79.0       66 4.08 1.94      18.9</span></span>
-<span id="cb92-29"><a href="tibbles.html#cb92-29"></a><span class="co">#&gt; Porsche 914-2         26.0         4      120.3       91 4.43 2.14      16.7</span></span>
-<span id="cb92-30"><a href="tibbles.html#cb92-30"></a><span class="co">#&gt; Lotus Europa          30.4         4       95.1      113 3.77 1.51      16.9</span></span>
-<span id="cb92-31"><a href="tibbles.html#cb92-31"></a><span class="co">#&gt; Ford Pantera L        15.8         8      351.0      264 4.22 3.17      14.5</span></span>
-<span id="cb92-32"><a href="tibbles.html#cb92-32"></a><span class="co">#&gt; Ferrari Dino          19.7         6      145.0      175 3.62 2.77      15.5</span></span>
-<span id="cb92-33"><a href="tibbles.html#cb92-33"></a><span class="co">#&gt; Maserati Bora         15.0         8      301.0      335 3.54 3.57      14.6</span></span>
-<span id="cb92-34"><a href="tibbles.html#cb92-34"></a><span class="co">#&gt; Volvo 142E            21.4         4      121.0      109 4.11 2.78      18.6</span></span>
-<span id="cb92-35"><a href="tibbles.html#cb92-35"></a><span class="co">#&gt;                     forma transmision cambios carburadores</span></span>
-<span id="cb92-36"><a href="tibbles.html#cb92-36"></a><span class="co">#&gt; Mazda RX4               0           1       4            4</span></span>
-<span id="cb92-37"><a href="tibbles.html#cb92-37"></a><span class="co">#&gt; Mazda RX4 Wag           0           1       4            4</span></span>
-<span id="cb92-38"><a href="tibbles.html#cb92-38"></a><span class="co">#&gt; Datsun 710              1           1       4            1</span></span>
-<span id="cb92-39"><a href="tibbles.html#cb92-39"></a><span class="co">#&gt; Hornet 4 Drive          1           0       3            1</span></span>
-<span id="cb92-40"><a href="tibbles.html#cb92-40"></a><span class="co">#&gt; Hornet Sportabout       0           0       3            2</span></span>
-<span id="cb92-41"><a href="tibbles.html#cb92-41"></a><span class="co">#&gt; Valiant                 1           0       3            1</span></span>
-<span id="cb92-42"><a href="tibbles.html#cb92-42"></a><span class="co">#&gt; Duster 360              0           0       3            4</span></span>
-<span id="cb92-43"><a href="tibbles.html#cb92-43"></a><span class="co">#&gt; Merc 240D               1           0       4            2</span></span>
-<span id="cb92-44"><a href="tibbles.html#cb92-44"></a><span class="co">#&gt; Merc 230                1           0       4            2</span></span>
-<span id="cb92-45"><a href="tibbles.html#cb92-45"></a><span class="co">#&gt; Merc 280                1           0       4            4</span></span>
-<span id="cb92-46"><a href="tibbles.html#cb92-46"></a><span class="co">#&gt; Merc 280C               1           0       4            4</span></span>
-<span id="cb92-47"><a href="tibbles.html#cb92-47"></a><span class="co">#&gt; Merc 450SE              0           0       3            3</span></span>
-<span id="cb92-48"><a href="tibbles.html#cb92-48"></a><span class="co">#&gt; Merc 450SL              0           0       3            3</span></span>
-<span id="cb92-49"><a href="tibbles.html#cb92-49"></a><span class="co">#&gt; Merc 450SLC             0           0       3            3</span></span>
-<span id="cb92-50"><a href="tibbles.html#cb92-50"></a><span class="co">#&gt; Cadillac Fleetwood      0           0       3            4</span></span>
-<span id="cb92-51"><a href="tibbles.html#cb92-51"></a><span class="co">#&gt; Lincoln Continental     0           0       3            4</span></span>
-<span id="cb92-52"><a href="tibbles.html#cb92-52"></a><span class="co">#&gt; Chrysler Imperial       0           0       3            4</span></span>
-<span id="cb92-53"><a href="tibbles.html#cb92-53"></a><span class="co">#&gt; Fiat 128                1           1       4            1</span></span>
-<span id="cb92-54"><a href="tibbles.html#cb92-54"></a><span class="co">#&gt; Honda Civic             1           1       4            2</span></span>
-<span id="cb92-55"><a href="tibbles.html#cb92-55"></a><span class="co">#&gt; Toyota Corolla          1           1       4            1</span></span>
-<span id="cb92-56"><a href="tibbles.html#cb92-56"></a><span class="co">#&gt; Toyota Corona           1           0       3            1</span></span>
-<span id="cb92-57"><a href="tibbles.html#cb92-57"></a><span class="co">#&gt; Dodge Challenger        0           0       3            2</span></span>
-<span id="cb92-58"><a href="tibbles.html#cb92-58"></a><span class="co">#&gt; AMC Javelin             0           0       3            2</span></span>
-<span id="cb92-59"><a href="tibbles.html#cb92-59"></a><span class="co">#&gt; Camaro Z28              0           0       3            4</span></span>
-<span id="cb92-60"><a href="tibbles.html#cb92-60"></a><span class="co">#&gt; Pontiac Firebird        0           0       3            2</span></span>
-<span id="cb92-61"><a href="tibbles.html#cb92-61"></a><span class="co">#&gt; Fiat X1-9               1           1       4            1</span></span>
-<span id="cb92-62"><a href="tibbles.html#cb92-62"></a><span class="co">#&gt; Porsche 914-2           0           1       5            2</span></span>
-<span id="cb92-63"><a href="tibbles.html#cb92-63"></a><span class="co">#&gt; Lotus Europa            1           1       5            2</span></span>
-<span id="cb92-64"><a href="tibbles.html#cb92-64"></a><span class="co">#&gt; Ford Pantera L          0           1       5            4</span></span>
-<span id="cb92-65"><a href="tibbles.html#cb92-65"></a><span class="co">#&gt; Ferrari Dino            0           1       5            6</span></span>
-<span id="cb92-66"><a href="tibbles.html#cb92-66"></a><span class="co">#&gt; Maserati Bora           0           1       5            8</span></span>
-<span id="cb92-67"><a href="tibbles.html#cb92-67"></a><span class="co">#&gt; Volvo 142E              1           1       4            2</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="tibbles.html#cb110-1"></a>mtautos</span>
+<span id="cb110-2"><a href="tibbles.html#cb110-2"></a><span class="co">#&gt;                     millas cilindros cilindrada caballos  eje peso velocidad</span></span>
+<span id="cb110-3"><a href="tibbles.html#cb110-3"></a><span class="co">#&gt; Mazda RX4             21.0         6      160.0      110 3.90 2.62      16.5</span></span>
+<span id="cb110-4"><a href="tibbles.html#cb110-4"></a><span class="co">#&gt; Mazda RX4 Wag         21.0         6      160.0      110 3.90 2.88      17.0</span></span>
+<span id="cb110-5"><a href="tibbles.html#cb110-5"></a><span class="co">#&gt; Datsun 710            22.8         4      108.0       93 3.85 2.32      18.6</span></span>
+<span id="cb110-6"><a href="tibbles.html#cb110-6"></a><span class="co">#&gt; Hornet 4 Drive        21.4         6      258.0      110 3.08 3.21      19.4</span></span>
+<span id="cb110-7"><a href="tibbles.html#cb110-7"></a><span class="co">#&gt; Hornet Sportabout     18.7         8      360.0      175 3.15 3.44      17.0</span></span>
+<span id="cb110-8"><a href="tibbles.html#cb110-8"></a><span class="co">#&gt; Valiant               18.1         6      225.0      105 2.76 3.46      20.2</span></span>
+<span id="cb110-9"><a href="tibbles.html#cb110-9"></a><span class="co">#&gt; Duster 360            14.3         8      360.0      245 3.21 3.57      15.8</span></span>
+<span id="cb110-10"><a href="tibbles.html#cb110-10"></a><span class="co">#&gt; Merc 240D             24.4         4      146.7       62 3.69 3.19      20.0</span></span>
+<span id="cb110-11"><a href="tibbles.html#cb110-11"></a><span class="co">#&gt; Merc 230              22.8         4      140.8       95 3.92 3.15      22.9</span></span>
+<span id="cb110-12"><a href="tibbles.html#cb110-12"></a><span class="co">#&gt; Merc 280              19.2         6      167.6      123 3.92 3.44      18.3</span></span>
+<span id="cb110-13"><a href="tibbles.html#cb110-13"></a><span class="co">#&gt; Merc 280C             17.8         6      167.6      123 3.92 3.44      18.9</span></span>
+<span id="cb110-14"><a href="tibbles.html#cb110-14"></a><span class="co">#&gt; Merc 450SE            16.4         8      275.8      180 3.07 4.07      17.4</span></span>
+<span id="cb110-15"><a href="tibbles.html#cb110-15"></a><span class="co">#&gt; Merc 450SL            17.3         8      275.8      180 3.07 3.73      17.6</span></span>
+<span id="cb110-16"><a href="tibbles.html#cb110-16"></a><span class="co">#&gt; Merc 450SLC           15.2         8      275.8      180 3.07 3.78      18.0</span></span>
+<span id="cb110-17"><a href="tibbles.html#cb110-17"></a><span class="co">#&gt; Cadillac Fleetwood    10.4         8      472.0      205 2.93 5.25      18.0</span></span>
+<span id="cb110-18"><a href="tibbles.html#cb110-18"></a><span class="co">#&gt; Lincoln Continental   10.4         8      460.0      215 3.00 5.42      17.8</span></span>
+<span id="cb110-19"><a href="tibbles.html#cb110-19"></a><span class="co">#&gt; Chrysler Imperial     14.7         8      440.0      230 3.23 5.34      17.4</span></span>
+<span id="cb110-20"><a href="tibbles.html#cb110-20"></a><span class="co">#&gt; Fiat 128              32.4         4       78.7       66 4.08 2.20      19.5</span></span>
+<span id="cb110-21"><a href="tibbles.html#cb110-21"></a><span class="co">#&gt; Honda Civic           30.4         4       75.7       52 4.93 1.61      18.5</span></span>
+<span id="cb110-22"><a href="tibbles.html#cb110-22"></a><span class="co">#&gt; Toyota Corolla        33.9         4       71.1       65 4.22 1.83      19.9</span></span>
+<span id="cb110-23"><a href="tibbles.html#cb110-23"></a><span class="co">#&gt; Toyota Corona         21.5         4      120.1       97 3.70 2.46      20.0</span></span>
+<span id="cb110-24"><a href="tibbles.html#cb110-24"></a><span class="co">#&gt; Dodge Challenger      15.5         8      318.0      150 2.76 3.52      16.9</span></span>
+<span id="cb110-25"><a href="tibbles.html#cb110-25"></a><span class="co">#&gt; AMC Javelin           15.2         8      304.0      150 3.15 3.44      17.3</span></span>
+<span id="cb110-26"><a href="tibbles.html#cb110-26"></a><span class="co">#&gt; Camaro Z28            13.3         8      350.0      245 3.73 3.84      15.4</span></span>
+<span id="cb110-27"><a href="tibbles.html#cb110-27"></a><span class="co">#&gt; Pontiac Firebird      19.2         8      400.0      175 3.08 3.85      17.1</span></span>
+<span id="cb110-28"><a href="tibbles.html#cb110-28"></a><span class="co">#&gt; Fiat X1-9             27.3         4       79.0       66 4.08 1.94      18.9</span></span>
+<span id="cb110-29"><a href="tibbles.html#cb110-29"></a><span class="co">#&gt; Porsche 914-2         26.0         4      120.3       91 4.43 2.14      16.7</span></span>
+<span id="cb110-30"><a href="tibbles.html#cb110-30"></a><span class="co">#&gt; Lotus Europa          30.4         4       95.1      113 3.77 1.51      16.9</span></span>
+<span id="cb110-31"><a href="tibbles.html#cb110-31"></a><span class="co">#&gt; Ford Pantera L        15.8         8      351.0      264 4.22 3.17      14.5</span></span>
+<span id="cb110-32"><a href="tibbles.html#cb110-32"></a><span class="co">#&gt; Ferrari Dino          19.7         6      145.0      175 3.62 2.77      15.5</span></span>
+<span id="cb110-33"><a href="tibbles.html#cb110-33"></a><span class="co">#&gt; Maserati Bora         15.0         8      301.0      335 3.54 3.57      14.6</span></span>
+<span id="cb110-34"><a href="tibbles.html#cb110-34"></a><span class="co">#&gt; Volvo 142E            21.4         4      121.0      109 4.11 2.78      18.6</span></span>
+<span id="cb110-35"><a href="tibbles.html#cb110-35"></a><span class="co">#&gt;                     forma transmision cambios carburadores</span></span>
+<span id="cb110-36"><a href="tibbles.html#cb110-36"></a><span class="co">#&gt; Mazda RX4               0           1       4            4</span></span>
+<span id="cb110-37"><a href="tibbles.html#cb110-37"></a><span class="co">#&gt; Mazda RX4 Wag           0           1       4            4</span></span>
+<span id="cb110-38"><a href="tibbles.html#cb110-38"></a><span class="co">#&gt; Datsun 710              1           1       4            1</span></span>
+<span id="cb110-39"><a href="tibbles.html#cb110-39"></a><span class="co">#&gt; Hornet 4 Drive          1           0       3            1</span></span>
+<span id="cb110-40"><a href="tibbles.html#cb110-40"></a><span class="co">#&gt; Hornet Sportabout       0           0       3            2</span></span>
+<span id="cb110-41"><a href="tibbles.html#cb110-41"></a><span class="co">#&gt; Valiant                 1           0       3            1</span></span>
+<span id="cb110-42"><a href="tibbles.html#cb110-42"></a><span class="co">#&gt; Duster 360              0           0       3            4</span></span>
+<span id="cb110-43"><a href="tibbles.html#cb110-43"></a><span class="co">#&gt; Merc 240D               1           0       4            2</span></span>
+<span id="cb110-44"><a href="tibbles.html#cb110-44"></a><span class="co">#&gt; Merc 230                1           0       4            2</span></span>
+<span id="cb110-45"><a href="tibbles.html#cb110-45"></a><span class="co">#&gt; Merc 280                1           0       4            4</span></span>
+<span id="cb110-46"><a href="tibbles.html#cb110-46"></a><span class="co">#&gt; Merc 280C               1           0       4            4</span></span>
+<span id="cb110-47"><a href="tibbles.html#cb110-47"></a><span class="co">#&gt; Merc 450SE              0           0       3            3</span></span>
+<span id="cb110-48"><a href="tibbles.html#cb110-48"></a><span class="co">#&gt; Merc 450SL              0           0       3            3</span></span>
+<span id="cb110-49"><a href="tibbles.html#cb110-49"></a><span class="co">#&gt; Merc 450SLC             0           0       3            3</span></span>
+<span id="cb110-50"><a href="tibbles.html#cb110-50"></a><span class="co">#&gt; Cadillac Fleetwood      0           0       3            4</span></span>
+<span id="cb110-51"><a href="tibbles.html#cb110-51"></a><span class="co">#&gt; Lincoln Continental     0           0       3            4</span></span>
+<span id="cb110-52"><a href="tibbles.html#cb110-52"></a><span class="co">#&gt; Chrysler Imperial       0           0       3            4</span></span>
+<span id="cb110-53"><a href="tibbles.html#cb110-53"></a><span class="co">#&gt; Fiat 128                1           1       4            1</span></span>
+<span id="cb110-54"><a href="tibbles.html#cb110-54"></a><span class="co">#&gt; Honda Civic             1           1       4            2</span></span>
+<span id="cb110-55"><a href="tibbles.html#cb110-55"></a><span class="co">#&gt; Toyota Corolla          1           1       4            1</span></span>
+<span id="cb110-56"><a href="tibbles.html#cb110-56"></a><span class="co">#&gt; Toyota Corona           1           0       3            1</span></span>
+<span id="cb110-57"><a href="tibbles.html#cb110-57"></a><span class="co">#&gt; Dodge Challenger        0           0       3            2</span></span>
+<span id="cb110-58"><a href="tibbles.html#cb110-58"></a><span class="co">#&gt; AMC Javelin             0           0       3            2</span></span>
+<span id="cb110-59"><a href="tibbles.html#cb110-59"></a><span class="co">#&gt; Camaro Z28              0           0       3            4</span></span>
+<span id="cb110-60"><a href="tibbles.html#cb110-60"></a><span class="co">#&gt; Pontiac Firebird        0           0       3            2</span></span>
+<span id="cb110-61"><a href="tibbles.html#cb110-61"></a><span class="co">#&gt; Fiat X1-9               1           1       4            1</span></span>
+<span id="cb110-62"><a href="tibbles.html#cb110-62"></a><span class="co">#&gt; Porsche 914-2           0           1       5            2</span></span>
+<span id="cb110-63"><a href="tibbles.html#cb110-63"></a><span class="co">#&gt; Lotus Europa            1           1       5            2</span></span>
+<span id="cb110-64"><a href="tibbles.html#cb110-64"></a><span class="co">#&gt; Ford Pantera L          0           1       5            4</span></span>
+<span id="cb110-65"><a href="tibbles.html#cb110-65"></a><span class="co">#&gt; Ferrari Dino            0           1       5            6</span></span>
+<span id="cb110-66"><a href="tibbles.html#cb110-66"></a><span class="co">#&gt; Maserati Bora           0           1       5            8</span></span>
+<span id="cb110-67"><a href="tibbles.html#cb110-67"></a><span class="co">#&gt; Volvo 142E              1           1       4            2</span></span></code></pre></div>
 <p>También se puede utilizar la función <code>is_tibble()</code> para comprobar si un objeto lo es:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="tibbles.html#cb93-1"></a><span class="kw">is_tibble</span>(vuelos)</span>
-<span id="cb93-2"><a href="tibbles.html#cb93-2"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb93-3"><a href="tibbles.html#cb93-3"></a><span class="kw">is_tibble</span>(mtautos)</span>
-<span id="cb93-4"><a href="tibbles.html#cb93-4"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="tibbles.html#cb111-1"></a><span class="kw">is_tibble</span>(vuelos)</span>
+<span id="cb111-2"><a href="tibbles.html#cb111-2"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb111-3"><a href="tibbles.html#cb111-3"></a><span class="kw">is_tibble</span>(mtautos)</span>
+<span id="cb111-4"><a href="tibbles.html#cb111-4"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>Compara y contrasta las siguientes operaciones aplicadas a un <code>data.frame</code> y a un tibble equivalente. ¿Qué es diferente? ¿Por qué podría causarte problemas el comportamiento por defecto del data frame?</li>
 </ol>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="tibbles.html#cb94-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">abc =</span> <span class="dv">1</span>, <span class="dt">xyz =</span> <span class="st">&quot;a&quot;</span>)</span>
-<span id="cb94-2"><a href="tibbles.html#cb94-2"></a>df<span class="op">$</span>x</span>
-<span id="cb94-3"><a href="tibbles.html#cb94-3"></a>df[, <span class="st">&quot;xyz&quot;</span>]</span>
-<span id="cb94-4"><a href="tibbles.html#cb94-4"></a>df[, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;xyz&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="tibbles.html#cb112-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">abc =</span> <span class="dv">1</span>, <span class="dt">xyz =</span> <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb112-2"><a href="tibbles.html#cb112-2"></a>df<span class="op">$</span>x</span>
+<span id="cb112-3"><a href="tibbles.html#cb112-3"></a>df[, <span class="st">&quot;xyz&quot;</span>]</span>
+<span id="cb112-4"><a href="tibbles.html#cb112-4"></a>df[, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;xyz&quot;</span>)]</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
 </h3>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="tibbles.html#cb95-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">abc =</span> <span class="dv">1</span>, <span class="dt">xyz =</span> <span class="st">&quot;a&quot;</span>)</span>
-<span id="cb95-2"><a href="tibbles.html#cb95-2"></a>df<span class="op">$</span>x</span>
-<span id="cb95-3"><a href="tibbles.html#cb95-3"></a><span class="co">#&gt; [1] a</span></span>
-<span id="cb95-4"><a href="tibbles.html#cb95-4"></a><span class="co">#&gt; Levels: a</span></span>
-<span id="cb95-5"><a href="tibbles.html#cb95-5"></a>df[, <span class="st">&quot;xyz&quot;</span>]</span>
-<span id="cb95-6"><a href="tibbles.html#cb95-6"></a><span class="co">#&gt; [1] a</span></span>
-<span id="cb95-7"><a href="tibbles.html#cb95-7"></a><span class="co">#&gt; Levels: a</span></span>
-<span id="cb95-8"><a href="tibbles.html#cb95-8"></a>df[, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;xyz&quot;</span>)]</span>
-<span id="cb95-9"><a href="tibbles.html#cb95-9"></a><span class="co">#&gt;   abc xyz</span></span>
-<span id="cb95-10"><a href="tibbles.html#cb95-10"></a><span class="co">#&gt; 1   1   a</span></span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="tibbles.html#cb113-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">abc =</span> <span class="dv">1</span>, <span class="dt">xyz =</span> <span class="st">&quot;a&quot;</span>)</span>
+<span id="cb113-2"><a href="tibbles.html#cb113-2"></a>df<span class="op">$</span>x</span>
+<span id="cb113-3"><a href="tibbles.html#cb113-3"></a><span class="co">#&gt; [1] &quot;a&quot;</span></span>
+<span id="cb113-4"><a href="tibbles.html#cb113-4"></a>df[, <span class="st">&quot;xyz&quot;</span>]</span>
+<span id="cb113-5"><a href="tibbles.html#cb113-5"></a><span class="co">#&gt; [1] &quot;a&quot;</span></span>
+<span id="cb113-6"><a href="tibbles.html#cb113-6"></a>df[, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;xyz&quot;</span>)]</span>
+<span id="cb113-7"><a href="tibbles.html#cb113-7"></a><span class="co">#&gt;   abc xyz</span></span>
+<span id="cb113-8"><a href="tibbles.html#cb113-8"></a><span class="co">#&gt; 1   1   a</span></span></code></pre></div>
 <p>Ahora, convirtamos <code>df</code> en un tibble:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="tibbles.html#cb96-1"></a>tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="tibbles.html#cb114-1"></a>tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(df)</span></code></pre></div>
 <p>Y apliquemos las mismas operaciones:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="tibbles.html#cb97-1"></a>df<span class="op">$</span>x</span>
-<span id="cb97-2"><a href="tibbles.html#cb97-2"></a><span class="co">#&gt; [1] a</span></span>
-<span id="cb97-3"><a href="tibbles.html#cb97-3"></a><span class="co">#&gt; Levels: a</span></span>
-<span id="cb97-4"><a href="tibbles.html#cb97-4"></a>df[, <span class="st">&quot;xyz&quot;</span>]</span>
-<span id="cb97-5"><a href="tibbles.html#cb97-5"></a><span class="co">#&gt; [1] a</span></span>
-<span id="cb97-6"><a href="tibbles.html#cb97-6"></a><span class="co">#&gt; Levels: a</span></span>
-<span id="cb97-7"><a href="tibbles.html#cb97-7"></a>df[, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;xyz&quot;</span>)]</span>
-<span id="cb97-8"><a href="tibbles.html#cb97-8"></a><span class="co">#&gt;   abc xyz</span></span>
-<span id="cb97-9"><a href="tibbles.html#cb97-9"></a><span class="co">#&gt; 1   1   a</span></span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="tibbles.html#cb115-1"></a>df<span class="op">$</span>x</span>
+<span id="cb115-2"><a href="tibbles.html#cb115-2"></a><span class="co">#&gt; [1] &quot;a&quot;</span></span>
+<span id="cb115-3"><a href="tibbles.html#cb115-3"></a>df[, <span class="st">&quot;xyz&quot;</span>]</span>
+<span id="cb115-4"><a href="tibbles.html#cb115-4"></a><span class="co">#&gt; [1] &quot;a&quot;</span></span>
+<span id="cb115-5"><a href="tibbles.html#cb115-5"></a>df[, <span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;xyz&quot;</span>)]</span>
+<span id="cb115-6"><a href="tibbles.html#cb115-6"></a><span class="co">#&gt;   abc xyz</span></span>
+<span id="cb115-7"><a href="tibbles.html#cb115-7"></a><span class="co">#&gt; 1   1   a</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Si tienes el nombre de una variable guardada en un objeto, p.e., <code>var &lt;- "horario_salida"</code>, ¿cómo puedes extraer esta variable de un tibble?</li>
@@ -566,48 +563,48 @@ Solución
 Solución
 </h3>
 <p>Para exatraerla como tibble:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="tibbles.html#cb98-1"></a>vuelos[,var]</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="tibbles.html#cb116-1"></a>vuelos[,var]</span></code></pre></div>
 <p>Para extraer los valores</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="tibbles.html#cb99-1"></a>vuelos[[var]]</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="tibbles.html#cb117-1"></a>vuelos[[var]]</span></code></pre></div>
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Practica referenciar nombres no sintácticos en el siguiente data frame:</li>
 </ol>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="tibbles.html#cb100-1"></a>molesto &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb100-2"><a href="tibbles.html#cb100-2"></a>  <span class="st">`</span><span class="dt">1</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
-<span id="cb100-3"><a href="tibbles.html#cb100-3"></a>  <span class="st">`</span><span class="dt">2</span><span class="st">`</span> =<span class="st"> `</span><span class="dt">1</span><span class="st">`</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(<span class="st">`</span><span class="dt">1</span><span class="st">`</span>))</span>
-<span id="cb100-4"><a href="tibbles.html#cb100-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="tibbles.html#cb118-1"></a>molesto &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb118-2"><a href="tibbles.html#cb118-2"></a>  <span class="st">`</span><span class="dt">1</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb118-3"><a href="tibbles.html#cb118-3"></a>  <span class="st">`</span><span class="dt">2</span><span class="st">`</span> =<span class="st"> `</span><span class="dt">1</span><span class="st">`</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(<span class="st">`</span><span class="dt">1</span><span class="st">`</span>))</span>
+<span id="cb118-4"><a href="tibbles.html#cb118-4"></a>)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Extrayendo la variable llamada <code>1</code>.</li>
 </ol>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="tibbles.html#cb101-1"></a>molesto<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></span>
-<span id="cb101-2"><a href="tibbles.html#cb101-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="tibbles.html#cb119-1"></a>molesto<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></span>
+<span id="cb119-2"><a href="tibbles.html#cb119-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
 <p>o</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="tibbles.html#cb102-1"></a>molesto[[<span class="st">&quot;1&quot;</span>]]</span>
-<span id="cb102-2"><a href="tibbles.html#cb102-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="tibbles.html#cb120-1"></a>molesto[[<span class="st">&quot;1&quot;</span>]]</span>
+<span id="cb120-2"><a href="tibbles.html#cb120-2"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Generando un gráfico de dispersión de <code>1</code> vs <code>2</code>.</li>
 </ol>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="tibbles.html#cb103-1"></a><span class="kw">ggplot</span>(molesto, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">1</span><span class="st">`</span>, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="tibbles.html#cb121-1"></a><span class="kw">ggplot</span>(molesto, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">1</span><span class="st">`</span>, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="10-tibble_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Creando una nueva columna llamada <code>3</code> que sea el resultado de la división de <code>2</code> por <code>1</code>.</li>
 </ol>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="tibbles.html#cb104-1"></a>molesto &lt;-<span class="st"> </span><span class="kw">mutate</span>(molesto, <span class="st">`</span><span class="dt">3</span><span class="st">`</span> =<span class="st"> `</span><span class="dt">2</span><span class="st">`</span> <span class="op">/</span><span class="st"> `</span><span class="dt">1</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="tibbles.html#cb122-1"></a>molesto &lt;-<span class="st"> </span><span class="kw">mutate</span>(molesto, <span class="st">`</span><span class="dt">3</span><span class="st">`</span> =<span class="st"> `</span><span class="dt">2</span><span class="st">`</span> <span class="op">/</span><span class="st"> `</span><span class="dt">1</span><span class="st">`</span>)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Renombrando las columnas como <code>uno</code>, <code>dos</code> y <code>tres</code>.</li>
 </ol>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="tibbles.html#cb105-1"></a><span class="kw">rename</span>(molesto, <span class="dt">uno =</span> <span class="st">`</span><span class="dt">1</span><span class="st">`</span>, <span class="dt">dos =</span> <span class="st">`</span><span class="dt">2</span><span class="st">`</span>, <span class="dt">tres =</span> <span class="st">`</span><span class="dt">3</span><span class="st">`</span>)</span>
-<span id="cb105-2"><a href="tibbles.html#cb105-2"></a><span class="co">#&gt; # A tibble: 10 x 3</span></span>
-<span id="cb105-3"><a href="tibbles.html#cb105-3"></a><span class="co">#&gt;     uno    dos  tres</span></span>
-<span id="cb105-4"><a href="tibbles.html#cb105-4"></a><span class="co">#&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb105-5"><a href="tibbles.html#cb105-5"></a><span class="co">#&gt; 1     1  0.600 0.600</span></span>
-<span id="cb105-6"><a href="tibbles.html#cb105-6"></a><span class="co">#&gt; 2     2  4.26  2.13 </span></span>
-<span id="cb105-7"><a href="tibbles.html#cb105-7"></a><span class="co">#&gt; 3     3  3.56  1.19 </span></span>
-<span id="cb105-8"><a href="tibbles.html#cb105-8"></a><span class="co">#&gt; 4     4  7.99  2.00 </span></span>
-<span id="cb105-9"><a href="tibbles.html#cb105-9"></a><span class="co">#&gt; 5     5 10.6   2.12 </span></span>
-<span id="cb105-10"><a href="tibbles.html#cb105-10"></a><span class="co">#&gt; 6     6 13.1   2.19 </span></span>
-<span id="cb105-11"><a href="tibbles.html#cb105-11"></a><span class="co">#&gt; # … with 4 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="tibbles.html#cb123-1"></a><span class="kw">rename</span>(molesto, <span class="dt">uno =</span> <span class="st">`</span><span class="dt">1</span><span class="st">`</span>, <span class="dt">dos =</span> <span class="st">`</span><span class="dt">2</span><span class="st">`</span>, <span class="dt">tres =</span> <span class="st">`</span><span class="dt">3</span><span class="st">`</span>)</span>
+<span id="cb123-2"><a href="tibbles.html#cb123-2"></a><span class="co">#&gt; # A tibble: 10 x 3</span></span>
+<span id="cb123-3"><a href="tibbles.html#cb123-3"></a><span class="co">#&gt;     uno    dos  tres</span></span>
+<span id="cb123-4"><a href="tibbles.html#cb123-4"></a><span class="co">#&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb123-5"><a href="tibbles.html#cb123-5"></a><span class="co">#&gt; 1     1  0.600 0.600</span></span>
+<span id="cb123-6"><a href="tibbles.html#cb123-6"></a><span class="co">#&gt; 2     2  4.26  2.13 </span></span>
+<span id="cb123-7"><a href="tibbles.html#cb123-7"></a><span class="co">#&gt; 3     3  3.56  1.19 </span></span>
+<span id="cb123-8"><a href="tibbles.html#cb123-8"></a><span class="co">#&gt; 4     4  7.99  2.00 </span></span>
+<span id="cb123-9"><a href="tibbles.html#cb123-9"></a><span class="co">#&gt; 5     5 10.6   2.12 </span></span>
+<span id="cb123-10"><a href="tibbles.html#cb123-10"></a><span class="co">#&gt; 6     6 13.1   2.19 </span></span>
+<span id="cb123-11"><a href="tibbles.html#cb123-11"></a><span class="co">#&gt; # … with 4 more rows</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>¿Qué hace <code>tibble::enframe()</code>? ¿Cuándo lo usarías?</li>
 </ol>
@@ -616,14 +613,14 @@ Solución
 Solución
 </h3>
 <p>La función <code>enframe()</code> del paquete <strong>tibble</strong> permite convertir vectores nombrados o listas en <em>data frames</em> de una o dos columnas. Las columnas creadas tienen por nombre <code>name</code> (nombres) y <code>value</code> (valor).</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="tibbles.html#cb106-1"></a><span class="kw">enframe</span>(<span class="kw">c</span>(<span class="dt">a =</span> <span class="dv">5</span>, <span class="dt">b =</span> <span class="dv">7</span>, <span class="dt">c =</span> <span class="dv">9</span>, <span class="dt">d =</span> <span class="dv">11</span>))</span>
-<span id="cb106-2"><a href="tibbles.html#cb106-2"></a><span class="co">#&gt; # A tibble: 4 x 2</span></span>
-<span id="cb106-3"><a href="tibbles.html#cb106-3"></a><span class="co">#&gt;   name  value</span></span>
-<span id="cb106-4"><a href="tibbles.html#cb106-4"></a><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;</span></span>
-<span id="cb106-5"><a href="tibbles.html#cb106-5"></a><span class="co">#&gt; 1 a         5</span></span>
-<span id="cb106-6"><a href="tibbles.html#cb106-6"></a><span class="co">#&gt; 2 b         7</span></span>
-<span id="cb106-7"><a href="tibbles.html#cb106-7"></a><span class="co">#&gt; 3 c         9</span></span>
-<span id="cb106-8"><a href="tibbles.html#cb106-8"></a><span class="co">#&gt; 4 d        11</span></span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="tibbles.html#cb124-1"></a><span class="kw">enframe</span>(<span class="kw">c</span>(<span class="dt">a =</span> <span class="dv">5</span>, <span class="dt">b =</span> <span class="dv">7</span>, <span class="dt">c =</span> <span class="dv">9</span>, <span class="dt">d =</span> <span class="dv">11</span>))</span>
+<span id="cb124-2"><a href="tibbles.html#cb124-2"></a><span class="co">#&gt; # A tibble: 4 x 2</span></span>
+<span id="cb124-3"><a href="tibbles.html#cb124-3"></a><span class="co">#&gt;   name  value</span></span>
+<span id="cb124-4"><a href="tibbles.html#cb124-4"></a><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;</span></span>
+<span id="cb124-5"><a href="tibbles.html#cb124-5"></a><span class="co">#&gt; 1 a         5</span></span>
+<span id="cb124-6"><a href="tibbles.html#cb124-6"></a><span class="co">#&gt; 2 b         7</span></span>
+<span id="cb124-7"><a href="tibbles.html#cb124-7"></a><span class="co">#&gt; 3 c         9</span></span>
+<span id="cb124-8"><a href="tibbles.html#cb124-8"></a><span class="co">#&gt; 4 d        11</span></span></code></pre></div>
 </div>
 <ol start="6" style="list-style-type: decimal">
 <li>¿Qué opción controla cuántos nombres de columnas adicionales se muestran al pie de un tibble?</li>
@@ -633,18 +630,18 @@ Solución
 Solución
 </h3>
 <p>A través del argumento <code>n_extra</code> se puede controlar cuántas columnas adicionales mostrar.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="tibbles.html#cb107-1"></a><span class="kw">print</span>(vuelos, <span class="dt">n_extra =</span> <span class="dv">3</span>)</span>
-<span id="cb107-2"><a href="tibbles.html#cb107-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
-<span id="cb107-3"><a href="tibbles.html#cb107-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
-<span id="cb107-4"><a href="tibbles.html#cb107-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
-<span id="cb107-5"><a href="tibbles.html#cb107-5"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
-<span id="cb107-6"><a href="tibbles.html#cb107-6"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
-<span id="cb107-7"><a href="tibbles.html#cb107-7"></a><span class="co">#&gt; 3  2013     1     1            542              540             2</span></span>
-<span id="cb107-8"><a href="tibbles.html#cb107-8"></a><span class="co">#&gt; 4  2013     1     1            544              545            -1</span></span>
-<span id="cb107-9"><a href="tibbles.html#cb107-9"></a><span class="co">#&gt; 5  2013     1     1            554              600            -6</span></span>
-<span id="cb107-10"><a href="tibbles.html#cb107-10"></a><span class="co">#&gt; 6  2013     1     1            554              558            -4</span></span>
-<span id="cb107-11"><a href="tibbles.html#cb107-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
-<span id="cb107-12"><a href="tibbles.html#cb107-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, …</span></span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="tibbles.html#cb125-1"></a><span class="kw">print</span>(vuelos, <span class="dt">n_extra =</span> <span class="dv">3</span>)</span>
+<span id="cb125-2"><a href="tibbles.html#cb125-2"></a><span class="co">#&gt; # A tibble: 336,776 x 19</span></span>
+<span id="cb125-3"><a href="tibbles.html#cb125-3"></a><span class="co">#&gt;    anio   mes   dia horario_salida salida_programa… atraso_salida</span></span>
+<span id="cb125-4"><a href="tibbles.html#cb125-4"></a><span class="co">#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;int&gt;            &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span id="cb125-5"><a href="tibbles.html#cb125-5"></a><span class="co">#&gt; 1  2013     1     1            517              515             2</span></span>
+<span id="cb125-6"><a href="tibbles.html#cb125-6"></a><span class="co">#&gt; 2  2013     1     1            533              529             4</span></span>
+<span id="cb125-7"><a href="tibbles.html#cb125-7"></a><span class="co">#&gt; 3  2013     1     1            542              540             2</span></span>
+<span id="cb125-8"><a href="tibbles.html#cb125-8"></a><span class="co">#&gt; 4  2013     1     1            544              545            -1</span></span>
+<span id="cb125-9"><a href="tibbles.html#cb125-9"></a><span class="co">#&gt; 5  2013     1     1            554              600            -6</span></span>
+<span id="cb125-10"><a href="tibbles.html#cb125-10"></a><span class="co">#&gt; 6  2013     1     1            554              558            -4</span></span>
+<span id="cb125-11"><a href="tibbles.html#cb125-11"></a><span class="co">#&gt; # … with 336,770 more rows, and 13 more variables: horario_llegada &lt;int&gt;,</span></span>
+<span id="cb125-12"><a href="tibbles.html#cb125-12"></a><span class="co">#&gt; #   llegada_programada &lt;int&gt;, atraso_llegada &lt;dbl&gt;, …</span></span></code></pre></div>
 <p>En este <a href="https://tibble.tidyverse.org/reference/formatting.html">enlace</a> puedes ver más información sobre las opciones para imprimir tibbles.</p>
 </div>
 

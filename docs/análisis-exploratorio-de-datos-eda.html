@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Análisis exploratorio de datos (EDA) | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Análisis exploratorio de datos (EDA) | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -427,8 +428,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">7</span> Análisis exploratorio de datos (<em>EDA</em>)</h1>
 <div id="introducción-4" class="section level2">
 <h2><span class="header-section-number">7.1</span> Introducción</h2>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="análisis-exploratorio-de-datos-eda.html#cb89-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb89-2"><a href="análisis-exploratorio-de-datos-eda.html#cb89-2"></a><span class="kw">library</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="análisis-exploratorio-de-datos-eda.html#cb107-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb107-2"><a href="análisis-exploratorio-de-datos-eda.html#cb107-2"></a><span class="kw">library</span>(datos)</span></code></pre></div>
 </div>
 <div id="preguntas" class="section level2 unnumbered">
 <h2>7.3 Variación</h2>
@@ -650,9 +651,9 @@ Solución
 gráficos unidimensionales. Por ejemplo, algunos puntos en la gráfica a continuación tienen
 una combinación inusual de valores <code>x</code> y <code>y</code>, que hace que algunos puntos sean valores atípicos
 aún cuando sus valores <code>x</code> e <code>y</code> parecen normales cuando son examinados de manera individual.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="análisis-exploratorio-de-datos-eda.html#cb90-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamantes) <span class="op">+</span></span>
-<span id="cb90-2"><a href="análisis-exploratorio-de-datos-eda.html#cb90-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
-<span id="cb90-3"><a href="análisis-exploratorio-de-datos-eda.html#cb90-3"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">11</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">11</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="análisis-exploratorio-de-datos-eda.html#cb108-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> diamantes) <span class="op">+</span></span>
+<span id="cb108-2"><a href="análisis-exploratorio-de-datos-eda.html#cb108-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb108-3"><a href="análisis-exploratorio-de-datos-eda.html#cb108-3"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">11</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">11</span>))</span></code></pre></div>
 <p><img src="07-eda_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>¿Por qué es mejor usar un diagrama de dispersión que un diagrama basado en rangos en este caso?</p></li>
 </ol>

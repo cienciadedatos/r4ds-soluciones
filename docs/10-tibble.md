@@ -131,11 +131,9 @@ df[, c("abc", "xyz")]
 ```r
 df <- data.frame(abc = 1, xyz = "a")
 df$x
-#> [1] a
-#> Levels: a
+#> [1] "a"
 df[, "xyz"]
-#> [1] a
-#> Levels: a
+#> [1] "a"
 df[, c("abc", "xyz")]
 #>   abc xyz
 #> 1   1   a
@@ -151,11 +149,9 @@ Y apliquemos las mismas operaciones:
 
 ```r
 df$x
-#> [1] a
-#> Levels: a
+#> [1] "a"
 df[, "xyz"]
-#> [1] a
-#> Levels: a
+#> [1] "a"
 df[, c("abc", "xyz")]
 #>   abc xyz
 #> 1   1   a

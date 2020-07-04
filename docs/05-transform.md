@@ -50,7 +50,25 @@ filter(vuelos, atraso_llegada >= 120)
 
 
 ```r
+#Opcion 1
 filter(vuelos, destino %in% c("IAH", "HOU"))
+#> # A tibble: 9,313 x 19
+#>    anio   mes   dia horario_salida salida_programa… atraso_salida
+#>   <int> <int> <int>          <int>            <int>         <dbl>
+#> 1  2013     1     1            517              515             2
+#> 2  2013     1     1            533              529             4
+#> 3  2013     1     1            623              627            -4
+#> 4  2013     1     1            728              732            -4
+#> 5  2013     1     1            739              739             0
+#> 6  2013     1     1            908              908             0
+#> # … with 9,307 more rows, and 13 more variables: horario_llegada <int>,
+#> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
+#> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
+#> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
+#> #   fecha_hora <dttm>
+
+#Opción 2
+filter(vuelos,destino == "IAH" | destino ==  "HOU" )
 #> # A tibble: 9,313 x 19
 #>    anio   mes   dia horario_salida salida_programa… atraso_salida
 #>   <int> <int> <int>          <int>            <int>         <dbl>
@@ -132,17 +150,17 @@ filter(vuelos, mes %in% c(7, 8, 9))
 
 
 ```r
-filter(vuelos, atraso_salida <= 0 & atraso_llegada > 90)
-#> # A tibble: 146 x 19
+filter(vuelos, atraso_salida <= 0 & atraso_llegada > 120)
+#> # A tibble: 29 x 19
 #>    anio   mes   dia horario_salida salida_programa… atraso_salida
 #>   <int> <int> <int>          <int>            <int>         <dbl>
-#> 1  2013     1    13            729              730            -1
-#> 2  2013     1    16            658              705            -7
-#> 3  2013     1    25           2023             2025            -2
-#> 4  2013     1    27           1419             1420            -1
-#> 5  2013     1    28           1154             1200            -6
-#> 6  2013    10     5           1650             1659            -9
-#> # … with 140 more rows, and 13 more variables: horario_llegada <int>,
+#> 1  2013     1    27           1419             1420            -1
+#> 2  2013    10     7           1350             1350             0
+#> 3  2013    10     7           1357             1359            -2
+#> 4  2013    10    16            657              700            -3
+#> 5  2013    11     1            658              700            -2
+#> 6  2013     3    18           1844             1847            -3
+#> # … with 23 more rows, and 13 more variables: horario_llegada <int>,
 #> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
 #> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
 #> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
@@ -184,8 +202,8 @@ filter(vuelos, atraso_salida >= 60 & atraso_salida - atraso_llegada > 30)
 
 
 ```r
-filter(vuelos, horario_salida %in% 000:600)
-#> # A tibble: 9,344 x 19
+filter(vuelos,horario_salida %in% c(1:600) | horario_salida == 2400 )
+#> # A tibble: 9,373 x 19
 #>    anio   mes   dia horario_salida salida_programa… atraso_salida
 #>   <int> <int> <int>          <int>            <int>         <dbl>
 #> 1  2013     1     1            517              515             2
@@ -194,7 +212,7 @@ filter(vuelos, horario_salida %in% 000:600)
 #> 4  2013     1     1            544              545            -1
 #> 5  2013     1     1            554              600            -6
 #> 6  2013     1     1            554              558            -4
-#> # … with 9,338 more rows, and 13 more variables: horario_llegada <int>,
+#> # … with 9,367 more rows, and 13 more variables: horario_llegada <int>,
 #> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
 #> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
 #> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
@@ -269,8 +287,56 @@ Los vuelos que tienen `NA` en su horario de salida, también lo tienen en el hor
 <div class="solucion">
 <h3>Solución</h3>
 
-$x ^ 0 = 1$, por lo que `NA ^ 0 == 1`
 
+
+```r
+x <- c(NA) 
+
+is.na(x)
+#> [1] TRUE
+```
+
+La función `is.na()` determina si falta un valor y devuelve un valor lógico `TRUE` en los casos en que es NA (Not Available). 
+
+
+```r
+x^0
+#> [1] 1
+```
+
+Dado que el NA podría tomar cualquier valor, es práctico pensar que cualquier número (aunque sea muy grande) a la potencia cero es igual a 1.
+
+
+```r
+x | TRUE
+#> [1] TRUE
+```
+
+Es igual a TRUE pues el NA se entiende como un valor lógico (`TRUE` or `FALSE`) y por lógica proposicional `TRUE` | `TRUE`  y  `FALSE` | `TRUE` es siempre igual a `TRUE`.
+
+
+```r
+x & FALSE
+#> [1] FALSE
+```
+Es igual a `TRUE` pues el NA se entiende como un valor lógico (`TRUE` or `FALSE`) y por lógica proposicional `TRUE`&`FALSE` y `FALSE`&`FALSE` es siempre `FALSE`.
+
+El contraejemplo a la regla general:
+
+
+```r
+x * 0
+#> [1] NA
+```
+
+
+```r
+Inf*0
+#> [1] NaN
+```
+
+En este contraejemplo puede ser útil pensar que el `NA` puede tomar cualquier valor, incluso podría ser un número muy grande; el cual al multiplicarse por cero nos da una indeterminación que `R` define como `NaN` (Not a Number). Por otro lado, si el `NA` fuese un valor pequeño, entonces `NA*0` sería igual a cero. Luego, es mejor pensar en `x*0` como un `NA` porque no sabemos en cual de los dos casos anteriores estamos.
+ 
 </div>
 
 
@@ -286,22 +352,24 @@ $x ^ 0 = 1$, por lo que `NA ^ 0 == 1`
 
 
 ```r
-arrange(vuelos, desc(is.na(horario_salida)))
+arrange(vuelos,desc(is.na(tiempo_vuelo)))
 #> # A tibble: 336,776 x 19
 #>    anio   mes   dia horario_salida salida_programa… atraso_salida
 #>   <int> <int> <int>          <int>            <int>         <dbl>
-#> 1  2013     1     1             NA             1630            NA
-#> 2  2013     1     1             NA             1935            NA
-#> 3  2013     1     1             NA             1500            NA
-#> 4  2013     1     1             NA              600            NA
-#> 5  2013     1     2             NA             1540            NA
-#> 6  2013     1     2             NA             1620            NA
+#> 1  2013     1     1           1525             1530            -5
+#> 2  2013     1     1           1528             1459            29
+#> 3  2013     1     1           1740             1745            -5
+#> 4  2013     1     1           1807             1738            29
+#> 5  2013     1     1           1939             1840            59
+#> 6  2013     1     1           1952             1930            22
 #> # … with 336,770 more rows, and 13 more variables: horario_llegada <int>,
 #> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
 #> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
 #> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
 #> #   fecha_hora <dttm>
 ```
+
+Se usa la variable `tiempo_vuelo` porque es la que contiene mayor número de NA´s. 
 
 </div>
 
@@ -357,7 +425,28 @@ arrange(vuelos, atraso_salida)
 <div class="solucion">
 <h3>Solución</h3>
 
+Si se considera que la velocidad es igual a `distancia`/`tiempo_vuelo` (distancia recorrida por minuto).
 
+Los datos ordenados de forma descendente nos dará como resultado los vuelos más rápidos primero.
+
+
+```r
+arrange(vuelos,desc(distancia/tiempo_vuelo))
+#> # A tibble: 336,776 x 19
+#>    anio   mes   dia horario_salida salida_programa… atraso_salida
+#>   <int> <int> <int>          <int>            <int>         <dbl>
+#> 1  2013     5    25           1709             1700             9
+#> 2  2013     7     2           1558             1513            45
+#> 3  2013     5    13           2040             2025            15
+#> 4  2013     3    23           1914             1910             4
+#> 5  2013     1    12           1559             1600            -1
+#> 6  2013    11    17            650              655            -5
+#> # … with 336,770 more rows, and 13 more variables: horario_llegada <int>,
+#> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
+#> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
+#> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
+#> #   fecha_hora <dttm>
+```
 
 </div>
 
@@ -366,6 +455,45 @@ arrange(vuelos, atraso_salida)
 <div class="solucion">
 <h3>Solución</h3>
 
+Vuelos que viajaron más lejos (considerando la distancia en millas entre aeropuertos):
+
+```r
+arrange(vuelos,desc(distancia))
+#> # A tibble: 336,776 x 19
+#>    anio   mes   dia horario_salida salida_programa… atraso_salida
+#>   <int> <int> <int>          <int>            <int>         <dbl>
+#> 1  2013     1     1            857              900            -3
+#> 2  2013     1     2            909              900             9
+#> 3  2013     1     3            914              900            14
+#> 4  2013     1     4            900              900             0
+#> 5  2013     1     5            858              900            -2
+#> 6  2013     1     6           1019              900            79
+#> # … with 336,770 more rows, and 13 more variables: horario_llegada <int>,
+#> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
+#> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
+#> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
+#> #   fecha_hora <dttm>
+```
+
+Vuelos que viajaron más cerca (considerando la distancia en millas entre aeropuertos):
+
+```r
+arrange(vuelos,distancia)
+#> # A tibble: 336,776 x 19
+#>    anio   mes   dia horario_salida salida_programa… atraso_salida
+#>   <int> <int> <int>          <int>            <int>         <dbl>
+#> 1  2013     7    27             NA              106            NA
+#> 2  2013     1     3           2127             2129            -2
+#> 3  2013     1     4           1240             1200            40
+#> 4  2013     1     4           1829             1615           134
+#> 5  2013     1     4           2128             2129            -1
+#> 6  2013     1     5           1155             1200            -5
+#> # … with 336,770 more rows, and 13 more variables: horario_llegada <int>,
+#> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
+#> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
+#> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
+#> #   fecha_hora <dttm>
+```
 
 </div>
 
@@ -413,6 +541,39 @@ select(vuelos, starts_with("horario"), starts_with("atraso"))
 #> # … with 336,770 more rows
 ```
 
+También es útil en este caso utilizar la función `ends_with()`:
+
+```r
+select(vuelos,ends_with("llegada"),ends_with("salida"))
+#> # A tibble: 336,776 x 4
+#>   horario_llegada atraso_llegada horario_salida atraso_salida
+#>             <int>          <dbl>          <int>         <dbl>
+#> 1             830             11            517             2
+#> 2             850             20            533             4
+#> 3             923             33            542             2
+#> 4            1004            -18            544            -1
+#> 5             812            -25            554            -6
+#> 6             740             12            554            -4
+#> # … with 336,770 more rows
+```
+
+Y una manera adicional es usando la función `contains()`:
+
+```r
+select(vuelos,contains("horario"),contains("atraso"))
+#> # A tibble: 336,776 x 4
+#>   horario_salida horario_llegada atraso_salida atraso_llegada
+#>            <int>           <int>         <dbl>          <dbl>
+#> 1            517             830             2             11
+#> 2            533             850             4             20
+#> 3            542             923             2             33
+#> 4            544            1004            -1            -18
+#> 5            554             812            -6            -25
+#> 6            554             740            -4             12
+#> # … with 336,770 more rows
+```
+
+
 </div>
 
 2. ¿Qué sucede si incluyes el nombre de una variable varias veces en una llamada `select()`?
@@ -447,10 +608,34 @@ vars <- c ("anio", "mes", "dia", "atraso_salida", "atraso_llegada")
 <div class="solucion">
 <h3>Solución</h3>
 
-Con la función `one_of()` podemos indicar las variables que queremos seleccionar con el nombre del vector que las contiene:
+Con la función `one_of()` podemos indicar las variables que queremos seleccionar con el nombre del vector que las contiene.
+
+La función `one_of()` selecciona todas las variables que están en el vector `vars`:
+
 
 ```r
 select(vuelos, one_of(vars))
+#> # A tibble: 336,776 x 5
+#>    anio   mes   dia atraso_salida atraso_llegada
+#>   <int> <int> <int>         <dbl>          <dbl>
+#> 1  2013     1     1             2             11
+#> 2  2013     1     1             4             20
+#> 3  2013     1     1             2             33
+#> 4  2013     1     1            -1            -18
+#> 5  2013     1     1            -6            -25
+#> 6  2013     1     1            -4             12
+#> # … with 336,770 more rows
+```
+
+Sin embargo, es posible también hacerlo de la siguiente forma (Siempre y cuando no exista una variable que se llame `vars` en el set de datos):
+
+
+```r
+select(vuelos,vars)
+#> Note: Using an external vector in selections is ambiguous.
+#> ℹ Use `all_of(vars)` instead of `vars` to silence this message.
+#> ℹ See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.
+#> This message is displayed once per session.
 #> # A tibble: 336,776 x 5
 #>    anio   mes   dia atraso_salida atraso_llegada
 #>   <int> <int> <int>         <dbl>          <dbl>
@@ -496,6 +681,82 @@ select(vuelos, contains("SALIDA", ignore.case = FALSE))
 
 <div class="solucion">
 <h3>Solución</h3>
+Los datos de estas variables son de tal forma que las 6:59 AM toman el valor 659. Luego, el número de horas desde la media noche es:
+
+
+```r
+659%/%100 #division entera
+#> [1] 6
+```
+La cantidad de minutos en esas 6 horas:
+
+
+```r
+659%/%100 *60
+#> [1] 360
+```
+
+Solo queda sumar los 59 minutos:
+
+
+```r
+659 %% 100 #resto
+#> [1] 59
+```
+
+Entonces, el número de minutos transcurridos desde las 00:00 hasta las 6:59 AM son:
+
+
+```r
+659 %/% 100 * 60 + 659 %% 100 
+#> [1] 419
+```
+
+Sin embargo, la medianoche toma el valor 24:00 con lo cual el número de minutos desde la medianoche es 1440 en lugar de 0. Para resolver esto usamos nuevamente `%%`.
+
+
+```r
+(659 %/% 100 * 60 + 659 %% 100) %% 1440 #mismo resultado anterior
+#> [1] 419
+
+(2400 %/% 100 * 60 + 2400 %% 100) %% 1440 #cero minutos desde la medianoche
+#> [1] 0
+```
+
+
+```r
+mutate(vuelos, salida_programada_min = (salida_programada %/% 100 * 60 + salida_programada %% 100) %% 1440)
+#> # A tibble: 336,776 x 20
+#>    anio   mes   dia horario_salida salida_programa… atraso_salida
+#>   <int> <int> <int>          <int>            <int>         <dbl>
+#> 1  2013     1     1            517              515             2
+#> 2  2013     1     1            533              529             4
+#> 3  2013     1     1            542              540             2
+#> 4  2013     1     1            544              545            -1
+#> 5  2013     1     1            554              600            -6
+#> 6  2013     1     1            554              558            -4
+#> # … with 336,770 more rows, and 14 more variables: horario_llegada <int>,
+#> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
+#> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
+#> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
+#> #   fecha_hora <dttm>, salida_programada_min <dbl>
+
+mutate(vuelos, horario_salida_min = (horario_salida %/% 100 * 60 + horario_salida %% 100) %% 1440)
+#> # A tibble: 336,776 x 20
+#>    anio   mes   dia horario_salida salida_programa… atraso_salida
+#>   <int> <int> <int>          <int>            <int>         <dbl>
+#> 1  2013     1     1            517              515             2
+#> 2  2013     1     1            533              529             4
+#> 3  2013     1     1            542              540             2
+#> 4  2013     1     1            544              545            -1
+#> 5  2013     1     1            554              600            -6
+#> 6  2013     1     1            554              558            -4
+#> # … with 336,770 more rows, and 14 more variables: horario_llegada <int>,
+#> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
+#> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
+#> #   tiempo_vuelo <dbl>, distancia <dbl>, hora <dbl>, minuto <dbl>,
+#> #   fecha_hora <dttm>, horario_salida_min <dbl>
+```
 
 
 </div>
@@ -504,6 +765,7 @@ select(vuelos, contains("SALIDA", ignore.case = FALSE))
 
 <div class="solucion">
 <h3>Solución</h3>
+Lo que se espera es que `tiempo_vuelo` = `horario_llegada` - `horario_salida`.
 
 </div>
 
