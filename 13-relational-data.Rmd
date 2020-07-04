@@ -18,14 +18,12 @@ library(datos)
 <h3>Solución</h3>
 
 Necesitas combinar `aeropuertos` con `vuelos` ya que el dataset `aeropuertos` 
-con tiene las coordenadas de los aeropuertos. Puedes unir las tablas por medio
+contiene las coordenadas de los aeropuertos. Puedes unir las tablas por medio
 de la variable `codigo_aeropuerto` en `aeropuertos` y `origen` y `destino` en
 `vuelos`.
 
 ```{r}
-vuelos %>%
-  left_join(aeropuertos, by = c("origen" = "codigo_aeropuerto",
-                                "destino" = "codigo_aeropuerto"))
+
 ```
 </div>
 

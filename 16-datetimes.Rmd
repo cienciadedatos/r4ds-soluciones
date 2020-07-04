@@ -168,7 +168,7 @@ Ahora que obtuvimos el primer día del año actual, podemos sumarle los meses:
 
 
 ```{r}
-floor_date(today(), "year") + month(0:11)
+floor_date(today(), "year") + months(0:11)
 ```
 
 </div>
