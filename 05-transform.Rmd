@@ -33,7 +33,11 @@ filter(vuelos, atraso_llegada >= 120)
 <h3>Solución</h3>
 
 ```{r}
+#Opcion 1
 filter(vuelos, destino %in% c("IAH", "HOU"))
+
+#Opción 2
+filter(vuelos,destino == "IAH" | destino ==  "HOU" )
 ```
 
 
@@ -70,7 +74,7 @@ filter(vuelos, mes %in% c(7, 8, 9))
 <h3>Solución</h3>
 
 ```{r}
-filter(vuelos, atraso_salida <= 0 & atraso_llegada > 90)
+filter(vuelos, atraso_salida <= 0 & atraso_llegada > 120)
 ```
 
 
@@ -92,7 +96,7 @@ filter(vuelos, atraso_salida >= 60 & atraso_salida - atraso_llegada > 30)
 <h3>Solución</h3>
 
 ```{r}
-filter(vuelos, horario_salida %in% 000:600)
+filter(vuelos,horario_salida %in% c(1:600) | horario_salida == 2400 )
 ```
 
 
@@ -109,7 +113,6 @@ Podemos reescribir el código para encontrar los vuelos que partieron en el invi
 
 ```{r}
 filter(vuelos, between(mes, 7, 9))
-
 ```
 
 </div>
@@ -134,8 +137,44 @@ Los vuelos que tienen `NA` en su horario de salida, también lo tienen en el hor
 <div class="solucion">
 <h3>Solución</h3>
 
-$x ^ 0 = 1$, por lo que `NA ^ 0 == 1`
 
+```{r}
+x <- c(NA) 
+
+is.na(x)
+```
+
+La función `is.na()` determina si falta un valor y devuelve un valor lógico `TRUE` en los casos en que es NA (Not Available). 
+
+```{r}
+x^0
+```
+
+Dado que el NA podría tomar cualquier valor, es práctico pensar que cualquier número (aunque sea muy grande) a la potencia cero es igual a 1.
+
+```{r}
+x | TRUE
+```
+
+Es igual a TRUE pues el NA se entiende como un valor lógico (`TRUE` or `FALSE`) y por lógica proposicional `TRUE` | `TRUE`  y  `FALSE` | `TRUE` es siempre igual a `TRUE`.
+
+```{r}
+x & FALSE
+```
+Es igual a `TRUE` pues el NA se entiende como un valor lógico (`TRUE` or `FALSE`) y por lógica proposicional `TRUE`&`FALSE` y `FALSE`&`FALSE` es siempre `FALSE`.
+
+El contraejemplo a la regla general:
+
+```{r}
+x * 0
+```
+
+```{r}
+Inf*0
+```
+
+En este contraejemplo puede ser útil pensar que el `NA` puede tomar cualquier valor, incluso podría ser un número muy grande; el cual al multiplicarse por cero nos da una indeterminación que `R` define como `NaN` (Not a Number). Por otro lado, si el `NA` fuese un valor pequeño, entonces `NA*0` sería igual a cero. Luego, es mejor pensar en `x*0` como un `NA` porque no sabemos en cual de los dos casos anteriores estamos.
+ 
 </div>
 
 
@@ -150,8 +189,10 @@ $x ^ 0 = 1$, por lo que `NA ^ 0 == 1`
 <h3>Solución</h3>
 
 ```{r}
-arrange(vuelos, desc(is.na(horario_salida)))
+arrange(vuelos,desc(is.na(tiempo_vuelo)))
 ```
+
+Se usa la variable `tiempo_vuelo` porque es la que contiene mayor número de NA´s. 
 
 </div>
 
@@ -177,8 +218,12 @@ arrange(vuelos, atraso_salida)
 <div class="solucion">
 <h3>Solución</h3>
 
-```{r}
+Si se considera que la velocidad es igual a `distancia`/`tiempo_vuelo` (distancia recorrida por minuto).
 
+Los datos ordenados de forma descendente nos dará como resultado los vuelos más rápidos primero.
+
+```{r}
+arrange(vuelos,desc(distancia/tiempo_vuelo))
 ```
 
 </div>
@@ -188,6 +233,15 @@ arrange(vuelos, atraso_salida)
 <div class="solucion">
 <h3>Solución</h3>
 
+Vuelos que viajaron más lejos (considerando la distancia en millas entre aeropuertos):
+```{r}
+arrange(vuelos,desc(distancia))
+```
+
+Vuelos que viajaron más cerca (considerando la distancia en millas entre aeropuertos):
+```{r}
+arrange(vuelos,distancia)
+```
 
 </div>
 
@@ -213,6 +267,17 @@ Otra forma es seleccionando las variables que empiezan con "horario" y "atraso" 
 select(vuelos, starts_with("horario"), starts_with("atraso"))
 ```
 
+También es útil en este caso utilizar la función `ends_with()`:
+```{r}
+select(vuelos,ends_with("llegada"),ends_with("salida"))
+```
+
+Y una manera adicional es usando la función `contains()`:
+```{r}
+select(vuelos,contains("horario"),contains("atraso"))
+```
+
+
 </div>
 
 2. ¿Qué sucede si incluyes el nombre de una variable varias veces en una llamada `select()`?
@@ -235,9 +300,18 @@ vars <- c ("anio", "mes", "dia", "atraso_salida", "atraso_llegada")
 <div class="solucion">
 <h3>Solución</h3>
 
-Con la función `one_of()` podemos indicar las variables que queremos seleccionar con el nombre del vector que las contiene:
+Con la función `one_of()` podemos indicar las variables que queremos seleccionar con el nombre del vector que las contiene.
+
+La función `one_of()` selecciona todas las variables que están en el vector `vars`:
+
 ```{r}
 select(vuelos, one_of(vars))
+```
+
+Sin embargo, es posible también hacerlo de la siguiente forma (Siempre y cuando no exista una variable que se llame `vars` en el set de datos):
+
+```{r}
+select(vuelos,vars)
 ```
 
 </div>
@@ -281,8 +355,43 @@ ggplot(vuelos, aes(tiempo_vuelo - tiempo_vuelo2)) + geom_histogram()
 
 <div class="solucion">
 <h3>Solución</h3>
+Los datos de estas variables son de tal forma que las 6:59 AM toman el valor 659. Luego, el número de horas desde la media noche es:
+
 ```{r}
+659%/%100 #division entera
 ```
+La cantidad de minutos en esas 6 horas:
+
+```{r}
+659%/%100 *60
+```
+
+Solo queda sumar los 59 minutos:
+
+```{r}
+659 %% 100 #resto
+```
+
+Entonces, el número de minutos transcurridos desde las 00:00 hasta las 6:59 AM son:
+
+```{r}
+659 %/% 100 * 60 + 659 %% 100 
+```
+
+Sin embargo, la medianoche toma el valor 24:00 con lo cual el número de minutos desde la medianoche es 1440 en lugar de 0. Para resolver esto usamos nuevamente `%%`.
+
+```{r}
+(659 %/% 100 * 60 + 659 %% 100) %% 1440 #mismo resultado anterior
+
+(2400 %/% 100 * 60 + 2400 %% 100) %% 1440 #cero minutos desde la medianoche
+```
+
+```{r}
+mutate(vuelos, salida_programada_min = (salida_programada %/% 100 * 60 + salida_programada %% 100) %% 1440)
+
+mutate(vuelos, horario_salida_min = (horario_salida %/% 100 * 60 + horario_salida %% 100) %% 1440)
+```
+
 
 </div>
 
@@ -290,6 +399,7 @@ ggplot(vuelos, aes(tiempo_vuelo - tiempo_vuelo2)) + geom_histogram()
 
 <div class="solucion">
 <h3>Solución</h3>
+Lo que se espera es que `tiempo_vuelo` = `horario_llegada` - `horario_salida`.
 
 </div>
 
