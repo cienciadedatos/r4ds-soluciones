@@ -40,7 +40,7 @@ por_pais <- por_pais %>%
   )
 
 por_pais
-#> # A tibble: 142 x 5
+#> # A tibble: 142 × 5
 #> # Groups:   pais, continente [142]
 #>   pais       continente data              modelo residuo          
 #>   <fct>      <fct>      <list>            <list> <list>           
@@ -74,7 +74,7 @@ por_pais %>%
 #> Warning: The `.drop` argument of `unnest()` is deprecated as of tidyr 1.0.0.
 #> All list-columns are now preserved.
 #> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_warnings()` to see where this warning was generated.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 <img src="25-model-many_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
@@ -219,10 +219,9 @@ mtautos %>%
   group_by(cilindros) %>%
   summarise(q = list(quantile(millas))) %>%
   unnest()
-#> `summarise()` ungrouping output (override with `.groups` argument)
 #> Warning: `cols` is now required when using unnest().
 #> Please use `cols = c(q)`
-#> # A tibble: 15 x 2
+#> # A tibble: 15 × 2
 #>   cilindros     q
 #>       <dbl> <dbl>
 #> 1         4  21.4

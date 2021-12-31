@@ -67,7 +67,15 @@ Necesitamos indicar cuál es el caracter que se ha utilizado como delimitador.
 datos <- "x,y\n1,'a,b'"
 
 read_delim(datos, delim = ",", quote = "'")
-#> # A tibble: 1 x 2
+#> Rows: 1 Columns: 2
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (1): y
+#> dbl (1): x
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 1 × 2
 #>       x y    
 #>   <dbl> <chr>
 #> 1     1 a,b
@@ -93,51 +101,67 @@ En el primer caso, se esperan dos columnas, pero las filas 1 y 2 tienen tres val
 
 ```r
     read_csv("a,b\n1,2,3\n4,5,6")
-#> Warning: 2 parsing failures.
-#> row col  expected    actual         file
-#>   1  -- 2 columns 3 columns literal data
-#>   2  -- 2 columns 3 columns literal data
-#> # A tibble: 2 x 2
+#> Warning: One or more parsing issues, see `problems()` for details
+#> Rows: 2 Columns: 2
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> dbl (1): a
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 2 × 2
 #>       a     b
 #>   <dbl> <dbl>
-#> 1     1     2
-#> 2     4     5
+#> 1     1    23
+#> 2     4    56
 ```
 
 En el segundo caso, en la fila 1 se esperan tres valores, pero solo hay dos, por lo que la tercera columna se completa con `NA`. En la fila dos, hay cuatro valores, por lo que el último se descarta. 
 
 ```r
     read_csv("a,b,c\n1,2\n1,2,3,4")
-#> Warning: 2 parsing failures.
-#> row col  expected    actual         file
-#>   1  -- 3 columns 2 columns literal data
-#>   2  -- 3 columns 4 columns literal data
-#> # A tibble: 2 x 3
+#> Warning: One or more parsing issues, see `problems()` for details
+#> Rows: 2 Columns: 3
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> dbl (2): a, b
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 2 × 3
 #>       a     b     c
 #>   <dbl> <dbl> <dbl>
 #> 1     1     2    NA
-#> 2     1     2     3
+#> 2     1     2    34
 ```
 
 En el tercer caso, solo hay un valor para la primera fila, por lo que se completa la segunda columna con `NA`. Además, se indica que falta una comilla de cierre, por lo que se descarta la ue no está cerrada (`"1`).
 
 ```r
     read_csv("a,b\n\"1")
-#> Warning: 2 parsing failures.
-#> row col                     expected    actual         file
-#>   1  a  closing quote at end of file           literal data
-#>   1  -- 2 columns                    1 columns literal data
-#> # A tibble: 1 x 2
-#>       a b    
-#>   <dbl> <chr>
-#> 1     1 <NA>
+#> Rows: 0 Columns: 2
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (2): a, b
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 0 × 2
+#> # … with 2 variables: a <chr>, b <chr>
 ```
 
 En este caso, el posible problema es que, debido a que en la segunda fila `a` y `b` son caracteres, en la primera `1` y `2` también son tratados como caracteres. 
 
 ```r
     read_csv("a,b\n1,2\na,b")
-#> # A tibble: 2 x 2
+#> Rows: 2 Columns: 2
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (2): a, b
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 2 × 2
 #>   a     b    
 #>   <chr> <chr>
 #> 1 1     2    
@@ -148,7 +172,14 @@ En el último caso se produce un problema habitual de lectura de archivos csv: q
 
 ```r
     read_csv("a;b\n1;3")
-#> # A tibble: 1 x 1
+#> Rows: 1 Columns: 1
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (1): a;b
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 1 × 1
 #>   `a;b`
 #>   <chr>
 #> 1 1;3
@@ -159,8 +190,15 @@ En este caso, puede utilizarse `read_csv2()`, que espera un punto y coma como de
 
 ```r
     read_csv2("a;b\n1;3")
-#> Using ',' as decimal and '.' as grouping mark. Use read_delim() for more control.
-#> # A tibble: 1 x 2
+#> ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
+#> Rows: 1 Columns: 2
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ";"
+#> dbl (2): a, b
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 1 × 2
 #>       a     b
 #>   <dbl> <dbl>
 #> 1     1     3
@@ -242,7 +280,14 @@ Si mis datos tuviesen las fechas o las horas escritas en otro formato, podría a
 
 ```r
 read_csv("fecha\n01/01/2020\n01/02/2020")
-#> # A tibble: 2 x 1
+#> Rows: 2 Columns: 1
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (1): fecha
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 2 × 1
 #>   fecha     
 #>   <chr>     
 #> 1 01/01/2020
@@ -253,7 +298,14 @@ Si utilizamos `date_format`, podemos indicar que nuestros datos tienen la forma 
 
 ```r
 read_csv("fecha\n01/01/2020\n01/02/2020", locale = locale(date_format = "%d/%m/%Y"))
-#> # A tibble: 2 x 1
+#> Rows: 2 Columns: 1
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> date (1): fecha
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 2 × 1
 #>   fecha     
 #>   <date>    
 #> 1 2020-01-01
@@ -279,7 +331,14 @@ Esto permite que no se lea el `.` como decimal, sino solo como solo como símbol
 
 ```r
 read_csv("fecha,valor\n01/01/2020,110.251\n01/02/2020,120.285", locale = locale_latam)
-#> # A tibble: 2 x 2
+#> Rows: 2 Columns: 2
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> date (1): fecha
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 2 × 2
 #>   fecha       valor
 #>   <date>      <dbl>
 #> 1 2020-01-01 110251

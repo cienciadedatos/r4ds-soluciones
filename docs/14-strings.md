@@ -106,7 +106,7 @@ str_wrap(texto)
 str_wrap(texto, width = 40)
 #> [1] "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Mauris in risus magna.\nNulla consequat imperdiet nisl sit amet\neuismod. Sed nec molestie velit, non\ncursus neque. Suspendisse dapibus, justo\nat convallis pulvinar, nibh neque congue\nlectus, nec sollicitudin libero lacus\neget nisl. Vivamus cursus turpis id quam\naliquam, et fermentum tellus lacinia.\nAliquam a eros nunc. Pellentesque\nhabitant morbi tristique senectus et\nnetus et malesuada fames ac turpis\negestas. Nunc finibus auctor auctor."
 str_wrap(texto, width = 40, indent = 3)
-#> [1] "   Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Mauris in risus magna.\nNulla consequat imperdiet nisl sit amet\neuismod. Sed nec molestie velit, non\ncursus neque. Suspendisse dapibus, justo\nat convallis pulvinar, nibh neque congue\nlectus, nec sollicitudin libero lacus\neget nisl. Vivamus cursus turpis id quam\naliquam, et fermentum tellus lacinia.\nAliquam a eros nunc. Pellentesque\nhabitant morbi tristique senectus et\nnetus et malesuada fames ac turpis\negestas. Nunc finibus auctor auctor."
+#> [1] "   Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit. Mauris\nin risus magna. Nulla consequat\nimperdiet nisl sit amet euismod. Sed\nnec molestie velit, non cursus neque.\nSuspendisse dapibus, justo at convallis\npulvinar, nibh neque congue lectus, nec\nsollicitudin libero lacus eget nisl.\nVivamus cursus turpis id quam aliquam,\net fermentum tellus lacinia. Aliquam a\neros nunc. Pellentesque habitant morbi\ntristique senectus et netus et malesuada\nfames ac turpis egestas. Nunc finibus\nauctor auctor."
 ```
 
 </div> 
@@ -229,8 +229,10 @@ x <- "¿aló?"
 str_view(x, "\\?")
 ```
 
-<!--html_preserve--><div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"html":"<ul>\n  <li>¿aló<span class='match'>?<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"html":"<ul>\n  <li>¿aló<span class='match'>?<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Tres barras invertidas en una cadena permiten escapar una barra y el siguiente caracter escapado para poder coincidir con este último:
 
@@ -241,8 +243,10 @@ y <- "una barra seguida de una comilla: \\\""
 str_view(y, "\\\"")
 ```
 
-<!--html_preserve--><div id="htmlwidget-e5c8c404fe174e4c81bd" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"html":"<ul>\n  <li>una barra seguida de una comilla: \\<span class='match'>\"<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-e5c8c404fe174e4c81bd" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"html":"<ul>\n  <li>una barra seguida de una comilla: \\<span class='match'>\"<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 </div> 
 
@@ -266,8 +270,10 @@ Para buscar la coincidencia:
 str_view(x, "\\\"'\\\\")
 ```
 
-<!--html_preserve--><div id="htmlwidget-36aa3d2a04d42bbc2145" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-36aa3d2a04d42bbc2145">{"x":{"html":"<ul>\n  <li><span class='match'>\"'\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-36aa3d2a04d42bbc2145" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-36aa3d2a04d42bbc2145">{"x":{"html":"<ul>\n  <li><span class='match'>\"'\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 
 </div> 
@@ -287,8 +293,10 @@ x <- c("abc.d.e.f", ".1. .3", ".a.b.c", "\\.\\.\\.")
 str_view(x, "\\..\\..\\..")
 ```
 
-<!--html_preserve--><div id="htmlwidget-febe03efa1a2d8d52a86" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-febe03efa1a2d8d52a86">{"x":{"html":"<ul>\n  <li>abc<span class='match'>.d.e.f<\/span><\/li>\n  <li><span class='match'>.1. .3<\/span><\/li>\n  <li><span class='match'>.a.b.c<\/span><\/li>\n  <li>\\.\\.\\.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-febe03efa1a2d8d52a86" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-febe03efa1a2d8d52a86">{"x":{"html":"<ul>\n  <li>abc<span class='match'>.d.e.f<\/span><\/li>\n  <li><span class='match'>.1. .3<\/span><\/li>\n  <li><span class='match'>.a.b.c<\/span><\/li>\n  <li>\\.\\.\\.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 </div> 
 
@@ -309,8 +317,10 @@ x <- "$^$"
 str_view(x, "\\$\\^\\$")
 ```
 
-<!--html_preserve--><div id="htmlwidget-1fb4450895fe099f74a1" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1fb4450895fe099f74a1">{"x":{"html":"<ul>\n  <li><span class='match'>$^$<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-1fb4450895fe099f74a1" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1fb4450895fe099f74a1">{"x":{"html":"<ul>\n  <li><span class='match'>$^$<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 
 </div> 
@@ -337,8 +347,10 @@ Las palabras que empiezan con "y" podemos buscarlas utilizando el ancla de inici
 str_view(palabras, "^y", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-10b3b7155e8045a1b2ad" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-10b3b7155e8045a1b2ad">{"x":{"html":"<ul>\n  <li><span class='match'>y<\/span><\/li>\n  <li><span class='match'>y<\/span>a<\/li>\n  <li><span class='match'>y<\/span>o<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-10b3b7155e8045a1b2ad" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-10b3b7155e8045a1b2ad">{"x":{"html":"<ul>\n  <li><span class='match'>y<\/span><\/li>\n  <li><span class='match'>y<\/span>a<\/li>\n  <li><span class='match'>y<\/span>o<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Las palabras que terminen con "z" podemos buscarlas utilizando el ancla de final de cadena:
 
@@ -346,8 +358,10 @@ Las palabras que terminen con "z" podemos buscarlas utilizando el ancla de final
 str_view(palabras, "z$", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-4018eef1a407a0df6b52" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4018eef1a407a0df6b52">{"x":{"html":"<ul>\n  <li>capa<span class='match'>z<\/span><\/li>\n  <li>die<span class='match'>z<\/span><\/li>\n  <li>gonzále<span class='match'>z<\/span><\/li>\n  <li>jue<span class='match'>z<\/span><\/li>\n  <li>lópe<span class='match'>z<\/span><\/li>\n  <li>lu<span class='match'>z<\/span><\/li>\n  <li>pa<span class='match'>z<\/span><\/li>\n  <li>rodrígue<span class='match'>z<\/span><\/li>\n  <li>ve<span class='match'>z<\/span><\/li>\n  <li>vo<span class='match'>z<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-4018eef1a407a0df6b52" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4018eef1a407a0df6b52">{"x":{"html":"<ul>\n  <li>capa<span class='match'>z<\/span><\/li>\n  <li>die<span class='match'>z<\/span><\/li>\n  <li>gonzále<span class='match'>z<\/span><\/li>\n  <li>jue<span class='match'>z<\/span><\/li>\n  <li>lópe<span class='match'>z<\/span><\/li>\n  <li>lu<span class='match'>z<\/span><\/li>\n  <li>pa<span class='match'>z<\/span><\/li>\n  <li>rodrígue<span class='match'>z<\/span><\/li>\n  <li>ve<span class='match'>z<\/span><\/li>\n  <li>vo<span class='match'>z<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Las que tienen una extensión de 3 letras podemos buscarlas usando tres `.`. Pero para que solo coincida con aquellas que tienen una extensión igual a 3, tenemos que usar anclas al inicio y final de la cadena:
 
@@ -355,8 +369,10 @@ Las que tienen una extensión de 3 letras podemos buscarlas usando tres `.`. Per
 str_view(palabras, "^...$", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-5b1b2f4ad92281566982" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5b1b2f4ad92281566982">{"x":{"html":"<ul>\n  <li><span class='match'>ahí<\/span><\/li>\n  <li><span class='match'>año<\/span><\/li>\n  <li><span class='match'>así<\/span><\/li>\n  <li><span class='match'>aun<\/span><\/li>\n  <li><span class='match'>aún<\/span><\/li>\n  <li><span class='match'>con<\/span><\/li>\n  <li><span class='match'>dan<\/span><\/li>\n  <li><span class='match'>dar<\/span><\/li>\n  <li><span class='match'>del<\/span><\/li>\n  <li><span class='match'>día<\/span><\/li>\n  <li><span class='match'>dio<\/span><\/li>\n  <li><span class='match'>don<\/span><\/li>\n  <li><span class='match'>dos<\/span><\/li>\n  <li><span class='match'>era<\/span><\/li>\n  <li><span class='match'>esa<\/span><\/li>\n  <li><span class='match'>ese<\/span><\/li>\n  <li><span class='match'>eso<\/span><\/li>\n  <li><span class='match'>etc<\/span><\/li>\n  <li><span class='match'>fin<\/span><\/li>\n  <li><span class='match'>fue<\/span><\/li>\n  <li><span class='match'>han<\/span><\/li>\n  <li><span class='match'>has<\/span><\/li>\n  <li><span class='match'>hay<\/span><\/li>\n  <li><span class='match'>hoy<\/span><\/li>\n  <li><span class='match'>iba<\/span><\/li>\n  <li><span class='match'>las<\/span><\/li>\n  <li><span class='match'>les<\/span><\/li>\n  <li><span class='match'>ley<\/span><\/li>\n  <li><span class='match'>los<\/span><\/li>\n  <li><span class='match'>luz<\/span><\/li>\n  <li><span class='match'>mal<\/span><\/li>\n  <li><span class='match'>mar<\/span><\/li>\n  <li><span class='match'>más<\/span><\/li>\n  <li><span class='match'>mes<\/span><\/li>\n  <li><span class='match'>mil<\/span><\/li>\n  <li><span class='match'>mis<\/span><\/li>\n  <li><span class='match'>muy<\/span><\/li>\n  <li><span class='match'>nos<\/span><\/li>\n  <li><span class='match'>oro<\/span><\/li>\n  <li><span class='match'>paz<\/span><\/li>\n  <li><span class='match'>pie<\/span><\/li>\n  <li><span class='match'>por<\/span><\/li>\n  <li><span class='match'>que<\/span><\/li>\n  <li><span class='match'>qué<\/span><\/li>\n  <li><span class='match'>rey<\/span><\/li>\n  <li><span class='match'>río<\/span><\/li>\n  <li><span class='match'>san<\/span><\/li>\n  <li><span class='match'>sea<\/span><\/li>\n  <li><span class='match'>ser<\/span><\/li>\n  <li><span class='match'>sin<\/span><\/li>\n  <li><span class='match'>sol<\/span><\/li>\n  <li><span class='match'>son<\/span><\/li>\n  <li><span class='match'>soy<\/span><\/li>\n  <li><span class='match'>sur<\/span><\/li>\n  <li><span class='match'>sus<\/span><\/li>\n  <li><span class='match'>tal<\/span><\/li>\n  <li><span class='match'>tan<\/span><\/li>\n  <li><span class='match'>una<\/span><\/li>\n  <li><span class='match'>uno<\/span><\/li>\n  <li><span class='match'>uso<\/span><\/li>\n  <li><span class='match'>van<\/span><\/li>\n  <li><span class='match'>ver<\/span><\/li>\n  <li><span class='match'>vez<\/span><\/li>\n  <li><span class='match'>vía<\/span><\/li>\n  <li><span class='match'>vio<\/span><\/li>\n  <li><span class='match'>voy<\/span><\/li>\n  <li><span class='match'>voz<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-5b1b2f4ad92281566982" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5b1b2f4ad92281566982">{"x":{"html":"<ul>\n  <li><span class='match'>ahí<\/span><\/li>\n  <li><span class='match'>año<\/span><\/li>\n  <li><span class='match'>así<\/span><\/li>\n  <li><span class='match'>aun<\/span><\/li>\n  <li><span class='match'>aún<\/span><\/li>\n  <li><span class='match'>con<\/span><\/li>\n  <li><span class='match'>dan<\/span><\/li>\n  <li><span class='match'>dar<\/span><\/li>\n  <li><span class='match'>del<\/span><\/li>\n  <li><span class='match'>día<\/span><\/li>\n  <li><span class='match'>dio<\/span><\/li>\n  <li><span class='match'>don<\/span><\/li>\n  <li><span class='match'>dos<\/span><\/li>\n  <li><span class='match'>era<\/span><\/li>\n  <li><span class='match'>esa<\/span><\/li>\n  <li><span class='match'>ese<\/span><\/li>\n  <li><span class='match'>eso<\/span><\/li>\n  <li><span class='match'>etc<\/span><\/li>\n  <li><span class='match'>fin<\/span><\/li>\n  <li><span class='match'>fue<\/span><\/li>\n  <li><span class='match'>han<\/span><\/li>\n  <li><span class='match'>has<\/span><\/li>\n  <li><span class='match'>hay<\/span><\/li>\n  <li><span class='match'>hoy<\/span><\/li>\n  <li><span class='match'>iba<\/span><\/li>\n  <li><span class='match'>las<\/span><\/li>\n  <li><span class='match'>les<\/span><\/li>\n  <li><span class='match'>ley<\/span><\/li>\n  <li><span class='match'>los<\/span><\/li>\n  <li><span class='match'>luz<\/span><\/li>\n  <li><span class='match'>mal<\/span><\/li>\n  <li><span class='match'>mar<\/span><\/li>\n  <li><span class='match'>más<\/span><\/li>\n  <li><span class='match'>mes<\/span><\/li>\n  <li><span class='match'>mil<\/span><\/li>\n  <li><span class='match'>mis<\/span><\/li>\n  <li><span class='match'>muy<\/span><\/li>\n  <li><span class='match'>nos<\/span><\/li>\n  <li><span class='match'>oro<\/span><\/li>\n  <li><span class='match'>paz<\/span><\/li>\n  <li><span class='match'>pie<\/span><\/li>\n  <li><span class='match'>por<\/span><\/li>\n  <li><span class='match'>que<\/span><\/li>\n  <li><span class='match'>qué<\/span><\/li>\n  <li><span class='match'>rey<\/span><\/li>\n  <li><span class='match'>río<\/span><\/li>\n  <li><span class='match'>san<\/span><\/li>\n  <li><span class='match'>sea<\/span><\/li>\n  <li><span class='match'>ser<\/span><\/li>\n  <li><span class='match'>sin<\/span><\/li>\n  <li><span class='match'>sol<\/span><\/li>\n  <li><span class='match'>son<\/span><\/li>\n  <li><span class='match'>soy<\/span><\/li>\n  <li><span class='match'>sur<\/span><\/li>\n  <li><span class='match'>sus<\/span><\/li>\n  <li><span class='match'>tal<\/span><\/li>\n  <li><span class='match'>tan<\/span><\/li>\n  <li><span class='match'>una<\/span><\/li>\n  <li><span class='match'>uno<\/span><\/li>\n  <li><span class='match'>uso<\/span><\/li>\n  <li><span class='match'>van<\/span><\/li>\n  <li><span class='match'>ver<\/span><\/li>\n  <li><span class='match'>vez<\/span><\/li>\n  <li><span class='match'>vía<\/span><\/li>\n  <li><span class='match'>vio<\/span><\/li>\n  <li><span class='match'>voy<\/span><\/li>\n  <li><span class='match'>voz<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Para buscar palabras con 8 letras o más, podemos seguir la misma lógica del caso anterior, pero esta vez sin las anclas:
 
@@ -365,8 +381,10 @@ Para buscar palabras con 8 letras o más, podemos seguir la misma lógica del ca
 str_view(palabras, "........", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-25c3e940e6859592f801" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-25c3e940e6859592f801">{"x":{"html":"<ul>\n  <li><span class='match'>acciones<\/span><\/li>\n  <li><span class='match'>activida<\/span>d<\/li>\n  <li><span class='match'>activida<\/span>des<\/li>\n  <li><span class='match'>adelante<\/span><\/li>\n  <li><span class='match'>administ<\/span>ración<\/li>\n  <li><span class='match'>alrededo<\/span>r<\/li>\n  <li><span class='match'>ambiente<\/span><\/li>\n  <li><span class='match'>análisis<\/span><\/li>\n  <li><span class='match'>animales<\/span><\/li>\n  <li><span class='match'>anterior<\/span><\/li>\n  <li><span class='match'>aquellas<\/span><\/li>\n  <li><span class='match'>aquellos<\/span><\/li>\n  <li><span class='match'>argentin<\/span>a<\/li>\n  <li><span class='match'>artículo<\/span><\/li>\n  <li><span class='match'>asimismo<\/span><\/li>\n  <li><span class='match'>asociaci<\/span>ón<\/li>\n  <li><span class='match'>aspectos<\/span><\/li>\n  <li><span class='match'>atención<\/span><\/li>\n  <li><span class='match'>autorida<\/span>des<\/li>\n  <li><span class='match'>barcelon<\/span>a<\/li>\n  <li><span class='match'>bastante<\/span><\/li>\n  <li><span class='match'>cantidad<\/span><\/li>\n  <li><span class='match'>capacida<\/span>d<\/li>\n  <li><span class='match'>carácter<\/span><\/li>\n  <li><span class='match'>caracter<\/span>ísticas<\/li>\n  <li><span class='match'>comercio<\/span><\/li>\n  <li><span class='match'>comisión<\/span><\/li>\n  <li><span class='match'>compañía<\/span><\/li>\n  <li><span class='match'>comunica<\/span>ción<\/li>\n  <li><span class='match'>comunida<\/span>d<\/li>\n  <li><span class='match'>concepto<\/span><\/li>\n  <li><span class='match'>concienc<\/span>ia<\/li>\n  <li><span class='match'>condicio<\/span>nes<\/li>\n  <li><span class='match'>congreso<\/span><\/li>\n  <li><span class='match'>conjunto<\/span><\/li>\n  <li><span class='match'>conocimi<\/span>ento<\/li>\n  <li><span class='match'>consecue<\/span>ncia<\/li>\n  <li><span class='match'>consegui<\/span>r<\/li>\n  <li><span class='match'>consider<\/span>a<\/li>\n  <li><span class='match'>constitu<\/span>ción<\/li>\n  <li><span class='match'>construc<\/span>ción<\/li>\n  <li><span class='match'>contenid<\/span>o<\/li>\n  <li><span class='match'>contrari<\/span>o<\/li>\n  <li><span class='match'>creación<\/span><\/li>\n  <li><span class='match'>crecimie<\/span>nto<\/li>\n  <li><span class='match'>cualquie<\/span>r<\/li>\n  <li><span class='match'>cuestión<\/span><\/li>\n  <li><span class='match'>cultural<\/span><\/li>\n  <li><span class='match'>decisión<\/span><\/li>\n  <li><span class='match'>demasiad<\/span>o<\/li>\n  <li><span class='match'>democrac<\/span>ia<\/li>\n  <li><span class='match'>derechos<\/span><\/li>\n  <li><span class='match'>desarrol<\/span>lo<\/li>\n  <li><span class='match'>diciembr<\/span>e<\/li>\n  <li><span class='match'>diferenc<\/span>ia<\/li>\n  <li><span class='match'>diferent<\/span>es<\/li>\n  <li><span class='match'>direcció<\/span>n<\/li>\n  <li><span class='match'>director<\/span><\/li>\n  <li><span class='match'>distinta<\/span>s<\/li>\n  <li><span class='match'>distinto<\/span>s<\/li>\n  <li><span class='match'>diversas<\/span><\/li>\n  <li><span class='match'>diversos<\/span><\/li>\n  <li><span class='match'>economía<\/span><\/li>\n  <li><span class='match'>económic<\/span>a<\/li>\n  <li><span class='match'>económic<\/span>o<\/li>\n  <li><span class='match'>educació<\/span>n<\/li>\n  <li><span class='match'>ejército<\/span><\/li>\n  <li><span class='match'>eleccion<\/span>es<\/li>\n  <li><span class='match'>electora<\/span>l<\/li>\n  <li><span class='match'>elemento<\/span>s<\/li>\n  <li><span class='match'>empresas<\/span><\/li>\n  <li><span class='match'>encontra<\/span>r<\/li>\n  <li><span class='match'>encuentr<\/span>a<\/li>\n  <li><span class='match'>encuentr<\/span>an<\/li>\n  <li><span class='match'>encuentr<\/span>o<\/li>\n  <li><span class='match'>enfermed<\/span>ad<\/li>\n  <li><span class='match'>entonces<\/span><\/li>\n  <li><span class='match'>esfuerzo<\/span><\/li>\n  <li><span class='match'>española<\/span><\/li>\n  <li><span class='match'>españole<\/span>s<\/li>\n  <li><span class='match'>especial<\/span><\/li>\n  <li><span class='match'>especial<\/span>mente<\/li>\n  <li><span class='match'>estructu<\/span>ra<\/li>\n  <li><span class='match'>estudios<\/span><\/li>\n  <li><span class='match'>existenc<\/span>ia<\/li>\n  <li><span class='match'>experien<\/span>cia<\/li>\n  <li><span class='match'>expresió<\/span>n<\/li>\n  <li><span class='match'>exterior<\/span><\/li>\n  <li><span class='match'>fernando<\/span><\/li>\n  <li><span class='match'>finalmen<\/span>te<\/li>\n  <li><span class='match'>formació<\/span>n<\/li>\n  <li><span class='match'>francisc<\/span>o<\/li>\n  <li><span class='match'>generale<\/span>s<\/li>\n  <li><span class='match'>gobierno<\/span><\/li>\n  <li><span class='match'>gonzález<\/span><\/li>\n  <li><span class='match'>haciendo<\/span><\/li>\n  <li><span class='match'>hicieron<\/span><\/li>\n  <li><span class='match'>historia<\/span><\/li>\n  <li><span class='match'>hospital<\/span><\/li>\n  <li><span class='match'>imágenes<\/span><\/li>\n  <li><span class='match'>importan<\/span>cia<\/li>\n  <li><span class='match'>importan<\/span>te<\/li>\n  <li><span class='match'>importan<\/span>tes<\/li>\n  <li><span class='match'>imposibl<\/span>e<\/li>\n  <li><span class='match'>industri<\/span>a<\/li>\n  <li><span class='match'>informac<\/span>ión<\/li>\n  <li><span class='match'>instituc<\/span>iones<\/li>\n  <li><span class='match'>institut<\/span>o<\/li>\n  <li><span class='match'>interese<\/span>s<\/li>\n  <li><span class='match'>interior<\/span><\/li>\n  <li><span class='match'>internac<\/span>ional<\/li>\n  <li><span class='match'>investig<\/span>ación<\/li>\n  <li><span class='match'>izquierd<\/span>a<\/li>\n  <li><span class='match'>justicia<\/span><\/li>\n  <li><span class='match'>lenguaje<\/span><\/li>\n  <li><span class='match'>libertad<\/span><\/li>\n  <li><span class='match'>mantener<\/span><\/li>\n  <li><span class='match'>material<\/span><\/li>\n  <li><span class='match'>mediante<\/span><\/li>\n  <li><span class='match'>miembros<\/span><\/li>\n  <li><span class='match'>mientras<\/span><\/li>\n  <li><span class='match'>militare<\/span>s<\/li>\n  <li><span class='match'>millones<\/span><\/li>\n  <li><span class='match'>minister<\/span>io<\/li>\n  <li><span class='match'>ministro<\/span><\/li>\n  <li><span class='match'>momentos<\/span><\/li>\n  <li><span class='match'>movimien<\/span>to<\/li>\n  <li><span class='match'>nacional<\/span><\/li>\n  <li><span class='match'>naturale<\/span>za<\/li>\n  <li><span class='match'>necesari<\/span>o<\/li>\n  <li><span class='match'>necesida<\/span>d<\/li>\n  <li><span class='match'>nosotros<\/span><\/li>\n  <li><span class='match'>noviembr<\/span>e<\/li>\n  <li><span class='match'>nuestras<\/span><\/li>\n  <li><span class='match'>nuestros<\/span><\/li>\n  <li><span class='match'>objetivo<\/span><\/li>\n  <li><span class='match'>obstante<\/span><\/li>\n  <li><span class='match'>ocasione<\/span>s<\/li>\n  <li><span class='match'>operació<\/span>n<\/li>\n  <li><span class='match'>oposició<\/span>n<\/li>\n  <li><span class='match'>organiza<\/span>ción<\/li>\n  <li><span class='match'>paciente<\/span><\/li>\n  <li><span class='match'>paciente<\/span>s<\/li>\n  <li><span class='match'>palabras<\/span><\/li>\n  <li><span class='match'>particip<\/span>ación<\/li>\n  <li><span class='match'>particul<\/span>ar<\/li>\n  <li><span class='match'>partidos<\/span><\/li>\n  <li><span class='match'>película<\/span><\/li>\n  <li><span class='match'>personal<\/span><\/li>\n  <li><span class='match'>personas<\/span><\/li>\n  <li><span class='match'>població<\/span>n<\/li>\n  <li><span class='match'>política<\/span><\/li>\n  <li><span class='match'>política<\/span>s<\/li>\n  <li><span class='match'>político<\/span><\/li>\n  <li><span class='match'>político<\/span>s<\/li>\n  <li><span class='match'>posibili<\/span>dad<\/li>\n  <li><span class='match'>posibili<\/span>dades<\/li>\n  <li><span class='match'>posición<\/span><\/li>\n  <li><span class='match'>práctica<\/span><\/li>\n  <li><span class='match'>precisam<\/span>ente<\/li>\n  <li><span class='match'>pregunta<\/span><\/li>\n  <li><span class='match'>presenci<\/span>a<\/li>\n  <li><span class='match'>presenta<\/span><\/li>\n  <li><span class='match'>presente<\/span><\/li>\n  <li><span class='match'>presiden<\/span>te<\/li>\n  <li><span class='match'>primeras<\/span><\/li>\n  <li><span class='match'>primeros<\/span><\/li>\n  <li><span class='match'>principa<\/span>l<\/li>\n  <li><span class='match'>principa<\/span>les<\/li>\n  <li><span class='match'>principi<\/span>o<\/li>\n  <li><span class='match'>principi<\/span>os<\/li>\n  <li><span class='match'>problema<\/span><\/li>\n  <li><span class='match'>problema<\/span>s<\/li>\n  <li><span class='match'>producci<\/span>ón<\/li>\n  <li><span class='match'>producto<\/span><\/li>\n  <li><span class='match'>producto<\/span>s<\/li>\n  <li><span class='match'>profesio<\/span>nal<\/li>\n  <li><span class='match'>programa<\/span><\/li>\n  <li><span class='match'>programa<\/span>s<\/li>\n  <li><span class='match'>propuest<\/span>a<\/li>\n  <li><span class='match'>proyecto<\/span><\/li>\n  <li><span class='match'>proyecto<\/span>s<\/li>\n  <li><span class='match'>realidad<\/span><\/li>\n  <li><span class='match'>realizar<\/span><\/li>\n  <li><span class='match'>recuerdo<\/span><\/li>\n  <li><span class='match'>recursos<\/span><\/li>\n  <li><span class='match'>relación<\/span><\/li>\n  <li><span class='match'>relacion<\/span>es<\/li>\n  <li><span class='match'>repúblic<\/span>a<\/li>\n  <li><span class='match'>respecto<\/span><\/li>\n  <li><span class='match'>respuest<\/span>a<\/li>\n  <li><span class='match'>resultad<\/span>o<\/li>\n  <li><span class='match'>resultad<\/span>os<\/li>\n  <li><span class='match'>revoluci<\/span>ón<\/li>\n  <li><span class='match'>rodrígue<\/span>z<\/li>\n  <li><span class='match'>santiago<\/span><\/li>\n  <li><span class='match'>secretar<\/span>io<\/li>\n  <li><span class='match'>sectores<\/span><\/li>\n  <li><span class='match'>segurida<\/span>d<\/li>\n  <li><span class='match'>septiemb<\/span>re<\/li>\n  <li><span class='match'>servicio<\/span><\/li>\n  <li><span class='match'>servicio<\/span>s<\/li>\n  <li><span class='match'>siguient<\/span>e<\/li>\n  <li><span class='match'>siguient<\/span>es<\/li>\n  <li><span class='match'>silencio<\/span><\/li>\n  <li><span class='match'>siquiera<\/span><\/li>\n  <li><span class='match'>sistemas<\/span><\/li>\n  <li><span class='match'>situació<\/span>n<\/li>\n  <li><span class='match'>sociales<\/span><\/li>\n  <li><span class='match'>socialis<\/span>ta<\/li>\n  <li><span class='match'>sociedad<\/span><\/li>\n  <li><span class='match'>solament<\/span>e<\/li>\n  <li><span class='match'>solución<\/span><\/li>\n  <li><span class='match'>suficien<\/span>te<\/li>\n  <li><span class='match'>superior<\/span><\/li>\n  <li><span class='match'>supuesto<\/span><\/li>\n  <li><span class='match'>televisi<\/span>ón<\/li>\n  <li><span class='match'>términos<\/span><\/li>\n  <li><span class='match'>trabajad<\/span>ores<\/li>\n  <li><span class='match'>trabajar<\/span><\/li>\n  <li><span class='match'>tratamie<\/span>nto<\/li>\n  <li><span class='match'>tribunal<\/span><\/li>\n  <li><span class='match'>universi<\/span>dad<\/li>\n  <li><span class='match'>victoria<\/span><\/li>\n  <li><span class='match'>violenci<\/span>a<\/li>\n  <li><span class='match'>voluntad<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-25c3e940e6859592f801" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-25c3e940e6859592f801">{"x":{"html":"<ul>\n  <li><span class='match'>acciones<\/span><\/li>\n  <li><span class='match'>activida<\/span>d<\/li>\n  <li><span class='match'>activida<\/span>des<\/li>\n  <li><span class='match'>adelante<\/span><\/li>\n  <li><span class='match'>administ<\/span>ración<\/li>\n  <li><span class='match'>alrededo<\/span>r<\/li>\n  <li><span class='match'>ambiente<\/span><\/li>\n  <li><span class='match'>análisis<\/span><\/li>\n  <li><span class='match'>animales<\/span><\/li>\n  <li><span class='match'>anterior<\/span><\/li>\n  <li><span class='match'>aquellas<\/span><\/li>\n  <li><span class='match'>aquellos<\/span><\/li>\n  <li><span class='match'>argentin<\/span>a<\/li>\n  <li><span class='match'>artículo<\/span><\/li>\n  <li><span class='match'>asimismo<\/span><\/li>\n  <li><span class='match'>asociaci<\/span>ón<\/li>\n  <li><span class='match'>aspectos<\/span><\/li>\n  <li><span class='match'>atención<\/span><\/li>\n  <li><span class='match'>autorida<\/span>des<\/li>\n  <li><span class='match'>barcelon<\/span>a<\/li>\n  <li><span class='match'>bastante<\/span><\/li>\n  <li><span class='match'>cantidad<\/span><\/li>\n  <li><span class='match'>capacida<\/span>d<\/li>\n  <li><span class='match'>carácter<\/span><\/li>\n  <li><span class='match'>caracter<\/span>ísticas<\/li>\n  <li><span class='match'>comercio<\/span><\/li>\n  <li><span class='match'>comisión<\/span><\/li>\n  <li><span class='match'>compañía<\/span><\/li>\n  <li><span class='match'>comunica<\/span>ción<\/li>\n  <li><span class='match'>comunida<\/span>d<\/li>\n  <li><span class='match'>concepto<\/span><\/li>\n  <li><span class='match'>concienc<\/span>ia<\/li>\n  <li><span class='match'>condicio<\/span>nes<\/li>\n  <li><span class='match'>congreso<\/span><\/li>\n  <li><span class='match'>conjunto<\/span><\/li>\n  <li><span class='match'>conocimi<\/span>ento<\/li>\n  <li><span class='match'>consecue<\/span>ncia<\/li>\n  <li><span class='match'>consegui<\/span>r<\/li>\n  <li><span class='match'>consider<\/span>a<\/li>\n  <li><span class='match'>constitu<\/span>ción<\/li>\n  <li><span class='match'>construc<\/span>ción<\/li>\n  <li><span class='match'>contenid<\/span>o<\/li>\n  <li><span class='match'>contrari<\/span>o<\/li>\n  <li><span class='match'>creación<\/span><\/li>\n  <li><span class='match'>crecimie<\/span>nto<\/li>\n  <li><span class='match'>cualquie<\/span>r<\/li>\n  <li><span class='match'>cuestión<\/span><\/li>\n  <li><span class='match'>cultural<\/span><\/li>\n  <li><span class='match'>decisión<\/span><\/li>\n  <li><span class='match'>demasiad<\/span>o<\/li>\n  <li><span class='match'>democrac<\/span>ia<\/li>\n  <li><span class='match'>derechos<\/span><\/li>\n  <li><span class='match'>desarrol<\/span>lo<\/li>\n  <li><span class='match'>diciembr<\/span>e<\/li>\n  <li><span class='match'>diferenc<\/span>ia<\/li>\n  <li><span class='match'>diferent<\/span>es<\/li>\n  <li><span class='match'>direcció<\/span>n<\/li>\n  <li><span class='match'>director<\/span><\/li>\n  <li><span class='match'>distinta<\/span>s<\/li>\n  <li><span class='match'>distinto<\/span>s<\/li>\n  <li><span class='match'>diversas<\/span><\/li>\n  <li><span class='match'>diversos<\/span><\/li>\n  <li><span class='match'>economía<\/span><\/li>\n  <li><span class='match'>económic<\/span>a<\/li>\n  <li><span class='match'>económic<\/span>o<\/li>\n  <li><span class='match'>educació<\/span>n<\/li>\n  <li><span class='match'>ejército<\/span><\/li>\n  <li><span class='match'>eleccion<\/span>es<\/li>\n  <li><span class='match'>electora<\/span>l<\/li>\n  <li><span class='match'>elemento<\/span>s<\/li>\n  <li><span class='match'>empresas<\/span><\/li>\n  <li><span class='match'>encontra<\/span>r<\/li>\n  <li><span class='match'>encuentr<\/span>a<\/li>\n  <li><span class='match'>encuentr<\/span>an<\/li>\n  <li><span class='match'>encuentr<\/span>o<\/li>\n  <li><span class='match'>enfermed<\/span>ad<\/li>\n  <li><span class='match'>entonces<\/span><\/li>\n  <li><span class='match'>esfuerzo<\/span><\/li>\n  <li><span class='match'>española<\/span><\/li>\n  <li><span class='match'>españole<\/span>s<\/li>\n  <li><span class='match'>especial<\/span><\/li>\n  <li><span class='match'>especial<\/span>mente<\/li>\n  <li><span class='match'>estructu<\/span>ra<\/li>\n  <li><span class='match'>estudios<\/span><\/li>\n  <li><span class='match'>existenc<\/span>ia<\/li>\n  <li><span class='match'>experien<\/span>cia<\/li>\n  <li><span class='match'>expresió<\/span>n<\/li>\n  <li><span class='match'>exterior<\/span><\/li>\n  <li><span class='match'>fernando<\/span><\/li>\n  <li><span class='match'>finalmen<\/span>te<\/li>\n  <li><span class='match'>formació<\/span>n<\/li>\n  <li><span class='match'>francisc<\/span>o<\/li>\n  <li><span class='match'>generale<\/span>s<\/li>\n  <li><span class='match'>gobierno<\/span><\/li>\n  <li><span class='match'>gonzález<\/span><\/li>\n  <li><span class='match'>haciendo<\/span><\/li>\n  <li><span class='match'>hicieron<\/span><\/li>\n  <li><span class='match'>historia<\/span><\/li>\n  <li><span class='match'>hospital<\/span><\/li>\n  <li><span class='match'>imágenes<\/span><\/li>\n  <li><span class='match'>importan<\/span>cia<\/li>\n  <li><span class='match'>importan<\/span>te<\/li>\n  <li><span class='match'>importan<\/span>tes<\/li>\n  <li><span class='match'>imposibl<\/span>e<\/li>\n  <li><span class='match'>industri<\/span>a<\/li>\n  <li><span class='match'>informac<\/span>ión<\/li>\n  <li><span class='match'>instituc<\/span>iones<\/li>\n  <li><span class='match'>institut<\/span>o<\/li>\n  <li><span class='match'>interese<\/span>s<\/li>\n  <li><span class='match'>interior<\/span><\/li>\n  <li><span class='match'>internac<\/span>ional<\/li>\n  <li><span class='match'>investig<\/span>ación<\/li>\n  <li><span class='match'>izquierd<\/span>a<\/li>\n  <li><span class='match'>justicia<\/span><\/li>\n  <li><span class='match'>lenguaje<\/span><\/li>\n  <li><span class='match'>libertad<\/span><\/li>\n  <li><span class='match'>mantener<\/span><\/li>\n  <li><span class='match'>material<\/span><\/li>\n  <li><span class='match'>mediante<\/span><\/li>\n  <li><span class='match'>miembros<\/span><\/li>\n  <li><span class='match'>mientras<\/span><\/li>\n  <li><span class='match'>militare<\/span>s<\/li>\n  <li><span class='match'>millones<\/span><\/li>\n  <li><span class='match'>minister<\/span>io<\/li>\n  <li><span class='match'>ministro<\/span><\/li>\n  <li><span class='match'>momentos<\/span><\/li>\n  <li><span class='match'>movimien<\/span>to<\/li>\n  <li><span class='match'>nacional<\/span><\/li>\n  <li><span class='match'>naturale<\/span>za<\/li>\n  <li><span class='match'>necesari<\/span>o<\/li>\n  <li><span class='match'>necesida<\/span>d<\/li>\n  <li><span class='match'>nosotros<\/span><\/li>\n  <li><span class='match'>noviembr<\/span>e<\/li>\n  <li><span class='match'>nuestras<\/span><\/li>\n  <li><span class='match'>nuestros<\/span><\/li>\n  <li><span class='match'>objetivo<\/span><\/li>\n  <li><span class='match'>obstante<\/span><\/li>\n  <li><span class='match'>ocasione<\/span>s<\/li>\n  <li><span class='match'>operació<\/span>n<\/li>\n  <li><span class='match'>oposició<\/span>n<\/li>\n  <li><span class='match'>organiza<\/span>ción<\/li>\n  <li><span class='match'>paciente<\/span><\/li>\n  <li><span class='match'>paciente<\/span>s<\/li>\n  <li><span class='match'>palabras<\/span><\/li>\n  <li><span class='match'>particip<\/span>ación<\/li>\n  <li><span class='match'>particul<\/span>ar<\/li>\n  <li><span class='match'>partidos<\/span><\/li>\n  <li><span class='match'>película<\/span><\/li>\n  <li><span class='match'>personal<\/span><\/li>\n  <li><span class='match'>personas<\/span><\/li>\n  <li><span class='match'>població<\/span>n<\/li>\n  <li><span class='match'>política<\/span><\/li>\n  <li><span class='match'>política<\/span>s<\/li>\n  <li><span class='match'>político<\/span><\/li>\n  <li><span class='match'>político<\/span>s<\/li>\n  <li><span class='match'>posibili<\/span>dad<\/li>\n  <li><span class='match'>posibili<\/span>dades<\/li>\n  <li><span class='match'>posición<\/span><\/li>\n  <li><span class='match'>práctica<\/span><\/li>\n  <li><span class='match'>precisam<\/span>ente<\/li>\n  <li><span class='match'>pregunta<\/span><\/li>\n  <li><span class='match'>presenci<\/span>a<\/li>\n  <li><span class='match'>presenta<\/span><\/li>\n  <li><span class='match'>presente<\/span><\/li>\n  <li><span class='match'>presiden<\/span>te<\/li>\n  <li><span class='match'>primeras<\/span><\/li>\n  <li><span class='match'>primeros<\/span><\/li>\n  <li><span class='match'>principa<\/span>l<\/li>\n  <li><span class='match'>principa<\/span>les<\/li>\n  <li><span class='match'>principi<\/span>o<\/li>\n  <li><span class='match'>principi<\/span>os<\/li>\n  <li><span class='match'>problema<\/span><\/li>\n  <li><span class='match'>problema<\/span>s<\/li>\n  <li><span class='match'>producci<\/span>ón<\/li>\n  <li><span class='match'>producto<\/span><\/li>\n  <li><span class='match'>producto<\/span>s<\/li>\n  <li><span class='match'>profesio<\/span>nal<\/li>\n  <li><span class='match'>programa<\/span><\/li>\n  <li><span class='match'>programa<\/span>s<\/li>\n  <li><span class='match'>propuest<\/span>a<\/li>\n  <li><span class='match'>proyecto<\/span><\/li>\n  <li><span class='match'>proyecto<\/span>s<\/li>\n  <li><span class='match'>realidad<\/span><\/li>\n  <li><span class='match'>realizar<\/span><\/li>\n  <li><span class='match'>recuerdo<\/span><\/li>\n  <li><span class='match'>recursos<\/span><\/li>\n  <li><span class='match'>relación<\/span><\/li>\n  <li><span class='match'>relacion<\/span>es<\/li>\n  <li><span class='match'>repúblic<\/span>a<\/li>\n  <li><span class='match'>respecto<\/span><\/li>\n  <li><span class='match'>respuest<\/span>a<\/li>\n  <li><span class='match'>resultad<\/span>o<\/li>\n  <li><span class='match'>resultad<\/span>os<\/li>\n  <li><span class='match'>revoluci<\/span>ón<\/li>\n  <li><span class='match'>rodrígue<\/span>z<\/li>\n  <li><span class='match'>santiago<\/span><\/li>\n  <li><span class='match'>secretar<\/span>io<\/li>\n  <li><span class='match'>sectores<\/span><\/li>\n  <li><span class='match'>segurida<\/span>d<\/li>\n  <li><span class='match'>septiemb<\/span>re<\/li>\n  <li><span class='match'>servicio<\/span><\/li>\n  <li><span class='match'>servicio<\/span>s<\/li>\n  <li><span class='match'>siguient<\/span>e<\/li>\n  <li><span class='match'>siguient<\/span>es<\/li>\n  <li><span class='match'>silencio<\/span><\/li>\n  <li><span class='match'>siquiera<\/span><\/li>\n  <li><span class='match'>sistemas<\/span><\/li>\n  <li><span class='match'>situació<\/span>n<\/li>\n  <li><span class='match'>sociales<\/span><\/li>\n  <li><span class='match'>socialis<\/span>ta<\/li>\n  <li><span class='match'>sociedad<\/span><\/li>\n  <li><span class='match'>solament<\/span>e<\/li>\n  <li><span class='match'>solución<\/span><\/li>\n  <li><span class='match'>suficien<\/span>te<\/li>\n  <li><span class='match'>superior<\/span><\/li>\n  <li><span class='match'>supuesto<\/span><\/li>\n  <li><span class='match'>televisi<\/span>ón<\/li>\n  <li><span class='match'>términos<\/span><\/li>\n  <li><span class='match'>trabajad<\/span>ores<\/li>\n  <li><span class='match'>trabajar<\/span><\/li>\n  <li><span class='match'>tratamie<\/span>nto<\/li>\n  <li><span class='match'>tribunal<\/span><\/li>\n  <li><span class='match'>universi<\/span>dad<\/li>\n  <li><span class='match'>victoria<\/span><\/li>\n  <li><span class='match'>violenci<\/span>a<\/li>\n  <li><span class='match'>voluntad<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 </div> 
 
@@ -455,8 +473,10 @@ Para buscar palabras que solo tienen consonantes buscamos no-vocales que se repi
 str_view(palabras, "^[^aáeéiíoóuúü]+$", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-3f27c09be0c60bb52829" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3f27c09be0c60bb52829">{"x":{"html":"<ul>\n  <li><span class='match'>b<\/span><\/li>\n  <li><span class='match'>c<\/span><\/li>\n  <li><span class='match'>d<\/span><\/li>\n  <li><span class='match'>g<\/span><\/li>\n  <li><span class='match'>j<\/span><\/li>\n  <li><span class='match'>m<\/span><\/li>\n  <li><span class='match'>n<\/span><\/li>\n  <li><span class='match'>p<\/span><\/li>\n  <li><span class='match'>pp<\/span><\/li>\n  <li><span class='match'>r<\/span><\/li>\n  <li><span class='match'>s<\/span><\/li>\n  <li><span class='match'>y<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-3f27c09be0c60bb52829" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3f27c09be0c60bb52829">{"x":{"html":"<ul>\n  <li><span class='match'>b<\/span><\/li>\n  <li><span class='match'>c<\/span><\/li>\n  <li><span class='match'>d<\/span><\/li>\n  <li><span class='match'>g<\/span><\/li>\n  <li><span class='match'>j<\/span><\/li>\n  <li><span class='match'>m<\/span><\/li>\n  <li><span class='match'>n<\/span><\/li>\n  <li><span class='match'>p<\/span><\/li>\n  <li><span class='match'>pp<\/span><\/li>\n  <li><span class='match'>r<\/span><\/li>\n  <li><span class='match'>s<\/span><\/li>\n  <li><span class='match'>y<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Palabras que terminan en `ón`, pero no en `ión`.
     
@@ -465,8 +485,10 @@ Palabras que terminan en `ón`, pero no en `ión`.
 str_view(palabras, "[^i]ón$", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-416566eb193bf50d04e6" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-416566eb193bf50d04e6">{"x":{"html":"<ul>\n  <li>cora<span class='match'>zón<\/span><\/li>\n  <li>ra<span class='match'>zón<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-416566eb193bf50d04e6" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-416566eb193bf50d04e6">{"x":{"html":"<ul>\n  <li>cora<span class='match'>zón<\/span><\/li>\n  <li>ra<span class='match'>zón<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Palabras que terminan con `ndo` o `ado`:
 
@@ -475,8 +497,10 @@ Palabras que terminan con `ndo` o `ado`:
 str_view(palabras, "(n|a)do", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-72cbf064100ce560a04c" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-72cbf064100ce560a04c">{"x":{"html":"<ul>\n  <li>cua<span class='match'>ndo<\/span><\/li>\n  <li>d<span class='match'>ado<\/span><\/li>\n  <li>demasi<span class='match'>ado<\/span><\/li>\n  <li>est<span class='match'>ado<\/span><\/li>\n  <li>est<span class='match'>ado<\/span>s<\/li>\n  <li>ferna<span class='match'>ndo<\/span><\/li>\n  <li>fo<span class='match'>ndo<\/span><\/li>\n  <li>gr<span class='match'>ado<\/span><\/li>\n  <li>hacie<span class='match'>ndo<\/span><\/li>\n  <li>l<span class='match'>ado<\/span><\/li>\n  <li>llam<span class='match'>ado<\/span><\/li>\n  <li>lleg<span class='match'>ado<\/span><\/li>\n  <li>merc<span class='match'>ado<\/span><\/li>\n  <li>mu<span class='match'>ndo<\/span><\/li>\n  <li>pas<span class='match'>ado<\/span><\/li>\n  <li>result<span class='match'>ado<\/span><\/li>\n  <li>result<span class='match'>ado<\/span>s<\/li>\n  <li>segu<span class='match'>ndo<\/span><\/li>\n  <li>sie<span class='match'>ndo<\/span><\/li>\n  <li>trabaj<span class='match'>ado<\/span>res<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-72cbf064100ce560a04c" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-72cbf064100ce560a04c">{"x":{"html":"<ul>\n  <li>cua<span class='match'>ndo<\/span><\/li>\n  <li>d<span class='match'>ado<\/span><\/li>\n  <li>demasi<span class='match'>ado<\/span><\/li>\n  <li>est<span class='match'>ado<\/span><\/li>\n  <li>est<span class='match'>ado<\/span>s<\/li>\n  <li>ferna<span class='match'>ndo<\/span><\/li>\n  <li>fo<span class='match'>ndo<\/span><\/li>\n  <li>gr<span class='match'>ado<\/span><\/li>\n  <li>hacie<span class='match'>ndo<\/span><\/li>\n  <li>l<span class='match'>ado<\/span><\/li>\n  <li>llam<span class='match'>ado<\/span><\/li>\n  <li>lleg<span class='match'>ado<\/span><\/li>\n  <li>merc<span class='match'>ado<\/span><\/li>\n  <li>mu<span class='match'>ndo<\/span><\/li>\n  <li>pas<span class='match'>ado<\/span><\/li>\n  <li>result<span class='match'>ado<\/span><\/li>\n  <li>result<span class='match'>ado<\/span>s<\/li>\n  <li>segu<span class='match'>ndo<\/span><\/li>\n  <li>sie<span class='match'>ndo<\/span><\/li>\n  <li>trabaj<span class='match'>ado<\/span>res<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 </div> 
     
@@ -521,8 +545,10 @@ segunda_persona <- c("queréis", "quieren")
 str_view(segunda_persona, "éis$", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-d11fc4360aa0230696d7" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d11fc4360aa0230696d7">{"x":{"html":"<ul>\n  <li>quer<span class='match'>éis<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-d11fc4360aa0230696d7" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d11fc4360aa0230696d7">{"x":{"html":"<ul>\n  <li>quer<span class='match'>éis<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 
 </div> 
@@ -541,8 +567,10 @@ telefonos <- c("(32) 281 91 76", "(32)2819176", "(32)281 9176")
 str_view(telefonos, "\\(\\d\\d\\) \\d\\d\\d \\d\\d \\d\\d")
 ```
 
-<!--html_preserve--><div id="htmlwidget-21c7483268bafca56cec" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-21c7483268bafca56cec">{"x":{"html":"<ul>\n  <li><span class='match'>(32) 281 91 76<\/span><\/li>\n  <li>(32)2819176<\/li>\n  <li>(32)281 9176<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-21c7483268bafca56cec" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-21c7483268bafca56cec">{"x":{"html":"<ul>\n  <li><span class='match'>(32) 281 91 76<\/span><\/li>\n  <li>(32)2819176<\/li>\n  <li>(32)281 9176<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Este código podría simplificarse si es que utilizáramos algún modificador que nos permita controlar la repetición de patrones. En la próxima sesión se aborda este tema. 
 
@@ -638,8 +666,10 @@ cadena <- c("uno {dos} tres", "uno {} tres", "uno {2} tres")
 str_view(cadena, "\\{.+\\}")
 ```
 
-<!--html_preserve--><div id="htmlwidget-1834a22cd196f3aa03a1" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1834a22cd196f3aa03a1">{"x":{"html":"<ul>\n  <li>uno <span class='match'>{dos}<\/span> tres<\/li>\n  <li>uno {} tres<\/li>\n  <li>uno <span class='match'>{2}<\/span> tres<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-1834a22cd196f3aa03a1" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1834a22cd196f3aa03a1">{"x":{"html":"<ul>\n  <li>uno <span class='match'>{dos}<\/span> tres<\/li>\n  <li>uno {} tres<\/li>\n  <li>uno <span class='match'>{2}<\/span> tres<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 
 La expresión regular `\d{4}-\d{2}-\d{2}` coincide con secuencias de 4, 2 y 2 dígitos separados por un guión.
@@ -650,8 +680,10 @@ numeros <- c("4444-22-22", "333-22-22", "88888888")
 str_view(numeros, "\\d{4}-\\d{2}-\\d{2}")
 ```
 
-<!--html_preserve--><div id="htmlwidget-28515d92cb327f90c9eb" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-28515d92cb327f90c9eb">{"x":{"html":"<ul>\n  <li><span class='match'>4444-22-22<\/span><\/li>\n  <li>333-22-22<\/li>\n  <li>88888888<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-28515d92cb327f90c9eb" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-28515d92cb327f90c9eb">{"x":{"html":"<ul>\n  <li><span class='match'>4444-22-22<\/span><\/li>\n  <li>333-22-22<\/li>\n  <li>88888888<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 La cadena "\\\\{4}" coincidiría con una barra invertida repetida 4 veces:
 
@@ -661,8 +693,10 @@ barras <- c("\\", "\\\\", "\\\\\\", "\\\\\\\\")
 str_view(barras, "\\\\{4}")
 ```
 
-<!--html_preserve--><div id="htmlwidget-0caf26d4e3c00206b0c5" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0caf26d4e3c00206b0c5">{"x":{"html":"<ul>\n  <li>\\<\/li>\n  <li>\\\\<\/li>\n  <li>\\\\\\<\/li>\n  <li><span class='match'>\\\\\\\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-0caf26d4e3c00206b0c5" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0caf26d4e3c00206b0c5">{"x":{"html":"<ul>\n  <li>\\<\/li>\n  <li>\\\\<\/li>\n  <li>\\\\\\<\/li>\n  <li><span class='match'>\\\\\\\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 </div> 
 
@@ -684,8 +718,10 @@ Para buscar palabras que empiecen con dos consonantes buscaremos la repetición 
 str_view(palabras, "^[^aáeéiíoóuúü]{2}", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-da0b268a2927f570ebf3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-da0b268a2927f570ebf3">{"x":{"html":"<ul>\n  <li><span class='match'>bl<\/span>anca<\/li>\n  <li><span class='match'>bl<\/span>anco<\/li>\n  <li><span class='match'>ch<\/span>ile<\/li>\n  <li><span class='match'>cl<\/span>aro<\/li>\n  <li><span class='match'>cl<\/span>ase<\/li>\n  <li><span class='match'>cl<\/span>ub<\/li>\n  <li><span class='match'>cr<\/span>eación<\/li>\n  <li><span class='match'>cr<\/span>ecimiento<\/li>\n  <li><span class='match'>cr<\/span>eo<\/li>\n  <li><span class='match'>cr<\/span>isis<\/li>\n  <li><span class='match'>fl<\/span>ores<\/li>\n  <li><span class='match'>fr<\/span>ancia<\/li>\n  <li><span class='match'>fr<\/span>ancisco<\/li>\n  <li><span class='match'>fr<\/span>ente<\/li>\n  <li><span class='match'>gr<\/span>acias<\/li>\n  <li><span class='match'>gr<\/span>ado<\/li>\n  <li><span class='match'>gr<\/span>an<\/li>\n  <li><span class='match'>gr<\/span>ande<\/li>\n  <li><span class='match'>gr<\/span>andes<\/li>\n  <li><span class='match'>gr<\/span>upo<\/li>\n  <li><span class='match'>gr<\/span>upos<\/li>\n  <li><span class='match'>ll<\/span>ama<\/li>\n  <li><span class='match'>ll<\/span>amado<\/li>\n  <li><span class='match'>ll<\/span>ega<\/li>\n  <li><span class='match'>ll<\/span>egado<\/li>\n  <li><span class='match'>ll<\/span>egar<\/li>\n  <li><span class='match'>ll<\/span>egó<\/li>\n  <li><span class='match'>ll<\/span>eva<\/li>\n  <li><span class='match'>ll<\/span>evar<\/li>\n  <li><span class='match'>pl<\/span>an<\/li>\n  <li><span class='match'>pl<\/span>aza<\/li>\n  <li><span class='match'>pl<\/span>azo<\/li>\n  <li><span class='match'>pp<\/span><\/li>\n  <li><span class='match'>pr<\/span>áctica<\/li>\n  <li><span class='match'>pr<\/span>ecio<\/li>\n  <li><span class='match'>pr<\/span>ecios<\/li>\n  <li><span class='match'>pr<\/span>ecisamente<\/li>\n  <li><span class='match'>pr<\/span>egunta<\/li>\n  <li><span class='match'>pr<\/span>emio<\/li>\n  <li><span class='match'>pr<\/span>ensa<\/li>\n  <li><span class='match'>pr<\/span>esencia<\/li>\n  <li><span class='match'>pr<\/span>esenta<\/li>\n  <li><span class='match'>pr<\/span>esente<\/li>\n  <li><span class='match'>pr<\/span>esidente<\/li>\n  <li><span class='match'>pr<\/span>imer<\/li>\n  <li><span class='match'>pr<\/span>imera<\/li>\n  <li><span class='match'>pr<\/span>imeras<\/li>\n  <li><span class='match'>pr<\/span>imero<\/li>\n  <li><span class='match'>pr<\/span>imeros<\/li>\n  <li><span class='match'>pr<\/span>incipal<\/li>\n  <li><span class='match'>pr<\/span>incipales<\/li>\n  <li><span class='match'>pr<\/span>incipio<\/li>\n  <li><span class='match'>pr<\/span>incipios<\/li>\n  <li><span class='match'>pr<\/span>oblema<\/li>\n  <li><span class='match'>pr<\/span>oblemas<\/li>\n  <li><span class='match'>pr<\/span>oceso<\/li>\n  <li><span class='match'>pr<\/span>oducción<\/li>\n  <li><span class='match'>pr<\/span>oduce<\/li>\n  <li><span class='match'>pr<\/span>oducto<\/li>\n  <li><span class='match'>pr<\/span>oductos<\/li>\n  <li><span class='match'>pr<\/span>ofesional<\/li>\n  <li><span class='match'>pr<\/span>ograma<\/li>\n  <li><span class='match'>pr<\/span>ogramas<\/li>\n  <li><span class='match'>pr<\/span>onto<\/li>\n  <li><span class='match'>pr<\/span>opia<\/li>\n  <li><span class='match'>pr<\/span>opio<\/li>\n  <li><span class='match'>pr<\/span>opios<\/li>\n  <li><span class='match'>pr<\/span>opuesta<\/li>\n  <li><span class='match'>pr<\/span>óximo<\/li>\n  <li><span class='match'>pr<\/span>oyecto<\/li>\n  <li><span class='match'>pr<\/span>oyectos<\/li>\n  <li><span class='match'>pr<\/span>ueba<\/li>\n  <li><span class='match'>ps<\/span>oe<\/li>\n  <li><span class='match'>tr<\/span>abajadores<\/li>\n  <li><span class='match'>tr<\/span>abajar<\/li>\n  <li><span class='match'>tr<\/span>abajo<\/li>\n  <li><span class='match'>tr<\/span>as<\/li>\n  <li><span class='match'>tr<\/span>ata<\/li>\n  <li><span class='match'>tr<\/span>atamiento<\/li>\n  <li><span class='match'>tr<\/span>avés<\/li>\n  <li><span class='match'>tr<\/span>es<\/li>\n  <li><span class='match'>tr<\/span>ibunal<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-da0b268a2927f570ebf3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-da0b268a2927f570ebf3">{"x":{"html":"<ul>\n  <li><span class='match'>bl<\/span>anca<\/li>\n  <li><span class='match'>bl<\/span>anco<\/li>\n  <li><span class='match'>ch<\/span>ile<\/li>\n  <li><span class='match'>cl<\/span>aro<\/li>\n  <li><span class='match'>cl<\/span>ase<\/li>\n  <li><span class='match'>cl<\/span>ub<\/li>\n  <li><span class='match'>cr<\/span>eación<\/li>\n  <li><span class='match'>cr<\/span>ecimiento<\/li>\n  <li><span class='match'>cr<\/span>eo<\/li>\n  <li><span class='match'>cr<\/span>isis<\/li>\n  <li><span class='match'>fl<\/span>ores<\/li>\n  <li><span class='match'>fr<\/span>ancia<\/li>\n  <li><span class='match'>fr<\/span>ancisco<\/li>\n  <li><span class='match'>fr<\/span>ente<\/li>\n  <li><span class='match'>gr<\/span>acias<\/li>\n  <li><span class='match'>gr<\/span>ado<\/li>\n  <li><span class='match'>gr<\/span>an<\/li>\n  <li><span class='match'>gr<\/span>ande<\/li>\n  <li><span class='match'>gr<\/span>andes<\/li>\n  <li><span class='match'>gr<\/span>upo<\/li>\n  <li><span class='match'>gr<\/span>upos<\/li>\n  <li><span class='match'>ll<\/span>ama<\/li>\n  <li><span class='match'>ll<\/span>amado<\/li>\n  <li><span class='match'>ll<\/span>ega<\/li>\n  <li><span class='match'>ll<\/span>egado<\/li>\n  <li><span class='match'>ll<\/span>egar<\/li>\n  <li><span class='match'>ll<\/span>egó<\/li>\n  <li><span class='match'>ll<\/span>eva<\/li>\n  <li><span class='match'>ll<\/span>evar<\/li>\n  <li><span class='match'>pl<\/span>an<\/li>\n  <li><span class='match'>pl<\/span>aza<\/li>\n  <li><span class='match'>pl<\/span>azo<\/li>\n  <li><span class='match'>pp<\/span><\/li>\n  <li><span class='match'>pr<\/span>áctica<\/li>\n  <li><span class='match'>pr<\/span>ecio<\/li>\n  <li><span class='match'>pr<\/span>ecios<\/li>\n  <li><span class='match'>pr<\/span>ecisamente<\/li>\n  <li><span class='match'>pr<\/span>egunta<\/li>\n  <li><span class='match'>pr<\/span>emio<\/li>\n  <li><span class='match'>pr<\/span>ensa<\/li>\n  <li><span class='match'>pr<\/span>esencia<\/li>\n  <li><span class='match'>pr<\/span>esenta<\/li>\n  <li><span class='match'>pr<\/span>esente<\/li>\n  <li><span class='match'>pr<\/span>esidente<\/li>\n  <li><span class='match'>pr<\/span>imer<\/li>\n  <li><span class='match'>pr<\/span>imera<\/li>\n  <li><span class='match'>pr<\/span>imeras<\/li>\n  <li><span class='match'>pr<\/span>imero<\/li>\n  <li><span class='match'>pr<\/span>imeros<\/li>\n  <li><span class='match'>pr<\/span>incipal<\/li>\n  <li><span class='match'>pr<\/span>incipales<\/li>\n  <li><span class='match'>pr<\/span>incipio<\/li>\n  <li><span class='match'>pr<\/span>incipios<\/li>\n  <li><span class='match'>pr<\/span>oblema<\/li>\n  <li><span class='match'>pr<\/span>oblemas<\/li>\n  <li><span class='match'>pr<\/span>oceso<\/li>\n  <li><span class='match'>pr<\/span>oducción<\/li>\n  <li><span class='match'>pr<\/span>oduce<\/li>\n  <li><span class='match'>pr<\/span>oducto<\/li>\n  <li><span class='match'>pr<\/span>oductos<\/li>\n  <li><span class='match'>pr<\/span>ofesional<\/li>\n  <li><span class='match'>pr<\/span>ograma<\/li>\n  <li><span class='match'>pr<\/span>ogramas<\/li>\n  <li><span class='match'>pr<\/span>onto<\/li>\n  <li><span class='match'>pr<\/span>opia<\/li>\n  <li><span class='match'>pr<\/span>opio<\/li>\n  <li><span class='match'>pr<\/span>opios<\/li>\n  <li><span class='match'>pr<\/span>opuesta<\/li>\n  <li><span class='match'>pr<\/span>óximo<\/li>\n  <li><span class='match'>pr<\/span>oyecto<\/li>\n  <li><span class='match'>pr<\/span>oyectos<\/li>\n  <li><span class='match'>pr<\/span>ueba<\/li>\n  <li><span class='match'>ps<\/span>oe<\/li>\n  <li><span class='match'>tr<\/span>abajadores<\/li>\n  <li><span class='match'>tr<\/span>abajar<\/li>\n  <li><span class='match'>tr<\/span>abajo<\/li>\n  <li><span class='match'>tr<\/span>as<\/li>\n  <li><span class='match'>tr<\/span>ata<\/li>\n  <li><span class='match'>tr<\/span>atamiento<\/li>\n  <li><span class='match'>tr<\/span>avés<\/li>\n  <li><span class='match'>tr<\/span>es<\/li>\n  <li><span class='match'>tr<\/span>ibunal<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Palabras con tres o más vocales seguidas
 
@@ -693,8 +729,10 @@ Palabras con tres o más vocales seguidas
 str_view(palabras, "[aáeéiíoóuúü]{3,}", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-0ed12bb554391c49c2e3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0ed12bb554391c49c2e3">{"x":{"html":"<ul>\n  <li>alg<span class='match'>uie<\/span>n<\/li>\n  <li>cualq<span class='match'>uie<\/span>r<\/li>\n  <li>izq<span class='match'>uie<\/span>rda<\/li>\n  <li>q<span class='match'>uie<\/span>n<\/li>\n  <li>q<span class='match'>uié<\/span>n<\/li>\n  <li>q<span class='match'>uie<\/span>nes<\/li>\n  <li>q<span class='match'>uie<\/span>re<\/li>\n  <li>q<span class='match'>uie<\/span>ro<\/li>\n  <li>sig<span class='match'>uie<\/span>nte<\/li>\n  <li>sig<span class='match'>uie<\/span>ntes<\/li>\n  <li>siq<span class='match'>uie<\/span>ra<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-0ed12bb554391c49c2e3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0ed12bb554391c49c2e3">{"x":{"html":"<ul>\n  <li>alg<span class='match'>uie<\/span>n<\/li>\n  <li>cualq<span class='match'>uie<\/span>r<\/li>\n  <li>izq<span class='match'>uie<\/span>rda<\/li>\n  <li>q<span class='match'>uie<\/span>n<\/li>\n  <li>q<span class='match'>uié<\/span>n<\/li>\n  <li>q<span class='match'>uie<\/span>nes<\/li>\n  <li>q<span class='match'>uie<\/span>re<\/li>\n  <li>q<span class='match'>uie<\/span>ro<\/li>\n  <li>sig<span class='match'>uie<\/span>nte<\/li>\n  <li>sig<span class='match'>uie<\/span>ntes<\/li>\n  <li>siq<span class='match'>uie<\/span>ra<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Palabras que tengan tres o más pares de vocal-consonante seguidos:
 
@@ -703,8 +741,10 @@ Palabras que tengan tres o más pares de vocal-consonante seguidos:
 str_view(palabras, "([aáeéiíoóuúü][^aáeéiíoóuúü]){3,}", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-ec658d41f8c4f2d124e9" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ec658d41f8c4f2d124e9">{"x":{"html":"<ul>\n  <li>act<span class='match'>ividad<\/span><\/li>\n  <li>act<span class='match'>ividades<\/span><\/li>\n  <li><span class='match'>adelan<\/span>te<\/li>\n  <li><span class='match'>además<\/span><\/li>\n  <li>alr<span class='match'>ededor<\/span><\/li>\n  <li><span class='match'>améric<\/span>a<\/li>\n  <li><span class='match'>amigos<\/span><\/li>\n  <li><span class='match'>análisis<\/span><\/li>\n  <li><span class='match'>animales<\/span><\/li>\n  <li><span class='match'>aparec<\/span>e<\/li>\n  <li><span class='match'>apenas<\/span><\/li>\n  <li><span class='match'>asimis<\/span>mo<\/li>\n  <li>a<span class='match'>utoridades<\/span><\/li>\n  <li>c<span class='match'>alidad<\/span><\/li>\n  <li>c<span class='match'>apacidad<\/span><\/li>\n  <li>c<span class='match'>apital<\/span><\/li>\n  <li>c<span class='match'>omunicac<\/span>ión<\/li>\n  <li>c<span class='match'>omunidad<\/span><\/li>\n  <li>c<span class='match'>onocer<\/span><\/li>\n  <li>c<span class='match'>onocim<\/span>iento<\/li>\n  <li>c<span class='match'>orazón<\/span><\/li>\n  <li>d<span class='match'>iferen<\/span>cia<\/li>\n  <li>d<span class='match'>iferen<\/span>tes<\/li>\n  <li>d<span class='match'>ifícil<\/span><\/li>\n  <li>d<span class='match'>ólares<\/span><\/li>\n  <li><span class='match'>econom<\/span>ía<\/li>\n  <li><span class='match'>económic<\/span>a<\/li>\n  <li><span class='match'>económic<\/span>o<\/li>\n  <li><span class='match'>educac<\/span>ión<\/li>\n  <li><span class='match'>elemen<\/span>tos<\/li>\n  <li>esp<span class='match'>añoles<\/span><\/li>\n  <li><span class='match'>evitar<\/span><\/li>\n  <li>g<span class='match'>eneral<\/span><\/li>\n  <li>g<span class='match'>enerales<\/span><\/li>\n  <li>h<span class='match'>umanos<\/span><\/li>\n  <li><span class='match'>imagen<\/span><\/li>\n  <li><span class='match'>imágenes<\/span><\/li>\n  <li>int<span class='match'>ereses<\/span><\/li>\n  <li>j<span class='match'>óvenes<\/span><\/li>\n  <li>m<span class='match'>ayores<\/span><\/li>\n  <li>m<span class='match'>edidas<\/span><\/li>\n  <li>m<span class='match'>ejores<\/span><\/li>\n  <li>m<span class='match'>ilitar<\/span><\/li>\n  <li>m<span class='match'>ilitares<\/span><\/li>\n  <li>m<span class='match'>inutos<\/span><\/li>\n  <li>m<span class='match'>ujeres<\/span><\/li>\n  <li>n<span class='match'>atural<\/span><\/li>\n  <li>n<span class='match'>aturalez<\/span>a<\/li>\n  <li>n<span class='match'>ecesar<\/span>io<\/li>\n  <li>n<span class='match'>ecesidad<\/span><\/li>\n  <li>n<span class='match'>iveles<\/span><\/li>\n  <li><span class='match'>operac<\/span>ión<\/li>\n  <li><span class='match'>oposic<\/span>ión<\/li>\n  <li>org<span class='match'>anizac<\/span>ión<\/li>\n  <li><span class='match'>origen<\/span><\/li>\n  <li>part<span class='match'>icipac<\/span>ión<\/li>\n  <li>part<span class='match'>icular<\/span><\/li>\n  <li>p<span class='match'>elícul<\/span>a<\/li>\n  <li>p<span class='match'>esetas<\/span><\/li>\n  <li>p<span class='match'>odemos<\/span><\/li>\n  <li>p<span class='match'>olític<\/span>a<\/li>\n  <li>p<span class='match'>olíticas<\/span><\/li>\n  <li>p<span class='match'>olític<\/span>o<\/li>\n  <li>p<span class='match'>olíticos<\/span><\/li>\n  <li>p<span class='match'>opular<\/span><\/li>\n  <li>p<span class='match'>osibilidad<\/span><\/li>\n  <li>p<span class='match'>osibilidades<\/span><\/li>\n  <li>pr<span class='match'>ecisamen<\/span>te<\/li>\n  <li>pr<span class='match'>esiden<\/span>te<\/li>\n  <li>pr<span class='match'>imeras<\/span><\/li>\n  <li>pr<span class='match'>imeros<\/span><\/li>\n  <li>princ<span class='match'>ipales<\/span><\/li>\n  <li>r<span class='match'>azones<\/span><\/li>\n  <li>re<span class='match'>alidad<\/span><\/li>\n  <li>re<span class='match'>alizar<\/span><\/li>\n  <li>r<span class='match'>égimen<\/span><\/li>\n  <li>r<span class='match'>evoluc<\/span>ión<\/li>\n  <li>s<span class='match'>eguridad<\/span><\/li>\n  <li>s<span class='match'>emanas<\/span><\/li>\n  <li>s<span class='match'>olamen<\/span>te<\/li>\n  <li>t<span class='match'>elevis<\/span>ión<\/li>\n  <li>t<span class='match'>enemos<\/span><\/li>\n  <li>tr<span class='match'>abajadores<\/span><\/li>\n  <li>tr<span class='match'>abajar<\/span><\/li>\n  <li>tr<span class='match'>ibunal<\/span><\/li>\n  <li><span class='match'>unidad<\/span><\/li>\n  <li><span class='match'>unidos<\/span><\/li>\n  <li><span class='match'>univer<\/span>sidad<\/li>\n  <li>v<span class='match'>alores<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-ec658d41f8c4f2d124e9" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ec658d41f8c4f2d124e9">{"x":{"html":"<ul>\n  <li>act<span class='match'>ividad<\/span><\/li>\n  <li>act<span class='match'>ividades<\/span><\/li>\n  <li><span class='match'>adelan<\/span>te<\/li>\n  <li><span class='match'>además<\/span><\/li>\n  <li>alr<span class='match'>ededor<\/span><\/li>\n  <li><span class='match'>améric<\/span>a<\/li>\n  <li><span class='match'>amigos<\/span><\/li>\n  <li><span class='match'>análisis<\/span><\/li>\n  <li><span class='match'>animales<\/span><\/li>\n  <li><span class='match'>aparec<\/span>e<\/li>\n  <li><span class='match'>apenas<\/span><\/li>\n  <li><span class='match'>asimis<\/span>mo<\/li>\n  <li>a<span class='match'>utoridades<\/span><\/li>\n  <li>c<span class='match'>alidad<\/span><\/li>\n  <li>c<span class='match'>apacidad<\/span><\/li>\n  <li>c<span class='match'>apital<\/span><\/li>\n  <li>c<span class='match'>omunicac<\/span>ión<\/li>\n  <li>c<span class='match'>omunidad<\/span><\/li>\n  <li>c<span class='match'>onocer<\/span><\/li>\n  <li>c<span class='match'>onocim<\/span>iento<\/li>\n  <li>c<span class='match'>orazón<\/span><\/li>\n  <li>d<span class='match'>iferen<\/span>cia<\/li>\n  <li>d<span class='match'>iferen<\/span>tes<\/li>\n  <li>d<span class='match'>ifícil<\/span><\/li>\n  <li>d<span class='match'>ólares<\/span><\/li>\n  <li><span class='match'>econom<\/span>ía<\/li>\n  <li><span class='match'>económic<\/span>a<\/li>\n  <li><span class='match'>económic<\/span>o<\/li>\n  <li><span class='match'>educac<\/span>ión<\/li>\n  <li><span class='match'>elemen<\/span>tos<\/li>\n  <li>esp<span class='match'>añoles<\/span><\/li>\n  <li><span class='match'>evitar<\/span><\/li>\n  <li>g<span class='match'>eneral<\/span><\/li>\n  <li>g<span class='match'>enerales<\/span><\/li>\n  <li>h<span class='match'>umanos<\/span><\/li>\n  <li><span class='match'>imagen<\/span><\/li>\n  <li><span class='match'>imágenes<\/span><\/li>\n  <li>int<span class='match'>ereses<\/span><\/li>\n  <li>j<span class='match'>óvenes<\/span><\/li>\n  <li>m<span class='match'>ayores<\/span><\/li>\n  <li>m<span class='match'>edidas<\/span><\/li>\n  <li>m<span class='match'>ejores<\/span><\/li>\n  <li>m<span class='match'>ilitar<\/span><\/li>\n  <li>m<span class='match'>ilitares<\/span><\/li>\n  <li>m<span class='match'>inutos<\/span><\/li>\n  <li>m<span class='match'>ujeres<\/span><\/li>\n  <li>n<span class='match'>atural<\/span><\/li>\n  <li>n<span class='match'>aturalez<\/span>a<\/li>\n  <li>n<span class='match'>ecesar<\/span>io<\/li>\n  <li>n<span class='match'>ecesidad<\/span><\/li>\n  <li>n<span class='match'>iveles<\/span><\/li>\n  <li><span class='match'>operac<\/span>ión<\/li>\n  <li><span class='match'>oposic<\/span>ión<\/li>\n  <li>org<span class='match'>anizac<\/span>ión<\/li>\n  <li><span class='match'>origen<\/span><\/li>\n  <li>part<span class='match'>icipac<\/span>ión<\/li>\n  <li>part<span class='match'>icular<\/span><\/li>\n  <li>p<span class='match'>elícul<\/span>a<\/li>\n  <li>p<span class='match'>esetas<\/span><\/li>\n  <li>p<span class='match'>odemos<\/span><\/li>\n  <li>p<span class='match'>olític<\/span>a<\/li>\n  <li>p<span class='match'>olíticas<\/span><\/li>\n  <li>p<span class='match'>olític<\/span>o<\/li>\n  <li>p<span class='match'>olíticos<\/span><\/li>\n  <li>p<span class='match'>opular<\/span><\/li>\n  <li>p<span class='match'>osibilidad<\/span><\/li>\n  <li>p<span class='match'>osibilidades<\/span><\/li>\n  <li>pr<span class='match'>ecisamen<\/span>te<\/li>\n  <li>pr<span class='match'>esiden<\/span>te<\/li>\n  <li>pr<span class='match'>imeras<\/span><\/li>\n  <li>pr<span class='match'>imeros<\/span><\/li>\n  <li>princ<span class='match'>ipales<\/span><\/li>\n  <li>r<span class='match'>azones<\/span><\/li>\n  <li>re<span class='match'>alidad<\/span><\/li>\n  <li>re<span class='match'>alizar<\/span><\/li>\n  <li>r<span class='match'>égimen<\/span><\/li>\n  <li>r<span class='match'>evoluc<\/span>ión<\/li>\n  <li>s<span class='match'>eguridad<\/span><\/li>\n  <li>s<span class='match'>emanas<\/span><\/li>\n  <li>s<span class='match'>olamen<\/span>te<\/li>\n  <li>t<span class='match'>elevis<\/span>ión<\/li>\n  <li>t<span class='match'>enemos<\/span><\/li>\n  <li>tr<span class='match'>abajadores<\/span><\/li>\n  <li>tr<span class='match'>abajar<\/span><\/li>\n  <li>tr<span class='match'>ibunal<\/span><\/li>\n  <li><span class='match'>unidad<\/span><\/li>\n  <li><span class='match'>unidos<\/span><\/li>\n  <li><span class='match'>univer<\/span>sidad<\/li>\n  <li>v<span class='match'>alores<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 </div> 
 
@@ -730,8 +770,10 @@ La expresión regular `(.)\1\1` coincide con cualquier caracter repetido tres ve
 str_view(c("a", "aa", "aaa", "aaaa"), "(.)\\1\\1")
 ```
 
-<!--html_preserve--><div id="htmlwidget-6b83523733b890d61edc" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6b83523733b890d61edc">{"x":{"html":"<ul>\n  <li>a<\/li>\n  <li>aa<\/li>\n  <li><span class='match'>aaa<\/span><\/li>\n  <li><span class='match'>aaa<\/span>a<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-6b83523733b890d61edc" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b83523733b890d61edc">{"x":{"html":"<ul>\n  <li>a<\/li>\n  <li>aa<\/li>\n  <li><span class='match'>aaa<\/span><\/li>\n  <li><span class='match'>aaa<\/span>a<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 La cadena `"(.)(.)\\2\\1"` coincide con los dos caracteres capturados seguidos de los mismos dos caracteres pero en orden inverso:
 
@@ -740,8 +782,10 @@ La cadena `"(.)(.)\\2\\1"` coincide con los dos caracteres capturados seguidos d
 str_view(c("abba", "abab"), "(.)(.)\\2\\1")
 ```
 
-<!--html_preserve--><div id="htmlwidget-b3f7c917b6c8ff580948" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b3f7c917b6c8ff580948">{"x":{"html":"<ul>\n  <li><span class='match'>abba<\/span><\/li>\n  <li>abab<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-b3f7c917b6c8ff580948" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b3f7c917b6c8ff580948">{"x":{"html":"<ul>\n  <li><span class='match'>abba<\/span><\/li>\n  <li>abab<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 La expresión regular `(..)\1` coincide con un par de letras que se repite dos veces:
 
@@ -750,8 +794,10 @@ La expresión regular `(..)\1` coincide con un par de letras que se repite dos v
 str_view(c("abba", "abab"), "(..)\\1")
 ```
 
-<!--html_preserve--><div id="htmlwidget-d258b2ee1c304ebe1664" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d258b2ee1c304ebe1664">{"x":{"html":"<ul>\n  <li>abba<\/li>\n  <li><span class='match'>abab<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-d258b2ee1c304ebe1664" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d258b2ee1c304ebe1664">{"x":{"html":"<ul>\n  <li>abba<\/li>\n  <li><span class='match'>abab<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 La cadena `"(.).\\1.\\1"` coicide con la secuencia: caracter capturado, otro caracter, caracter capturado, otro caracter, caracter capturado: 
 
@@ -761,8 +807,10 @@ La cadena `"(.).\\1.\\1"` coicide con la secuencia: caracter capturado, otro car
 str_view(c("babab", "babeb", "abab"), "(.).\\1.\\1")
 ```
 
-<!--html_preserve--><div id="htmlwidget-b8f31ebacaee3527bb86" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b8f31ebacaee3527bb86">{"x":{"html":"<ul>\n  <li><span class='match'>babab<\/span><\/li>\n  <li><span class='match'>babeb<\/span><\/li>\n  <li>abab<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-b8f31ebacaee3527bb86" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b8f31ebacaee3527bb86">{"x":{"html":"<ul>\n  <li><span class='match'>babab<\/span><\/li>\n  <li><span class='match'>babeb<\/span><\/li>\n  <li>abab<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 La cadena `"(.)(.)(.).*\\3\\2\\1"` coincide con los tres caracteres capturados, cero o más de otros caracteres y luego los tres caracteres capturados en orden inverso:
 
@@ -772,8 +820,10 @@ La cadena `"(.)(.)(.).*\\3\\2\\1"` coincide con los tres caracteres capturados, 
 str_view(c("abcdefgcba", "abccba", "abcabc"), "(.)(.)(.).*\\3\\2\\1")
 ```
 
-<!--html_preserve--><div id="htmlwidget-b25b670b028f478bf741" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b25b670b028f478bf741">{"x":{"html":"<ul>\n  <li><span class='match'>abcdefgcba<\/span><\/li>\n  <li><span class='match'>abccba<\/span><\/li>\n  <li>abcabc<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-b25b670b028f478bf741" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b25b670b028f478bf741">{"x":{"html":"<ul>\n  <li><span class='match'>abcdefgcba<\/span><\/li>\n  <li><span class='match'>abccba<\/span><\/li>\n  <li>abcabc<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 </div> 
 
@@ -884,8 +934,10 @@ Para encontrar todas las palabras que empiezan o terminan con `y` con una sola e
 str_view(palabras, "^y|y$", match = TRUE)
 ```
 
-<!--html_preserve--><div id="htmlwidget-46d1193f7ba074d981c8" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-46d1193f7ba074d981c8">{"x":{"html":"<ul>\n  <li>esto<span class='match'>y<\/span><\/li>\n  <li>ha<span class='match'>y<\/span><\/li>\n  <li>ho<span class='match'>y<\/span><\/li>\n  <li>le<span class='match'>y<\/span><\/li>\n  <li>mu<span class='match'>y<\/span><\/li>\n  <li>re<span class='match'>y<\/span><\/li>\n  <li>so<span class='match'>y<\/span><\/li>\n  <li>vo<span class='match'>y<\/span><\/li>\n  <li><span class='match'>y<\/span><\/li>\n  <li><span class='match'>y<\/span>a<\/li>\n  <li><span class='match'>y<\/span>o<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-46d1193f7ba074d981c8" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-46d1193f7ba074d981c8">{"x":{"html":"<ul>\n  <li>esto<span class='match'>y<\/span><\/li>\n  <li>ha<span class='match'>y<\/span><\/li>\n  <li>ho<span class='match'>y<\/span><\/li>\n  <li>le<span class='match'>y<\/span><\/li>\n  <li>mu<span class='match'>y<\/span><\/li>\n  <li>re<span class='match'>y<\/span><\/li>\n  <li>so<span class='match'>y<\/span><\/li>\n  <li>vo<span class='match'>y<\/span><\/li>\n  <li><span class='match'>y<\/span><\/li>\n  <li><span class='match'>y<\/span>a<\/li>\n  <li><span class='match'>y<\/span>o<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 Con múltiples llamadas a `str_detect()`:
 
@@ -963,7 +1015,7 @@ Ahora podemos responder las preguntas. Las palabras con más vocales en este set
 
 ```r
 top_n(df, 1, vocales)
-#> # A tibble: 15 x 4
+#> # A tibble: 15 × 4
 #>   palabra         largo vocales prop_vocales
 #>   <chr>           <int>   <int>        <dbl>
 #> 1 administración     14       6        0.429
@@ -979,7 +1031,7 @@ Hay palabras solo compuestas por vocales. Cuatro son efectivamente palabras (una
 
 ```r
 top_n(df, 1, prop_vocales)
-#> # A tibble: 6 x 4
+#> # A tibble: 6 × 4
 #>   palabra largo vocales prop_vocales
 #>   <chr>   <int>   <int>        <dbl>
 #> 1 a           1       1            1
@@ -1022,10 +1074,9 @@ mas <- oraciones[str_count(oraciones, coincidencia_color) > 1]
 str_view_all(mas, coincidencia_color)
 ```
 
-<!--html_preserve--><div id="htmlwidget-382a200f56fb8e6a1fd3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-382a200f56fb8e6a1fd3">{"x":{"html":"<ul>\n  <li>Las hojas se vuelven de color <span class='match'>marrón<\/span> y <span class='match'>amarillo<\/span> en el otoño.<\/li>\n  <li>La luz <span class='match'>verde<\/span> en la caja <span class='match'>marrón<\/span> parpadeaba.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
-
-```r
+```{=html}
+<div id="htmlwidget-382a200f56fb8e6a1fd3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-382a200f56fb8e6a1fd3">{"x":{"html":"<ul>\n  <li>Las hojas se vuelven de color <span class='match'>marrón<\/span> y <span class='match'>amarillo<\/span> en el otoño.<\/li>\n  <li>La luz <span class='match'>verde<\/span> en la caja <span class='match'>marrón<\/span> parpadeaba.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 # chequear que encuentra también colores en plural y adjetivos femeninos en otros ejemplos:
 
@@ -1168,7 +1219,7 @@ tibble(oracion = oraciones) %>%
         remove = FALSE
     ) %>% 
     filter(!is.na(palabra)) # solo ver las filas con resultados
-#> # A tibble: 10 x 3
+#> # A tibble: 10 × 3
 #>   oracion                                                   numero palabra   
 #>   <chr>                                                     <chr>  <chr>     
 #> 1 Nueve hombres fueron contratados para excavar las ruinas. dos    para      
@@ -1192,14 +1243,14 @@ tibble(oracion = oraciones) %>%
         remove = FALSE
     ) %>% 
     filter(!is.na(palabra)) # solo ver las filas con resultados
-#> # A tibble: 10 x 3
+#> # A tibble: 10 × 3
 #>   oracion                                                   numero palabra  
 #>   <chr>                                                     <chr>  <chr>    
 #> 1 Nueve hombres fueron contratados para excavar las ruinas. dos    para     
 #> 2 El médico lo curó con estas dos pastillas.                dos    pastillas
 #> 3 Una grulla azul es una ave zancuda y alta.                una    ave      
 #> 4 La lámpara brillaba con una llama verde y continua.       una    llama    
-#> 5 El lazo púrpura tenía diez años.                          diez   años     
+#> 5 El lazo púrpura tenía diez años.                          diez   a        
 #> 6 Marca el lugar con un cartel pintado de rojo.             un     cartel   
 #> # … with 4 more rows
 ```
@@ -1240,7 +1291,7 @@ tibble(palabras_compuestas = compuestas) %>%
         c("palabra1", "palabra2"), 
         sep = "-", 
         remove = FALSE) # para no eliminar la columna original
-#> # A tibble: 3 x 3
+#> # A tibble: 3 × 3
 #>   palabras_compuestas palabra1 palabra2
 #>   <chr>               <chr>    <chr>   
 #> 1 teórico-práctico    teórico  práctico
@@ -1419,16 +1470,17 @@ writeLines(barras)
 str_view_all(barras, regex("\\\\"))
 ```
 
-<!--html_preserve--><div id="htmlwidget-da403bf8187c892ade73" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-da403bf8187c892ade73">{"x":{"html":"<ul>\n  <li>una barra <span class='match'>\\<\/span>, dos barras <span class='match'>\\<\/span><span class='match'>\\<\/span>, tres barras <span class='match'>\\<\/span><span class='match'>\\<\/span><span class='match'>\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
-
-```r
+```{=html}
+<div id="htmlwidget-da403bf8187c892ade73" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-da403bf8187c892ade73">{"x":{"html":"<ul>\n  <li>una barra <span class='match'>\\<\/span>, dos barras <span class='match'>\\<\/span><span class='match'>\\<\/span>, tres barras <span class='match'>\\<\/span><span class='match'>\\<\/span><span class='match'>\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 str_view_all(barras, fixed("\\"))
 ```
 
-<!--html_preserve--><div id="htmlwidget-756e3bf13eb93ebd21f9" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-756e3bf13eb93ebd21f9">{"x":{"html":"<ul>\n  <li>una barra <span class='match'>\\<\/span>, dos barras <span class='match'>\\<\/span><span class='match'>\\<\/span>, tres barras <span class='match'>\\<\/span><span class='match'>\\<\/span><span class='match'>\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+```{=html}
+<div id="htmlwidget-756e3bf13eb93ebd21f9" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-756e3bf13eb93ebd21f9">{"x":{"html":"<ul>\n  <li>una barra <span class='match'>\\<\/span>, dos barras <span class='match'>\\<\/span><span class='match'>\\<\/span>, tres barras <span class='match'>\\<\/span><span class='match'>\\<\/span><span class='match'>\\<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+```
 
 
 </div> 
@@ -1449,7 +1501,7 @@ str_extract_all(oraciones, boundary("word")) %>%
   count(str_to_lower(palabra)) %>% # contamos
   top_n(5) # buscamos las cinco más frecuentes
 #> Selecting by n
-#> # A tibble: 5 x 2
+#> # A tibble: 5 × 2
 #>   `str_to_lower(palabra)`     n
 #>   <chr>                   <int>
 #> 1 de                         26

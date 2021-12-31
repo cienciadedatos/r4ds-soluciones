@@ -323,7 +323,7 @@ dos modelos se debe encadenar con el operador `%>%`.
 grid %>%
   add_predictions(sim1_mod, var = "pred_lm") %>%
   add_predictions(sim1_loess, var = "pred_loess")
-#> # A tibble: 10 x 3
+#> # A tibble: 10 × 3
 #>       x pred_lm pred_loess
 #>   <int>   <dbl>      <dbl>
 #> 1     1    6.27       7.05
@@ -343,7 +343,7 @@ modelo.
 ```r
 grid %>%
   gather_predictions(sim1_mod, sim1_loess)
-#> # A tibble: 20 x 3
+#> # A tibble: 20 × 3
 #>   model        x  pred
 #>   <chr>    <int> <dbl>
 #> 1 sim1_mod     1  6.27
@@ -363,7 +363,7 @@ las predicciones respectivas.
 ```r
 grid %>%
   spread_predictions(sim1_mod, sim1_loess)
-#> # A tibble: 10 x 3
+#> # A tibble: 10 × 3
 #>       x sim1_mod sim1_loess
 #>   <int>    <dbl>      <dbl>
 #> 1     1     6.27       7.05
@@ -384,7 +384,7 @@ de `gather_predictions()`.
 grid %>%
   gather_predictions(sim1_mod, sim1_loess) %>%
   spread(model, pred)
-#> # A tibble: 10 x 3
+#> # A tibble: 10 × 3
 #>       x sim1_loess sim1_mod
 #>   <int>      <dbl>    <dbl>
 #> 1     1       7.05     6.27
@@ -474,7 +474,7 @@ grid <- sim2 %>%
   spread_predictions(mod2, mod2a)
 
 grid
-#> # A tibble: 4 x 3
+#> # A tibble: 4 × 3
 #>   x      mod2 mod2a
 #>   <chr> <dbl> <dbl>
 #> 1 a      1.15  1.15
@@ -498,7 +498,7 @@ binarias `x2b`, `x2c` y `x2d` y las variables continuas `x1:x2b`, `x1:x2c` y
 ```r
 x3 <- model_matrix(y ~ x1 * x2, data = sim3)
 x3
-#> # A tibble: 120 x 8
+#> # A tibble: 120 × 8
 #>   `(Intercept)`    x1   x2b   x2c   x2d `x1:x2b` `x1:x2c` `x1:x2d`
 #>           <dbl> <dbl> <dbl> <dbl> <dbl>    <dbl>    <dbl>    <dbl>
 #> 1             1     1     0     0     0        0        0        0
@@ -535,7 +535,7 @@ variables `x1`, `x2` y `x1:x2`.
 ```r
 x4 <- model_matrix(y ~ x1 * x2, data = sim4)
 x4
-#> # A tibble: 300 x 4
+#> # A tibble: 300 × 4
 #>   `(Intercept)`    x1     x2 `x1:x2`
 #>           <dbl> <dbl>  <dbl>   <dbl>
 #> 1             1    -1 -1       1    
@@ -597,7 +597,7 @@ model_matrix_mod1 <- function(.data) {
 }
 
 model_matrix_mod1(sim3)
-#> # A tibble: 120 x 5
+#> # A tibble: 120 × 5
 #>   `(Intercept)`    x1   x2b   x2c   x2d
 #>           <dbl> <int> <dbl> <dbl> <dbl>
 #> 1             1     1     0     0     0
@@ -639,7 +639,7 @@ model_matrix_mod1b <- function(.data) {
 }
 
 model_matrix_mod1b(sim3)
-#> # A tibble: 120 x 5
+#> # A tibble: 120 × 5
 #>   `(Intercept)`    x1   x2b   x2c   x2d
 #>           <dbl> <int> <dbl> <dbl> <dbl>
 #> 1             1     1     0     0     0
@@ -671,7 +671,7 @@ model_matrix_mod2 <- function(.data) {
 }
 
 model_matrix_mod2(sim3)
-#> # A tibble: 120 x 8
+#> # A tibble: 120 × 8
 #>   `(Intercept)`    x1   x2b   x2c   x2d `x1:x2b` `x1:x2c` `x1:x2d`
 #>           <dbl> <int> <dbl> <dbl> <dbl>    <dbl>    <dbl>    <dbl>
 #> 1             1     1     0     0     0        0        0        0
@@ -705,7 +705,7 @@ model_matrix_mod2b <- function(.data) {
 }
 
 model_matrix_mod2b(sim3)
-#> # A tibble: 120 x 8
+#> # A tibble: 120 × 8
 #>   `(Intercept)`    x1   x2b   x2c   x2d `x1:x2b` `x1:x2c` `x1:x2d`
 #>           <dbl> <int> <dbl> <dbl> <dbl>    <dbl>    <dbl>    <dbl>
 #> 1             1     1     0     0     0        0        0        0
@@ -773,8 +773,7 @@ para cada modelo.
 sim4_mods %>%
   group_by(model) %>%
   summarise(resid = sd(resid))
-#> `summarise()` ungrouping output (override with `.groups` argument)
-#> # A tibble: 2 x 2
+#> # A tibble: 2 × 2
 #>   model resid
 #>   <chr> <dbl>
 #> 1 mod1   2.10

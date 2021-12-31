@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>28 Comunicar con gráficos | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="28 Comunicar con gráficos | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="http://cienciadedatos.github.io/r4ds-soluciones" />
-  <meta property="og:image" content="http://cienciadedatos.github.io/r4ds-solucionescover.png" />
+  <meta property="og:image" content="http://cienciadedatos.github.io/r4ds-soluciones/cover.png" />
   <meta property="og:description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
   <meta name="github-repo" content="cienciadedatos/r4ds-soluciones" />
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="28 Comunicar con gráficos | R para Ciencia de Datos: Soluciones de los ejercicios" />
   
   <meta name="twitter:description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="twitter:image" content="http://cienciadedatos.github.io/r4ds-solucionescover.png" />
+  <meta name="twitter:image" content="http://cienciadedatos.github.io/r4ds-soluciones/cover.png" />
 
 <meta name="author" content="Riva Quiroga" />
 <meta name="author" content="Mauricio ‘Pachá’ Vargas" />
@@ -34,7 +34,9 @@
   
 <link rel="prev" href="r-markdown.html"/>
 <link rel="next" href="r-markdown-formats.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,26 +52,26 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +91,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -122,7 +124,8 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="r4ds.min.css" type="text/css" />
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -142,122 +145,162 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="part"><span><b>I Explorar</b></span></li>
 <li class="chapter" data-level="2" data-path="introducción-1.html"><a href="introducción-1.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
-<li class="chapter" data-level="3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#introducción-2"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#primeros-pasos"><i class="fa fa-check"></i>3.2 Primeros pasos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#primeros-pasos"><i class="fa fa-check"></i>3.2 Primeros pasos</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-324"><i class="fa fa-check"></i>3.2.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#mapeos-esteticos"><i class="fa fa-check"></i>3.3 Mapeos estéticos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#mapeos-esteticos"><i class="fa fa-check"></i>3.3 Mapeos estéticos</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-331"><i class="fa fa-check"></i>3.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#separar-facetas"><i class="fa fa-check"></i>3.5 Separar en facetas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#separar-facetas"><i class="fa fa-check"></i>3.5 Separar en facetas</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-351"><i class="fa fa-check"></i>3.5.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#objetos-geometricos"><i class="fa fa-check"></i>3.6 Objetos geométricos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#objetos-geometricos"><i class="fa fa-check"></i>3.6 Objetos geométricos</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-361"><i class="fa fa-check"></i>3.6.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#transformaciones-estadisticas"><i class="fa fa-check"></i>3.7 Transformaciones estadísticas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#transformaciones-estadisticas"><i class="fa fa-check"></i>3.7 Transformaciones estadísticas</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-371"><i class="fa fa-check"></i>3.7.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ajustes-posicion"><i class="fa fa-check"></i>3.8 Ajustes de posición</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ajustes-posicion"><i class="fa fa-check"></i>3.8 Ajustes de posición</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-381"><i class="fa fa-check"></i>3.8.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#sistemas-coordenadas"><i class="fa fa-check"></i>3.9 Sistemas de coordenadas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#sistemas-coordenadas"><i class="fa fa-check"></i>3.9 Sistemas de coordenadas</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-391"><i class="fa fa-check"></i>3.9.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="flujo-de-trabajo-conocimientos-básicos.html"><a href="flujo-de-trabajo-conocimientos-básicos.html"><i class="fa fa-check"></i><b>4</b> Flujo de trabajo: conocimientos básicos</a><ul>
+<li class="chapter" data-level="4" data-path="flujo-de-trabajo-conocimientos-básicos.html"><a href="flujo-de-trabajo-conocimientos-básicos.html"><i class="fa fa-check"></i><b>4</b> Flujo de trabajo: conocimientos básicos</a>
+<ul>
 <li class="chapter" data-level="" data-path="flujo-de-trabajo-conocimientos-básicos.html"><a href="flujo-de-trabajo-conocimientos-básicos.html#ejercicios-41"><i class="fa fa-check"></i>4.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>5</b> Transformación de datos</a><ul>
+<li class="chapter" data-level="5" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>5</b> Transformación de datos</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="transform.html"><a href="transform.html#introducción-3"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
-<li><a href="transform.html#filter">5.2 Filtrar filas con <code>filter()</code></a><ul>
+<li><a href="transform.html#filter">5.2 Filtrar filas con <code>filter()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-524"><i class="fa fa-check"></i>5.2.4 Ejercicios</a></li>
 </ul></li>
-<li><a href="transform.html#arrange">5.3 Reordenar las filas con <code>arrange()</code></a><ul>
+<li><a href="transform.html#arrange">5.3 Reordenar las filas con <code>arrange()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-531"><i class="fa fa-check"></i>5.3.1 Ejercicios</a></li>
 </ul></li>
-<li><a href="transform.html#select">5.4 Seleccionar columnas con <code>select()</code></a><ul>
+<li><a href="transform.html#select">5.4 Seleccionar columnas con <code>select()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-541"><i class="fa fa-check"></i>5.4.1 Ejercicios</a></li>
 </ul></li>
-<li><a href="transform.html#mutate">5.5 Añadir nuevas variables con <code>mutate()</code></a><ul>
+<li><a href="transform.html#mutate">5.5 Añadir nuevas variables con <code>mutate()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-552"><i class="fa fa-check"></i>5.5.2 Ejercicios</a></li>
 </ul></li>
-<li><a href="transform.html#sumamarise">5.6 Resúmenes agrupados con <code>summarise()</code></a><ul>
+<li><a href="transform.html#sumamarise">5.6 Resúmenes agrupados con <code>summarise()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-567"><i class="fa fa-check"></i>5.6.7 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#mutate-filter"><i class="fa fa-check"></i>5.7 Transformaciones agrupadas (y filtros)</a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#mutate-filter"><i class="fa fa-check"></i>5.7 Transformaciones agrupadas (y filtros)</a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-571"><i class="fa fa-check"></i>5.7.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="flujo-de-trabajo-scripts.html"><a href="flujo-de-trabajo-scripts.html"><i class="fa fa-check"></i><b>6</b> Flujo de trabajo: <em>Scripts</em></a><ul>
+<li class="chapter" data-level="6" data-path="flujo-de-trabajo-scripts.html"><a href="flujo-de-trabajo-scripts.html"><i class="fa fa-check"></i><b>6</b> Flujo de trabajo: <em>Scripts</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="flujo-de-trabajo-scripts.html"><a href="flujo-de-trabajo-scripts.html#ejercicios-63"><i class="fa fa-check"></i>6.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html"><i class="fa fa-check"></i><b>7</b> Análisis exploratorio de datos (<em>EDA</em>)</a><ul>
+<li class="chapter" data-level="7" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html"><i class="fa fa-check"></i><b>7</b> Análisis exploratorio de datos (<em>EDA</em>)</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#introducción-4"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#preguntas"><i class="fa fa-check"></i>7.3 Variación</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#preguntas"><i class="fa fa-check"></i>7.3 Variación</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-734"><i class="fa fa-check"></i>7.3.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#valores-faltantes"><i class="fa fa-check"></i>7.4 Valores faltantes</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#valores-faltantes"><i class="fa fa-check"></i>7.4 Valores faltantes</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-741"><i class="fa fa-check"></i>7.4.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#covariacion"><i class="fa fa-check"></i>7.5 Covariación</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#covariacion"><i class="fa fa-check"></i>7.5 Covariación</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#categorica-continua"><i class="fa fa-check"></i>7.5.1 Una variable categórica y otra continua</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#categorica"><i class="fa fa-check"></i>7.5.2 Dos variables categóricas</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#categorica"><i class="fa fa-check"></i>7.5.2 Dos variables categóricas</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-7521"><i class="fa fa-check"></i>7.5.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#continuas"><i class="fa fa-check"></i>7.5.3 Dos variables continuas</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#continuas"><i class="fa fa-check"></i>7.5.3 Dos variables continuas</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-7532"><i class="fa fa-check"></i>7.5.3.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="workflow-projects.html"><a href="workflow-projects.html"><i class="fa fa-check"></i><b>8</b> Workflow: projects</a></li>
 <li class="part"><span><b>II Manejar o domar datos</b></span></li>
 <li class="chapter" data-level="9" data-path="introducción-5.html"><a href="introducción-5.html"><i class="fa fa-check"></i><b>9</b> Introducción</a></li>
-<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a><ul>
+<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a>
+<ul>
 <li class="chapter" data-level="" data-path="tibbles.html"><a href="tibbles.html#ejercicios-105"><i class="fa fa-check"></i>10.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="importación-de-datos.html"><a href="importación-de-datos.html"><i class="fa fa-check"></i><b>11</b> Importación de datos</a><ul>
-<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#comenzando"><i class="fa fa-check"></i>11.2 Comenzando</a><ul>
+<li class="chapter" data-level="11" data-path="importación-de-datos.html"><a href="importación-de-datos.html"><i class="fa fa-check"></i><b>11</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#comenzando"><i class="fa fa-check"></i>11.2 Comenzando</a>
+<ul>
 <li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#ejercicios-1122"><i class="fa fa-check"></i>11.2.2 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#segmentar-vector"><i class="fa fa-check"></i>11.3 Segmentar un vector</a><ul>
+<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#segmentar-vector"><i class="fa fa-check"></i>11.3 Segmentar un vector</a>
+<ul>
 <li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#ejercicios-1135"><i class="fa fa-check"></i>11.3.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="datos-ordenados.html"><a href="datos-ordenados.html"><i class="fa fa-check"></i><b>12</b> Datos ordenados</a><ul>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#datos-ordenados122"><i class="fa fa-check"></i>12.2 Datos ordenados</a><ul>
+<li class="chapter" data-level="12" data-path="datos-ordenados.html"><a href="datos-ordenados.html"><i class="fa fa-check"></i><b>12</b> Datos ordenados</a>
+<ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#datos-ordenados122"><i class="fa fa-check"></i>12.2 Datos ordenados</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1221"><i class="fa fa-check"></i>12.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#pivotar"><i class="fa fa-check"></i>12.3 Pivotar</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#pivotar"><i class="fa fa-check"></i>12.3 Pivotar</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1233"><i class="fa fa-check"></i>12.3.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#separar-unir"><i class="fa fa-check"></i>12.4 Separar y unir</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#separar-unir"><i class="fa fa-check"></i>12.4 Separar y unir</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1243"><i class="fa fa-check"></i>12.4.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#valores-faltantes125"><i class="fa fa-check"></i>12.5 Valores faltantes</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#valores-faltantes125"><i class="fa fa-check"></i>12.5 Valores faltantes</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1251"><i class="fa fa-check"></i>12.5.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#estudio-caso"><i class="fa fa-check"></i>12.6 Estudio de caso</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#estudio-caso"><i class="fa fa-check"></i>12.6 Estudio de caso</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1261"><i class="fa fa-check"></i>12.6.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="datos-relacionales.html"><a href="datos-relacionales.html"><i class="fa fa-check"></i><b>13</b> Datos relacionales</a><ul>
-<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#vuelos-relacionales"><i class="fa fa-check"></i>13.2 Datos sobre vuelos</a><ul>
+<li class="chapter" data-level="13" data-path="datos-relacionales.html"><a href="datos-relacionales.html"><i class="fa fa-check"></i><b>13</b> Datos relacionales</a>
+<ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#vuelos-relacionales"><i class="fa fa-check"></i>13.2 Datos sobre vuelos</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1321"><i class="fa fa-check"></i>13.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#claves"><i class="fa fa-check"></i>13.3 Claves</a><ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#claves"><i class="fa fa-check"></i>13.3 Claves</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1331"><i class="fa fa-check"></i>13.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="13.1" data-path="datos-relacionales.html"><a href="datos-relacionales.html#mutating-joins"><i class="fa fa-check"></i><b>13.1</b> 13.4 Uniones de transformación</a><ul>
+<li class="chapter" data-level="13.1" data-path="datos-relacionales.html"><a href="datos-relacionales.html#mutating-joins"><i class="fa fa-check"></i><b>13.1</b> 13.4 Uniones de transformación</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1346"><i class="fa fa-check"></i>13.4.6 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="datos-relacionales.html"><a href="datos-relacionales.html#filtering-joins"><i class="fa fa-check"></i><b>13.2</b> 13.5 Uniones de filtro</a><ul>
+<li class="chapter" data-level="13.2" data-path="datos-relacionales.html"><a href="datos-relacionales.html#filtering-joins"><i class="fa fa-check"></i><b>13.2</b> 13.5 Uniones de filtro</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1351"><i class="fa fa-check"></i>13.5.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html"><i class="fa fa-check"></i><b>14</b> Cadenas de caracteres</a><ul>
-<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#cadena-basics"><i class="fa fa-check"></i>14.2 Cadenas: elementos básicos</a><ul>
+<li class="chapter" data-level="14" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html"><i class="fa fa-check"></i><b>14</b> Cadenas de caracteres</a>
+<ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#cadena-basics"><i class="fa fa-check"></i>14.2 Cadenas: elementos básicos</a>
+<ul>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1425"><i class="fa fa-check"></i>14.2.5 Ejercicios</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#coincidencia"><i class="fa fa-check"></i>14.2.6 Buscar coincidencia de patrones con expresiones regulares</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#anclas"><i class="fa fa-check"></i>14.2.8 Anclas</a></li>
@@ -265,143 +308,189 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#repeticion"><i class="fa fa-check"></i>14.2.10 Repetición</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#agrupamiento"><i class="fa fa-check"></i>14.2.11 Agrupamiento y referencias previas</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#herramientas"><i class="fa fa-check"></i>14.3 Herramientas</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#herramientas"><i class="fa fa-check"></i>14.3 Herramientas</a>
+<ul>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1432"><i class="fa fa-check"></i>14.3.2 Ejercicios</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#extraer-coincidencias"><i class="fa fa-check"></i>14.3.3 Extraer coincidencias</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#coincidencias-agrupadas"><i class="fa fa-check"></i>14.3.4 Coincidencias agrupadas</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#remplazar-coincidencias"><i class="fa fa-check"></i>14.3.5 Remplazar coincidencias</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#divisiones"><i class="fa fa-check"></i>14.3.6 Divisiones</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#otros-patrones144"><i class="fa fa-check"></i>14.4 Otro tipo de patrones</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#otros-patrones144"><i class="fa fa-check"></i>14.4 Otro tipo de patrones</a>
+<ul>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1441"><i class="fa fa-check"></i>14.4.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#stringi"><i class="fa fa-check"></i>14.6 stringi</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#stringi"><i class="fa fa-check"></i>14.6 stringi</a>
+<ul>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1461"><i class="fa fa-check"></i>14.6.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="factores.html"><a href="factores.html"><i class="fa fa-check"></i><b>15</b> Factores</a><ul>
-<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#encuesta"><i class="fa fa-check"></i>15.3 Encuesta social general</a><ul>
+<li class="chapter" data-level="15" data-path="factores.html"><a href="factores.html"><i class="fa fa-check"></i><b>15</b> Factores</a>
+<ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#encuesta"><i class="fa fa-check"></i>15.3 Encuesta social general</a>
+<ul>
 <li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1531"><i class="fa fa-check"></i>15.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-factores"><i class="fa fa-check"></i>15.4 Modificar el orden de los factores</a><ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-factores"><i class="fa fa-check"></i>15.4 Modificar el orden de los factores</a>
+<ul>
 <li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1541"><i class="fa fa-check"></i>15.4.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-niveles"><i class="fa fa-check"></i>15.5 Modificar los niveles de los factores</a><ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-niveles"><i class="fa fa-check"></i>15.5 Modificar los niveles de los factores</a>
+<ul>
 <li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1551"><i class="fa fa-check"></i>15.5.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html"><i class="fa fa-check"></i><b>16</b> Horas y fechas</a><ul>
-<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#crear-horas"><i class="fa fa-check"></i>16.2 Creando horas/fechas</a><ul>
+<li class="chapter" data-level="16" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html"><i class="fa fa-check"></i><b>16</b> Horas y fechas</a>
+<ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#crear-horas"><i class="fa fa-check"></i>16.2 Creando horas/fechas</a>
+<ul>
 <li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1624"><i class="fa fa-check"></i>16.2.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#componentes-fecha"><i class="fa fa-check"></i>16.3 Componentes fecha-hora</a><ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#componentes-fecha"><i class="fa fa-check"></i>16.3 Componentes fecha-hora</a>
+<ul>
 <li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1634"><i class="fa fa-check"></i>16.3.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#lapsos-tiempo"><i class="fa fa-check"></i>16.4 Lapsos de tiempo</a><ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#lapsos-tiempo"><i class="fa fa-check"></i>16.4 Lapsos de tiempo</a>
+<ul>
 <li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1645"><i class="fa fa-check"></i>16.4.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Programar</b></span></li>
 <li class="chapter" data-level="17" data-path="introducción-6.html"><a href="introducción-6.html"><i class="fa fa-check"></i><b>17</b> Introducción</a></li>
 <li class="chapter" data-level="18" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>18</b> Pipes</a></li>
-<li class="chapter" data-level="19" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>19</b> Funciones</a><ul>
-<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#escribir-funcion"><i class="fa fa-check"></i>19.2 ¿Cuándo deberías escribir una función?</a><ul>
+<li class="chapter" data-level="19" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>19</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#escribir-funcion"><i class="fa fa-check"></i>19.2 ¿Cuándo deberías escribir una función?</a>
+<ul>
 <li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1921"><i class="fa fa-check"></i>19.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#funciones-humanos"><i class="fa fa-check"></i>19.3 Las funciones son para los humanos y las computadoras</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#funciones-humanos"><i class="fa fa-check"></i>19.3 Las funciones son para los humanos y las computadoras</a>
+<ul>
 <li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1931"><i class="fa fa-check"></i>19.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejecucion-condicional"><i class="fa fa-check"></i>19.4 Ejecución condicional</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejecucion-condicional"><i class="fa fa-check"></i>19.4 Ejecución condicional</a>
+<ul>
 <li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1944"><i class="fa fa-check"></i>19.4.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#argumentos-funciones"><i class="fa fa-check"></i>19.5 Argumentos de funciones</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#argumentos-funciones"><i class="fa fa-check"></i>19.5 Argumentos de funciones</a>
+<ul>
 <li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1955"><i class="fa fa-check"></i>19.5.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>20</b> Vectores</a><ul>
-<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-atomicos"><i class="fa fa-check"></i>20.3 Tipos importantes de vectores atómicos</a><ul>
+<li class="chapter" data-level="20" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>20</b> Vectores</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-atomicos"><i class="fa fa-check"></i>20.3 Tipos importantes de vectores atómicos</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2035"><i class="fa fa-check"></i>20.3.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#uso-vectores"><i class="fa fa-check"></i>20.4 Usando vectores atómicos</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#uso-vectores"><i class="fa fa-check"></i>20.4 Usando vectores atómicos</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2046"><i class="fa fa-check"></i>20.4.6 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#listas"><i class="fa fa-check"></i>20.5 Vectores Recursivos (listas)</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#listas"><i class="fa fa-check"></i>20.5 Vectores Recursivos (listas)</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2054"><i class="fa fa-check"></i>20.5.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-aumentados"><i class="fa fa-check"></i>20.7 Vectores Aumentados</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-aumentados"><i class="fa fa-check"></i>20.7 Vectores Aumentados</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2074"><i class="fa fa-check"></i>20.7.4 Ejecicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="iteración.html"><a href="iteración.html"><i class="fa fa-check"></i><b>21</b> Iteración</a><ul>
-<li><a href="iteración.html#bucles-for">21.2 Bucles <em>for</em></a><ul>
+<li class="chapter" data-level="21" data-path="iteración.html"><a href="iteración.html"><i class="fa fa-check"></i><b>21</b> Iteración</a>
+<ul>
+<li><a href="iteración.html#bucles-for">21.2 Bucles <em>for</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios2121"><i class="fa fa-check"></i>21.2.1 Ejercicios</a></li>
 </ul></li>
-<li><a href="iteración.html#variaciones-bucles">21.3 Variaciones de bucles <em>for</em></a><ul>
+<li><a href="iteración.html#variaciones-bucles">21.3 Variaciones de bucles <em>for</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2135"><i class="fa fa-check"></i>21.3.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="21.1" data-path="iteración.html"><a href="iteración.html#bucles-for-vs.-funcionales-for-funcionales"><i class="fa fa-check"></i><b>21.1</b> 21.4 Bucles <em>for</em> vs. funcionales{-for-funcionales</a><ul>
+<li class="chapter" data-level="21.1" data-path="iteración.html"><a href="iteración.html#bucles-for-vs.-funcionales-for-funcionales"><i class="fa fa-check"></i><b>21.1</b> 21.4 Bucles <em>for</em> vs. funcionales{-for-funcionales</a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2141"><i class="fa fa-check"></i>21.4.1 Ejercicios</a></li>
 </ul></li>
-<li><a href="iteración.html#funciones-map">21.5 Las funciones <em>map</em></a><ul>
+<li><a href="iteración.html#funciones-map">21.5 Las funciones <em>map</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2153"><i class="fa fa-check"></i>21.5.3 Ejercicios</a></li>
 </ul></li>
-<li><a href="iteración.html#otros-patrones">21.9.1 Otros patrones para los bucles <em>for</em></a><ul>
+<li><a href="iteración.html#otros-patrones">21.9.1 Otros patrones para los bucles <em>for</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2193"><i class="fa fa-check"></i>21.9.3 Ejercicios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Modelar</b></span></li>
 <li class="chapter" data-level="22" data-path="introducción-7.html"><a href="introducción-7.html"><i class="fa fa-check"></i><b>22</b> Introducción</a></li>
-<li class="chapter" data-level="23" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html"><i class="fa fa-check"></i><b>23</b> Modelos: conceptos básicos</a><ul>
-<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#modelo-simple"><i class="fa fa-check"></i>23.2 Un modelo simple</a><ul>
+<li class="chapter" data-level="23" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html"><i class="fa fa-check"></i><b>23</b> Modelos: conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#modelo-simple"><i class="fa fa-check"></i>23.2 Un modelo simple</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2321"><i class="fa fa-check"></i>23.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#visualizando-modelos"><i class="fa fa-check"></i>23.3 Visualizando modelos</a><ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#visualizando-modelos"><i class="fa fa-check"></i>23.3 Visualizando modelos</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2333"><i class="fa fa-check"></i>23.3.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#familias-modelos"><i class="fa fa-check"></i>23.4 Fórmulas y familias de modelos</a><ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#familias-modelos"><i class="fa fa-check"></i>23.4 Fórmulas y familias de modelos</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2345"><i class="fa fa-check"></i>23.4.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html"><i class="fa fa-check"></i><b>24</b> Construcción de modelos</a><ul>
-<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#diamantes-caros"><i class="fa fa-check"></i>24.2 ¿Por qué los diamantes de baja calidad son más caros?</a><ul>
+<li class="chapter" data-level="24" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html"><i class="fa fa-check"></i><b>24</b> Construcción de modelos</a>
+<ul>
+<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#diamantes-caros"><i class="fa fa-check"></i>24.2 ¿Por qué los diamantes de baja calidad son más caros?</a>
+<ul>
 <li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#ejercicios-2423"><i class="fa fa-check"></i>24.2.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#vuelos-diarios"><i class="fa fa-check"></i>24.3 ¿Qué afecta el número de vuelos diarios?</a><ul>
+<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#vuelos-diarios"><i class="fa fa-check"></i>24.3 ¿Qué afecta el número de vuelos diarios?</a>
+<ul>
 <li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#ejercicios-2435"><i class="fa fa-check"></i>24.3.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="muchos-modelos.html"><a href="muchos-modelos.html"><i class="fa fa-check"></i><b>25</b> Muchos modelos</a><ul>
-<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#gapminder"><i class="fa fa-check"></i>25.2 gapminder</a><ul>
+<li class="chapter" data-level="25" data-path="muchos-modelos.html"><a href="muchos-modelos.html"><i class="fa fa-check"></i><b>25</b> Muchos modelos</a>
+<ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#gapminder"><i class="fa fa-check"></i>25.2 gapminder</a>
+<ul>
 <li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2525"><i class="fa fa-check"></i>25.2.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#columnas-lista"><i class="fa fa-check"></i>25.4 Creando columnas-lista</a><ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#columnas-lista"><i class="fa fa-check"></i>25.4 Creando columnas-lista</a>
+<ul>
 <li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2545"><i class="fa fa-check"></i>25.4.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#simplificando"><i class="fa fa-check"></i>25.5 Simplificando columnas-lista</a><ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#simplificando"><i class="fa fa-check"></i>25.5 Simplificando columnas-lista</a>
+<ul>
 <li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2553"><i class="fa fa-check"></i>25.5.3 Ejercicios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>V Comunicar</b></span></li>
 <li class="chapter" data-level="26" data-path="introducción-8.html"><a href="introducción-8.html"><i class="fa fa-check"></i><b>26</b> Introducción</a></li>
-<li class="chapter" data-level="27" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>27</b> R Markdown</a><ul>
-<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#rmarkdown-basico"><i class="fa fa-check"></i>27.2 R Markdown básico</a><ul>
+<li class="chapter" data-level="27" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>27</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#rmarkdown-basico"><i class="fa fa-check"></i>27.2 R Markdown básico</a>
+<ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2721"><i class="fa fa-check"></i>27.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#formateo-texto"><i class="fa fa-check"></i>27.3 Formateo de texto con Markdown</a><ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#formateo-texto"><i class="fa fa-check"></i>27.3 Formateo de texto con Markdown</a>
+<ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2731"><i class="fa fa-check"></i>27.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bloques-codigo"><i class="fa fa-check"></i>27.4 Bloques de código</a><ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bloques-codigo"><i class="fa fa-check"></i>27.4 Bloques de código</a>
+<ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2747"><i class="fa fa-check"></i>27.4.7 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="28" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html"><i class="fa fa-check"></i><b>28</b> Comunicar con gráficos</a><ul>
-<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#etiquetas"><i class="fa fa-check"></i>2.8 Etiquetas</a><ul>
+<li class="chapter" data-level="28" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html"><i class="fa fa-check"></i><b>28</b> Comunicar con gráficos</a>
+<ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#etiquetas"><i class="fa fa-check"></i>2.8 Etiquetas</a>
+<ul>
 <li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2821"><i class="fa fa-check"></i>28.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#anotaciones"><i class="fa fa-check"></i>28.3 Anotaciones</a><ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#anotaciones"><i class="fa fa-check"></i>28.3 Anotaciones</a>
+<ul>
 <li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2831"><i class="fa fa-check"></i>28.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#escalas"><i class="fa fa-check"></i>28.4 Escalas</a><ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#escalas"><i class="fa fa-check"></i>28.4 Escalas</a>
+<ul>
 <li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2844"><i class="fa fa-check"></i>28.4.4 Ejercicios</a></li>
 </ul></li>
 </ul></li>
@@ -424,7 +513,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="comunicar-con-gráficos" class="section level1">
+<div id="comunicar-con-gráficos" class="section level1" number="28">
 <h1><span class="header-section-number">28</span> Comunicar con gráficos</h1>
 <div id="etiquetas" class="section level2 unnumbered">
 <h2>2.8 Etiquetas</h2>
@@ -506,25 +595,25 @@ Solución
 <em><code>ends</code>: “last”, “first” o “both”, dependiendo de en qué extremo de la flecha queremos que se dibuje la punta.
 </em><code>type</code>: “open” o “closed”, dependiendo de si queremos que la punta de la flecha sea un triángulo abierto o cerrado.</p>
 <p>Para ilustrar su uso, utilizaremos las opciones de <code>arrow</code> dentro de <code>geom_segment</code>:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="comunicar-con-gráficos.html#cb354-1"></a>grafico &lt;-<span class="st"> </span>paises <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb354-2"><a href="comunicar-con-gráficos.html#cb354-2"></a><span class="st">  </span><span class="kw">filter</span>(pais <span class="op">==</span><span class="st"> &quot;Ruanda&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb354-3"><a href="comunicar-con-gráficos.html#cb354-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(anio, esperanza_de_vida)) <span class="op">+</span></span>
-<span id="cb354-4"><a href="comunicar-con-gráficos.html#cb354-4"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">colour =</span> <span class="st">&quot;#5cb85c&quot;</span>) <span class="op">+</span></span>
-<span id="cb354-5"><a href="comunicar-con-gráficos.html#cb354-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolución de la esperanza de vida en Ruanda entre 1952 y 2007&quot;</span>,</span>
-<span id="cb354-6"><a href="comunicar-con-gráficos.html#cb354-6"></a>       <span class="dt">x =</span> <span class="st">&quot;Año&quot;</span>,</span>
-<span id="cb354-7"><a href="comunicar-con-gráficos.html#cb354-7"></a>       <span class="dt">y =</span> <span class="st">&quot;Edad&quot;</span>) <span class="op">+</span></span>
-<span id="cb354-8"><a href="comunicar-con-gráficos.html#cb354-8"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">20</span>,<span class="dv">80</span>) <span class="op">+</span></span>
-<span id="cb354-9"><a href="comunicar-con-gráficos.html#cb354-9"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span>
-<span id="cb354-10"><a href="comunicar-con-gráficos.html#cb354-10"></a></span>
-<span id="cb354-11"><a href="comunicar-con-gráficos.html#cb354-11"></a></span>
-<span id="cb354-12"><a href="comunicar-con-gráficos.html#cb354-12"></a>  grafico <span class="op">+</span></span>
-<span id="cb354-13"><a href="comunicar-con-gráficos.html#cb354-13"></a><span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1980</span>, <span class="dt">xend =</span> <span class="dv">1988</span>, <span class="dt">y =</span> <span class="dv">24</span>, <span class="dt">yend =</span> <span class="dv">24</span>), <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;cm&quot;</span>), <span class="dt">type =</span> <span class="st">&quot;closed&quot;</span>), <span class="dt">colour =</span> <span class="st">&quot;gray51&quot;</span>) <span class="op">+</span></span>
-<span id="cb354-14"><a href="comunicar-con-gráficos.html#cb354-14"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">1975</span>, <span class="dt">y =</span> <span class="dv">24</span>, <span class="dt">label =</span> <span class="st">&quot;Guerra Civil&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;gray51&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="comunicar-con-gráficos.html#cb352-1" aria-hidden="true" tabindex="-1"></a>grafico <span class="ot">&lt;-</span> paises <span class="sc">%&gt;%</span> </span>
+<span id="cb352-2"><a href="comunicar-con-gráficos.html#cb352-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pais <span class="sc">==</span> <span class="st">&quot;Ruanda&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb352-3"><a href="comunicar-con-gráficos.html#cb352-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(anio, esperanza_de_vida)) <span class="sc">+</span></span>
+<span id="cb352-4"><a href="comunicar-con-gráficos.html#cb352-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;#5cb85c&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-5"><a href="comunicar-con-gráficos.html#cb352-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Evolución de la esperanza de vida en Ruanda entre 1952 y 2007&quot;</span>,</span>
+<span id="cb352-6"><a href="comunicar-con-gráficos.html#cb352-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>,</span>
+<span id="cb352-7"><a href="comunicar-con-gráficos.html#cb352-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Edad&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-8"><a href="comunicar-con-gráficos.html#cb352-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">20</span>,<span class="dv">80</span>) <span class="sc">+</span></span>
+<span id="cb352-9"><a href="comunicar-con-gráficos.html#cb352-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb352-10"><a href="comunicar-con-gráficos.html#cb352-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb352-11"><a href="comunicar-con-gráficos.html#cb352-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb352-12"><a href="comunicar-con-gráficos.html#cb352-12" aria-hidden="true" tabindex="-1"></a>  grafico <span class="sc">+</span></span>
+<span id="cb352-13"><a href="comunicar-con-gráficos.html#cb352-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1980</span>, <span class="at">xend =</span> <span class="dv">1988</span>, <span class="at">y =</span> <span class="dv">24</span>, <span class="at">yend =</span> <span class="dv">24</span>), <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">angle =</span> <span class="dv">40</span>, <span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">type =</span> <span class="st">&quot;closed&quot;</span>), <span class="at">colour =</span> <span class="st">&quot;gray51&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-14"><a href="comunicar-con-gráficos.html#cb352-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">1975</span>, <span class="at">y =</span> <span class="dv">24</span>, <span class="at">label =</span> <span class="st">&quot;Guerra Civil&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;gray51&quot;</span>)</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Veamos otras opciones para ajustar la flecha. En esta ocasión tendremos que modificar el valor de <code>ends</code> que viene por defecto</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="comunicar-con-gráficos.html#cb355-1"></a>  grafico <span class="op">+</span></span>
-<span id="cb355-2"><a href="comunicar-con-gráficos.html#cb355-2"></a><span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="fl">1992.5</span>, <span class="dt">xend =</span> <span class="dv">1995</span>, <span class="dt">y =</span> <span class="dv">30</span>, <span class="dt">yend =</span> <span class="dv">50</span>), <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">angle =</span> <span class="dv">40</span>, <span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;cm&quot;</span>), <span class="dt">ends =</span> <span class="st">&quot;first&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;open&quot;</span>), <span class="dt">colour =</span> <span class="st">&quot;gray51&quot;</span>) <span class="op">+</span></span>
-<span id="cb355-3"><a href="comunicar-con-gráficos.html#cb355-3"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">1995</span>, <span class="dt">y =</span> <span class="dv">52</span>, <span class="dt">label =</span> <span class="st">&quot;Guerra Civil&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;gray51&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="comunicar-con-gráficos.html#cb353-1" aria-hidden="true" tabindex="-1"></a>  grafico <span class="sc">+</span></span>
+<span id="cb353-2"><a href="comunicar-con-gráficos.html#cb353-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">1992.5</span>, <span class="at">xend =</span> <span class="dv">1995</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">yend =</span> <span class="dv">50</span>), <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">angle =</span> <span class="dv">40</span>, <span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">ends =</span> <span class="st">&quot;first&quot;</span>, <span class="at">type =</span> <span class="st">&quot;open&quot;</span>), <span class="at">colour =</span> <span class="st">&quot;gray51&quot;</span>) <span class="sc">+</span></span>
+<span id="cb353-3"><a href="comunicar-con-gráficos.html#cb353-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">1995</span>, <span class="at">y =</span> <span class="dv">52</span>, <span class="at">label =</span> <span class="st">&quot;Guerra Civil&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;gray51&quot;</span>)</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -536,26 +625,26 @@ Solución
 <ol style="list-style-type: decimal">
 <li>¿Por qué el siguiente código no reemplaza la escala predeterminada?</li>
 </ol>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="comunicar-con-gráficos.html#cb356-1"></a></span>
-<span id="cb356-2"><a href="comunicar-con-gráficos.html#cb356-2"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb356-3"><a href="comunicar-con-gráficos.html#cb356-3"></a>  <span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">10000</span>),</span>
-<span id="cb356-4"><a href="comunicar-con-gráficos.html#cb356-4"></a>  <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">10000</span>)</span>
-<span id="cb356-5"><a href="comunicar-con-gráficos.html#cb356-5"></a>)</span>
-<span id="cb356-6"><a href="comunicar-con-gráficos.html#cb356-6"></a></span>
-<span id="cb356-7"><a href="comunicar-con-gráficos.html#cb356-7"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
-<span id="cb356-8"><a href="comunicar-con-gráficos.html#cb356-8"></a><span class="st">  </span><span class="kw">geom_hex</span>() <span class="op">+</span></span>
-<span id="cb356-9"><a href="comunicar-con-gráficos.html#cb356-9"></a><span class="st">  </span><span class="kw">scale_colour_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb356-10"><a href="comunicar-con-gráficos.html#cb356-10"></a><span class="st">  </span><span class="kw">coord_fixed</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="comunicar-con-gráficos.html#cb354-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb354-2"><a href="comunicar-con-gráficos.html#cb354-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb354-3"><a href="comunicar-con-gráficos.html#cb354-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>),</span>
+<span id="cb354-4"><a href="comunicar-con-gráficos.html#cb354-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>)</span>
+<span id="cb354-5"><a href="comunicar-con-gráficos.html#cb354-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb354-6"><a href="comunicar-con-gráficos.html#cb354-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb354-7"><a href="comunicar-con-gráficos.html#cb354-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb354-8"><a href="comunicar-con-gráficos.html#cb354-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>() <span class="sc">+</span></span>
+<span id="cb354-9"><a href="comunicar-con-gráficos.html#cb354-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb354-10"><a href="comunicar-con-gráficos.html#cb354-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code></pre></div>
 <img src="28-communicate-plots_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
 <div class="solucion">
 <h3>
 Solución
 </h3>
 <p>La escala predeterminada no se ve modificada porque en el caso de <code>geom_hex()</code> tenemos que utilizar <code>scale_fill_gradient()</code>:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="comunicar-con-gráficos.html#cb357-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
-<span id="cb357-2"><a href="comunicar-con-gráficos.html#cb357-2"></a><span class="st">  </span><span class="kw">geom_hex</span>() <span class="op">+</span></span>
-<span id="cb357-3"><a href="comunicar-con-gráficos.html#cb357-3"></a><span class="st">  </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb357-4"><a href="comunicar-con-gráficos.html#cb357-4"></a><span class="st">  </span><span class="kw">coord_fixed</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="comunicar-con-gráficos.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb355-2"><a href="comunicar-con-gráficos.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>() <span class="sc">+</span></span>
+<span id="cb355-3"><a href="comunicar-con-gráficos.html#cb355-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb355-4"><a href="comunicar-con-gráficos.html#cb355-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <ol start="2" style="list-style-type: decimal">
@@ -581,81 +670,81 @@ Solución
 Solución
 </h3>
 <p>Las dos versiones a las que hace alusión el punto I son las siguientes:</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="comunicar-con-gráficos.html#cb358-1"></a>presidencial <span class="op">%&gt;%</span></span>
-<span id="cb358-2"><a href="comunicar-con-gráficos.html#cb358-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="dv">33</span> <span class="op">+</span><span class="st"> </span><span class="kw">row_number</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb358-3"><a href="comunicar-con-gráficos.html#cb358-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(inicio, id)) <span class="op">+</span></span>
-<span id="cb358-4"><a href="comunicar-con-gráficos.html#cb358-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb358-5"><a href="comunicar-con-gráficos.html#cb358-5"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> fin, <span class="dt">yend =</span> id)) <span class="op">+</span></span>
-<span id="cb358-6"><a href="comunicar-con-gráficos.html#cb358-6"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="ot">NULL</span>, <span class="dt">breaks =</span> presidencial<span class="op">$</span>inicio, <span class="dt">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>)</span>
-<span id="cb358-7"><a href="comunicar-con-gráficos.html#cb358-7"></a></span>
-<span id="cb358-8"><a href="comunicar-con-gráficos.html#cb358-8"></a></span>
-<span id="cb358-9"><a href="comunicar-con-gráficos.html#cb358-9"></a>presidencial <span class="op">%&gt;%</span></span>
-<span id="cb358-10"><a href="comunicar-con-gráficos.html#cb358-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="dv">33</span> <span class="op">+</span><span class="st"> </span><span class="kw">row_number</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb358-11"><a href="comunicar-con-gráficos.html#cb358-11"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(inicio, id, <span class="dt">colour =</span> partido)) <span class="op">+</span></span>
-<span id="cb358-12"><a href="comunicar-con-gráficos.html#cb358-12"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb358-13"><a href="comunicar-con-gráficos.html#cb358-13"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> fin, <span class="dt">yend =</span> id)) <span class="op">+</span></span>
-<span id="cb358-14"><a href="comunicar-con-gráficos.html#cb358-14"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dt">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="dt">Demócrata` = &quot;blue&quot;))</span></span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="comunicar-con-gráficos.html#cb356-1" aria-hidden="true" tabindex="-1"></a>presidencial <span class="sc">%&gt;%</span></span>
+<span id="cb356-2"><a href="comunicar-con-gráficos.html#cb356-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">33</span> <span class="sc">+</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb356-3"><a href="comunicar-con-gráficos.html#cb356-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inicio, id)) <span class="sc">+</span></span>
+<span id="cb356-4"><a href="comunicar-con-gráficos.html#cb356-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb356-5"><a href="comunicar-con-gráficos.html#cb356-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> fin, <span class="at">yend =</span> id)) <span class="sc">+</span></span>
+<span id="cb356-6"><a href="comunicar-con-gráficos.html#cb356-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="cn">NULL</span>, <span class="at">breaks =</span> presidencial<span class="sc">$</span>inicio, <span class="at">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>)</span>
+<span id="cb356-7"><a href="comunicar-con-gráficos.html#cb356-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-8"><a href="comunicar-con-gráficos.html#cb356-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-9"><a href="comunicar-con-gráficos.html#cb356-9" aria-hidden="true" tabindex="-1"></a>presidencial <span class="sc">%&gt;%</span></span>
+<span id="cb356-10"><a href="comunicar-con-gráficos.html#cb356-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">33</span> <span class="sc">+</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb356-11"><a href="comunicar-con-gráficos.html#cb356-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inicio, id, <span class="at">colour =</span> partido)) <span class="sc">+</span></span>
+<span id="cb356-12"><a href="comunicar-con-gráficos.html#cb356-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb356-13"><a href="comunicar-con-gráficos.html#cb356-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> fin, <span class="at">yend =</span> id)) <span class="sc">+</span></span>
+<span id="cb356-14"><a href="comunicar-con-gráficos.html#cb356-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="at">Demócrata</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /><img src="28-communicate-plots_files/figure-html/unnamed-chunk-7-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Primero, combinémoslas:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="comunicar-con-gráficos.html#cb359-1"></a></span>
-<span id="cb359-2"><a href="comunicar-con-gráficos.html#cb359-2"></a>presidencial <span class="op">%&gt;%</span></span>
-<span id="cb359-3"><a href="comunicar-con-gráficos.html#cb359-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="dv">33</span> <span class="op">+</span><span class="st"> </span><span class="kw">row_number</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb359-4"><a href="comunicar-con-gráficos.html#cb359-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(inicio, id, <span class="dt">colour =</span> partido)) <span class="op">+</span></span>
-<span id="cb359-5"><a href="comunicar-con-gráficos.html#cb359-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb359-6"><a href="comunicar-con-gráficos.html#cb359-6"></a><span class="st">   </span><span class="kw">scale_x_date</span>(<span class="ot">NULL</span>, <span class="dt">breaks =</span> presidencial<span class="op">$</span>inicio, <span class="dt">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>) <span class="op">+</span></span>
-<span id="cb359-7"><a href="comunicar-con-gráficos.html#cb359-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> fin, <span class="dt">yend =</span> id)) <span class="op">+</span></span>
-<span id="cb359-8"><a href="comunicar-con-gráficos.html#cb359-8"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dt">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="dt">Demócrata` = &quot;blue&quot;))</span></span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="comunicar-con-gráficos.html#cb357-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-2"><a href="comunicar-con-gráficos.html#cb357-2" aria-hidden="true" tabindex="-1"></a>presidencial <span class="sc">%&gt;%</span></span>
+<span id="cb357-3"><a href="comunicar-con-gráficos.html#cb357-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">33</span> <span class="sc">+</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb357-4"><a href="comunicar-con-gráficos.html#cb357-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inicio, id, <span class="at">colour =</span> partido)) <span class="sc">+</span></span>
+<span id="cb357-5"><a href="comunicar-con-gráficos.html#cb357-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb357-6"><a href="comunicar-con-gráficos.html#cb357-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_x_date</span>(<span class="cn">NULL</span>, <span class="at">breaks =</span> presidencial<span class="sc">$</span>inicio, <span class="at">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb357-7"><a href="comunicar-con-gráficos.html#cb357-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> fin, <span class="at">yend =</span> id)) <span class="sc">+</span></span>
+<span id="cb357-8"><a href="comunicar-con-gráficos.html#cb357-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="at">Demócrata</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Listo. Ahora, mejoremos la visualización del eje <code>y</code>, como indica el punto II. El eje <code>y</code> indica a qué número de mandatario corresponde (el dataset va desde Eisenhower, el presidente número 34, a Obama, el número 44). Lo ideal sería que en el eje <code>y</code> apareciera cada mandatario. Para que mantenga el orden de aparición, utilizaremos <code>fct_inorder()</code>. Como hay dos presidentes distintos que comparten apellido, podemos agregar el <code>id</code> al nombre para que distinga entre el que fue el presindente 41° y el que fue 43°.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="comunicar-con-gráficos.html#cb360-1"></a>presidencial <span class="op">%&gt;%</span></span>
-<span id="cb360-2"><a href="comunicar-con-gráficos.html#cb360-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="dv">33</span> <span class="op">+</span><span class="st"> </span><span class="kw">row_number</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb360-3"><a href="comunicar-con-gráficos.html#cb360-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">nombre =</span> <span class="kw">fct_inorder</span>(<span class="kw">str_c</span>(nombre,<span class="st">&quot; (&quot;</span>, id, <span class="st">&quot;°)&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb360-4"><a href="comunicar-con-gráficos.html#cb360-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(inicio, nombre, <span class="dt">colour =</span> partido)) <span class="op">+</span></span>
-<span id="cb360-5"><a href="comunicar-con-gráficos.html#cb360-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb360-6"><a href="comunicar-con-gráficos.html#cb360-6"></a><span class="st">   </span><span class="kw">scale_x_date</span>(<span class="ot">NULL</span>, <span class="dt">breaks =</span> presidencial<span class="op">$</span>inicio, <span class="dt">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>) <span class="op">+</span></span>
-<span id="cb360-7"><a href="comunicar-con-gráficos.html#cb360-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> fin, <span class="dt">yend =</span> nombre)) <span class="op">+</span></span>
-<span id="cb360-8"><a href="comunicar-con-gráficos.html#cb360-8"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dt">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="dt">Demócrata` = &quot;blue&quot;))</span></span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="comunicar-con-gráficos.html#cb358-1" aria-hidden="true" tabindex="-1"></a>presidencial <span class="sc">%&gt;%</span></span>
+<span id="cb358-2"><a href="comunicar-con-gráficos.html#cb358-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">33</span> <span class="sc">+</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb358-3"><a href="comunicar-con-gráficos.html#cb358-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nombre =</span> <span class="fu">fct_inorder</span>(<span class="fu">str_c</span>(nombre,<span class="st">&quot; (&quot;</span>, id, <span class="st">&quot;°)&quot;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb358-4"><a href="comunicar-con-gráficos.html#cb358-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inicio, nombre, <span class="at">colour =</span> partido)) <span class="sc">+</span></span>
+<span id="cb358-5"><a href="comunicar-con-gráficos.html#cb358-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb358-6"><a href="comunicar-con-gráficos.html#cb358-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_x_date</span>(<span class="cn">NULL</span>, <span class="at">breaks =</span> presidencial<span class="sc">$</span>inicio, <span class="at">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb358-7"><a href="comunicar-con-gráficos.html#cb358-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> fin, <span class="at">yend =</span> nombre)) <span class="sc">+</span></span>
+<span id="cb358-8"><a href="comunicar-con-gráficos.html#cb358-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="at">Demócrata</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>El punto III y IV hacen referencia a las etiquetas. En el paso anterior ya etiquetamos cada periodo presidencial con el nombre del mandatario. Agregar etiquetas al <code>y</code> sería un poco redundante (y lo será más cuando le pongamos título al gráfico). La del eje <code>x</code> se infiere, así que no agregaremos nada.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="comunicar-con-gráficos.html#cb361-1"></a>presidencial <span class="op">%&gt;%</span></span>
-<span id="cb361-2"><a href="comunicar-con-gráficos.html#cb361-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="dv">33</span> <span class="op">+</span><span class="st"> </span><span class="kw">row_number</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb361-3"><a href="comunicar-con-gráficos.html#cb361-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">nombre =</span> <span class="kw">fct_inorder</span>(<span class="kw">str_c</span>(nombre,<span class="st">&quot; (&quot;</span>, id, <span class="st">&quot;°)&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb361-4"><a href="comunicar-con-gráficos.html#cb361-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(inicio, nombre, <span class="dt">colour =</span> partido)) <span class="op">+</span></span>
-<span id="cb361-5"><a href="comunicar-con-gráficos.html#cb361-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb361-6"><a href="comunicar-con-gráficos.html#cb361-6"></a><span class="st">   </span><span class="kw">scale_x_date</span>(<span class="ot">NULL</span>, <span class="dt">breaks =</span> presidencial<span class="op">$</span>inicio, <span class="dt">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>) <span class="op">+</span></span>
-<span id="cb361-7"><a href="comunicar-con-gráficos.html#cb361-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> fin, <span class="dt">yend =</span> nombre)) <span class="op">+</span></span>
-<span id="cb361-8"><a href="comunicar-con-gráficos.html#cb361-8"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dt">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="dt">Demócrata` = &quot;blue&quot;)) +</span></span>
-<span id="cb361-9"><a href="comunicar-con-gráficos.html#cb361-9"></a><span class="dt">  labs(title = &quot;Presidentes de EE. UU. entre 1953 y 2017&quot;,</span></span>
-<span id="cb361-10"><a href="comunicar-con-gráficos.html#cb361-10"></a><span class="dt">       y = NULL)</span></span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="comunicar-con-gráficos.html#cb359-1" aria-hidden="true" tabindex="-1"></a>presidencial <span class="sc">%&gt;%</span></span>
+<span id="cb359-2"><a href="comunicar-con-gráficos.html#cb359-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">33</span> <span class="sc">+</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb359-3"><a href="comunicar-con-gráficos.html#cb359-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nombre =</span> <span class="fu">fct_inorder</span>(<span class="fu">str_c</span>(nombre,<span class="st">&quot; (&quot;</span>, id, <span class="st">&quot;°)&quot;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb359-4"><a href="comunicar-con-gráficos.html#cb359-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inicio, nombre, <span class="at">colour =</span> partido)) <span class="sc">+</span></span>
+<span id="cb359-5"><a href="comunicar-con-gráficos.html#cb359-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb359-6"><a href="comunicar-con-gráficos.html#cb359-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_x_date</span>(<span class="cn">NULL</span>, <span class="at">breaks =</span> presidencial<span class="sc">$</span>inicio, <span class="at">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb359-7"><a href="comunicar-con-gráficos.html#cb359-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> fin, <span class="at">yend =</span> nombre)) <span class="sc">+</span></span>
+<span id="cb359-8"><a href="comunicar-con-gráficos.html#cb359-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="at">Demócrata</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb359-9"><a href="comunicar-con-gráficos.html#cb359-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Presidentes de EE. UU. entre 1953 y 2017&quot;</span>,</span>
+<span id="cb359-10"><a href="comunicar-con-gráficos.html#cb359-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Por último, tenemos que agregar intervalos de 4 años, que es lo que dura un período presidencial, así será posible ver quiénes estuvieron más de un período y quiénes no completaron el tiempo esperado. Para ello, usaremos el argumento <code>date_minor_breaks</code> dentro de <code>scale_x_date()</code>, que nos permite indicar intervalos con palabras (en este caso, “4 years”).</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="comunicar-con-gráficos.html#cb362-1"></a>presidencial <span class="op">%&gt;%</span></span>
-<span id="cb362-2"><a href="comunicar-con-gráficos.html#cb362-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="dv">33</span> <span class="op">+</span><span class="st"> </span><span class="kw">row_number</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb362-3"><a href="comunicar-con-gráficos.html#cb362-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">nombre =</span> <span class="kw">fct_inorder</span>(<span class="kw">str_c</span>(nombre,<span class="st">&quot; (&quot;</span>, id, <span class="st">&quot;°)&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb362-4"><a href="comunicar-con-gráficos.html#cb362-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(inicio, nombre, <span class="dt">colour =</span> partido)) <span class="op">+</span></span>
-<span id="cb362-5"><a href="comunicar-con-gráficos.html#cb362-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb362-6"><a href="comunicar-con-gráficos.html#cb362-6"></a><span class="st">   </span><span class="kw">scale_x_date</span>(<span class="ot">NULL</span>, <span class="dt">breaks =</span> presidencial<span class="op">$</span>inicio, <span class="dt">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>, <span class="dt">date_minor_breaks =</span> <span class="st">&quot;4 years&quot;</span>) <span class="op">+</span></span>
-<span id="cb362-7"><a href="comunicar-con-gráficos.html#cb362-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> fin, <span class="dt">yend =</span> nombre)) <span class="op">+</span></span>
-<span id="cb362-8"><a href="comunicar-con-gráficos.html#cb362-8"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dt">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="dt">Demócrata` = &quot;blue&quot;)) +</span></span>
-<span id="cb362-9"><a href="comunicar-con-gráficos.html#cb362-9"></a><span class="dt">  labs(title = &quot;Presidentes de EE. UU. entre 1953 y 2017&quot;,</span></span>
-<span id="cb362-10"><a href="comunicar-con-gráficos.html#cb362-10"></a><span class="dt">       y = NULL)</span></span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="comunicar-con-gráficos.html#cb360-1" aria-hidden="true" tabindex="-1"></a>presidencial <span class="sc">%&gt;%</span></span>
+<span id="cb360-2"><a href="comunicar-con-gráficos.html#cb360-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">33</span> <span class="sc">+</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb360-3"><a href="comunicar-con-gráficos.html#cb360-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nombre =</span> <span class="fu">fct_inorder</span>(<span class="fu">str_c</span>(nombre,<span class="st">&quot; (&quot;</span>, id, <span class="st">&quot;°)&quot;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb360-4"><a href="comunicar-con-gráficos.html#cb360-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inicio, nombre, <span class="at">colour =</span> partido)) <span class="sc">+</span></span>
+<span id="cb360-5"><a href="comunicar-con-gráficos.html#cb360-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb360-6"><a href="comunicar-con-gráficos.html#cb360-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_x_date</span>(<span class="cn">NULL</span>, <span class="at">breaks =</span> presidencial<span class="sc">$</span>inicio, <span class="at">date_labels =</span> <span class="st">&quot;&#39;%y&quot;</span>, <span class="at">date_minor_breaks =</span> <span class="st">&quot;4 years&quot;</span>) <span class="sc">+</span></span>
+<span id="cb360-7"><a href="comunicar-con-gráficos.html#cb360-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> fin, <span class="at">yend =</span> nombre)) <span class="sc">+</span></span>
+<span id="cb360-8"><a href="comunicar-con-gráficos.html#cb360-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Republicano =</span> <span class="st">&quot;red&quot;</span>, <span class="st">`</span><span class="at">Demócrata</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb360-9"><a href="comunicar-con-gráficos.html#cb360-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Presidentes de EE. UU. entre 1953 y 2017&quot;</span>,</span>
+<span id="cb360-10"><a href="comunicar-con-gráficos.html#cb360-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>¡Listo!</p>
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Utiliza <code>override.aes</code> para que la leyenda en el siguiente gráfico sea más fácil de ver:</li>
 </ol>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="comunicar-con-gráficos.html#cb363-1"></a><span class="kw">ggplot</span>(diamantes, <span class="kw">aes</span>(quilate, precio)) <span class="op">+</span></span>
-<span id="cb363-2"><a href="comunicar-con-gráficos.html#cb363-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> corte), <span class="dt">alpha =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="comunicar-con-gráficos.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamantes, <span class="fu">aes</span>(quilate, precio)) <span class="sc">+</span></span>
+<span id="cb361-2"><a href="comunicar-con-gráficos.html#cb361-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> corte), <span class="at">alpha =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">20</span>)</span></code></pre></div>
 <img src="28-communicate-plots_files/figure-html/unnamed-chunk-12-1.png" width="50%" style="display: block; margin: auto;" />
 <div class="solucion">
 <h3>
 Solución
 </h3>
 <p>El problema con estas etiquetas es que quedaron transparentes al haber utilizado <code>alpha</code> para ajustar la transparencia de los puntos. Si usamos <code>override.aes</code> al ajustar los parámetros de la leyenda podemos hacer que en ella los colores no sean transparentes.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="comunicar-con-gráficos.html#cb364-1"></a><span class="kw">ggplot</span>(diamantes, <span class="kw">aes</span>(quilate, precio)) <span class="op">+</span></span>
-<span id="cb364-2"><a href="comunicar-con-gráficos.html#cb364-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> corte), <span class="dt">alpha =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">20</span>) <span class="op">+</span></span>
-<span id="cb364-3"><a href="comunicar-con-gráficos.html#cb364-3"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">colour =</span> <span class="kw">guide_legend</span>(<span class="dt">override.aes =</span> <span class="kw">list</span>(<span class="dt">alpha =</span> <span class="dv">1</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="comunicar-con-gráficos.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamantes, <span class="fu">aes</span>(quilate, precio)) <span class="sc">+</span></span>
+<span id="cb362-2"><a href="comunicar-con-gráficos.html#cb362-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> corte), <span class="at">alpha =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb362-3"><a href="comunicar-con-gráficos.html#cb362-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="dv">1</span>)))</span></code></pre></div>
 <p><img src="28-communicate-plots_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 
@@ -672,7 +761,6 @@ Solución
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -683,15 +771,25 @@ Solución
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
 "fontsettings": {
 "theme": "white",
 "family": "sans",
 "size": 2
 },
 "edit": {
-"link": "https://github.com/cienciadedatos/r4ds-soluciones/edit/master/28-communicate-plots.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,
@@ -702,6 +800,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

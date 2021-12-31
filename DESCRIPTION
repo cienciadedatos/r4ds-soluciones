@@ -1,36 +1,36 @@
-Package: r4ds-soluciones
-Title: R para Ciencia de Datos: Soluciones ejercicios
+Package: solucionesr4ds
+Title: R para Ciencia de Datos
 Version: 0.1
 Authors@R: c(
   person("Riva", "Quiroga", , "riva.quiroga@uc.cl", c("aut", "cre")),
   person("Mauricio", "Vargas", , "mvargas@dcc.uchile.cl", "aut"),
   person("Gabriela", "Sandoval", , "f.gabriela.sandoval.m@gmail.com", "aut")
   )
-Depends: R (>= 3.5.0)
-URL: https://github.com/cienciadedatos/r4ds-soluciones
+Depends: R (>= 3.1.0)
+URL: https://github.com/cienciadedatos/r4ds
 Imports:
-  bookdown,
-  condvis,
-  datos,
-  devtools,
   gapminder,
   ggrepel,
-  ggplot2,
   hexbin,
-  htmltools,
-  htmlwidgets,
-  jpeg,
-  knitr,
   Lahman,
   leaflet,
   maps,
   microbenchmark,
   nycflights13,
-  png,
   pryr,
-  rmarkdown,
   tidyverse,
   viridis,
-  ggbeeswarm
-Remotes:
-  cienciadedatos/datos
+  datos
+Suggests:
+  bookdown,
+  bslib,
+  downlit,
+  htmltools,
+  htmlwidgets,
+  jpeg,
+  jsonlite,
+  knitr,
+  png,
+  sessioninfo,
+  xml2,
+  devtools

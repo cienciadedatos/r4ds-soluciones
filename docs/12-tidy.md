@@ -74,8 +74,8 @@ acciones %>%
 tabla4a %>%
   pivot_longer(c(1999, 2000), names_to = "anio", values_to = "casos")
 #> Error: Can't subset columns that don't exist.
-#> [31mx[39m Locations 1999 and 2000 don't exist.
-#> [34mℹ[39m There are only 3 columns.
+#> x Locations 1999 and 2000 don't exist.
+#> ℹ There are only 3 columns.
 ```
 
 <div class="solucion">
@@ -87,7 +87,7 @@ El código falla porque los nombres de las columnas `1999` y `2000` deben escrib
 ```r
 tabla4a %>%
   pivot_longer(c(`1999`, `2000`), names_to = "anio", values_to = "casos")
-#> # A tibble: 6 x 3
+#> # A tibble: 6 × 3
 #>   pais       anio   casos
 #>   <chr>      <chr>  <int>
 #> 1 Afganistán 1999     745
@@ -141,7 +141,7 @@ La tabla muestra la cantidad de embarazon por género. Las variables serían `em
 ```r
 embarazo %>% 
   pivot_longer(c(hombre, mujer), names_to = "genero", values_to = "n")
-#> # A tibble: 4 x 3
+#> # A tibble: 4 × 3
 #>   embarazo genero     n
 #>   <chr>    <chr>  <dbl>
 #> 1 sí       hombre    NA

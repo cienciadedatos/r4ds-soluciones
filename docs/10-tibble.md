@@ -12,15 +12,15 @@ Los objetos que son tibbles lo indican cuando se imprimen en la consola. Por eje
 
 ```r
 vuelos
-#> # A tibble: 336,776 x 19
-#>    anio   mes   dia horario_salida salida_programa… atraso_salida
-#>   <int> <int> <int>          <int>            <int>         <dbl>
-#> 1  2013     1     1            517              515             2
-#> 2  2013     1     1            533              529             4
-#> 3  2013     1     1            542              540             2
-#> 4  2013     1     1            544              545            -1
-#> 5  2013     1     1            554              600            -6
-#> 6  2013     1     1            554              558            -4
+#> # A tibble: 336,776 × 19
+#>    anio   mes   dia horario_salida salida_programada atraso_salida
+#>   <int> <int> <int>          <int>             <int>         <dbl>
+#> 1  2013     1     1            517               515             2
+#> 2  2013     1     1            533               529             4
+#> 3  2013     1     1            542               540             2
+#> 4  2013     1     1            544               545            -1
+#> 5  2013     1     1            554               600            -6
+#> 6  2013     1     1            554               558            -4
 #> # … with 336,770 more rows, and 13 more variables: horario_llegada <int>,
 #> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
 #> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
@@ -226,7 +226,7 @@ molesto <- mutate(molesto, `3` = `2` / `1`)
 
 ```r
 rename(molesto, uno = `1`, dos = `2`, tres = `3`)
-#> # A tibble: 10 x 3
+#> # A tibble: 10 × 3
 #>     uno    dos  tres
 #>   <int>  <dbl> <dbl>
 #> 1     1  0.600 0.600
@@ -248,7 +248,7 @@ La función `enframe()` del paquete __tibble__ permite convertir vectores nombra
 
 ```r
 enframe(c(a = 5, b = 7, c = 9, d = 11))
-#> # A tibble: 4 x 2
+#> # A tibble: 4 × 2
 #>   name  value
 #>   <chr> <dbl>
 #> 1 a         5
@@ -268,15 +268,17 @@ A través del argumento `n_extra` se puede controlar cuántas columnas adicional
 
 ```r
 print(vuelos, n_extra = 3)
-#> # A tibble: 336,776 x 19
-#>    anio   mes   dia horario_salida salida_programa… atraso_salida
-#>   <int> <int> <int>          <int>            <int>         <dbl>
-#> 1  2013     1     1            517              515             2
-#> 2  2013     1     1            533              529             4
-#> 3  2013     1     1            542              540             2
-#> 4  2013     1     1            544              545            -1
-#> 5  2013     1     1            554              600            -6
-#> 6  2013     1     1            554              558            -4
+#> Warning: The `n_extra` argument of `print()` is deprecated as of pillar 1.6.2.
+#> Please use the `max_extra_cols` argument instead.
+#> # A tibble: 336,776 × 19
+#>    anio   mes   dia horario_salida salida_programada atraso_salida
+#>   <int> <int> <int>          <int>             <int>         <dbl>
+#> 1  2013     1     1            517               515             2
+#> 2  2013     1     1            533               529             4
+#> 3  2013     1     1            542               540             2
+#> 4  2013     1     1            544               545            -1
+#> 5  2013     1     1            554               600            -6
+#> 6  2013     1     1            554               558            -4
 #> # … with 336,770 more rows, and 13 more variables: horario_llegada <int>,
 #> #   llegada_programada <int>, atraso_llegada <dbl>, …
 ```

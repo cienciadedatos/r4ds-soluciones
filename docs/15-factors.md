@@ -76,7 +76,7 @@ encuesta %>%
   count(religion) %>% 
   top_n(1)
 #> Selecting by n
-#> # A tibble: 1 x 2
+#> # A tibble: 1 × 2
 #>   religion        n
 #>   <fct>       <int>
 #> 1 Protestante 10846
@@ -90,7 +90,7 @@ encuesta %>%
   count(partido) %>% 
   top_n(1)
 #> Selecting by n
-#> # A tibble: 1 x 2
+#> # A tibble: 1 × 2
 #>   partido           n
 #>   <fct>         <int>
 #> 1 Independiente  4119
@@ -111,7 +111,7 @@ Una forma de hacerlo sería contar las combinaciones de religión y denominació
 encuesta %>% 
   filter(!denominacion %in% c("Sin respuesta", "No sabe", "No aplica", "No denominacional")) %>% 
   count(religion, denominacion)
-#> # A tibble: 26 x 3
+#> # A tibble: 26 × 3
 #>   religion    denominacion                        n
 #>   <fct>       <fct>                           <int>
 #> 1 Protestante Otra                             2534
@@ -130,7 +130,7 @@ Las denominaciones corresponden a la religión Protestante. Podemos comprobar qu
 encuesta %>% 
   filter(!denominacion %in% c("Sin respuesta", "No sabe", "No aplica", "No denominacional")) %>% 
   count(religion)
-#> # A tibble: 1 x 2
+#> # A tibble: 1 × 2
 #>   religion        n
 #>   <fct>       <int>
 #> 1 Protestante  9559

@@ -8,7 +8,7 @@
     ```r
     mi_variable <- 10
     mi_varıable
-    #> Error in eval(expr, envir, enclos): objeto 'mi_varıable' no encontrado
+    #> Error in eval(expr, envir, enclos): object 'mi_varıable' not found
     ```
     
     ¡Mira detenidamente! (Esto puede parecer un ejercicio inútil, pero entrenar tu cerebro para detectar incluso las diferencias más pequeñas será muy útil cuando comiences a programar.)

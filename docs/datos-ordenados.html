@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12 Datos ordenados | R para Ciencia de Datos: Soluciones de los ejercicios</title>
   <meta name="description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12 Datos ordenados | R para Ciencia de Datos: Soluciones de los ejercicios" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="http://cienciadedatos.github.io/r4ds-soluciones" />
-  <meta property="og:image" content="http://cienciadedatos.github.io/r4ds-solucionescover.png" />
+  <meta property="og:image" content="http://cienciadedatos.github.io/r4ds-soluciones/cover.png" />
   <meta property="og:description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
   <meta name="github-repo" content="cienciadedatos/r4ds-soluciones" />
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="12 Datos ordenados | R para Ciencia de Datos: Soluciones de los ejercicios" />
   
   <meta name="twitter:description" content="Propuestas de soluciones para los ejercicios del libro R para Ciencia de Datos" />
-  <meta name="twitter:image" content="http://cienciadedatos.github.io/r4ds-solucionescover.png" />
+  <meta name="twitter:image" content="http://cienciadedatos.github.io/r4ds-soluciones/cover.png" />
 
 <meta name="author" content="Riva Quiroga" />
 <meta name="author" content="Mauricio ‘Pachá’ Vargas" />
@@ -34,7 +34,9 @@
   
 <link rel="prev" href="importación-de-datos.html"/>
 <link rel="next" href="datos-relacionales.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,26 +52,26 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +91,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -122,7 +124,8 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="r4ds.min.css" type="text/css" />
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -142,122 +145,162 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="part"><span><b>I Explorar</b></span></li>
 <li class="chapter" data-level="2" data-path="introducción-1.html"><a href="introducción-1.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
-<li class="chapter" data-level="3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a><ul>
+<li class="chapter" data-level="3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html"><i class="fa fa-check"></i><b>3</b> Visualización de datos</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#introducción-2"><i class="fa fa-check"></i><b>3.1</b> Introducción</a></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#primeros-pasos"><i class="fa fa-check"></i>3.2 Primeros pasos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#primeros-pasos"><i class="fa fa-check"></i>3.2 Primeros pasos</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-324"><i class="fa fa-check"></i>3.2.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#mapeos-esteticos"><i class="fa fa-check"></i>3.3 Mapeos estéticos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#mapeos-esteticos"><i class="fa fa-check"></i>3.3 Mapeos estéticos</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-331"><i class="fa fa-check"></i>3.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#separar-facetas"><i class="fa fa-check"></i>3.5 Separar en facetas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#separar-facetas"><i class="fa fa-check"></i>3.5 Separar en facetas</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-351"><i class="fa fa-check"></i>3.5.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#objetos-geometricos"><i class="fa fa-check"></i>3.6 Objetos geométricos</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#objetos-geometricos"><i class="fa fa-check"></i>3.6 Objetos geométricos</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-361"><i class="fa fa-check"></i>3.6.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#transformaciones-estadisticas"><i class="fa fa-check"></i>3.7 Transformaciones estadísticas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#transformaciones-estadisticas"><i class="fa fa-check"></i>3.7 Transformaciones estadísticas</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-371"><i class="fa fa-check"></i>3.7.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ajustes-posicion"><i class="fa fa-check"></i>3.8 Ajustes de posición</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ajustes-posicion"><i class="fa fa-check"></i>3.8 Ajustes de posición</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-381"><i class="fa fa-check"></i>3.8.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#sistemas-coordenadas"><i class="fa fa-check"></i>3.9 Sistemas de coordenadas</a><ul>
+<li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#sistemas-coordenadas"><i class="fa fa-check"></i>3.9 Sistemas de coordenadas</a>
+<ul>
 <li class="chapter" data-level="" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-391"><i class="fa fa-check"></i>3.9.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="flujo-de-trabajo-conocimientos-básicos.html"><a href="flujo-de-trabajo-conocimientos-básicos.html"><i class="fa fa-check"></i><b>4</b> Flujo de trabajo: conocimientos básicos</a><ul>
+<li class="chapter" data-level="4" data-path="flujo-de-trabajo-conocimientos-básicos.html"><a href="flujo-de-trabajo-conocimientos-básicos.html"><i class="fa fa-check"></i><b>4</b> Flujo de trabajo: conocimientos básicos</a>
+<ul>
 <li class="chapter" data-level="" data-path="flujo-de-trabajo-conocimientos-básicos.html"><a href="flujo-de-trabajo-conocimientos-básicos.html#ejercicios-41"><i class="fa fa-check"></i>4.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>5</b> Transformación de datos</a><ul>
+<li class="chapter" data-level="5" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>5</b> Transformación de datos</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="transform.html"><a href="transform.html#introducción-3"><i class="fa fa-check"></i><b>5.1</b> Introducción</a></li>
-<li><a href="transform.html#filter">5.2 Filtrar filas con <code>filter()</code></a><ul>
+<li><a href="transform.html#filter">5.2 Filtrar filas con <code>filter()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-524"><i class="fa fa-check"></i>5.2.4 Ejercicios</a></li>
 </ul></li>
-<li><a href="transform.html#arrange">5.3 Reordenar las filas con <code>arrange()</code></a><ul>
+<li><a href="transform.html#arrange">5.3 Reordenar las filas con <code>arrange()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-531"><i class="fa fa-check"></i>5.3.1 Ejercicios</a></li>
 </ul></li>
-<li><a href="transform.html#select">5.4 Seleccionar columnas con <code>select()</code></a><ul>
+<li><a href="transform.html#select">5.4 Seleccionar columnas con <code>select()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-541"><i class="fa fa-check"></i>5.4.1 Ejercicios</a></li>
 </ul></li>
-<li><a href="transform.html#mutate">5.5 Añadir nuevas variables con <code>mutate()</code></a><ul>
+<li><a href="transform.html#mutate">5.5 Añadir nuevas variables con <code>mutate()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-552"><i class="fa fa-check"></i>5.5.2 Ejercicios</a></li>
 </ul></li>
-<li><a href="transform.html#sumamarise">5.6 Resúmenes agrupados con <code>summarise()</code></a><ul>
+<li><a href="transform.html#sumamarise">5.6 Resúmenes agrupados con <code>summarise()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-567"><i class="fa fa-check"></i>5.6.7 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#mutate-filter"><i class="fa fa-check"></i>5.7 Transformaciones agrupadas (y filtros)</a><ul>
+<li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#mutate-filter"><i class="fa fa-check"></i>5.7 Transformaciones agrupadas (y filtros)</a>
+<ul>
 <li class="chapter" data-level="" data-path="transform.html"><a href="transform.html#ejercicios-571"><i class="fa fa-check"></i>5.7.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="flujo-de-trabajo-scripts.html"><a href="flujo-de-trabajo-scripts.html"><i class="fa fa-check"></i><b>6</b> Flujo de trabajo: <em>Scripts</em></a><ul>
+<li class="chapter" data-level="6" data-path="flujo-de-trabajo-scripts.html"><a href="flujo-de-trabajo-scripts.html"><i class="fa fa-check"></i><b>6</b> Flujo de trabajo: <em>Scripts</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="flujo-de-trabajo-scripts.html"><a href="flujo-de-trabajo-scripts.html#ejercicios-63"><i class="fa fa-check"></i>6.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html"><i class="fa fa-check"></i><b>7</b> Análisis exploratorio de datos (<em>EDA</em>)</a><ul>
+<li class="chapter" data-level="7" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html"><i class="fa fa-check"></i><b>7</b> Análisis exploratorio de datos (<em>EDA</em>)</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#introducción-4"><i class="fa fa-check"></i><b>7.1</b> Introducción</a></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#preguntas"><i class="fa fa-check"></i>7.3 Variación</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#preguntas"><i class="fa fa-check"></i>7.3 Variación</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-734"><i class="fa fa-check"></i>7.3.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#valores-faltantes"><i class="fa fa-check"></i>7.4 Valores faltantes</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#valores-faltantes"><i class="fa fa-check"></i>7.4 Valores faltantes</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-741"><i class="fa fa-check"></i>7.4.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#covariacion"><i class="fa fa-check"></i>7.5 Covariación</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#covariacion"><i class="fa fa-check"></i>7.5 Covariación</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#categorica-continua"><i class="fa fa-check"></i>7.5.1 Una variable categórica y otra continua</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#categorica"><i class="fa fa-check"></i>7.5.2 Dos variables categóricas</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#categorica"><i class="fa fa-check"></i>7.5.2 Dos variables categóricas</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-7521"><i class="fa fa-check"></i>7.5.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#continuas"><i class="fa fa-check"></i>7.5.3 Dos variables continuas</a><ul>
+<li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#continuas"><i class="fa fa-check"></i>7.5.3 Dos variables continuas</a>
+<ul>
 <li class="chapter" data-level="" data-path="análisis-exploratorio-de-datos-eda.html"><a href="análisis-exploratorio-de-datos-eda.html#ejercicios-7532"><i class="fa fa-check"></i>7.5.3.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="workflow-projects.html"><a href="workflow-projects.html"><i class="fa fa-check"></i><b>8</b> Workflow: projects</a></li>
 <li class="part"><span><b>II Manejar o domar datos</b></span></li>
 <li class="chapter" data-level="9" data-path="introducción-5.html"><a href="introducción-5.html"><i class="fa fa-check"></i><b>9</b> Introducción</a></li>
-<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a><ul>
+<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a>
+<ul>
 <li class="chapter" data-level="" data-path="tibbles.html"><a href="tibbles.html#ejercicios-105"><i class="fa fa-check"></i>10.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="importación-de-datos.html"><a href="importación-de-datos.html"><i class="fa fa-check"></i><b>11</b> Importación de datos</a><ul>
-<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#comenzando"><i class="fa fa-check"></i>11.2 Comenzando</a><ul>
+<li class="chapter" data-level="11" data-path="importación-de-datos.html"><a href="importación-de-datos.html"><i class="fa fa-check"></i><b>11</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#comenzando"><i class="fa fa-check"></i>11.2 Comenzando</a>
+<ul>
 <li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#ejercicios-1122"><i class="fa fa-check"></i>11.2.2 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#segmentar-vector"><i class="fa fa-check"></i>11.3 Segmentar un vector</a><ul>
+<li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#segmentar-vector"><i class="fa fa-check"></i>11.3 Segmentar un vector</a>
+<ul>
 <li class="chapter" data-level="" data-path="importación-de-datos.html"><a href="importación-de-datos.html#ejercicios-1135"><i class="fa fa-check"></i>11.3.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="datos-ordenados.html"><a href="datos-ordenados.html"><i class="fa fa-check"></i><b>12</b> Datos ordenados</a><ul>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#datos-ordenados122"><i class="fa fa-check"></i>12.2 Datos ordenados</a><ul>
+<li class="chapter" data-level="12" data-path="datos-ordenados.html"><a href="datos-ordenados.html"><i class="fa fa-check"></i><b>12</b> Datos ordenados</a>
+<ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#datos-ordenados122"><i class="fa fa-check"></i>12.2 Datos ordenados</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1221"><i class="fa fa-check"></i>12.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#pivotar"><i class="fa fa-check"></i>12.3 Pivotar</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#pivotar"><i class="fa fa-check"></i>12.3 Pivotar</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1233"><i class="fa fa-check"></i>12.3.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#separar-unir"><i class="fa fa-check"></i>12.4 Separar y unir</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#separar-unir"><i class="fa fa-check"></i>12.4 Separar y unir</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1243"><i class="fa fa-check"></i>12.4.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#valores-faltantes125"><i class="fa fa-check"></i>12.5 Valores faltantes</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#valores-faltantes125"><i class="fa fa-check"></i>12.5 Valores faltantes</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1251"><i class="fa fa-check"></i>12.5.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#estudio-caso"><i class="fa fa-check"></i>12.6 Estudio de caso</a><ul>
+<li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#estudio-caso"><i class="fa fa-check"></i>12.6 Estudio de caso</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-ordenados.html"><a href="datos-ordenados.html#ejercicios-1261"><i class="fa fa-check"></i>12.6.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="datos-relacionales.html"><a href="datos-relacionales.html"><i class="fa fa-check"></i><b>13</b> Datos relacionales</a><ul>
-<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#vuelos-relacionales"><i class="fa fa-check"></i>13.2 Datos sobre vuelos</a><ul>
+<li class="chapter" data-level="13" data-path="datos-relacionales.html"><a href="datos-relacionales.html"><i class="fa fa-check"></i><b>13</b> Datos relacionales</a>
+<ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#vuelos-relacionales"><i class="fa fa-check"></i>13.2 Datos sobre vuelos</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1321"><i class="fa fa-check"></i>13.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#claves"><i class="fa fa-check"></i>13.3 Claves</a><ul>
+<li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#claves"><i class="fa fa-check"></i>13.3 Claves</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1331"><i class="fa fa-check"></i>13.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="13.1" data-path="datos-relacionales.html"><a href="datos-relacionales.html#mutating-joins"><i class="fa fa-check"></i><b>13.1</b> 13.4 Uniones de transformación</a><ul>
+<li class="chapter" data-level="13.1" data-path="datos-relacionales.html"><a href="datos-relacionales.html#mutating-joins"><i class="fa fa-check"></i><b>13.1</b> 13.4 Uniones de transformación</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1346"><i class="fa fa-check"></i>13.4.6 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="datos-relacionales.html"><a href="datos-relacionales.html#filtering-joins"><i class="fa fa-check"></i><b>13.2</b> 13.5 Uniones de filtro</a><ul>
+<li class="chapter" data-level="13.2" data-path="datos-relacionales.html"><a href="datos-relacionales.html#filtering-joins"><i class="fa fa-check"></i><b>13.2</b> 13.5 Uniones de filtro</a>
+<ul>
 <li class="chapter" data-level="" data-path="datos-relacionales.html"><a href="datos-relacionales.html#ejercicios-1351"><i class="fa fa-check"></i>13.5.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html"><i class="fa fa-check"></i><b>14</b> Cadenas de caracteres</a><ul>
-<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#cadena-basics"><i class="fa fa-check"></i>14.2 Cadenas: elementos básicos</a><ul>
+<li class="chapter" data-level="14" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html"><i class="fa fa-check"></i><b>14</b> Cadenas de caracteres</a>
+<ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#cadena-basics"><i class="fa fa-check"></i>14.2 Cadenas: elementos básicos</a>
+<ul>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1425"><i class="fa fa-check"></i>14.2.5 Ejercicios</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#coincidencia"><i class="fa fa-check"></i>14.2.6 Buscar coincidencia de patrones con expresiones regulares</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#anclas"><i class="fa fa-check"></i>14.2.8 Anclas</a></li>
@@ -265,143 +308,189 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#repeticion"><i class="fa fa-check"></i>14.2.10 Repetición</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#agrupamiento"><i class="fa fa-check"></i>14.2.11 Agrupamiento y referencias previas</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#herramientas"><i class="fa fa-check"></i>14.3 Herramientas</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#herramientas"><i class="fa fa-check"></i>14.3 Herramientas</a>
+<ul>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1432"><i class="fa fa-check"></i>14.3.2 Ejercicios</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#extraer-coincidencias"><i class="fa fa-check"></i>14.3.3 Extraer coincidencias</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#coincidencias-agrupadas"><i class="fa fa-check"></i>14.3.4 Coincidencias agrupadas</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#remplazar-coincidencias"><i class="fa fa-check"></i>14.3.5 Remplazar coincidencias</a></li>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#divisiones"><i class="fa fa-check"></i>14.3.6 Divisiones</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#otros-patrones144"><i class="fa fa-check"></i>14.4 Otro tipo de patrones</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#otros-patrones144"><i class="fa fa-check"></i>14.4 Otro tipo de patrones</a>
+<ul>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1441"><i class="fa fa-check"></i>14.4.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#stringi"><i class="fa fa-check"></i>14.6 stringi</a><ul>
+<li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#stringi"><i class="fa fa-check"></i>14.6 stringi</a>
+<ul>
 <li class="chapter" data-level="" data-path="cadenas-de-caracteres.html"><a href="cadenas-de-caracteres.html#ejercicios-1461"><i class="fa fa-check"></i>14.6.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="factores.html"><a href="factores.html"><i class="fa fa-check"></i><b>15</b> Factores</a><ul>
-<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#encuesta"><i class="fa fa-check"></i>15.3 Encuesta social general</a><ul>
+<li class="chapter" data-level="15" data-path="factores.html"><a href="factores.html"><i class="fa fa-check"></i><b>15</b> Factores</a>
+<ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#encuesta"><i class="fa fa-check"></i>15.3 Encuesta social general</a>
+<ul>
 <li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1531"><i class="fa fa-check"></i>15.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-factores"><i class="fa fa-check"></i>15.4 Modificar el orden de los factores</a><ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-factores"><i class="fa fa-check"></i>15.4 Modificar el orden de los factores</a>
+<ul>
 <li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1541"><i class="fa fa-check"></i>15.4.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-niveles"><i class="fa fa-check"></i>15.5 Modificar los niveles de los factores</a><ul>
+<li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#modificar-niveles"><i class="fa fa-check"></i>15.5 Modificar los niveles de los factores</a>
+<ul>
 <li class="chapter" data-level="" data-path="factores.html"><a href="factores.html#ejercicios-1551"><i class="fa fa-check"></i>15.5.1 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html"><i class="fa fa-check"></i><b>16</b> Horas y fechas</a><ul>
-<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#crear-horas"><i class="fa fa-check"></i>16.2 Creando horas/fechas</a><ul>
+<li class="chapter" data-level="16" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html"><i class="fa fa-check"></i><b>16</b> Horas y fechas</a>
+<ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#crear-horas"><i class="fa fa-check"></i>16.2 Creando horas/fechas</a>
+<ul>
 <li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1624"><i class="fa fa-check"></i>16.2.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#componentes-fecha"><i class="fa fa-check"></i>16.3 Componentes fecha-hora</a><ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#componentes-fecha"><i class="fa fa-check"></i>16.3 Componentes fecha-hora</a>
+<ul>
 <li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1634"><i class="fa fa-check"></i>16.3.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#lapsos-tiempo"><i class="fa fa-check"></i>16.4 Lapsos de tiempo</a><ul>
+<li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#lapsos-tiempo"><i class="fa fa-check"></i>16.4 Lapsos de tiempo</a>
+<ul>
 <li class="chapter" data-level="" data-path="horas-y-fechas.html"><a href="horas-y-fechas.html#ejercicios-1645"><i class="fa fa-check"></i>16.4.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Programar</b></span></li>
 <li class="chapter" data-level="17" data-path="introducción-6.html"><a href="introducción-6.html"><i class="fa fa-check"></i><b>17</b> Introducción</a></li>
 <li class="chapter" data-level="18" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>18</b> Pipes</a></li>
-<li class="chapter" data-level="19" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>19</b> Funciones</a><ul>
-<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#escribir-funcion"><i class="fa fa-check"></i>19.2 ¿Cuándo deberías escribir una función?</a><ul>
+<li class="chapter" data-level="19" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>19</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#escribir-funcion"><i class="fa fa-check"></i>19.2 ¿Cuándo deberías escribir una función?</a>
+<ul>
 <li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1921"><i class="fa fa-check"></i>19.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#funciones-humanos"><i class="fa fa-check"></i>19.3 Las funciones son para los humanos y las computadoras</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#funciones-humanos"><i class="fa fa-check"></i>19.3 Las funciones son para los humanos y las computadoras</a>
+<ul>
 <li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1931"><i class="fa fa-check"></i>19.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejecucion-condicional"><i class="fa fa-check"></i>19.4 Ejecución condicional</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejecucion-condicional"><i class="fa fa-check"></i>19.4 Ejecución condicional</a>
+<ul>
 <li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1944"><i class="fa fa-check"></i>19.4.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#argumentos-funciones"><i class="fa fa-check"></i>19.5 Argumentos de funciones</a><ul>
+<li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#argumentos-funciones"><i class="fa fa-check"></i>19.5 Argumentos de funciones</a>
+<ul>
 <li class="chapter" data-level="" data-path="funciones.html"><a href="funciones.html#ejercicios-1955"><i class="fa fa-check"></i>19.5.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>20</b> Vectores</a><ul>
-<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-atomicos"><i class="fa fa-check"></i>20.3 Tipos importantes de vectores atómicos</a><ul>
+<li class="chapter" data-level="20" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>20</b> Vectores</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-atomicos"><i class="fa fa-check"></i>20.3 Tipos importantes de vectores atómicos</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2035"><i class="fa fa-check"></i>20.3.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#uso-vectores"><i class="fa fa-check"></i>20.4 Usando vectores atómicos</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#uso-vectores"><i class="fa fa-check"></i>20.4 Usando vectores atómicos</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2046"><i class="fa fa-check"></i>20.4.6 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#listas"><i class="fa fa-check"></i>20.5 Vectores Recursivos (listas)</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#listas"><i class="fa fa-check"></i>20.5 Vectores Recursivos (listas)</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2054"><i class="fa fa-check"></i>20.5.4 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-aumentados"><i class="fa fa-check"></i>20.7 Vectores Aumentados</a><ul>
+<li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#vectores-aumentados"><i class="fa fa-check"></i>20.7 Vectores Aumentados</a>
+<ul>
 <li class="chapter" data-level="" data-path="vectores.html"><a href="vectores.html#ejercicios-2074"><i class="fa fa-check"></i>20.7.4 Ejecicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="iteración.html"><a href="iteración.html"><i class="fa fa-check"></i><b>21</b> Iteración</a><ul>
-<li><a href="iteración.html#bucles-for">21.2 Bucles <em>for</em></a><ul>
+<li class="chapter" data-level="21" data-path="iteración.html"><a href="iteración.html"><i class="fa fa-check"></i><b>21</b> Iteración</a>
+<ul>
+<li><a href="iteración.html#bucles-for">21.2 Bucles <em>for</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios2121"><i class="fa fa-check"></i>21.2.1 Ejercicios</a></li>
 </ul></li>
-<li><a href="iteración.html#variaciones-bucles">21.3 Variaciones de bucles <em>for</em></a><ul>
+<li><a href="iteración.html#variaciones-bucles">21.3 Variaciones de bucles <em>for</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2135"><i class="fa fa-check"></i>21.3.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="21.1" data-path="iteración.html"><a href="iteración.html#bucles-for-vs.-funcionales-for-funcionales"><i class="fa fa-check"></i><b>21.1</b> 21.4 Bucles <em>for</em> vs. funcionales{-for-funcionales</a><ul>
+<li class="chapter" data-level="21.1" data-path="iteración.html"><a href="iteración.html#bucles-for-vs.-funcionales-for-funcionales"><i class="fa fa-check"></i><b>21.1</b> 21.4 Bucles <em>for</em> vs. funcionales{-for-funcionales</a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2141"><i class="fa fa-check"></i>21.4.1 Ejercicios</a></li>
 </ul></li>
-<li><a href="iteración.html#funciones-map">21.5 Las funciones <em>map</em></a><ul>
+<li><a href="iteración.html#funciones-map">21.5 Las funciones <em>map</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2153"><i class="fa fa-check"></i>21.5.3 Ejercicios</a></li>
 </ul></li>
-<li><a href="iteración.html#otros-patrones">21.9.1 Otros patrones para los bucles <em>for</em></a><ul>
+<li><a href="iteración.html#otros-patrones">21.9.1 Otros patrones para los bucles <em>for</em></a>
+<ul>
 <li class="chapter" data-level="" data-path="iteración.html"><a href="iteración.html#ejercicios-2193"><i class="fa fa-check"></i>21.9.3 Ejercicios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Modelar</b></span></li>
 <li class="chapter" data-level="22" data-path="introducción-7.html"><a href="introducción-7.html"><i class="fa fa-check"></i><b>22</b> Introducción</a></li>
-<li class="chapter" data-level="23" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html"><i class="fa fa-check"></i><b>23</b> Modelos: conceptos básicos</a><ul>
-<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#modelo-simple"><i class="fa fa-check"></i>23.2 Un modelo simple</a><ul>
+<li class="chapter" data-level="23" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html"><i class="fa fa-check"></i><b>23</b> Modelos: conceptos básicos</a>
+<ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#modelo-simple"><i class="fa fa-check"></i>23.2 Un modelo simple</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2321"><i class="fa fa-check"></i>23.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#visualizando-modelos"><i class="fa fa-check"></i>23.3 Visualizando modelos</a><ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#visualizando-modelos"><i class="fa fa-check"></i>23.3 Visualizando modelos</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2333"><i class="fa fa-check"></i>23.3.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#familias-modelos"><i class="fa fa-check"></i>23.4 Fórmulas y familias de modelos</a><ul>
+<li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#familias-modelos"><i class="fa fa-check"></i>23.4 Fórmulas y familias de modelos</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelos-conceptos-básicos.html"><a href="modelos-conceptos-básicos.html#ejercicios-2345"><i class="fa fa-check"></i>23.4.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html"><i class="fa fa-check"></i><b>24</b> Construcción de modelos</a><ul>
-<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#diamantes-caros"><i class="fa fa-check"></i>24.2 ¿Por qué los diamantes de baja calidad son más caros?</a><ul>
+<li class="chapter" data-level="24" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html"><i class="fa fa-check"></i><b>24</b> Construcción de modelos</a>
+<ul>
+<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#diamantes-caros"><i class="fa fa-check"></i>24.2 ¿Por qué los diamantes de baja calidad son más caros?</a>
+<ul>
 <li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#ejercicios-2423"><i class="fa fa-check"></i>24.2.3 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#vuelos-diarios"><i class="fa fa-check"></i>24.3 ¿Qué afecta el número de vuelos diarios?</a><ul>
+<li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#vuelos-diarios"><i class="fa fa-check"></i>24.3 ¿Qué afecta el número de vuelos diarios?</a>
+<ul>
 <li class="chapter" data-level="" data-path="construcción-de-modelos.html"><a href="construcción-de-modelos.html#ejercicios-2435"><i class="fa fa-check"></i>24.3.5 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="muchos-modelos.html"><a href="muchos-modelos.html"><i class="fa fa-check"></i><b>25</b> Muchos modelos</a><ul>
-<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#gapminder"><i class="fa fa-check"></i>25.2 gapminder</a><ul>
+<li class="chapter" data-level="25" data-path="muchos-modelos.html"><a href="muchos-modelos.html"><i class="fa fa-check"></i><b>25</b> Muchos modelos</a>
+<ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#gapminder"><i class="fa fa-check"></i>25.2 gapminder</a>
+<ul>
 <li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2525"><i class="fa fa-check"></i>25.2.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#columnas-lista"><i class="fa fa-check"></i>25.4 Creando columnas-lista</a><ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#columnas-lista"><i class="fa fa-check"></i>25.4 Creando columnas-lista</a>
+<ul>
 <li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2545"><i class="fa fa-check"></i>25.4.5 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#simplificando"><i class="fa fa-check"></i>25.5 Simplificando columnas-lista</a><ul>
+<li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#simplificando"><i class="fa fa-check"></i>25.5 Simplificando columnas-lista</a>
+<ul>
 <li class="chapter" data-level="" data-path="muchos-modelos.html"><a href="muchos-modelos.html#ejercicios-2553"><i class="fa fa-check"></i>25.5.3 Ejercicios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>V Comunicar</b></span></li>
 <li class="chapter" data-level="26" data-path="introducción-8.html"><a href="introducción-8.html"><i class="fa fa-check"></i><b>26</b> Introducción</a></li>
-<li class="chapter" data-level="27" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>27</b> R Markdown</a><ul>
-<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#rmarkdown-basico"><i class="fa fa-check"></i>27.2 R Markdown básico</a><ul>
+<li class="chapter" data-level="27" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>27</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#rmarkdown-basico"><i class="fa fa-check"></i>27.2 R Markdown básico</a>
+<ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2721"><i class="fa fa-check"></i>27.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#formateo-texto"><i class="fa fa-check"></i>27.3 Formateo de texto con Markdown</a><ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#formateo-texto"><i class="fa fa-check"></i>27.3 Formateo de texto con Markdown</a>
+<ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2731"><i class="fa fa-check"></i>27.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bloques-codigo"><i class="fa fa-check"></i>27.4 Bloques de código</a><ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#bloques-codigo"><i class="fa fa-check"></i>27.4 Bloques de código</a>
+<ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#ejercicios-2747"><i class="fa fa-check"></i>27.4.7 Ejercicios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="28" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html"><i class="fa fa-check"></i><b>28</b> Comunicar con gráficos</a><ul>
-<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#etiquetas"><i class="fa fa-check"></i>2.8 Etiquetas</a><ul>
+<li class="chapter" data-level="28" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html"><i class="fa fa-check"></i><b>28</b> Comunicar con gráficos</a>
+<ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#etiquetas"><i class="fa fa-check"></i>2.8 Etiquetas</a>
+<ul>
 <li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2821"><i class="fa fa-check"></i>28.2.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#anotaciones"><i class="fa fa-check"></i>28.3 Anotaciones</a><ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#anotaciones"><i class="fa fa-check"></i>28.3 Anotaciones</a>
+<ul>
 <li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2831"><i class="fa fa-check"></i>28.3.1 Ejercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#escalas"><i class="fa fa-check"></i>28.4 Escalas</a><ul>
+<li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#escalas"><i class="fa fa-check"></i>28.4 Escalas</a>
+<ul>
 <li class="chapter" data-level="" data-path="comunicar-con-gráficos.html"><a href="comunicar-con-gráficos.html#ejercicios-2844"><i class="fa fa-check"></i>28.4.4 Ejercicios</a></li>
 </ul></li>
 </ul></li>
@@ -424,7 +513,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="datos-ordenados" class="section level1">
+<div id="datos-ordenados" class="section level1" number="12">
 <h1><span class="header-section-number">12</span> Datos ordenados</h1>
 <div id="datos-ordenados122" class="section level2 unnumbered">
 <h2>12.2 Datos ordenados</h2>
@@ -472,14 +561,14 @@ Solución
 <li>¿Por qué <code>pivot_longer()</code> y <code>pivot_wider()</code> no son perfectamente simétricas?
 Observa cuidadosamente el siguiente ejemplo:</li>
 </ol>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="datos-ordenados.html#cb144-1"></a>acciones &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb144-2"><a href="datos-ordenados.html#cb144-2"></a>  <span class="dt">anio =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),</span>
-<span id="cb144-3"><a href="datos-ordenados.html#cb144-3"></a>  <span class="dt">semestre =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb144-4"><a href="datos-ordenados.html#cb144-4"></a>  <span class="dt">retorno =</span> <span class="kw">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>)</span>
-<span id="cb144-5"><a href="datos-ordenados.html#cb144-5"></a>)</span>
-<span id="cb144-6"><a href="datos-ordenados.html#cb144-6"></a>acciones <span class="op">%&gt;%</span></span>
-<span id="cb144-7"><a href="datos-ordenados.html#cb144-7"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> anio, <span class="dt">values_from =</span> retorno) <span class="op">%&gt;%</span></span>
-<span id="cb144-8"><a href="datos-ordenados.html#cb144-8"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="st">`</span><span class="dt">2015</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2016</span><span class="st">`</span>, <span class="dt">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;retorno&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="datos-ordenados.html#cb144-1" aria-hidden="true" tabindex="-1"></a>acciones <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb144-2"><a href="datos-ordenados.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">anio =</span> <span class="fu">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),</span>
+<span id="cb144-3"><a href="datos-ordenados.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">semestre =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb144-4"><a href="datos-ordenados.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">retorno =</span> <span class="fu">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>)</span>
+<span id="cb144-5"><a href="datos-ordenados.html#cb144-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb144-6"><a href="datos-ordenados.html#cb144-6" aria-hidden="true" tabindex="-1"></a>acciones <span class="sc">%&gt;%</span></span>
+<span id="cb144-7"><a href="datos-ordenados.html#cb144-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> anio, <span class="at">values_from =</span> retorno) <span class="sc">%&gt;%</span></span>
+<span id="cb144-8"><a href="datos-ordenados.html#cb144-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="st">`</span><span class="at">2015</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2016</span><span class="st">`</span>, <span class="at">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;retorno&quot;</span>)</span></code></pre></div>
 <p>(Pista: observa los tipos de variables y piensa en los nombres de las columnas)</p>
 <p><code>pivot_longer()</code> y <code>pivot_wider()</code> tienen el argumento <code>names_ptype</code>. Por ejemplo, <code>names_ptype = list(year = double())</code>. ¿Qué es lo que hace dicho argumento?</p>
 <div class="solucion">
@@ -490,40 +579,40 @@ Solución
 <ol start="2" style="list-style-type: decimal">
 <li>¿Por qué falla el siguiente código?</li>
 </ol>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="datos-ordenados.html#cb145-1"></a>tabla4a <span class="op">%&gt;%</span></span>
-<span id="cb145-2"><a href="datos-ordenados.html#cb145-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="dv">1999</span>, <span class="dv">2000</span>), <span class="dt">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;casos&quot;</span>)</span>
-<span id="cb145-3"><a href="datos-ordenados.html#cb145-3"></a><span class="co">#&gt; Error: Can&#39;t subset columns that don&#39;t exist.</span></span>
-<span id="cb145-4"><a href="datos-ordenados.html#cb145-4"></a><span class="co">#&gt; [31mx[39m Locations 1999 and 2000 don&#39;t exist.</span></span>
-<span id="cb145-5"><a href="datos-ordenados.html#cb145-5"></a><span class="co">#&gt; [34mℹ[39m There are only 3 columns.</span></span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="datos-ordenados.html#cb145-1" aria-hidden="true" tabindex="-1"></a>tabla4a <span class="sc">%&gt;%</span></span>
+<span id="cb145-2"><a href="datos-ordenados.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2000</span>), <span class="at">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;casos&quot;</span>)</span>
+<span id="cb145-3"><a href="datos-ordenados.html#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Can&#39;t subset columns that don&#39;t exist.</span></span>
+<span id="cb145-4"><a href="datos-ordenados.html#cb145-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x Locations 1999 and 2000 don&#39;t exist.</span></span>
+<span id="cb145-5"><a href="datos-ordenados.html#cb145-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ There are only 3 columns.</span></span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
 </h3>
 <p>El código falla porque los nombres de las columnas <code>1999</code> y <code>2000</code> deben escribirse rodeados de tildes graves, ya que son nombres “no sintácticos”:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="datos-ordenados.html#cb146-1"></a>tabla4a <span class="op">%&gt;%</span></span>
-<span id="cb146-2"><a href="datos-ordenados.html#cb146-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>), <span class="dt">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;casos&quot;</span>)</span>
-<span id="cb146-3"><a href="datos-ordenados.html#cb146-3"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb146-4"><a href="datos-ordenados.html#cb146-4"></a><span class="co">#&gt;   pais       anio   casos</span></span>
-<span id="cb146-5"><a href="datos-ordenados.html#cb146-5"></a><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;  &lt;int&gt;</span></span>
-<span id="cb146-6"><a href="datos-ordenados.html#cb146-6"></a><span class="co">#&gt; 1 Afganistán 1999     745</span></span>
-<span id="cb146-7"><a href="datos-ordenados.html#cb146-7"></a><span class="co">#&gt; 2 Afganistán 2000    2666</span></span>
-<span id="cb146-8"><a href="datos-ordenados.html#cb146-8"></a><span class="co">#&gt; 3 Brasil     1999   37737</span></span>
-<span id="cb146-9"><a href="datos-ordenados.html#cb146-9"></a><span class="co">#&gt; 4 Brasil     2000   80488</span></span>
-<span id="cb146-10"><a href="datos-ordenados.html#cb146-10"></a><span class="co">#&gt; 5 China      1999  212258</span></span>
-<span id="cb146-11"><a href="datos-ordenados.html#cb146-11"></a><span class="co">#&gt; 6 China      2000  213766</span></span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="datos-ordenados.html#cb146-1" aria-hidden="true" tabindex="-1"></a>tabla4a <span class="sc">%&gt;%</span></span>
+<span id="cb146-2"><a href="datos-ordenados.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span>), <span class="at">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;casos&quot;</span>)</span>
+<span id="cb146-3"><a href="datos-ordenados.html#cb146-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb146-4"><a href="datos-ordenados.html#cb146-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   pais       anio   casos</span></span>
+<span id="cb146-5"><a href="datos-ordenados.html#cb146-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;  &lt;int&gt;</span></span>
+<span id="cb146-6"><a href="datos-ordenados.html#cb146-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Afganistán 1999     745</span></span>
+<span id="cb146-7"><a href="datos-ordenados.html#cb146-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Afganistán 2000    2666</span></span>
+<span id="cb146-8"><a href="datos-ordenados.html#cb146-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Brasil     1999   37737</span></span>
+<span id="cb146-9"><a href="datos-ordenados.html#cb146-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Brasil     2000   80488</span></span>
+<span id="cb146-10"><a href="datos-ordenados.html#cb146-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 China      1999  212258</span></span>
+<span id="cb146-11"><a href="datos-ordenados.html#cb146-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 China      2000  213766</span></span></code></pre></div>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarías una nueva columna para resolver el problema?</li>
 </ol>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="datos-ordenados.html#cb147-1"></a>personas &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
-<span id="cb147-2"><a href="datos-ordenados.html#cb147-2"></a>  <span class="op">~</span>nombre, <span class="op">~</span>clave, <span class="op">~</span>valor,</span>
-<span id="cb147-3"><a href="datos-ordenados.html#cb147-3"></a>  <span class="co">#-----------------|--------|------</span></span>
-<span id="cb147-4"><a href="datos-ordenados.html#cb147-4"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">45</span>,</span>
-<span id="cb147-5"><a href="datos-ordenados.html#cb147-5"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;estatura&quot;</span>, <span class="dv">186</span>,</span>
-<span id="cb147-6"><a href="datos-ordenados.html#cb147-6"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">50</span>,</span>
-<span id="cb147-7"><a href="datos-ordenados.html#cb147-7"></a>  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">37</span>,</span>
-<span id="cb147-8"><a href="datos-ordenados.html#cb147-8"></a>  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;estatura&quot;</span>, <span class="dv">156</span></span>
-<span id="cb147-9"><a href="datos-ordenados.html#cb147-9"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="datos-ordenados.html#cb147-1" aria-hidden="true" tabindex="-1"></a>personas <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb147-2"><a href="datos-ordenados.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>nombre, <span class="sc">~</span>clave, <span class="sc">~</span>valor,</span>
+<span id="cb147-3"><a href="datos-ordenados.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#-----------------|--------|------</span></span>
+<span id="cb147-4"><a href="datos-ordenados.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">45</span>,</span>
+<span id="cb147-5"><a href="datos-ordenados.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;estatura&quot;</span>, <span class="dv">186</span>,</span>
+<span id="cb147-6"><a href="datos-ordenados.html#cb147-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Phillip Woods&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">50</span>,</span>
+<span id="cb147-7"><a href="datos-ordenados.html#cb147-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;edad&quot;</span>, <span class="dv">37</span>,</span>
+<span id="cb147-8"><a href="datos-ordenados.html#cb147-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;estatura&quot;</span>, <span class="dv">156</span></span>
+<span id="cb147-9"><a href="datos-ordenados.html#cb147-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
@@ -532,25 +621,25 @@ Solución
 <ol start="4" style="list-style-type: decimal">
 <li>Ordena la siguiente tabla. ¿Necesitas extenderla o contraerla? ¿Cuáles son las variables?</li>
 </ol>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="datos-ordenados.html#cb148-1"></a>embarazo &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
-<span id="cb148-2"><a href="datos-ordenados.html#cb148-2"></a>  <span class="op">~</span>embarazo, <span class="op">~</span>hombre, <span class="op">~</span>mujer,</span>
-<span id="cb148-3"><a href="datos-ordenados.html#cb148-3"></a>  <span class="st">&quot;sí&quot;</span>, <span class="ot">NA</span>, <span class="dv">10</span>,</span>
-<span id="cb148-4"><a href="datos-ordenados.html#cb148-4"></a>  <span class="st">&quot;no&quot;</span>, <span class="dv">20</span>, <span class="dv">12</span></span>
-<span id="cb148-5"><a href="datos-ordenados.html#cb148-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="datos-ordenados.html#cb148-1" aria-hidden="true" tabindex="-1"></a>embarazo <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb148-2"><a href="datos-ordenados.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>embarazo, <span class="sc">~</span>hombre, <span class="sc">~</span>mujer,</span>
+<span id="cb148-3"><a href="datos-ordenados.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;sí&quot;</span>, <span class="cn">NA</span>, <span class="dv">10</span>,</span>
+<span id="cb148-4"><a href="datos-ordenados.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;no&quot;</span>, <span class="dv">20</span>, <span class="dv">12</span></span>
+<span id="cb148-5"><a href="datos-ordenados.html#cb148-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
 </h3>
 <p>La tabla muestra la cantidad de embarazon por género. Las variables serían <code>embarazo</code>, <code>genero</code> y una tercera a la que podemos llamar <code>n</code>. Para que la tabla quede ordenada tenemos que “alargarla”:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="datos-ordenados.html#cb149-1"></a>embarazo <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb149-2"><a href="datos-ordenados.html#cb149-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(hombre, mujer), <span class="dt">names_to =</span> <span class="st">&quot;genero&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;n&quot;</span>)</span>
-<span id="cb149-3"><a href="datos-ordenados.html#cb149-3"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
-<span id="cb149-4"><a href="datos-ordenados.html#cb149-4"></a><span class="co">#&gt;   embarazo genero     n</span></span>
-<span id="cb149-5"><a href="datos-ordenados.html#cb149-5"></a><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;</span></span>
-<span id="cb149-6"><a href="datos-ordenados.html#cb149-6"></a><span class="co">#&gt; 1 sí       hombre    NA</span></span>
-<span id="cb149-7"><a href="datos-ordenados.html#cb149-7"></a><span class="co">#&gt; 2 sí       mujer     10</span></span>
-<span id="cb149-8"><a href="datos-ordenados.html#cb149-8"></a><span class="co">#&gt; 3 no       hombre    20</span></span>
-<span id="cb149-9"><a href="datos-ordenados.html#cb149-9"></a><span class="co">#&gt; 4 no       mujer     12</span></span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="datos-ordenados.html#cb149-1" aria-hidden="true" tabindex="-1"></a>embarazo <span class="sc">%&gt;%</span> </span>
+<span id="cb149-2"><a href="datos-ordenados.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(hombre, mujer), <span class="at">names_to =</span> <span class="st">&quot;genero&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb149-3"><a href="datos-ordenados.html#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 3</span></span>
+<span id="cb149-4"><a href="datos-ordenados.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   embarazo genero     n</span></span>
+<span id="cb149-5"><a href="datos-ordenados.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;</span></span>
+<span id="cb149-6"><a href="datos-ordenados.html#cb149-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sí       hombre    NA</span></span>
+<span id="cb149-7"><a href="datos-ordenados.html#cb149-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sí       mujer     10</span></span>
+<span id="cb149-8"><a href="datos-ordenados.html#cb149-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 no       hombre    20</span></span>
+<span id="cb149-9"><a href="datos-ordenados.html#cb149-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 no       mujer     12</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -562,11 +651,11 @@ Solución
 <li>¿Qué hacen los argumentos <code>extra</code> y <code>fill</code> en <code>separate()</code>?
 Experimenta con las diversas opciones a partir de los siguientes datasets de ejemplo.</li>
 </ol>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="datos-ordenados.html#cb150-1"></a><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e,f,g&quot;</span>, <span class="st">&quot;h,i,j&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb150-2"><a href="datos-ordenados.html#cb150-2"></a><span class="st"> </span><span class="kw">separate</span>(x, <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</span>
-<span id="cb150-3"><a href="datos-ordenados.html#cb150-3"></a></span>
-<span id="cb150-4"><a href="datos-ordenados.html#cb150-4"></a><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e&quot;</span>, <span class="st">&quot;f,g,i&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb150-5"><a href="datos-ordenados.html#cb150-5"></a><span class="st"> </span><span class="kw">separate</span>(x, <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="datos-ordenados.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e,f,g&quot;</span>, <span class="st">&quot;h,i,j&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb150-2"><a href="datos-ordenados.html#cb150-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">separate</span>(x, <span class="fu">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</span>
+<span id="cb150-3"><a href="datos-ordenados.html#cb150-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-4"><a href="datos-ordenados.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e&quot;</span>, <span class="st">&quot;f,g,i&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb150-5"><a href="datos-ordenados.html#cb150-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">separate</span>(x, <span class="fu">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</span></code></pre></div>
 <div class="solucion">
 <h3>
 Solución
@@ -665,7 +754,6 @@ Solución
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -676,15 +764,25 @@ Solución
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
 "fontsettings": {
 "theme": "white",
 "family": "sans",
 "size": 2
 },
 "edit": {
-"link": "https://github.com/cienciadedatos/r4ds-soluciones/edit/master/12-tidy.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,
@@ -695,6 +793,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

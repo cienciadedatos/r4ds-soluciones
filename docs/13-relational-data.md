@@ -69,15 +69,15 @@ y a la vez con el dataset `clima`.
 vuelos %>%
   mutate(id = row_number(anio)) %>%
   select(id, everything())
-#> # A tibble: 336,776 x 20
-#>      id  anio   mes   dia horario_salida salida_programa… atraso_salida
-#>   <int> <int> <int> <int>          <int>            <int>         <dbl>
-#> 1     1  2013     1     1            517              515             2
-#> 2     2  2013     1     1            533              529             4
-#> 3     3  2013     1     1            542              540             2
-#> 4     4  2013     1     1            544              545            -1
-#> 5     5  2013     1     1            554              600            -6
-#> 6     6  2013     1     1            554              558            -4
+#> # A tibble: 336,776 × 20
+#>      id  anio   mes   dia horario_salida salida_programada atraso_salida
+#>   <int> <int> <int> <int>          <int>             <int>         <dbl>
+#> 1     1  2013     1     1            517               515             2
+#> 2     2  2013     1     1            533               529             4
+#> 3     3  2013     1     1            542               540             2
+#> 4     4  2013     1     1            544               545            -1
+#> 5     5  2013     1     1            554               600            -6
+#> 6     6  2013     1     1            554               558            -4
 #> # … with 336,770 more rows, and 13 more variables: horario_llegada <int>,
 #> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
 #> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
@@ -155,7 +155,6 @@ atraso_promedio_destino <- vuelos %>%
    # los vuelos con NA en atraso_llegada son vuelos cancelados
    summarise(atraso = mean(atraso_llegada, na.rm = TRUE)) %>%
    inner_join(aeropuertos, by = c(destino = "codigo_aeropuerto"))
-#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 
@@ -195,7 +194,7 @@ vuelos %>%
     ubicacion_aeropuertos,
     by = c("destino" = "codigo_aeropuerto")
   )
-#> # A tibble: 336,776 x 10
+#> # A tibble: 336,776 × 10
 #>    anio   mes   dia  hora origen destino latitud.x longitud.x latitud.y
 #>   <int> <int> <int> <dbl> <chr>  <chr>       <dbl>      <dbl>     <dbl>
 #> 1  2013     1     1     5 EWR    IAH          40.7      -74.2      30.0
@@ -223,7 +222,7 @@ vuelos %>%
     by = c("destino" = "codigo_aeropuerto"),
     suffix = c("_origen", "_destino")
   )
-#> # A tibble: 336,776 x 10
+#> # A tibble: 336,776 × 10
 #>    anio   mes   dia  hora origen destino latitud_origen longitud_origen
 #>   <int> <int> <int> <dbl> <chr>  <chr>            <dbl>           <dbl>
 #> 1  2013     1     1     5 EWR    IAH               40.7           -74.2
@@ -265,7 +264,6 @@ atrasos_por_antiguedad <- inner_join(vuelos,
       desv_est_atraso_salida = sd(atraso_salida, na.rm = TRUE),
       nro_vuelos_atrasados_salida = sum(!is.na(atraso_salida))
    )
-#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 Ahora podemos explorar la reglación entre los atrasos en la salida y la
@@ -314,7 +312,6 @@ vuelo_clima %>%
   ggplot(aes(x = precipitacion, y = atraso)) +
   geom_line() +
   geom_point()
-#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 <img src="13-relational-data_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" />
@@ -323,7 +320,7 @@ vuelo_clima %>%
 5. ¿Qué sucedió el día 13 de junio de 2013? Muestra el patrón espacial de los atrasos, 
    luego usa un buscador para encontrar referencias cruzadas con el clima.
 
-
+ 
 
 <div class="solucion">
 <h3>Solución</h3>
@@ -346,7 +343,6 @@ vuelos %>%
   geom_point() +
   coord_quickmap() +
   scale_colour_viridis_c()
-#> `summarise()` ungrouping output (override with `.groups` argument)
 #> Warning: Removed 3 rows containing missing values (geom_point).
 ```
 
@@ -384,7 +380,7 @@ vuelos %>%
   anti_join(aviones, by = "codigo_cola") %>%
   count(aerolinea, sort = TRUE) %>%
   mutate(p = n / sum(n))
-#> # A tibble: 10 x 3
+#> # A tibble: 10 × 3
 #>   aerolinea     n      p
 #>   <chr>     <int>  <dbl>
 #> 1 MQ        25397 0.483 
@@ -409,8 +405,7 @@ vuelos %>%
             faltan_en_aviones = sum(is.na(modelo))) %>%
   mutate(porcentaje_perdidos = faltan_en_aviones / total_aviones) %>%
   arrange(desc(porcentaje_perdidos))
-#> `summarise()` ungrouping output (override with `.groups` argument)
-#> # A tibble: 16 x 4
+#> # A tibble: 16 × 4
 #>   aerolinea total_aviones faltan_en_aviones porcentaje_perdidos
 #>   <chr>             <int>             <int>               <dbl>
 #> 1 MQ                  238               234              0.983 
@@ -447,15 +442,15 @@ cumplen con el criterio.
 ```r
 vuelos %>%
   semi_join(cien_vuelos, by = "codigo_cola")
-#> # A tibble: 228,390 x 19
-#>    anio   mes   dia horario_salida salida_programa… atraso_salida
-#>   <int> <int> <int>          <int>            <int>         <dbl>
-#> 1  2013     1     1            517              515             2
-#> 2  2013     1     1            533              529             4
-#> 3  2013     1     1            544              545            -1
-#> 4  2013     1     1            554              558            -4
-#> 5  2013     1     1            555              600            -5
-#> 6  2013     1     1            557              600            -3
+#> # A tibble: 228,390 × 19
+#>    anio   mes   dia horario_salida salida_programada atraso_salida
+#>   <int> <int> <int>          <int>             <int>         <dbl>
+#> 1  2013     1     1            517               515             2
+#> 2  2013     1     1            533               529             4
+#> 3  2013     1     1            544               545            -1
+#> 4  2013     1     1            554               558            -4
+#> 5  2013     1     1            555               600            -5
+#> 6  2013     1     1            557               600            -3
 #> # … with 228,384 more rows, and 13 more variables: horario_llegada <int>,
 #> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
 #> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
@@ -471,16 +466,16 @@ vuelos %>%
   group_by(codigo_cola) %>%
   mutate(n = n()) %>%
   filter(n >= 100)
-#> # A tibble: 228,390 x 20
+#> # A tibble: 228,390 × 20
 #> # Groups:   codigo_cola [1,217]
-#>    anio   mes   dia horario_salida salida_programa… atraso_salida
-#>   <int> <int> <int>          <int>            <int>         <dbl>
-#> 1  2013     1     1            517              515             2
-#> 2  2013     1     1            533              529             4
-#> 3  2013     1     1            544              545            -1
-#> 4  2013     1     1            554              558            -4
-#> 5  2013     1     1            555              600            -5
-#> 6  2013     1     1            557              600            -3
+#>    anio   mes   dia horario_salida salida_programada atraso_salida
+#>   <int> <int> <int>          <int>             <int>         <dbl>
+#> 1  2013     1     1            517               515             2
+#> 2  2013     1     1            533               529             4
+#> 3  2013     1     1            544               545            -1
+#> 4  2013     1     1            554               558            -4
+#> 5  2013     1     1            555               600            -5
+#> 6  2013     1     1            557               600            -3
 #> # … with 228,384 more rows, and 14 more variables: horario_llegada <int>,
 #> #   llegada_programada <int>, atraso_llegada <dbl>, aerolinea <chr>,
 #> #   vuelo <int>, codigo_cola <chr>, origen <chr>, destino <chr>,
@@ -503,15 +498,15 @@ nombre.
 ```r
 vehiculos %>%
   semi_join(comunes, by = c("fabricante", "modelo"))
-#> # A tibble: 14,531 x 12
-#>      id fabricante modelo  anio clase transmision traccion cilindros motor
-#>   <dbl> <chr>      <chr>  <dbl> <chr> <chr>       <chr>        <dbl> <dbl>
-#> 1  1833 Acura      Integ…  1986 Auto… Automática… Delante…         4   1.6
-#> 2  1834 Acura      Integ…  1986 Auto… Manual 5-v… Delante…         4   1.6
-#> 3  3037 Acura      Integ…  1987 Auto… Automática… Delante…         4   1.6
-#> 4  3038 Acura      Integ…  1987 Auto… Manual 5-v… Delante…         4   1.6
-#> 5  4183 Acura      Integ…  1988 Auto… Automática… Delante…         4   1.6
-#> 6  4184 Acura      Integ…  1988 Auto… Manual 5-v… Delante…         4   1.6
+#> # A tibble: 14,531 × 12
+#>      id fabricante modelo   anio clase    transmision   traccion cilindros motor
+#>   <dbl> <chr>      <chr>   <dbl> <chr>    <chr>         <chr>        <dbl> <dbl>
+#> 1  1833 Acura      Integra  1986 Automóv… Automática 4… Delante…         4   1.6
+#> 2  1834 Acura      Integra  1986 Automóv… Manual 5-vel… Delante…         4   1.6
+#> 3  3037 Acura      Integra  1987 Automóv… Automática 4… Delante…         4   1.6
+#> 4  3038 Acura      Integra  1987 Automóv… Manual 5-vel… Delante…         4   1.6
+#> 5  4183 Acura      Integra  1988 Automóv… Automática 4… Delante…         4   1.6
+#> 6  4184 Acura      Integra  1988 Automóv… Manual 5-vel… Delante…         4   1.6
 #> # … with 14,525 more rows, and 3 more variables: combustible <chr>,
 #> #   autopista <dbl>, ciudad <dbl>
 ```
@@ -538,7 +533,7 @@ peores_horas <- vuelos %>%
   ungroup() %>%
   arrange(desc(atraso_salida)) %>%
   slice(1:48)
-#> `summarise()` regrouping output by 'origen', 'anio', 'mes', 'dia' (override with `.groups` argument)
+#> `summarise()` has grouped output by 'origen', 'anio', 'mes', 'dia'. You can override using the `.groups` argument.
 ```
 
 Este resultado se debe unir con la tabla `clima`.
@@ -556,7 +551,7 @@ por sobre el promedio (10 millas por hora) o lluvias.
 ```r
 select(clima_peores_horas, temperatura, velocidad_viento, precipitacion) %>%
   print(n = 48)
-#> # A tibble: 48 x 3
+#> # A tibble: 48 × 3
 #>    temperatura velocidad_viento precipitacion
 #>          <dbl>            <dbl>         <dbl>
 #>  1        27.0            13.8           0   
@@ -678,7 +673,7 @@ aviones_transferidos <- aerolinea_avion %>%
   arrange(aerolinea, codigo_cola)
 
 aviones_transferidos
-#> # A tibble: 34 x 3
+#> # A tibble: 34 × 3
 #> # Groups:   codigo_cola [17]
 #>   aerolinea codigo_cola nombre           
 #>   <chr>     <chr>       <chr>            

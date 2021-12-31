@@ -35,13 +35,13 @@ El argumento `tzone` permite indicar en qué huso horarios queremos la fecha act
 
 ```r
 today()
-#> [1] "2020-07-04"
+#> [1] "2021-12-31"
 today ("UTC")
-#> [1] "2020-07-04"
+#> [1] "2021-12-31"
 today(tzone = "Australia/Sydney")
-#> [1] "2020-07-05"
+#> [1] "2022-01-01"
 today(tzone = "Pacific/Honolulu")
-#> [1] "2020-07-04"
+#> [1] "2021-12-31"
 ```
 
 </div>
@@ -63,14 +63,15 @@ today(tzone = "Pacific/Honolulu")
 
 ```r
 mdy(d1)
-#> [1] "2010-01-01"
-ymd(d2)
 #> Warning: All formats failed to parse. No formats found.
 #> [1] NA
+ymd(d2)
+#> [1] "2015-03-07"
 dmy(d3)
 #> [1] "2017-06-06"
 mdy(d4)
-#> [1] "2015-08-19" "2015-07-01"
+#> Warning: All formats failed to parse. No formats found.
+#> [1] NA NA
 mdy(d5)
 #> [1] "2014-12-30"
 ```
@@ -176,7 +177,7 @@ La segunda pregunta podemos resolverla de las misma manera, pero obteniendo el p
 ```r
 
 floor_date(today(), "year")
-#> [1] "2020-01-01"
+#> [1] "2021-01-01"
 ```
 
 Ahora que obtuvimos el primer día del año actual, podemos sumarle los meses:
@@ -185,9 +186,9 @@ Ahora que obtuvimos el primer día del año actual, podemos sumarle los meses:
 
 ```r
 floor_date(today(), "year") + months(0:11)
-#>  [1] "2020-01-01" "2020-02-01" "2020-03-01" "2020-04-01" "2020-05-01"
-#>  [6] "2020-06-01" "2020-07-01" "2020-08-01" "2020-09-01" "2020-10-01"
-#> [11] "2020-11-01" "2020-12-01"
+#>  [1] "2021-01-01" "2021-02-01" "2021-03-01" "2021-04-01" "2021-05-01"
+#>  [6] "2021-06-01" "2021-07-01" "2021-08-01" "2021-09-01" "2021-10-01"
+#> [11] "2021-11-01" "2021-12-01"
 ```
 
 </div>
