@@ -1,5 +1,3 @@
-[![Build Status](https://api.travis-ci.org/cienciadedatos/r4ds-soluciones.svg?branch=master)](https://travis-ci.org/cienciadedatos/r4ds-soluciones)
-
 ## Propuesta de soluciones de los ejercicios del libro [R para Ciencia de Datos](https://es.r4ds.hadley.nz)
 
 Última versión disponible [acá](http://cienciadedatos.github.io/r4ds-soluciones).
