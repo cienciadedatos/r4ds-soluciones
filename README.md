@@ -1,7 +1,10 @@
+<!-- badges: start -->
+[![Build book](https://github.com/cienciadedatos/r4ds-soluciones/workflows/Build%20book/badge.svg)](https://github.com/cienciadedatos/r4ds-soluciones/actions)
+<!-- badges: end -->
+
 ## Propuesta de soluciones de los ejercicios del libro [R para Ciencia de Datos](https://es.r4ds.hadley.nz)
 
-Última versión disponible [acá](https://solucionesr4ds.netlify.app/).
-
+Última versión disponible [acá](https://r4ds-soluciones.netlify.app/).
 
 **Para colaborar**
 
