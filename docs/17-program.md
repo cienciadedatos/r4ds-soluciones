@@ -1,6 +1,0 @@
-# (PART) Programar {-}
-
-
-# Introducción
-
-Esta sección no tiene ejercicios.

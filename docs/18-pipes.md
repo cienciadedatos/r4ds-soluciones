@@ -1,3 +1,0 @@
-# Pipes
-
-[capítulo sin ejercicios]
