@@ -37,7 +37,7 @@ El argumento `tzone` permite indicar en qué huso horarios queremos la fecha act
 today()
 #> [1] "2021-12-31"
 today ("UTC")
-#> [1] "2021-12-31"
+#> [1] "2022-01-01"
 today(tzone = "Australia/Sydney")
 #> [1] "2022-01-01"
 today(tzone = "Pacific/Honolulu")
