@@ -1,6 +1,6 @@
 ## Propuesta de soluciones de los ejercicios del libro [R para Ciencia de Datos](https://es.r4ds.hadley.nz)
 
-Última versión disponible [acá](http://cienciadedatos.github.io/r4ds-soluciones).
+Última versión disponible [acá](https://solucionesr4ds.netlify.app/).
 
 
 **Para colaborar**
