@@ -28,7 +28,7 @@ Este código crea un gráfico "vacío". Solo se ve el fondo, pero no se dibuja n
 <div class="solucion">
 <h3>Solución</h3>
 
-Para contar el número de filas y columas podemos utilizar las funciones `nrow()` y `ncol()` del paquet dplyr: 
+Para contar el número de filas y columas podemos utilizar las funciones `nrow()` y `ncol()` del paquete dplyr: 
 
 ```{r}
 nrow(millas)
