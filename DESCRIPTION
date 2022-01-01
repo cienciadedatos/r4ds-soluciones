@@ -20,7 +20,8 @@ Imports:
   pryr,
   tidyverse,
   viridis,
-  datos
+  datos,
+  ggbeeswarm
 Suggests:
   bookdown,
   bslib,
