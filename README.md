@@ -5,6 +5,7 @@
 ## Propuesta de soluciones de los ejercicios del libro [R para Ciencia de Datos](https://es.r4ds.hadley.nz)
 
 Última versión disponible [acá](https://r4ds-soluciones.netlify.app/).
+NOTA: Este proyecto está en pausa, a la espera de que se publique la segunda edición de "R para Ciencia de Datos".
 
 **Para colaborar**
 
